@@ -70,6 +70,12 @@ export const Gallery = () => {
       />
       
       <div className="container relative mx-auto px-4">
+        <div className="max-w-2xl mx-auto text-center mb-12 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-4 font-geist">
+            Our Work
+          </h2>
+        </div>
+
         <div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           style={{
