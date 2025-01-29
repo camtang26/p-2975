@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { VideoBackground } from "./hero/VideoBackground";
 import { HeroContent } from "./hero/HeroContent";
+import { NetworkVisualization } from "./agents/NetworkVisualization";
 
 export const Hero = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -15,13 +16,12 @@ export const Hero = () => {
       role="banner" 
       aria-label="Hero section"
     >
-      <VideoBackground
-        isMuted={isMuted}
-        isPlaying={isPlaying}
-        onToggleMute={toggleMute}
-        onTogglePlay={togglePlay}
-      />
-      <HeroContent />
+      <div className="absolute inset-0 z-0">
+        <NetworkVisualization />
+      </div>
+      <div className="relative z-10">
+        <HeroContent />
+      </div>
     </section>
   );
 };

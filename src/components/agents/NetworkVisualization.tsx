@@ -36,14 +36,18 @@ export const NetworkVisualization = () => {
       
       ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
-      // Update and draw nodes
+      // Update and draw nodes with reduced opacity
       nodes.forEach(node => {
         node.update(time, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        ctx.globalAlpha = 0.7; // Reduced opacity for better text visibility
         node.draw(ctx);
+        ctx.globalAlpha = 1.0;
       });
 
-      // Draw enhanced connections
+      // Draw enhanced connections with reduced opacity
+      ctx.globalAlpha = 0.7;
       ConnectionRenderer.drawConnections(ctx, nodes, time);
+      ctx.globalAlpha = 1.0;
 
       time++;
       requestAnimationFrame(animate);
@@ -60,7 +64,7 @@ export const NetworkVisualization = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.9 }} // Increased opacity for better visibility
+      style={{ opacity: 0.8 }} // Slightly reduced base opacity
     />
   );
 };
