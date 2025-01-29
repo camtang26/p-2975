@@ -31,7 +31,7 @@ const services = [
 export const Services = () => {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-[#0F0F1A] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D1D] via-[#141429] to-[#1D1535] pointer-events-none" />
       
       <div className="container relative mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -41,21 +41,27 @@ export const Services = () => {
               className="glass-morphism p-8 rounded-xl space-y-6 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
               style={{ 
                 animationDelay: `${index * 100}ms`,
-                background: 'linear-gradient(145deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.002) 100%)',
-                boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.3)',
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+                boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.4)',
                 backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.03)'
+                border: '1px solid rgba(255,255,255,0.05)'
               }}
             >
-              <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-black/80 to-[#1A1A1A]/80 transition-transform duration-500 group-hover:scale-110 border border-white/5">
-                <service.icon className="w-7 h-7 text-white/90" strokeWidth={1.25} />
+              <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-[#2A2A3F] to-[#1A1A2E] transition-transform duration-500 group-hover:scale-110 border border-white/10">
+                <service.icon 
+                  className="w-7 h-7 text-white/95" 
+                  strokeWidth={1.25}
+                  style={{
+                    filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.2))'
+                  }}
+                />
               </div>
               
-              <h3 className="text-2xl font-semibold text-white text-center tracking-tight leading-tight font-geist">
+              <h3 className="text-2xl font-semibold text-gradient text-center tracking-tight leading-tight font-geist">
                 {service.title}
               </h3>
               
-              <p className="text-white/70 text-center text-base leading-relaxed font-geist font-light">
+              <p className="text-white/80 text-center text-base leading-relaxed font-geist font-light">
                 {service.description}
               </p>
               
