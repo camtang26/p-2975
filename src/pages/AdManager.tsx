@@ -41,7 +41,7 @@ const AdManager = () => {
               <div className="animate-fade-in [animation-delay:800ms]">
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 hover-lift hover-glow"
+                  className="text-lg px-8 py-6 hover-lift hover-glow bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] hover:from-[#8B5CF6] hover:to-[#7E69AB] border-0"
                 >
                   Get Started Free
                 </Button>
