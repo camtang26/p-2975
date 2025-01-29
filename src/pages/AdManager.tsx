@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
+import { Benefits } from "@/components/benefits/Benefits";
 
 const AdManager = () => {
   return (
@@ -60,47 +61,8 @@ const AdManager = () => {
         {/* How It Works Section */}
         <HowItWorks />
 
-        {/* Benefits for Clients Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Client benefits section"
-        >
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16">
-              Benefits for Clients
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <div key={index} className="glass-morphism p-8 rounded-lg">
-                  <div className="w-12 h-12 bg-gray-800 rounded-full mb-6" role="img" aria-label={`Benefit ${index + 1} icon`} />
-                  <h3 className="text-2xl font-bold text-gradient mb-4">Client Benefit {index + 1}</h3>
-                  <p className="text-white/80">Description of benefit {index + 1} for clients.</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits for Agencies Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Agency benefits section"
-        >
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16">
-              Benefits for Agencies
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <div key={index} className="glass-morphism p-8 rounded-lg">
-                  <div className="w-12 h-12 bg-gray-800 rounded-full mb-6" role="img" aria-label={`Agency benefit ${index + 1} icon`} />
-                  <h3 className="text-2xl font-bold text-gradient mb-4">Agency Benefit {index + 1}</h3>
-                  <p className="text-white/80">Description of benefit {index + 1} for agencies.</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Benefits Section */}
+        <Benefits />
 
         {/* Case Studies/Testimonials Section */}
         <section 
