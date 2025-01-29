@@ -44,7 +44,7 @@ const AdManager = () => {
               <div className="animate-fade-in [animation-delay:800ms]">
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 hover-lift hover-glow bg-gradient-to-r from-blue-600 via-red-600 to-black hover:from-blue-700 hover:via-red-700 hover:to-gray-900 border-0"
+                  className="text-lg px-8 py-6 bg-gradient-to-r from-[#0EA5E9] via-[#1E40AF] to-[#1E3A8A] hover:from-[#0284C7] hover:via-[#1E3A8A] hover:to-[#172554] border-0 shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] transition-all duration-300"
                 >
                   Get Started Free
                 </Button>
@@ -68,43 +68,23 @@ const AdManager = () => {
         {/* Benefits Section */}
         <Benefits />
 
-        {/* Case Studies/Testimonials Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Case studies and testimonials section"
-        >
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16">
-              Success Stories
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="glass-morphism p-8 rounded-lg">
-                  <div className="w-20 h-20 bg-gray-800 rounded-full mx-auto mb-6" role="img" aria-label={`Client ${index + 1} logo`} />
-                  <h3 className="text-2xl font-bold text-gradient text-center mb-4">Client Name {index + 1}</h3>
-                  <p className="text-white/80 text-center italic mb-4">"Testimonial quote from client {index + 1}."</p>
-                  <p className="text-white/60 text-center">Client Position, Company</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Call to Action Section */}
         <section 
           className="py-24 relative overflow-hidden"
           aria-label="Call to action section"
         >
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-8 px-4 max-w-4xl mx-auto">
               Ready to Transform Your Ad Strategy?
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto mb-12">
               Join the future of intelligent advertising with Cre8tive AI Ad Manager.
             </p>
-            <button className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-lg transition-colors">
+            <Button 
+              className="text-lg px-8 py-6 bg-gradient-to-r from-[#0EA5E9] via-[#1E40AF] to-[#1E3A8A] hover:from-[#0284C7] hover:via-[#1E3A8A] hover:to-[#172554] border-0 shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] transition-all duration-300"
+            >
               Get Started Today
-            </button>
+            </Button>
           </div>
         </section>
       </main>
