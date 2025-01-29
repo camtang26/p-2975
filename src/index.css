@@ -57,12 +57,10 @@
     @apply scroll-smooth;
   }
 
-  /* Improve focus styles for better accessibility */
   :focus-visible {
     @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 
-  /* Improve tap target sizes on mobile */
   button, a {
     @apply min-h-[44px] min-w-[44px];
   }
@@ -85,7 +83,6 @@
     animation: scaleIn 0.3s ease-out forwards;
   }
 
-  /* Enhanced hover effects */
   .hover-lift {
     @apply transition-transform duration-300 hover:-translate-y-1;
   }
@@ -95,7 +92,6 @@
   }
 }
 
-/* Enhanced animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -118,17 +114,14 @@
   }
 }
 
-/* Smooth scrolling for the entire site */
 html {
   scroll-behavior: smooth;
 }
 
-/* Improved focus styles for keyboard navigation */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* Reduce motion if user prefers */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
