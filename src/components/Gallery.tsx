@@ -92,12 +92,33 @@ export const Gallery = () => {
               onClick={() => handleVideoClick(video, index)}
             >
               <AspectRatio ratio={16 / 9}>
-                <img
-                  src={`${video.thumbnail}?w=800&fm=webp&q=80`}
-                  alt={`Video thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
-                  loading="lazy"
-                />
+                <picture>
+                  {/* Mobile optimized image */}
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet={`${video.thumbnail}?w=480&fm=webp&q=80 1x, ${video.thumbnail}?w=960&fm=webp&q=80 2x`}
+                    type="image/webp"
+                  />
+                  {/* Tablet optimized image */}
+                  <source
+                    media="(max-width: 1024px)"
+                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`}
+                    type="image/webp"
+                  />
+                  {/* Desktop optimized image */}
+                  <source
+                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`}
+                    type="image/webp"
+                  />
+                  {/* Fallback image */}
+                  <img
+                    src={`${video.thumbnail}?w=800&q=80`}
+                    alt={`Video thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover rounded-lg"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <Play className="w-16 h-16 text-white" />
                 </div>
