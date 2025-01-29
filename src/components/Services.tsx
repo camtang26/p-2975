@@ -30,27 +30,47 @@ const services = [
 
 export const Services = () => {
   return (
-    <section className="py-24 bg-[#111111]">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1F2C] to-[#221F26] pointer-events-none" />
+      
+      <div className="container relative mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="bg-[#1A1A1A] p-8 rounded-lg space-y-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="glass-morphism p-8 rounded-xl space-y-6 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
+              style={{ 
+                animationDelay: `${index * 100}ms`,
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+                boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.05)'
+              }}
             >
-              <div className="w-[48px] h-[48px] mx-auto flex items-center justify-center">
-                <service.icon className="w-12 h-12 text-[#FFD700]" />
+              <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-[#222222]/80 to-[#333333]/80 transition-transform duration-500 group-hover:scale-110 border border-white/5">
+                <service.icon className="w-7 h-7 text-white/90" />
               </div>
-              <h3 className="text-2xl font-bold text-white text-center font-inter">{service.title}</h3>
-              <p className="text-white/70 text-center text-base font-inter">{service.description}</p>
+              
+              <h3 className="text-2xl font-bold text-white text-center tracking-tight">
+                {service.title}
+              </h3>
+              
+              <p className="text-white/70 text-center text-base leading-relaxed">
+                {service.description}
+              </p>
+              
               <div className="text-center pt-2">
                 <Button
                   variant="link"
-                  className="text-white hover:text-white hover:underline hover:decoration-[#FFD700] transition-all duration-300"
+                  className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300"
                   asChild
                 >
-                  <a href={service.link}>Learn More</a>
+                  <a 
+                    href={service.link}
+                    className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                  >
+                    Learn More
+                  </a>
                 </Button>
               </div>
             </div>
