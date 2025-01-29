@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 const AdManager = () => {
   return (
@@ -9,20 +10,50 @@ const AdManager = () => {
       <main className="relative">
         {/* Hero Section */}
         <section 
-          className="relative h-screen flex items-center justify-center overflow-hidden"
+          className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4"
           aria-label="Hero section"
         >
-          <div className="container mx-auto px-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient text-center mb-6">
-              AI-Powered Ad Management
-            </h1>
-            <p className="text-xl md:text-2xl text-center text-white/80 max-w-3xl mx-auto mb-8">
-              Transform your advertising strategy with intelligent automation and data-driven insights
-            </p>
-            <div className="aspect-video max-w-4xl mx-auto glass-morphism rounded-lg" role="img" aria-label="Placeholder for hero video">
-              {/* Video placeholder */}
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center space-y-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gradient animate-fade-in">
+                Cre8tive AI Ad Manager
+              </h1>
+              
+              <h2 className="text-xl md:text-2xl lg:text-3xl text-white/90 font-semibold animate-fade-in [animation-delay:200ms]">
+                From Idea to Storyboard: Effortless Ad Creation, Powered by AI
+              </h2>
+
+              {/* Blueprint Visual Placeholder */}
+              <div 
+                className="max-w-3xl mx-auto my-12 aspect-video glass-morphism rounded-lg p-8 animate-fade-in [animation-delay:400ms]"
+                role="img"
+                aria-label="Blueprint visualization of the ad creation process"
+              >
+                <div className="h-full w-full flex items-center justify-center">
+                  <p className="text-white/60">Blueprint Visual Placeholder</p>
+                </div>
+              </div>
+
+              <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed animate-fade-in [animation-delay:600ms]">
+                Transform your advertising process with the Cre8tive AI Ad Manager—a state-of-the-art platform that takes your product and brand from concept to storyboard in minutes. Whether you're a client or a digital marketing agency, our tool empowers you to develop stunning, professional creatives with ease, ready for production by our Cre8tive AI Studio Team.
+              </p>
+
+              <div className="animate-fade-in [animation-delay:800ms]">
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 hover-lift hover-glow"
+                >
+                  Get Started Free
+                </Button>
+              </div>
             </div>
           </div>
+
+          {/* Optional: Background texture */}
+          <div 
+            className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)] pointer-events-none"
+            aria-hidden="true"
+          />
         </section>
 
         {/* How It Works Section */}
