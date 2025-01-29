@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import { StudiosHero } from "@/components/studios/StudiosHero";
 
 const Studios = () => {
   return (
@@ -8,35 +8,7 @@ const Studios = () => {
       <Navigation />
       
       <main className="relative">
-        {/* Hero Section */}
-        <section 
-          className="relative h-screen flex items-center justify-center overflow-hidden"
-          aria-label="Hero section"
-        >
-          <div className="absolute inset-0 bg-black/50">
-            {/* Placeholder for hero video */}
-            <div 
-              className="w-full h-full bg-gray-900"
-              role="img"
-              aria-label="Placeholder for hero video showcasing Cre8tive AI Studios capabilities"
-            />
-          </div>
-          
-          <div className="relative z-10 container mx-auto px-4 text-center">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gradient mb-6">
-              Cre8tive AI Studios
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-              Where Artificial Intelligence Meets Creative Excellence
-            </p>
-            <Button 
-              size="lg"
-              className="text-lg px-8"
-            >
-              Explore Our Services
-            </Button>
-          </div>
-        </section>
+        <StudiosHero />
 
         {/* Introduction Section */}
         <section 
