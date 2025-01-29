@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Geist Sans'],
+				sans: ['Geist Sans', 'sans-serif'],
 				geist: ['Geist Sans'],
 			},
 			colors: {
