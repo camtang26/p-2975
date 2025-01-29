@@ -29,11 +29,11 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-white/10 selection:text-white font-geist;
+    @apply border-border selection:bg-white/10 selection:text-white font-inter;
   }
   
   body {
-    @apply bg-background text-foreground antialiased font-geist;
+    @apply bg-background text-foreground antialiased font-inter;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
