@@ -20,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/studios" element={<Studios />} />
           <Route path="/ad-manager" element={<AdManager />} />
+          <Route path="/manager" element={<AdManager />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
