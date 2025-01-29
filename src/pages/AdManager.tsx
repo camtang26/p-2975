@@ -10,14 +10,14 @@ const AdManager = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="relative">
+      <main className="relative pt-20">
         {/* Hero Section */}
         <section 
-          className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-12 px-4"
+          className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16 px-4 mb-24"
           aria-label="Hero section"
         >
           <div className="container mx-auto max-w-7xl">
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gradient animate-fade-in">
                 Cre8tive AI Ad Manager
               </h1>
