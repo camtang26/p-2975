@@ -73,11 +73,11 @@ export const Services = () => {
                   />
                 </div>
                 
-                <h3 className="text-2xl font-semibold text-gradient text-center tracking-tight leading-tight font-geist">
+                <h3 className="text-3xl font-bold text-gradient text-center tracking-tight leading-tight font-geist">
                   {service.title}
                 </h3>
                 
-                <p className="text-white/90 text-center text-base leading-relaxed font-geist font-light">
+                <p className="text-white/90 text-center text-lg leading-relaxed font-geist font-normal">
                   {service.description}
                 </p>
                 
