@@ -32,22 +32,22 @@ export const Services = () => {
   return (
     <section className="py-24 bg-[#111111]">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="glass-morphism p-8 rounded-lg space-y-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#9b87f5]/10 animate-fade-in"
+              className="bg-[#1A1A1A] p-8 rounded-lg space-y-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-20 h-20 mx-auto bg-[#9b87f5]/10 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <service.icon className="w-10 h-10 text-[#9b87f5]" />
+              <div className="w-[48px] h-[48px] mx-auto flex items-center justify-center">
+                <service.icon className="w-12 h-12 text-[#FFD700]" />
               </div>
-              <h3 className="text-2xl font-semibold text-white text-center">{service.title}</h3>
-              <p className="text-white/70 text-center text-lg">{service.description}</p>
+              <h3 className="text-2xl font-bold text-white text-center font-inter">{service.title}</h3>
+              <p className="text-white/70 text-center text-base font-inter">{service.description}</p>
               <div className="text-center pt-2">
                 <Button
                   variant="link"
-                  className="text-[#9b87f5] hover:text-[#b5a6f8] transition-colors duration-300"
+                  className="text-white hover:text-white hover:underline hover:decoration-[#FFD700] transition-all duration-300"
                   asChild
                 >
                   <a href={service.link}>Learn More</a>
