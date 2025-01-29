@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2, Zap } from "lucide-react";
+import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2, Zap, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const ExpertiseBenefits = () => {
   return (
@@ -164,14 +165,43 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Future Section */}
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          The Future of Video is Intelligent
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 leading-relaxed">
-          <p>
-            As AI technology continues to evolve, the possibilities for video production become even more exciting. Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
-          </p>
+      <div className="container mx-auto px-4 relative overflow-hidden">
+        <div className="glass-morphism rounded-3xl p-16 relative overflow-hidden">
+          {/* Abstract Background Elements */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
+          <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          
+          {/* Content Container */}
+          <div className="relative z-10 max-w-3xl mx-auto text-center">
+            {/* Icon */}
+            <div className="mb-8 flex justify-center">
+              <div className="p-4 rounded-full bg-primary/10 backdrop-blur-sm animate-fade-in">
+                <Sparkles className="w-12 h-12 text-primary animate-pulse" />
+              </div>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-8 tracking-tight animate-fade-in">
+              The Future of Video is Intelligent
+            </h2>
+
+            {/* Description */}
+            <p className="text-xl text-white/80 leading-relaxed mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              As AI technology continues to evolve, the possibilities for video production become even more exciting. 
+              Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
+            </p>
+
+            {/* CTA Button */}
+            <Button 
+              size="lg" 
+              className="animate-fade-in hover-lift hover-glow bg-primary text-white text-lg px-8 py-6 h-auto font-semibold tracking-wide"
+              style={{ animationDelay: '0.4s' }}
+            >
+              <Rocket className="w-5 h-5 mr-2" />
+              Get Started Today
+            </Button>
+          </div>
         </div>
       </div>
     </section>
