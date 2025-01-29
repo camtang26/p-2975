@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
+import { Testimonials } from "@/components/studios/Testimonials";
 import { Button } from "@/components/ui/button";
 
 const Studios = () => {
@@ -14,6 +15,7 @@ const Studios = () => {
         <StudiosHero />
         <StudiosIntro />
         <ExpertiseBenefits />
+        <Testimonials />
 
         {/* Services Section */}
         <section 
