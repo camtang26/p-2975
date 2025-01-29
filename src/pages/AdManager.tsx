@@ -57,79 +57,177 @@ const AdManager = () => {
           />
         </section>
 
-        {/* How It Works Section */}
+        {/* How It Works Section - Enhanced 3D Version */}
         <section 
           className="py-24 relative overflow-hidden"
           aria-label="How it works section"
         >
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16 animate-fade-in">
               How It Works
             </h2>
             
             {/* Steps Container */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-              {/* Connecting Lines (visible on larger screens) */}
-              <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 via-red-600 to-black transform -translate-y-1/2 z-0" />
+              {/* 3D Connecting Lines (visible on larger screens) */}
+              <div 
+                className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-blue-600/50 via-red-600/50 to-black/50 transform -translate-y-1/2 z-0"
+                style={{
+                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(220, 38, 38, 0.3)',
+                  animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                }}
+              />
 
               {/* Step 1 */}
-              <div className="relative z-10 animate-fade-in [animation-delay:200ms]">
-                <div className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 bg-gradient-to-br from-black via-blue-900/20 to-transparent relative group">
-                  {/* Number Badge */}
-                  <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 via-red-600 to-black flex items-center justify-center text-white font-bold">
+              <div className="relative z-10 animate-fade-in [animation-delay:200ms] perspective-1000">
+                <div 
+                  className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 
+                            bg-gradient-to-br from-blue-900/20 via-black to-transparent relative group
+                            transform-gpu transition-transform duration-500 hover:rotate-y-10 hover:scale-105
+                            before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r 
+                            before:from-blue-500/20 before:to-transparent before:opacity-0 
+                            before:transition-opacity hover:before:opacity-100
+                            after:absolute after:inset-0 after:rounded-lg after:bg-blue-500/5
+                            after:opacity-0 after:transition-opacity hover:after:opacity-100
+                            shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                >
+                  {/* 3D Number Badge */}
+                  <div 
+                    className="absolute -top-4 -left-4 w-10 h-10 rounded-full 
+                              bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 
+                              flex items-center justify-center text-white font-bold text-lg
+                              shadow-[0_0_20px_rgba(59,130,246,0.5)]
+                              transform-gpu transition-transform duration-300 
+                              hover:scale-110 hover:rotate-12"
+                  >
                     1
                   </div>
                   
-                  {/* Icon */}
-                  <div className="mb-4">
-                    <Brain className="w-12 h-12 text-blue-500 group-hover:text-blue-400 transition-colors" />
+                  {/* Icon with enhanced glow */}
+                  <div className="mb-4 relative group-hover:animate-pulse">
+                    <Brain className="w-14 h-14 text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]
+                                     transition-all duration-300 group-hover:text-blue-300
+                                     group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-xl font-semibold mb-2 text-gradient">Input Your Vision</h3>
-                  <p className="text-white/80">Share your product details and creative vision through our intuitive interface.</p>
+                  <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">
+                    Input Your Vision
+                  </h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Share your product details and creative vision through our intuitive interface.
+                  </p>
                 </div>
               </div>
 
               {/* Step 2 */}
-              <div className="relative z-10 animate-fade-in [animation-delay:400ms]">
-                <div className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 bg-gradient-to-br from-black via-red-900/20 to-transparent relative group">
-                  <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 via-red-600 to-black flex items-center justify-center text-white font-bold">
+              <div className="relative z-10 animate-fade-in [animation-delay:400ms] perspective-1000">
+                <div 
+                  className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 
+                            bg-gradient-to-br from-red-900/20 via-black to-transparent relative group
+                            transform-gpu transition-transform duration-500 hover:rotate-y-10 hover:scale-105
+                            before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r 
+                            before:from-red-500/20 before:to-transparent before:opacity-0 
+                            before:transition-opacity hover:before:opacity-100
+                            after:absolute after:inset-0 after:rounded-lg after:bg-red-500/5
+                            after:opacity-0 after:transition-opacity hover:after:opacity-100
+                            shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                >
+                  <div 
+                    className="absolute -top-4 -left-4 w-10 h-10 rounded-full 
+                              bg-gradient-to-r from-red-600 via-red-400 to-red-600 
+                              flex items-center justify-center text-white font-bold text-lg
+                              shadow-[0_0_20px_rgba(239,68,68,0.5)]
+                              transform-gpu transition-transform duration-300 
+                              hover:scale-110 hover:rotate-12"
+                  >
                     2
                   </div>
-                  <div className="mb-4">
-                    <Layers className="w-12 h-12 text-red-500 group-hover:text-red-400 transition-colors" />
+                  <div className="mb-4 relative group-hover:animate-pulse">
+                    <Layers className="w-14 h-14 text-red-400 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]
+                                    transition-all duration-300 group-hover:text-red-300
+                                    group-hover:drop-shadow-[0_0_20px_rgba(239,68,68,0.8)]" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-gradient">AI Processing</h3>
-                  <p className="text-white/80">Our AI analyzes your input and generates creative concepts and storyboards.</p>
+                  <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+                    AI Processing
+                  </h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Our AI analyzes your input and generates creative concepts and storyboards.
+                  </p>
                 </div>
               </div>
 
               {/* Step 3 */}
-              <div className="relative z-10 animate-fade-in [animation-delay:600ms]">
-                <div className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 bg-gradient-to-br from-black via-purple-900/20 to-transparent relative group">
-                  <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 via-red-600 to-black flex items-center justify-center text-white font-bold">
+              <div className="relative z-10 animate-fade-in [animation-delay:600ms] perspective-1000">
+                <div 
+                  className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 
+                            bg-gradient-to-br from-purple-900/20 via-black to-transparent relative group
+                            transform-gpu transition-transform duration-500 hover:rotate-y-10 hover:scale-105
+                            before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r 
+                            before:from-purple-500/20 before:to-transparent before:opacity-0 
+                            before:transition-opacity hover:before:opacity-100
+                            after:absolute after:inset-0 after:rounded-lg after:bg-purple-500/5
+                            after:opacity-0 after:transition-opacity hover:after:opacity-100
+                            shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+                >
+                  <div 
+                    className="absolute -top-4 -left-4 w-10 h-10 rounded-full 
+                              bg-gradient-to-r from-purple-600 via-purple-400 to-purple-600 
+                              flex items-center justify-center text-white font-bold text-lg
+                              shadow-[0_0_20px_rgba(168,85,247,0.5)]
+                              transform-gpu transition-transform duration-300 
+                              hover:scale-110 hover:rotate-12"
+                  >
                     3
                   </div>
-                  <div className="mb-4">
-                    <Target className="w-12 h-12 text-purple-500 group-hover:text-purple-400 transition-colors" />
+                  <div className="mb-4 relative group-hover:animate-pulse">
+                    <Target className="w-14 h-14 text-purple-400 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]
+                                     transition-all duration-300 group-hover:text-purple-300
+                                     group-hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.8)]" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-gradient">Review & Refine</h3>
-                  <p className="text-white/80">Review the generated concepts and make refinements as needed.</p>
+                  <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-purple-400 to-white bg-clip-text text-transparent">
+                    Review & Refine
+                  </h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Review the generated concepts and make refinements as needed.
+                  </p>
                 </div>
               </div>
 
               {/* Step 4 */}
-              <div className="relative z-10 animate-fade-in [animation-delay:800ms]">
-                <div className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 bg-gradient-to-br from-black via-green-900/20 to-transparent relative group">
-                  <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 via-red-600 to-black flex items-center justify-center text-white font-bold">
+              <div className="relative z-10 animate-fade-in [animation-delay:800ms] perspective-1000">
+                <div 
+                  className="glass-morphism p-8 rounded-lg hover-lift hover-glow border border-white/10 
+                            bg-gradient-to-br from-green-900/20 via-black to-transparent relative group
+                            transform-gpu transition-transform duration-500 hover:rotate-y-10 hover:scale-105
+                            before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r 
+                            before:from-green-500/20 before:to-transparent before:opacity-0 
+                            before:transition-opacity hover:before:opacity-100
+                            after:absolute after:inset-0 after:rounded-lg after:bg-green-500/5
+                            after:opacity-0 after:transition-opacity hover:after:opacity-100
+                            shadow-[0_0_15px_rgba(34,197,94,0.3)]"
+                >
+                  <div 
+                    className="absolute -top-4 -left-4 w-10 h-10 rounded-full 
+                              bg-gradient-to-r from-green-600 via-green-400 to-green-600 
+                              flex items-center justify-center text-white font-bold text-lg
+                              shadow-[0_0_20px_rgba(34,197,94,0.5)]
+                              transform-gpu transition-transform duration-300 
+                              hover:scale-110 hover:rotate-12"
+                  >
                     4
                   </div>
-                  <div className="mb-4">
-                    <Rocket className="w-12 h-12 text-green-500 group-hover:text-green-400 transition-colors" />
+                  <div className="mb-4 relative group-hover:animate-pulse">
+                    <Rocket className="w-14 h-14 text-green-400 drop-shadow-[0_0_10px_rgba(34,197,94,0.5)]
+                                     transition-all duration-300 group-hover:text-green-300
+                                     group-hover:drop-shadow-[0_0_20px_rgba(34,197,94,0.8)]" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-gradient">Production Ready</h3>
-                  <p className="text-white/80">Receive production-ready storyboards for your creative team.</p>
+                  <h3 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-green-400 to-white bg-clip-text text-transparent">
+                    Production Ready
+                  </h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Receive production-ready storyboards for your creative team.
+                  </p>
                 </div>
               </div>
             </div>
