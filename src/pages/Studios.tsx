@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
+import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
 import { Button } from "@/components/ui/button";
 
 const Studios = () => {
@@ -12,6 +13,7 @@ const Studios = () => {
       <main className="relative">
         <StudiosHero />
         <StudiosIntro />
+        <ExpertiseBenefits />
 
         {/* Services Section */}
         <section 
