@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Geist Sans', 'sans-serif'],
-				geist: ['Geist Sans', 'sans-serif'],
+				sans: ['Geist Sans'],
+				geist: ['Geist Sans'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
