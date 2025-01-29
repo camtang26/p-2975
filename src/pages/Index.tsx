@@ -4,6 +4,7 @@ import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
+import { WordPressContent } from "@/components/WordPressContent";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <Hero />
       <Services />
       <Gallery />
+      <WordPressContent />
       
       {/* Contact Section */}
       <section className="py-24 relative overflow-hidden">
