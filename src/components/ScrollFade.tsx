@@ -9,14 +9,14 @@ interface ScrollFadeProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ScrollFade = forwardRef<HTMLDivElement, ScrollFadeProps>(
-  ({ children, className, threshold, rootMargin, ...props }, _ref) => {
+  ({ children, className, threshold = 0.1, rootMargin = "0px", ...props }, _ref) => {
     const { ref, isVisible } = useScrollFade({ threshold, rootMargin });
 
     return (
       <div
         ref={ref}
         className={cn(
-          "transition-all duration-1000 ease-in-out",
+          "transition-all duration-1000 ease-in-out will-change-transform will-change-opacity",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
           className
         )}
