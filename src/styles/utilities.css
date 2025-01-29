@@ -36,4 +36,16 @@
     backface-visibility: hidden;
     transform-style: preserve-3d;
   }
+
+  [animation-delay="200ms"] {
+    animation-delay: 200ms;
+  }
+
+  [animation-delay="400ms"] {
+    animation-delay: 400ms;
+  }
+
+  [animation-delay="600ms"] {
+    animation-delay: 600ms;
+  }
 }
