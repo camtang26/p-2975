@@ -5,28 +5,28 @@ const services = [
   {
     icon: Camera,
     title: "Cre8tive AI Studios",
-    description: "Transform your creative vision into reality with our cutting-edge AI-powered studio tools. Our advanced algorithms and intuitive interface enable seamless content creation, from stunning visuals to immersive experiences. Whether you're a seasoned professional or just starting out, our studio provides the perfect balance of power and accessibility.",
+    description: "Transform your creative vision with our cutting-edge AI-powered studio tools. Create stunning visuals and immersive experiences with our intuitive interface, perfect for both professionals and newcomers alike.",
     link: "/studios",
     image: "/placeholder.svg"
   },
   {
     icon: Newspaper,
     title: "Ad Manager",
-    description: "Revolutionize your advertising strategy with AI-driven optimization and content creation. Our intelligent system analyzes market trends and audience behavior to craft compelling video ads and social media content. Maximize your ROI with data-driven insights and automated performance tracking that keeps you ahead of the competition.",
+    description: "Revolutionize your advertising with AI-driven optimization. Our intelligent system analyzes trends and behavior to craft compelling content, while providing data-driven insights that keep you ahead of competitors.",
     link: "/manager",
     image: "/placeholder.svg"
   },
   {
     icon: Bot,
     title: "AI Agents",
-    description: "Streamline your workflow with sophisticated AI agents designed for maximum efficiency. Our intelligent automation solutions handle complex tasks with precision, learning and adapting to your specific needs. Experience unprecedented productivity gains while maintaining complete control over your processes and outcomes.",
+    description: "Streamline your workflow with sophisticated AI agents that handle complex tasks with precision. Our intelligent automation solutions learn and adapt to your needs, delivering unprecedented productivity gains.",
     link: "/agents",
     image: "/placeholder.svg"
   },
   {
     icon: Phone,
     title: "Conversational AI",
-    description: "Elevate customer engagement with our advanced conversational AI platform. Create natural, context-aware interactions that drive meaningful results and build lasting relationships. Our AI understands nuance, responds intelligently, and continuously learns from each interaction to provide increasingly personalized experiences.",
+    description: "Elevate customer engagement with our advanced conversational AI platform. Create natural, context-aware interactions that drive meaningful results while continuously learning from each interaction.",
     link: "/conversational",
     image: "/placeholder.svg"
   }
@@ -34,7 +34,7 @@ const services = [
 
 export const Services = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -42,8 +42,8 @@ export const Services = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="container relative mx-auto px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           {services.map((service, index) => {
             // Define different gradients for each card
             const gradients = [
@@ -56,7 +56,7 @@ export const Services = () => {
             return (
               <div 
                 key={index} 
-                className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
+                className="glass-morphism p-6 rounded-2xl space-y-4 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   background: gradients[index],
@@ -65,7 +65,7 @@ export const Services = () => {
                   border: '1px solid rgba(255,255,255,0.07)'
                 }}
               >
-                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-black/30 mb-8">
+                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-black/30 mb-6">
                   <img 
                     src={service.image}
                     alt={service.title}
