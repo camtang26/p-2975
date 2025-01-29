@@ -50,15 +50,15 @@ export const Hero = () => {
       </div>
       
       <div className="relative z-[2] text-center space-y-8 max-w-4xl mx-auto px-4">
-        <h1 className="text-7xl md:text-8xl font-bold text-gradient animate-fade-in">
+        <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-tight text-gradient animate-fade-in">
           Cre8tive AI
         </h1>
-        <p className="text-2xl md:text-3xl text-white/90 animate-fade-in delay-200">
+        <p className="font-inter text-2xl md:text-3xl font-medium text-white/90 animate-fade-in [animation-delay:200ms]">
           Cutting Edge AI Solutions For Your Business
         </p>
         <Button
           size="lg"
-          className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#000080] px-16 py-6 border-none transition-all duration-300 transform hover:scale-105 animate-fade-in delay-300"
+          className="font-inter text-base font-semibold bg-primary hover:bg-primary/90 text-white px-8 py-6 h-auto transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 animate-fade-in [animation-delay:300ms]"
         >
           Get a Free Consultation
         </Button>
