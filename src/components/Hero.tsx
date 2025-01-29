@@ -24,12 +24,12 @@ export const Hero = () => {
             }
           }}
         >
-          <source src="/placeholder-video.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/50" />
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
         
-        <div className="absolute bottom-8 right-8 flex gap-4">
+        <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
           <Button
             variant="outline"
             size="icon"
@@ -49,7 +49,7 @@ export const Hero = () => {
         </div>
       </div>
       
-      <div className="relative z-10 text-center space-y-8 max-w-4xl mx-auto px-4">
+      <div className="relative z-[2] text-center space-y-8 max-w-4xl mx-auto px-4">
         <h1 className="text-7xl md:text-8xl font-bold text-gradient animate-fade-in">
           Cre8tive AI
         </h1>
@@ -58,7 +58,7 @@ export const Hero = () => {
         </p>
         <Button
           size="lg"
-          className="bg-[#9b87f5] hover:bg-[#b5a6f8] text-white border-none transition-all duration-300 transform hover:scale-105 animate-fade-in delay-300"
+          className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#000080] px-16 py-6 border-none transition-all duration-300 transform hover:scale-105 animate-fade-in delay-300"
         >
           Get a Free Consultation
         </Button>
