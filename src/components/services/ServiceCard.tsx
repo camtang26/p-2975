@@ -33,13 +33,14 @@ export const ServiceCard = ({
     >
       <div 
         className={cn(
-          "glass-morphism p-12 rounded-xl hover-lift hover-glow border border-white/10",
+          "glass-morphism p-16 rounded-xl hover-glow border border-white/10",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
-          "transform-gpu transition-transform duration-500 hover:rotate-y-10 hover:scale-105",
+          "transform-gpu transition-transform duration-500 hover:scale-105",
           "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
           "before:opacity-0 before:transition-opacity hover:before:opacity-100",
           "after:absolute after:inset-0 after:rounded-xl",
-          "after:opacity-0 after:transition-opacity hover:after:opacity-100"
+          "after:opacity-0 after:transition-opacity hover:after:opacity-100",
+          "flex flex-col items-center justify-center text-center"
         )}
         style={{
           '--service-color': color,
@@ -47,10 +48,10 @@ export const ServiceCard = ({
         } as React.CSSProperties}
       >
         {/* Icon with enhanced glow */}
-        <div className="mb-8 relative group-hover:animate-pulse">
+        <div className="mb-10 relative group-hover:animate-pulse">
           <Icon 
             className={cn(
-              "w-20 h-20 transition-all duration-300",
+              "w-28 h-28 transition-all duration-300",
               "drop-shadow-[0_0_20px_var(--service-color)]",
               "group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
             )}
@@ -61,19 +62,19 @@ export const ServiceCard = ({
         {/* Content */}
         <h3 
           id={`service-title-${index}`}
-          className="text-3xl font-semibold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
+          className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
         >
           {title}
         </h3>
         
-        <p className="text-lg text-white/80 leading-relaxed">
+        <p className="text-xl text-white/80 leading-relaxed mb-8">
           {description}
         </p>
         
-        <div className="text-center pt-6">
+        <div className="text-center">
           <Button
             variant="link"
-            className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300"
+            className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300 text-lg"
             asChild
           >
             <a 
