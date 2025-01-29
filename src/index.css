@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Geist';
+  src: url('https://assets.vercel.com/fonts/geist/geist-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('https://assets.vercel.com/fonts/geist/geist-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 0 0% 7%;
@@ -29,11 +45,11 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-white/10 selection:text-white font-inter;
+    @apply border-border selection:bg-white/10 selection:text-white font-geist;
   }
   
   body {
-    @apply bg-background text-foreground antialiased font-inter;
+    @apply bg-background text-foreground antialiased font-geist;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
