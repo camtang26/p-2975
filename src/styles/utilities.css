@@ -37,18 +37,6 @@
     transform-style: preserve-3d;
   }
 
-  .neon-glow {
-    text-shadow: 0 0 10px rgba(255,255,255,0.8),
-                 0 0 20px rgba(255,255,255,0.8),
-                 0 0 30px rgba(255,255,255,0.6),
-                 0 0 40px rgba(255,255,255,0.4);
-  }
-
-  .neon-glow-soft {
-    text-shadow: 0 0 10px rgba(255,255,255,0.6),
-                 0 0 20px rgba(255,255,255,0.4);
-  }
-
   [animation-delay="200ms"] {
     animation-delay: 200ms;
   }

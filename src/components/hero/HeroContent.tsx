@@ -3,10 +3,10 @@ import { Button } from "../ui/button";
 export const HeroContent = () => {
   return (
     <div className="relative z-[2] flex flex-col items-center justify-center text-center space-y-8 max-w-4xl mx-auto px-4">
-      <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] text-white neon-glow animate-fade-in">
+      <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] text-gradient animate-fade-in">
         Cre8tive AI
       </h1>
-      <p className="font-inter text-2xl md:text-3xl font-medium tracking-[-0.01em] text-white neon-glow-soft animate-fade-in [animation-delay:200ms]">
+      <p className="font-inter text-2xl md:text-3xl font-medium tracking-[-0.01em] text-white/90 animate-fade-in [animation-delay:200ms]">
         Cutting Edge AI Solutions For Your Business
       </p>
       <Button

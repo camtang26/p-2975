@@ -15,17 +15,13 @@ export const Hero = () => {
       role="banner" 
       aria-label="Hero section"
     >
-      <div className="absolute inset-0 z-0">
-        <VideoBackground
-          isMuted={isMuted}
-          isPlaying={isPlaying}
-          onToggleMute={toggleMute}
-          onTogglePlay={togglePlay}
-        />
-      </div>
-      <div className="relative z-10">
-        <HeroContent />
-      </div>
+      <VideoBackground
+        isMuted={isMuted}
+        isPlaying={isPlaying}
+        onToggleMute={toggleMute}
+        onTogglePlay={togglePlay}
+      />
+      <HeroContent />
     </section>
   );
 };
