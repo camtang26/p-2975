@@ -1,179 +1,162 @@
-import { cn } from "@/lib/utils";
-import { Card, CardContent } from "@/components/ui/card";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Brain, Zap, PiggyBank, Expand, Trophy, Clock } from "lucide-react";
 
 export const ExpertiseBenefits = () => {
+  const benefitItems = [
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "Lightning Fast",
+      description: "Generate high-quality video content in minutes, not days"
+    },
+    {
+      icon: <PiggyBank className="w-6 h-6" />,
+      title: "Cost Effective",
+      description: "Reduce production costs while maintaining professional quality"
+    },
+    {
+      icon: <Expand className="w-6 h-6" />,
+      title: "Scalable",
+      description: "Create multiple variations and formats with ease"
+    }
+  ];
+
+  const expertiseItems = [
+    {
+      icon: <Trophy className="w-6 h-6" />,
+      title: "Professional Quality",
+      description: "AI-powered tools that deliver broadcast-ready results"
+    },
+    {
+      icon: <Brain className="w-6 h-6" />,
+      title: "Smart Automation",
+      description: "Intelligent workflows that streamline production"
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Time Saving",
+      description: "Complete projects faster without compromising quality"
+    }
+  ];
+
   return (
-    <section 
-      className="py-32 relative overflow-hidden bg-gradient-to-b from-background to-background/80" 
-      aria-label="Expertise and benefits section"
-    >
+    <>
       {/* Benefits Section */}
-      <div className="container mx-auto px-4 mb-32">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          Get More From Your Video Content
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
-          <p>
-            Video content is essential for success in today's digital world. But traditional production methods can be slow, costly, and complicated. Cre8tive AI Studios offers a smarter approach: AI-driven video production that delivers exceptional results faster, more efficiently, and more affordably.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              icon: Clock,
-              title: "Speed & Efficiency",
-              description: "Imagine getting professional-quality videos in a fraction of the time. Our AI-powered workflows automate the tedious parts, streamline the creative process, and significantly reduce turnaround times. This means you can share your message sooner and respond quickly to new trends."
-            },
-            {
-              icon: DollarSign,
-              title: "Cost-Effectiveness",
-              description: "Traditional video production often involves large crews, expensive equipment, and lengthy post-production. Cre8tive AI Studios cuts out these unnecessary costs, making high-quality video production accessible to all businesses. Invest your budget where it matters most and see a real return."
-            },
-            {
-              icon: Layers,
-              title: "Scalability & Flexibility",
-              description: "Need videos for different platforms or campaigns? AI video production lets you scale your content creation easily. Adapt your videos for various formats and languages, reaching a wider audience without extra effort or expense."
-            },
-            {
-              icon: Shield,
-              title: "Uncompromising Quality",
-              description: "While speed and cost are important, we never sacrifice quality. Our AI algorithms learn from vast amounts of professional video content, guaranteeing visually stunning videos, compelling stories, and a polished final product comparable to traditional productions."
-            }
-          ].map((benefit, index) => (
-            <Card key={index} className="glass-morphism border-none animate-fade-in hover-lift hover-glow" style={{ animationDelay: `${index * 0.1}s` }}>
-              <CardContent className="p-8">
-                <div className="flex items-start gap-4">
-                  <benefit.icon className="w-8 h-8 text-primary shrink-0" />
-                  <div>
-                    <h3 className="text-2xl font-bold text-gradient mb-4 tracking-tight">{benefit.title}</h3>
-                    <p className="text-white/80 leading-relaxed">{benefit.description}</p>
-                  </div>
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
+              Transform Your Video Production
+            </h2>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Experience the power of AI-driven video creation with our cutting-edge tools and expertise
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {benefitItems.map((item, index) => (
+              <div key={index} className="glass-morphism p-6 rounded-lg text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  {item.icon}
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 className="text-xl font-bold text-gradient mb-2">{item.title}</h3>
+                <p className="text-white/80">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Expertise Section */}
-      <div className="container mx-auto px-4 mb-32">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          The Craft of AI Video: Expertise Makes the Difference
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
-          <p>
-            Creating truly effective AI videos takes more than just a few prompts. It demands a deep understanding of the rapidly changing AI video world, hands-on experience with a wide range of specialized tools, and a strong creative vision. At Cre8tive AI Studios, that's exactly what we offer.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              icon: Award,
-              title: "Early Adopters & Innovators",
-              description: "We've been working with AI video since the technology first emerged in 2023. We've seen it evolve, experimented with every new tool and update, and understand its nuances inside and out."
-            },
-            {
-              icon: Rocket,
-              title: "Masters of the AI Toolkit",
-              description: "We use 30+ AI tools—from video generation and editing to image processing and more. This allows us to select the perfect combination for each project, maximizing the quality of your videos."
-            },
-            {
-              icon: Brain,
-              title: "Streamlined for Success",
-              description: "We've developed our own efficient workflows for AI video production. This means smooth, consistent results without creative compromises."
-            },
-            {
-              icon: Wand2,
-              title: "Creativity Meets Technology",
-              description: "Our team blends artistic creativity with technical expertise. Every video we produce is not only visually impressive but also strategically designed to achieve your business goals."
-            }
-          ].map((expertise, index) => (
-            <Card key={index} className="glass-morphism border-none animate-fade-in hover-lift hover-glow" style={{ animationDelay: `${index * 0.1}s` }}>
-              <CardContent className="p-8">
-                <div className="flex items-start gap-4">
-                  <expertise.icon className="w-8 h-8 text-primary shrink-0" />
-                  <div>
-                    <h3 className="text-2xl font-bold text-gradient mb-4 tracking-tight">{expertise.title}</h3>
-                    <p className="text-white/80 leading-relaxed">{expertise.description}</p>
-                  </div>
+      <section className="py-24 relative overflow-hidden bg-secondary/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
+              Our Expertise
+            </h2>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Leverage our advanced AI capabilities to create stunning video content
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {expertiseItems.map((item, index) => (
+              <div key={index} className="glass-morphism p-6 rounded-lg text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  {item.icon}
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 className="text-xl font-bold text-gradient mb-2">{item.title}</h3>
+                <p className="text-white/80">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 mt-16 leading-relaxed">
-          <p>
-            AI video is constantly getting more sophisticated, with more tools and more complex workflows. It takes real expertise to navigate this landscape effectively. Cre8tive AI Studios takes care of the technical complexities so you can concentrate on your message and your business.
-          </p>
-        </div>
-      </div>
+      </section>
 
       {/* Comparison Section */}
-      <div className="container mx-auto px-4 mb-32">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          AI Video vs. Traditional: A Clear Advantage
-        </h2>
-        <div className="max-w-5xl mx-auto glass-morphism rounded-lg overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-1/3 text-white font-bold text-lg p-6">Feature</TableHead>
-                <TableHead className="w-1/3 text-white font-bold text-lg p-6">Traditional Production</TableHead>
-                <TableHead className="w-1/3 text-white font-bold text-lg p-6">AI-Powered Production</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[
-                {
-                  feature: "Production Time",
-                  traditional: "Weeks to months",
-                  ai: "Hours to days"
-                },
-                {
-                  feature: "Cost",
-                  traditional: "High (crew, equipment, location)",
-                  ai: "Fraction of traditional costs"
-                },
-                {
-                  feature: "Scalability",
-                  traditional: "Limited by resources",
-                  ai: "Unlimited potential"
-                },
-                {
-                  feature: "Iterations",
-                  traditional: "Time-consuming and costly",
-                  ai: "Quick and efficient"
-                },
-                {
-                  feature: "Customization",
-                  traditional: "Requires new shoots",
-                  ai: "Easy adaptation"
-                }
-              ].map((row, index) => (
-                <TableRow key={index} className="border-t border-white/10">
-                  <TableCell className="font-medium text-white p-6">{row.feature}</TableCell>
-                  <TableCell className="text-white/80 p-6">{row.traditional}</TableCell>
-                  <TableCell className="text-primary p-6">{row.ai}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
+              Why Choose Cre8tive AI?
+            </h2>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              See how our AI-powered solution compares to traditional video production
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="glass-morphism p-8 rounded-lg">
+              <h3 className="text-2xl font-bold text-gradient mb-4">Traditional Process</h3>
+              <ul className="space-y-4 text-white/80">
+                <li>• Days or weeks of production time</li>
+                <li>• High equipment and crew costs</li>
+                <li>• Limited revision capabilities</li>
+                <li>• Complex logistics and scheduling</li>
+              </ul>
+            </div>
+            <div className="glass-morphism p-8 rounded-lg border border-primary/50">
+              <h3 className="text-2xl font-bold text-gradient mb-4">Cre8tive AI Process</h3>
+              <ul className="space-y-4 text-white/80">
+                <li>• Minutes to generate content</li>
+                <li>• Fraction of traditional costs</li>
+                <li>• Unlimited revisions and variations</li>
+                <li>• Simple, streamlined workflow</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Future Section */}
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          The Future of Video is Intelligent
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 leading-relaxed">
-          <p>
-            As AI technology continues to evolve, the possibilities for video production become even more exciting. Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
-          </p>
+      {/* Future of Video Section */}
+      <section 
+        className="py-24 relative overflow-hidden"
+        aria-label="Future of video section"
+      >
+        <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent opacity-30" />
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6 tracking-tight">
+              The Future of Video is Intelligent
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 mb-12 leading-relaxed tracking-wide max-w-2xl mx-auto">
+              As AI technology continues to evolve, the possibilities for video production become even more exciting. 
+              Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
+            </p>
+            
+            {/* Abstract AI Animation */}
+            <div className="w-48 h-48 mx-auto mb-12 relative">
+              <div className="absolute inset-0 bg-gradient-conic from-primary via-primary/50 to-primary animate-spin-slow rounded-full blur-xl opacity-30" />
+              <div className="absolute inset-0 bg-gradient-radial from-primary to-transparent opacity-40" />
+              <Brain className="w-24 h-24 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/90" />
+            </div>
+
+            {/* CTA Button */}
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-xl hover:shadow-primary/20 hover:-translate-y-1"
+            >
+              Get Started Today
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
