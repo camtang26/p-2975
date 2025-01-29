@@ -10,7 +10,7 @@ export const NetworkVisualization = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
+    // Set canvas size with higher resolution
     const resize = () => {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
       canvas.height = canvas.offsetHeight * window.devicePixelRatio;
@@ -19,7 +19,7 @@ export const NetworkVisualization = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    // Node class with enhanced properties
+    // Enhanced Node class with more sophisticated properties
     class Node {
       x: number;
       y: number;
@@ -29,66 +29,78 @@ export const NetworkVisualization = () => {
       connections: Node[];
       pulsePhase: number;
       baseRadius: number;
+      glowIntensity: number;
+      color: string;
 
       constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.baseRadius = Math.random() * 2 + 2;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.baseRadius = Math.random() * 4 + 3; // Increased base size
         this.radius = this.baseRadius;
         this.connections = [];
         this.pulsePhase = Math.random() * Math.PI * 2;
+        this.glowIntensity = Math.random() * 0.5 + 0.5;
+        
+        // Random color selection from a curated palette
+        const colors = [
+          'rgba(155, 135, 245, 0.9)', // Purple
+          'rgba(14, 165, 233, 0.9)',  // Blue
+          'rgba(217, 70, 239, 0.9)'   // Magenta
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
       }
 
       update(time: number) {
         if (!canvas) return;
         
-        // Pulsing effect
-        this.radius = this.baseRadius + Math.sin(time * 0.003 + this.pulsePhase) * 0.5;
+        // Enhanced pulsing effect
+        this.radius = this.baseRadius + Math.sin(time * 0.002 + this.pulsePhase) * 1;
+        this.glowIntensity = 0.5 + Math.sin(time * 0.003 + this.pulsePhase) * 0.3;
         
-        // Movement
+        // Smoother movement
         this.x += this.vx;
         this.y += this.vy;
 
-        // Boundary checking with smooth transition
-        const margin = 50;
+        // Improved boundary checking with smooth transition
+        const margin = 100;
         if (this.x < margin) this.vx += 0.02;
         if (this.x > canvas.width / window.devicePixelRatio - margin) this.vx -= 0.02;
         if (this.y < margin) this.vy += 0.02;
         if (this.y > canvas.height / window.devicePixelRatio - margin) this.vy -= 0.02;
 
-        // Damping
-        this.vx *= 0.99;
-        this.vy *= 0.99;
+        // Enhanced damping for smoother motion
+        this.vx *= 0.98;
+        this.vy *= 0.98;
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        // Draw node with gradient
+        // Outer glow effect
         const gradient = ctx.createRadialGradient(
           this.x, this.y, 0,
-          this.x, this.y, this.radius * 2
+          this.x, this.y, this.radius * 4
         );
-        gradient.addColorStop(0, 'rgba(140, 140, 255, 0.8)');
-        gradient.addColorStop(0.5, 'rgba(100, 100, 255, 0.3)');
-        gradient.addColorStop(1, 'rgba(70, 70, 255, 0)');
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(0.4, this.color.replace('0.9', '0.3'));
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius * 2, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.radius * 4, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Core of the node
+        // Core of the node with enhanced glow
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = `rgba(255, 255, 255, ${0.8 * this.glowIntensity})`;
         ctx.fill();
       }
     }
 
-    // Create nodes
+    // Create more nodes for a denser network
     const nodes: Node[] = [];
-    const numNodes = 30;
+    const numNodes = 40; // Increased number of nodes
     for (let i = 0; i < numNodes; i++) {
       nodes.push(
         new Node(
@@ -98,7 +110,7 @@ export const NetworkVisualization = () => {
       );
     }
 
-    // Establish initial connections
+    // Enhanced connection establishment
     nodes.forEach(node => {
       const nearestNodes = nodes
         .filter(n => n !== node)
@@ -107,12 +119,12 @@ export const NetworkVisualization = () => {
           const distB = Math.hypot(b.x - node.x, b.y - node.y);
           return distA - distB;
         })
-        .slice(0, 3);
+        .slice(0, 4); // Increased connections per node
       
       node.connections = nearestNodes;
     });
 
-    // Animation loop
+    // Animation loop with enhanced effects
     let time = 0;
     const animate = () => {
       if (!ctx || !canvas) return;
@@ -125,41 +137,44 @@ export const NetworkVisualization = () => {
         node.draw(ctx);
       });
 
-      // Draw connections with enhanced effects
+      // Draw enhanced connections with dynamic effects
       nodes.forEach(node => {
         node.connections.forEach(connectedNode => {
           const dx = connectedNode.x - node.x;
           const dy = connectedNode.y - node.y;
           const distance = Math.hypot(dx, dy);
           
-          // Create gradient for connection lines
+          // Enhanced gradient for connection lines
           const gradient = ctx.createLinearGradient(
             node.x, node.y,
             connectedNode.x, connectedNode.y
           );
           
-          const alpha = Math.max(0, 1 - distance / 200);
-          gradient.addColorStop(0, `rgba(100, 100, 255, ${alpha})`);
-          gradient.addColorStop(0.5, `rgba(150, 150, 255, ${alpha * 0.5})`);
-          gradient.addColorStop(1, `rgba(100, 100, 255, ${alpha})`);
+          const alpha = Math.max(0, 1 - distance / 300); // Increased visibility range
+          const startColor = node.color.replace('0.9', `${alpha}`);
+          const endColor = connectedNode.color.replace('0.9', `${alpha}`);
+          
+          gradient.addColorStop(0, startColor);
+          gradient.addColorStop(0.5, `rgba(255, 255, 255, ${alpha * 0.3})`);
+          gradient.addColorStop(1, endColor);
 
-          // Draw connection line
+          // Enhanced connection line
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(connectedNode.x, connectedNode.y);
           ctx.strokeStyle = gradient;
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 2; // Thicker lines
           ctx.stroke();
 
-          // Draw moving particles along the connection
-          const numParticles = 3;
+          // Animated particles along connections
+          const numParticles = 4; // More particles
           for (let i = 0; i < numParticles; i++) {
-            const t = (time * 0.001 + i / numParticles) % 1;
+            const t = (time * 0.0005 + i / numParticles) % 1;
             const x = node.x + dx * t;
             const y = node.y + dy * t;
             
             ctx.beginPath();
-            ctx.arc(x, y, 1, 0, Math.PI * 2);
+            ctx.arc(x, y, 1.5, 0, Math.PI * 2); // Larger particles
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
             ctx.fill();
           }
@@ -181,7 +196,7 @@ export const NetworkVisualization = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.8 }} // Increased opacity for better visibility
     />
   );
 };

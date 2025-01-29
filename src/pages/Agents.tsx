@@ -10,9 +10,10 @@ const Agents = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
-          <NetworkVisualization />
-          <div className="container mx-auto px-4 relative z-10">
+
+<section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
+  <NetworkVisualization />
+  <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <h1 className="text-5xl md:text-7xl font-bold text-gradient animate-fade-in">
                 AI Autonomous Agents
@@ -32,8 +33,8 @@ const Agents = () => {
                 </Button>
               </div>
             </div>
-          </div>
-        </section>
+  </div>
+</section>
 
         {/* Our AI Marketing Solutions */}
         <section className="py-24 relative">
@@ -131,3 +132,4 @@ const Agents = () => {
 };
 
 export default Agents;
+
