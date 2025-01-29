@@ -13,7 +13,6 @@ export const NetworkVisualization = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size with higher resolution
     const resize = () => {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
       canvas.height = canvas.offsetHeight * window.devicePixelRatio;
@@ -22,38 +21,30 @@ export const NetworkVisualization = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    // Create network with more nodes
+    // Create static network with fewer nodes
     const nodes = NetworkManager.createNetwork(
       canvas.width / window.devicePixelRatio,
-      canvas.height / window.devicePixelRatio,
-      50 // Increased number of nodes
+      canvas.height / window.devicePixelRatio
     );
 
-    // Animation loop with enhanced effects
-    let time = 0;
-    const animate = () => {
+    // Single render for static visualization
+    const render = () => {
       if (!ctx || !canvas) return;
       
       ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
-      // Update and draw nodes with reduced opacity
-      nodes.forEach(node => {
-        node.update(time, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
-        ctx.globalAlpha = 0.7; // Reduced opacity for better text visibility
-        node.draw(ctx);
-        ctx.globalAlpha = 1.0;
-      });
-
-      // Draw enhanced connections with reduced opacity
-      ctx.globalAlpha = 0.7;
-      ConnectionRenderer.drawConnections(ctx, nodes, time);
+      // Draw connections first
+      ctx.globalAlpha = 0.5;
+      ConnectionRenderer.drawConnections(ctx, nodes);
       ctx.globalAlpha = 1.0;
 
-      time++;
-      requestAnimationFrame(animate);
+      // Then draw nodes
+      nodes.forEach(node => {
+        node.draw(ctx);
+      });
     };
 
-    animate();
+    render();
 
     return () => {
       window.removeEventListener('resize', resize);
@@ -64,7 +55,7 @@ export const NetworkVisualization = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.8 }} // Slightly reduced base opacity
+      style={{ opacity: 0.8 }}
     />
   );
 };

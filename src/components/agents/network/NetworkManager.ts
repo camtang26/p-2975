@@ -1,7 +1,9 @@
 import { Node } from './Node';
 
 export class NetworkManager {
-  static createNetwork(width: number, height: number, numNodes: number): Node[] {
+  static createNetwork(width: number, height: number): Node[] {
+    // Reduced number of nodes for better performance
+    const numNodes = 30;
     const nodes: Node[] = [];
     
     // Create nodes with better distribution
@@ -14,7 +16,7 @@ export class NetworkManager {
       );
     }
 
-    // Enhanced connection establishment
+    // Simplified connection establishment
     nodes.forEach(node => {
       const nearestNodes = nodes
         .filter(n => n !== node)
@@ -23,7 +25,7 @@ export class NetworkManager {
           const distB = Math.hypot(b.x - node.x, b.y - node.y);
           return distA - distB;
         })
-        .slice(0, 5); // Increased connections per node
+        .slice(0, 3); // Reduced connections per node
       
       node.connections = nearestNodes;
     });
