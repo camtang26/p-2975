@@ -6,25 +6,29 @@ const services = [
     icon: Camera,
     title: "Cre8tive AI Studios",
     description: "Transform your creative vision into reality with our cutting-edge AI-powered studio tools. Our advanced algorithms and intuitive interface enable seamless content creation, from stunning visuals to immersive experiences. Whether you're a seasoned professional or just starting out, our studio provides the perfect balance of power and accessibility.",
-    link: "/studios"
+    link: "/studios",
+    image: "/placeholder.svg"
   },
   {
     icon: Newspaper,
     title: "Ad Manager",
     description: "Revolutionize your advertising strategy with AI-driven optimization and content creation. Our intelligent system analyzes market trends and audience behavior to craft compelling video ads and social media content. Maximize your ROI with data-driven insights and automated performance tracking that keeps you ahead of the competition.",
-    link: "/manager"
+    link: "/manager",
+    image: "/placeholder.svg"
   },
   {
     icon: Bot,
     title: "AI Agents",
     description: "Streamline your workflow with sophisticated AI agents designed for maximum efficiency. Our intelligent automation solutions handle complex tasks with precision, learning and adapting to your specific needs. Experience unprecedented productivity gains while maintaining complete control over your processes and outcomes.",
-    link: "/agents"
+    link: "/agents",
+    image: "/placeholder.svg"
   },
   {
     icon: Phone,
     title: "Conversational AI",
     description: "Elevate customer engagement with our advanced conversational AI platform. Create natural, context-aware interactions that drive meaningful results and build lasting relationships. Our AI understands nuance, responds intelligently, and continuously learns from each interaction to provide increasingly personalized experiences.",
-    link: "/conversational"
+    link: "/conversational",
+    image: "/placeholder.svg"
   }
 ];
 
@@ -34,12 +38,12 @@ export const Services = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, #000000 0%, #0D0D1D 50%, #141429 100%)',
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
         }}
       />
       
       <div className="container relative mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {services.map((service, index) => {
             // Define different gradients for each card
             const gradients = [
@@ -52,7 +56,7 @@ export const Services = () => {
             return (
               <div 
                 key={index} 
-                className="glass-morphism p-10 rounded-2xl space-y-8 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
+                className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   background: gradients[index],
@@ -61,13 +65,11 @@ export const Services = () => {
                   border: '1px solid rgba(255,255,255,0.07)'
                 }}
               >
-                <div className="w-16 h-16 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-[#2A2A3F] to-[#1A1A2E] transition-transform duration-500 group-hover:scale-110 border border-white/10">
-                  <service.icon 
-                    className="w-8 h-8 text-white/95" 
-                    strokeWidth={1.25}
-                    style={{
-                      filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))'
-                    }}
+                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-black/30 mb-8">
+                  <img 
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 
@@ -75,7 +77,7 @@ export const Services = () => {
                   {service.title}
                 </h3>
                 
-                <p className="text-white/90 text-center text-base leading-relaxed font-geist font-light min-h-[120px]">
+                <p className="text-white/90 text-center text-base leading-relaxed font-geist font-light">
                   {service.description}
                 </p>
                 
