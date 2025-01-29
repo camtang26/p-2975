@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
+import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { Button } from "@/components/ui/button";
 
 const Studios = () => {
@@ -10,36 +11,7 @@ const Studios = () => {
       
       <main className="relative">
         <StudiosHero />
-
-        {/* Introduction Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Introduction section"
-        >
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-                  Introducing Cre8tive AI
-                </h2>
-                <p className="text-lg text-white/90 mb-6">
-                  Welcome to the future of content creation. At Cre8tive AI Studios, we harness the power of artificial intelligence to revolutionize video production, making high-quality content more accessible than ever before.
-                </p>
-                <p className="text-lg text-white/90">
-                  Our cutting-edge AI technology transforms the way stories are told, enabling creators to produce compelling content with unprecedented efficiency and creativity.
-                </p>
-              </div>
-              <div className="aspect-video bg-gray-900 rounded-lg">
-                {/* Placeholder for introduction video/image */}
-                <div 
-                  className="w-full h-full"
-                  role="img"
-                  aria-label="Placeholder for Cre8tive AI introduction visual"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <StudiosIntro />
 
         {/* Services Section */}
         <section 
