@@ -61,8 +61,15 @@ export const Gallery = () => {
   };
 
   return (
-    <section className="py-24 bg-[#111111]">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+        }}
+      />
+      
+      <div className="container relative mx-auto px-4">
         <div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           style={{
