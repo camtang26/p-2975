@@ -15,8 +15,8 @@ export const BenefitCard = ({
   color,
 }: BenefitCardProps) => {
   return (
-    <div className="glass-morphism p-8 rounded-xl hover-glow border border-white/10 transition-all duration-300 hover:scale-105 group">
-      <div className="flex flex-col items-center text-center space-y-4">
+    <div className="glass-morphism h-[300px] p-8 rounded-xl hover-glow border border-white/10 transition-all duration-300 hover:scale-105 group flex items-center">
+      <div className="flex flex-col items-center text-center space-y-6 w-full">
         <div className="relative group-hover:animate-pulse">
           <Icon 
             className={cn(
