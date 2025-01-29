@@ -5,82 +5,97 @@ const services = [
   {
     icon: Camera,
     title: "Cre8tive AI Studios",
-    description: "Craft dynamic experiences and cinematic content with our AI-powered tools.",
+    description: "Transform your creative vision into reality with our cutting-edge AI-powered studio tools. Our advanced algorithms and intuitive interface enable seamless content creation, from stunning visuals to immersive experiences. Whether you're a seasoned professional or just starting out, our studio provides the perfect balance of power and accessibility.",
     link: "/studios"
   },
   {
     icon: Newspaper,
     title: "Ad Manager",
-    description: "Create professional video ads and social media content with AI optimization.",
+    description: "Revolutionize your advertising strategy with AI-driven optimization and content creation. Our intelligent system analyzes market trends and audience behavior to craft compelling video ads and social media content. Maximize your ROI with data-driven insights and automated performance tracking that keeps you ahead of the competition.",
     link: "/manager"
   },
   {
     icon: Bot,
     title: "AI Agents",
-    description: "Automate processes with intelligent custom AI agents for enhanced productivity.",
+    description: "Streamline your workflow with sophisticated AI agents designed for maximum efficiency. Our intelligent automation solutions handle complex tasks with precision, learning and adapting to your specific needs. Experience unprecedented productivity gains while maintaining complete control over your processes and outcomes.",
     link: "/agents"
   },
   {
     icon: Phone,
     title: "Conversational AI",
-    description: "Engage visitors with intelligent, natural conversations that drive results.",
+    description: "Elevate customer engagement with our advanced conversational AI platform. Create natural, context-aware interactions that drive meaningful results and build lasting relationships. Our AI understands nuance, responds intelligently, and continuously learns from each interaction to provide increasingly personalized experiences.",
     link: "/conversational"
   }
 ];
 
 export const Services = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D1D] via-[#141429] to-[#1D1535] pointer-events-none" />
+    <section className="py-32 relative overflow-hidden">
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at center, #000000 0%, #0D0D1D 50%, #141429 100%)',
+        }}
+      />
       
       <div className="container relative mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="glass-morphism p-8 rounded-xl space-y-6 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
-                boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.4)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.05)'
-              }}
-            >
-              <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-[#2A2A3F] to-[#1A1A2E] transition-transform duration-500 group-hover:scale-110 border border-white/10">
-                <service.icon 
-                  className="w-7 h-7 text-white/95" 
-                  strokeWidth={1.25}
-                  style={{
-                    filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.2))'
-                  }}
-                />
-              </div>
-              
-              <h3 className="text-2xl font-semibold text-gradient text-center tracking-tight leading-tight font-geist">
-                {service.title}
-              </h3>
-              
-              <p className="text-white/80 text-center text-base leading-relaxed font-geist font-light">
-                {service.description}
-              </p>
-              
-              <div className="text-center pt-2">
-                <Button
-                  variant="link"
-                  className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300 font-geist"
-                  asChild
-                >
-                  <a 
-                    href={service.link}
-                    className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => {
+            // Define different gradients for each card
+            const gradients = [
+              'linear-gradient(145deg, rgba(155,135,245,0.15) 0%, rgba(126,105,171,0.1) 100%)',
+              'linear-gradient(145deg, rgba(13,165,233,0.15) 0%, rgba(99,102,241,0.1) 100%)',
+              'linear-gradient(145deg, rgba(217,70,239,0.15) 0%, rgba(139,92,246,0.1) 100%)',
+              'linear-gradient(145deg, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.1) 100%)'
+            ];
+
+            return (
+              <div 
+                key={index} 
+                className="glass-morphism p-10 rounded-2xl space-y-8 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  background: gradients[index],
+                  boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.07)'
+                }}
+              >
+                <div className="w-16 h-16 mx-auto rounded-xl flex items-center justify-center bg-gradient-to-br from-[#2A2A3F] to-[#1A1A2E] transition-transform duration-500 group-hover:scale-110 border border-white/10">
+                  <service.icon 
+                    className="w-8 h-8 text-white/95" 
+                    strokeWidth={1.25}
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))'
+                    }}
+                  />
+                </div>
+                
+                <h3 className="text-2xl font-semibold text-gradient text-center tracking-tight leading-tight font-geist">
+                  {service.title}
+                </h3>
+                
+                <p className="text-white/90 text-center text-base leading-relaxed font-geist font-light min-h-[120px]">
+                  {service.description}
+                </p>
+                
+                <div className="text-center pt-2">
+                  <Button
+                    variant="link"
+                    className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300 font-geist"
+                    asChild
                   >
-                    Learn More
-                  </a>
-                </Button>
+                    <a 
+                      href={service.link}
+                      className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                    >
+                      Learn More
+                    </a>
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
