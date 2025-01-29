@@ -5,25 +5,25 @@ const services = [
   {
     icon: Camera,
     title: "Cre8tive AI Studios",
-    description: "Craft dynamic experiences and cinematic content with our AI-powered tools. From script to screen, we help bring your vision to life with video production.",
+    description: "Craft dynamic experiences and cinematic content with our AI-powered tools.",
     link: "/studios"
   },
   {
     icon: Newspaper,
     title: "Ad Manager",
-    description: "Efficiently create professional video ads and social media content. Our AI tools streamline content creation, optimize your workflow, and maximize your reach.",
+    description: "Create professional video ads and social media content with AI optimization.",
     link: "/manager"
   },
   {
     icon: Bot,
     title: "AI Agents",
-    description: "Automate your business processes with intelligent custom AI agents. From writing to creative tasks, we build tools that boost productivity.",
+    description: "Automate processes with intelligent custom AI agents for enhanced productivity.",
     link: "/agents"
   },
   {
     icon: Phone,
-    title: "Conversational AI Agents",
-    description: "Engage your visitors with intelligent, natural conversations. Our AI agents handle customer service tasks and drive sales through natural interactions.",
+    title: "Conversational AI",
+    description: "Engage visitors with intelligent, natural conversations that drive results.",
     link: "/conversational"
   }
 ];
@@ -36,17 +36,18 @@ export const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="glass-morphism p-6 rounded-lg space-y-4 transition-transform duration-300 hover:-translate-y-1"
+              className="glass-morphism p-8 rounded-lg space-y-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#9b87f5]/10 animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-16 h-16 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
-                <service.icon className="w-8 h-8 text-[#9b87f5]" />
+              <div className="w-20 h-20 mx-auto bg-[#9b87f5]/10 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <service.icon className="w-10 h-10 text-[#9b87f5]" />
               </div>
-              <h3 className="text-xl font-semibold text-white text-center">{service.title}</h3>
-              <p className="text-white/70 text-center">{service.description}</p>
-              <div className="text-center">
+              <h3 className="text-2xl font-semibold text-white text-center">{service.title}</h3>
+              <p className="text-white/70 text-center text-lg">{service.description}</p>
+              <div className="text-center pt-2">
                 <Button
                   variant="link"
-                  className="text-[#9b87f5] hover:text-[#b5a6f8]"
+                  className="text-[#9b87f5] hover:text-[#b5a6f8] transition-colors duration-300"
                   asChild
                 >
                   <a href={service.link}>Learn More</a>
