@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
+import { AspectRatio } from "./ui/aspect-ratio";
 
 const images = [
-  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
+  "https://images.unsplash.com/photo-1518770660439-4636190af475",
   "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
   "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
   "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
@@ -17,7 +18,10 @@ export const Gallery = () => {
   return (
     <section className="py-24 bg-[#111111]">
       <div className="container mx-auto px-4">
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[0]"
+          style={{ gridAutoRows: "masonry" }}
+        >
           {images.map((image, index) => (
             <div
               key={index}
@@ -25,12 +29,14 @@ export const Gallery = () => {
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => setSelectedImage(image)}
             >
-              <img
-                src={image}
-                alt={`Gallery image ${index + 1}`}
-                className="w-full rounded-lg"
-                loading="lazy"
-              />
+              <AspectRatio ratio={16 / 9}>
+                <img
+                  src={`${image}?w=800&fm=webp&q=80`}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </AspectRatio>
             </div>
           ))}
         </div>
@@ -44,16 +50,16 @@ export const Gallery = () => {
           <Button
             variant="outline"
             size="icon"
-            className="absolute top-4 right-4 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            className="absolute top-4 right-4 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 h-8 w-8"
             onClick={(e) => {
               e.stopPropagation();
               setSelectedImage(null);
             }}
           >
-            <X className="h-4 w-4" />
+            <X className="h-8 w-8 text-red-500" />
           </Button>
           <img
-            src={selectedImage}
+            src={`${selectedImage}?w=1920&fm=webp&q=90`}
             alt="Selected image"
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg animate-scale-in"
             onClick={(e) => e.stopPropagation()}
