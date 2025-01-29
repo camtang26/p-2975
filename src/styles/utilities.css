@@ -15,6 +15,14 @@
     animation: scaleIn 0.3s ease-out forwards;
   }
 
+  .animate-fade-in-scroll {
+    animation: fadeInScroll 0.8s ease-in-out forwards;
+  }
+
+  .animate-fade-out-scroll {
+    animation: fadeOutScroll 0.8s ease-in-out forwards;
+  }
+
   .hover-lift {
     @apply transition-transform duration-300 hover:-translate-y-2;
   }
