@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { NetworkVisualization } from "@/components/agents/NetworkVisualization";
+import { AgentsHero } from "@/components/agents/AgentsHero";
 import { Button } from "@/components/ui/button";
 
 const Agents = () => {
@@ -9,32 +9,7 @@ const Agents = () => {
       <Navigation />
       
       <main className="pt-20">
-        {/* Hero Section */}
-
-<section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
-  <NetworkVisualization />
-  <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-gradient animate-fade-in">
-                AI Autonomous Agents
-              </h1>
-              <h2 className="text-xl md:text-2xl text-white/90 font-semibold animate-fade-in [animation-delay:200ms]">
-                Cre8tive AI Autonomous Agents: Smarter Solutions for Smarter Businesses
-              </h2>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto animate-fade-in [animation-delay:400ms]">
-                Our custom AI agents are designed to revolutionize your marketing efforts, boost engagement, and deliver tangible results. From CRM to content creation, we provide intelligent solutions that work for you—24/7.
-              </p>
-              <div className="pt-8 animate-fade-in [animation-delay:600ms]">
-                <Button 
-                  size="lg"
-                  className="bg-white/10 hover:bg-white/20 text-white text-lg px-8 py-6 rounded-lg transition-colors duration-300"
-                >
-                  Explore Our Solutions
-                </Button>
-              </div>
-            </div>
-  </div>
-</section>
+        <AgentsHero />
 
         {/* Our AI Marketing Solutions */}
         <section className="py-24 relative">
@@ -132,4 +107,3 @@ const Agents = () => {
 };
 
 export default Agents;
-
