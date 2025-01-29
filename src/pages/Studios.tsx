@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
+import { Button } from "@/components/ui/button";
 
 const Studios = () => {
   return (
