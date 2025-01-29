@@ -68,14 +68,14 @@
   }
 
   .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-1;
+    @apply transition-transform duration-300 hover:-translate-y-2;
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20;
+    @apply transition-all duration-300 hover:shadow-2xl;
   }
 
-  /* New 3D utilities */
+  /* Enhanced 3D utilities */
   .perspective-1000 {
     perspective: 1000px;
   }
