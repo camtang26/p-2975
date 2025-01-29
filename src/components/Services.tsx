@@ -34,24 +34,30 @@ const services = [
 
 export const Services = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section 
+      className="py-24 relative overflow-hidden" 
+      role="region" 
+      aria-label="Our Services"
+    >
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: 'radial-gradient(circle at center, #000000 0%, #000000 85%, #0D0D1D 100%)',
         }}
+        aria-hidden="true"
       />
       
       <div className="container relative mx-auto px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           {services.map((service, index) => {
-            // Define different gradients for each card
             const gradients = [
               'linear-gradient(145deg, rgba(155,135,245,0.15) 0%, rgba(126,105,171,0.1) 100%)',
               'linear-gradient(145deg, rgba(13,165,233,0.15) 0%, rgba(99,102,241,0.1) 100%)',
               'linear-gradient(145deg, rgba(217,70,239,0.15) 0%, rgba(139,92,246,0.1) 100%)',
               'linear-gradient(145deg, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.1) 100%)'
             ];
+
+            const ServiceIcon = service.icon;
 
             return (
               <div 
@@ -64,16 +70,24 @@ export const Services = () => {
                   backdropFilter: 'blur(20px)',
                   border: '1px solid rgba(255,255,255,0.07)'
                 }}
+                role="article"
+                aria-labelledby={`service-title-${index}`}
               >
                 <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-black/30 mb-6">
                   <img 
                     src={service.image}
-                    alt={service.title}
+                    alt={`Illustration for ${service.title}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    width="640"
+                    height="360"
                   />
                 </div>
                 
-                <h3 className="text-3xl font-bold text-gradient text-center tracking-tight leading-tight font-geist">
+                <h3 
+                  id={`service-title-${index}`}
+                  className="text-3xl font-bold text-gradient text-center tracking-tight leading-tight font-geist"
+                >
                   {service.title}
                 </h3>
                 
@@ -90,6 +104,7 @@ export const Services = () => {
                     <a 
                       href={service.link}
                       className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                      aria-label={`Learn more about ${service.title}`}
                     >
                       Learn More
                     </a>

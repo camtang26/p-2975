@@ -11,7 +11,7 @@ export const Hero = () => {
   const togglePlay = () => setIsPlaying(!isPlaying);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden" role="banner" aria-label="Hero section">
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
@@ -19,6 +19,7 @@ export const Hero = () => {
           muted={isMuted}
           playsInline
           className="w-full h-full object-cover"
+          aria-label="Background video showcasing Cre8tive AI capabilities"
           ref={(el) => {
             if (el) {
               isPlaying ? el.play() : el.pause();
@@ -26,9 +27,10 @@ export const Hero = () => {
           }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
+          <track kind="captions" src="/captions.vtt" label="English captions" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/50 z-[1]" />
+        <div className="absolute inset-0 bg-black/50 z-[1]" aria-hidden="true" />
         
         <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
           <Button
@@ -36,16 +38,18 @@ export const Hero = () => {
             size="icon"
             onClick={toggleMute}
             className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
           >
-            {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+            {isMuted ? <VolumeX className="h-4 w-4" aria-hidden="true" /> : <Volume2 className="h-4 w-4" aria-hidden="true" />}
           </Button>
           <Button
             variant="outline"
             size="icon"
             onClick={togglePlay}
             className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
           >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {isPlaying ? <Pause className="h-4 w-4" aria-hidden="true" /> : <Play className="h-4 w-4" aria-hidden="true" />}
           </Button>
         </div>
       </div>
@@ -60,6 +64,7 @@ export const Hero = () => {
         <Button
           size="lg"
           className="font-geist text-lg font-semibold bg-[#4A90E2] hover:bg-[#357ABD] text-white px-10 py-7 h-auto transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 animate-fade-in [animation-delay:300ms]"
+          aria-label="Get a free consultation"
         >
           Get a Free Consultation
         </Button>
