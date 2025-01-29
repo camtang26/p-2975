@@ -6,24 +6,34 @@ import { AspectRatio } from "./ui/aspect-ratio";
 // Sample video data - replace with actual video sources
 const videos = [
   {
-    thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+    thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     source: "https://example.com/video1.mp4",
     title: "Video 1"
   },
   {
-    thumbnail: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     source: "https://example.com/video2.mp4",
     title: "Video 2"
   },
   {
-    thumbnail: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
     source: "https://example.com/video3.mp4",
     title: "Video 3"
   },
   {
-    thumbnail: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc",
+    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     source: "https://example.com/video4.mp4",
     title: "Video 4"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    source: "https://example.com/video5.mp4",
+    title: "Video 5"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    source: "https://example.com/video6.mp4",
+    title: "Video 6"
   }
 ];
 
