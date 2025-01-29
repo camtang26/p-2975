@@ -19,48 +19,48 @@ export const Navigation = () => {
               width="40"
               height="40"
             />
-            <span className="text-white font-bold text-xl font-['Inter']">Cre8tive AI</span>
+            <span className="text-white font-geist font-bold text-xl tracking-[-0.02em]">Cre8tive AI</span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-10" role="menubar">
             <Link 
               to="/studios" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               Cre8tive AI Studios
             </Link>
             <Link 
               to="/manager" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               Ad Manager
             </Link>
             <Link 
               to="/agents" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               AI Agents
             </Link>
             <Link 
               to="/conversational" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               Conversational AI Agents
             </Link>
             <Link 
               to="/about" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               About Us
             </Link>
             <Link 
               to="/contact" 
-              className="text-white/90 hover:text-white transition-colors font-['Inter'] text-[15px] font-medium tracking-wide"
+              className="text-white/90 hover:text-white transition-colors font-geist text-[15px] font-medium tracking-[-0.01em]"
               role="menuitem"
             >
               Contact
@@ -69,7 +69,7 @@ export const Navigation = () => {
 
           <Button 
             variant="outline" 
-            className="bg-transparent text-white border-white/20 hover:bg-white/10 font-['Inter'] font-medium"
+            className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em]"
             aria-label="Sign in to your account"
           >
             Sign in
