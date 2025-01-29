@@ -1,5 +1,5 @@
 import { Camera, Newspaper, Bot, Phone } from "lucide-react";
-import { Button } from "./ui/button";
+import { ServiceCard } from "./services/ServiceCard";
 
 const services = [
   {
@@ -32,6 +32,13 @@ const services = [
   }
 ];
 
+const gradients = [
+  'linear-gradient(145deg, rgba(155,135,245,0.15) 0%, rgba(126,105,171,0.1) 100%)',
+  'linear-gradient(145deg, rgba(13,165,233,0.15) 0%, rgba(99,102,241,0.1) 100%)',
+  'linear-gradient(145deg, rgba(217,70,239,0.15) 0%, rgba(139,92,246,0.1) 100%)',
+  'linear-gradient(145deg, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.1) 100%)'
+];
+
 export const Services = () => {
   return (
     <section 
@@ -49,70 +56,17 @@ export const Services = () => {
       
       <div className="container relative mx-auto px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-          {services.map((service, index) => {
-            const gradients = [
-              'linear-gradient(145deg, rgba(155,135,245,0.15) 0%, rgba(126,105,171,0.1) 100%)',
-              'linear-gradient(145deg, rgba(13,165,233,0.15) 0%, rgba(99,102,241,0.1) 100%)',
-              'linear-gradient(145deg, rgba(217,70,239,0.15) 0%, rgba(139,92,246,0.1) 100%)',
-              'linear-gradient(145deg, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.1) 100%)'
-            ];
-
-            const ServiceIcon = service.icon;
-
-            return (
-              <div 
-                key={index} 
-                className="glass-morphism p-6 rounded-2xl space-y-4 transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
-                style={{ 
-                  animationDelay: `${index * 100}ms`,
-                  background: gradients[index],
-                  boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255,255,255,0.07)'
-                }}
-                role="article"
-                aria-labelledby={`service-title-${index}`}
-              >
-                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-black/30 mb-6">
-                  <img 
-                    src={service.image}
-                    alt={`Illustration for ${service.title}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    width="640"
-                    height="360"
-                  />
-                </div>
-                
-                <h3 
-                  id={`service-title-${index}`}
-                  className="text-3xl font-bold text-gradient text-center tracking-tight leading-tight font-geist"
-                >
-                  {service.title}
-                </h3>
-                
-                <p className="text-white/90 text-center text-lg leading-relaxed font-geist font-normal">
-                  {service.description}
-                </p>
-                
-                <div className="text-center pt-2">
-                  <Button
-                    variant="link"
-                    className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300 font-geist"
-                    asChild
-                  >
-                    <a 
-                      href={service.link}
-                      className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-                      aria-label={`Learn more about ${service.title}`}
-                    >
-                      Learn More
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              title={service.title}
+              description={service.description}
+              link={service.link}
+              image={service.image}
+              index={index}
+              gradient={gradients[index]}
+            />
+          ))}
         </div>
       </div>
     </section>
