@@ -38,7 +38,7 @@ export const Services = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 85%, #0D0D1D 100%)',
         }}
       />
       
