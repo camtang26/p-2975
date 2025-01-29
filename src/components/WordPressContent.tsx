@@ -1,39 +1,44 @@
 import { useWordPressPosts, useWordPressPages } from "@/services/wordpress";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 export const WordPressContent = () => {
   const { 
     data: posts, 
     isLoading: postsLoading, 
-    error: postsError 
+    error: postsError,
+    refetch: refetchPosts
   } = useWordPressPosts();
   
   const { 
     data: pages, 
     isLoading: pagesLoading, 
-    error: pagesError 
+    error: pagesError,
+    refetch: refetchPages
   } = useWordPressPages();
 
-  if (postsError || pagesError) {
-    toast.error("Failed to load WordPress content");
-    return (
-      <div className="text-center text-red-500">
-        Error loading content. Please try again later.
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (postsError || pagesError) {
+      toast.error("Failed to load WordPress content. Retrying...");
+      const timer = setTimeout(() => {
+        refetchPosts();
+        refetchPages();
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [postsError, pagesError, refetchPosts, refetchPages]);
 
   if (postsLoading || pagesLoading) {
     return (
-      <div className="flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
+      <div className="flex items-center justify-center min-h-[200px]">
+        <Loader2 className="h-8 w-8 animate-spin" aria-label="Loading content" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 py-24">
       {/* Pages Section */}
       <section className="space-y-4">
         <h2 className="text-3xl font-bold font-geist text-gradient">Pages</h2>
@@ -68,9 +73,11 @@ export const WordPressContent = () => {
               {post._embedded?.["wp:featuredmedia"]?.[0] && (
                 <img
                   src={post._embedded["wp:featuredmedia"][0].source_url}
-                  alt={post._embedded["wp:featuredmedia"][0].alt_text}
+                  alt={post._embedded["wp:featuredmedia"][0].alt_text || `Featured image for ${post.title.rendered}`}
                   className="w-full h-48 object-cover rounded-lg"
                   loading="lazy"
+                  width={400}
+                  height={192}
                 />
               )}
               <h3 

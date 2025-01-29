@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -15,6 +16,23 @@ export const VideoBackground = ({
   onToggleMute,
   onTogglePlay
 }: VideoBackgroundProps) => {
+  const isMobile = useIsMobile();
+  const [videoError, setVideoError] = useState(false);
+
+  useEffect(() => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.addEventListener('error', () => setVideoError(true));
+      return () => video.removeEventListener('error', () => setVideoError(true));
+    }
+  }, []);
+
+  if (videoError) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
+    );
+  }
+
   return (
     <div className="absolute inset-0 z-0">
       <video
@@ -29,6 +47,7 @@ export const VideoBackground = ({
             isPlaying ? el.play() : el.pause();
           }
         }}
+        poster="/placeholder.svg"
       >
         <source 
           src="/hero-video.mp4" 
@@ -48,32 +67,34 @@ export const VideoBackground = ({
         aria-hidden="true" 
       />
       
-      <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={onToggleMute}
-          className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-        >
-          {isMuted ? 
-            <VolumeX className="h-4 w-4" aria-hidden="true" /> : 
-            <Volume2 className="h-4 w-4" aria-hidden="true" />
-          }
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={onTogglePlay}
-          className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
-          aria-label={isPlaying ? "Pause video" : "Play video"}
-        >
-          {isPlaying ? 
-            <Pause className="h-4 w-4" aria-hidden="true" /> : 
-            <Play className="h-4 w-4" aria-hidden="true" />
-          }
-        </Button>
-      </div>
+      {!isMobile && (
+        <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onToggleMute}
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? 
+              <VolumeX className="h-4 w-4" aria-hidden="true" /> : 
+              <Volume2 className="h-4 w-4" aria-hidden="true" />
+            }
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onTogglePlay}
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            {isPlaying ? 
+              <Pause className="h-4 w-4" aria-hidden="true" /> : 
+              <Play className="h-4 w-4" aria-hidden="true" />
+            }
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

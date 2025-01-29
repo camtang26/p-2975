@@ -16,11 +16,18 @@ export const ContactForm = () => {
   const { 
     register, 
     handleSubmit, 
-    reset, 
-    formState: { errors } 
-  } = useForm<ContactFormData>();
+    reset,
+    formState: { errors, isValid }
+  } = useForm<ContactFormData>({
+    mode: "onChange"
+  });
 
   const onSubmit = async (data: ContactFormData) => {
+    if (!isValid) {
+      toast.error("Please fix the form errors before submitting");
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const sanitizedData = {
@@ -29,14 +36,15 @@ export const ContactForm = () => {
         message: data.message.trim()
       };
 
-      console.log("Sanitized form data:", sanitizedData);
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
+      console.log("Form submitted with data:", sanitizedData);
       toast.success("Message sent successfully!");
       reset();
     } catch (error) {
-      toast.error("Failed to send message. Please try again.");
       console.error("Form submission error:", error);
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -47,6 +55,7 @@ export const ContactForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 animate-fade-in"
       autoComplete="off"
+      noValidate
     >
       <FormField
         name="name"
@@ -98,7 +107,7 @@ export const ContactForm = () => {
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !isValid}
         className="w-full transition-all duration-300 hover:scale-105 disabled:opacity-50"
         aria-label={isSubmitting ? "Sending message..." : "Send message"}
       >
