@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
+import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
 
 const AdManager = () => {
   return (
@@ -57,6 +58,9 @@ const AdManager = () => {
             aria-hidden="true"
           />
         </section>
+
+        {/* Concept to Creation Section */}
+        <ConceptToCreation />
 
         {/* How It Works Section */}
         <HowItWorks />
