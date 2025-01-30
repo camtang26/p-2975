@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
-import { QuotesSection } from "@/components/quotes/QuotesSection";
+import { QuoteCard } from "@/components/quotes/QuoteCard";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { WordPressContent } from "@/components/WordPressContent";
@@ -12,9 +12,28 @@ const Index = () => {
     <div className="min-h-screen bg-[#111111]">
       <Navigation />
       <Hero />
+      
+      {/* First Quote */}
+      <div className="container mx-auto px-4 py-16">
+        <QuoteCard
+          quote="The question isn't whether AI will transform your business, but when and how."
+          author="Satya Nadella"
+          title="CEO of Microsoft"
+        />
+      </div>
+      
       <Services />
+      
+      {/* Second Quote */}
+      <div className="container mx-auto px-4 py-16">
+        <QuoteCard
+          quote="Any business that isn't using AI in some way in the next few years will be at a significant disadvantage."
+          author="Marc Benioff"
+          title="CEO of Salesforce"
+        />
+      </div>
+      
       <Gallery />
-      <QuotesSection />
       <WordPressContent />
       
       {/* Contact Section */}
