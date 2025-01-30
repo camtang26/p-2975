@@ -9,16 +9,16 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description, Icon }: FeatureCardProps) => (
   <div className={cn(
-    "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500",
+    "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
     "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
     "border border-white/10 group"
   )}>
-    <div className="mb-6 relative group-hover:animate-pulse">
+    <div className="mb-6 relative group-hover:animate-pulse flex justify-center">
       <Icon 
         className={cn(
-          "w-16 h-16 transition-all duration-300",
-          "drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]",
-          "group-hover:drop-shadow-[0_0_40px_rgba(255,255,255,0.5)]"
+          "w-16 h-16 transition-all duration-300 text-[#00ff80]",
+          "drop-shadow-[0_0_20px_rgba(0,255,128,0.5)]",
+          "group-hover:drop-shadow-[0_0_40px_rgba(0,255,128,0.7)]"
         )}
       />
     </div>

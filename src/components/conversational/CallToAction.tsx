@@ -12,7 +12,14 @@ export const CallToAction = () => {
         </h2>
         <Button 
           size="lg"
-          className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90"
+          className={cn(
+            "text-lg px-8 py-6 h-auto",
+            "bg-[#004d26] hover:bg-[#006633]",
+            "text-white font-semibold",
+            "shadow-[0_0_20px_rgba(0,255,128,0.3)]",
+            "hover:shadow-[0_0_30px_rgba(0,255,128,0.5)]",
+            "transition-all duration-300"
+          )}
         >
           Get Started Today
         </Button>
