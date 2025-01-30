@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
+import { B2BSection } from "@/components/studios/B2BSection";
+import { MarketingSection } from "@/components/studios/MarketingSection";
 import { Testimonials } from "@/components/studios/Testimonials";
 import { Button } from "@/components/ui/button";
 
@@ -36,6 +38,8 @@ const Studios = () => {
         <StudiosHero />
         <StudiosIntro />
         <ExpertiseBenefits />
+        <B2BSection />
+        <MarketingSection />
         <Testimonials />
 
         {/* CTA Section */}
