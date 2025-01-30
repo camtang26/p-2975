@@ -22,7 +22,7 @@ export const AgentsHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 mt-[-4rem]">
+      <div className="relative z-20 mt-[-8rem]">
         <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-5xl mx-auto px-4">
           <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] text-white neon-glow animate-fade-in">
             AI Autonomous Agents
