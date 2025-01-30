@@ -3,11 +3,11 @@ import { Button } from "../ui/button";
 export const HeroContent = () => {
   const letters = "Cre8tive AI".split("");
   const colors = {
-    blue: "text-blue-600 bg-gradient-to-b from-blue-500 to-blue-600 bg-clip-text [text-shadow:0_0_15px_rgba(37,99,235,0.8),0_0_30px_rgba(37,99,235,0.6),0_0_45px_rgba(37,99,235,0.3),0_3px_6px_rgba(0,0,0,0.4)]",
-    orange: "text-orange-600 bg-gradient-to-b from-orange-500 to-orange-600 bg-clip-text [text-shadow:0_0_15px_rgba(234,88,12,0.8),0_0_30px_rgba(234,88,12,0.6),0_0_45px_rgba(234,88,12,0.3),0_3px_6px_rgba(0,0,0,0.4)]",
-    turquoise: "text-cyan-600 bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text [text-shadow:0_0_15px_rgba(8,145,178,0.8),0_0_30px_rgba(8,145,178,0.6),0_0_45px_rgba(8,145,178,0.3),0_3px_6px_rgba(0,0,0,0.4)]",
-    red: "text-red-600 bg-gradient-to-b from-red-500 to-red-600 bg-clip-text [text-shadow:0_0_15px_rgba(220,38,38,0.8),0_0_30px_rgba(220,38,38,0.6),0_0_45px_rgba(220,38,38,0.3),0_3px_6px_rgba(0,0,0,0.4)]",
-    purple: "text-purple-600 bg-gradient-to-b from-purple-500 to-purple-600 bg-clip-text [text-shadow:0_0_15px_rgba(147,51,234,0.8),0_0_30px_rgba(147,51,234,0.6),0_0_45px_rgba(147,51,234,0.3),0_3px_6px_rgba(0,0,0,0.4)]",
+    blue: "text-blue-500 bg-gradient-to-b from-blue-400 to-blue-600 bg-clip-text [text-shadow:0_0_15px_rgba(59,130,246,0.9),0_0_30px_rgba(59,130,246,0.7),0_0_45px_rgba(59,130,246,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
+    orange: "text-orange-500 bg-gradient-to-b from-orange-400 to-orange-600 bg-clip-text [text-shadow:0_0_15px_rgba(251,146,60,0.9),0_0_30px_rgba(251,146,60,0.7),0_0_45px_rgba(251,146,60,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
+    turquoise: "text-cyan-400 bg-gradient-to-b from-cyan-300 to-cyan-500 bg-clip-text [text-shadow:0_0_15px_rgba(34,211,238,0.9),0_0_30px_rgba(34,211,238,0.7),0_0_45px_rgba(34,211,238,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
+    red: "text-red-500 bg-gradient-to-b from-red-400 to-red-600 bg-clip-text [text-shadow:0_0_15px_rgba(239,68,68,0.9),0_0_30px_rgba(239,68,68,0.7),0_0_45px_rgba(239,68,68,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
+    purple: "text-purple-500 bg-gradient-to-b from-purple-400 to-purple-600 bg-clip-text [text-shadow:0_0_15px_rgba(168,85,247,0.9),0_0_30px_rgba(168,85,247,0.7),0_0_45px_rgba(168,85,247,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
   };
 
   const colorOrder = ['blue', 'orange', 'turquoise', 'red', 'purple'];
