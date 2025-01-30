@@ -3,6 +3,7 @@ import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "../ui/use-toast";
+import Player from "@vimeo/player";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -22,138 +23,106 @@ export const VideoBackground = ({
   const isMobile = useIsMobile();
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const playerRef = useRef<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-  
-  // Video sources in order of preference
-  const videoSources = [
-    { src: "/cre8tive-hero.mp4", type: "video/mp4" },
-    { src: "/assets/cre8tive-hero.mp4", type: "video/mp4" },
-    { src: "/videos/cre8tive-hero.mp4", type: "video/mp4" },
-  ];
 
-  // Debug loading state
+  // Initialize Vimeo player
   useEffect(() => {
-    console.log("Video loading state:", { 
-      isLoaded, 
-      loadError,
-      currentSrc: videoRef.current?.currentSrc,
-      readyState: videoRef.current?.readyState,
-      networkState: videoRef.current?.networkState,
-      error: videoRef.current?.error
-    });
-  }, [isLoaded, loadError]);
-
-  // Handle video load error
-  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const video = e.currentTarget;
-    console.error("Video failed to load", {
-      error: video.error,
-      networkState: video.networkState,
-      currentSrc: video.currentSrc
-    });
-    
-    setLoadError("Failed to load video");
-    setIsLoaded(false);
-    
-    toast({
-      title: "Video Loading Issue",
-      description: "Falling back to static image. Please try refreshing the page.",
-      variant: "destructive"
-    });
-  };
-
-  // Handle successful video load
-  const handleVideoLoad = () => {
-    if (videoRef.current?.readyState >= 3) {
-      console.log("Video loaded successfully", {
-        currentSrc: videoRef.current.currentSrc,
-        readyState: videoRef.current.readyState
+    if (containerRef.current && !playerRef.current) {
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://player.vimeo.com/video/1051817118?h=4de0228752&background=1&autoplay=1&loop=1&autopause=0";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.style.position = "absolute";
+      iframe.style.top = "0";
+      iframe.style.left = "0";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "none";
+      
+      containerRef.current.appendChild(iframe);
+      
+      playerRef.current = new Player(iframe);
+      
+      playerRef.current.ready().then(() => {
+        console.log("Vimeo player is ready");
+        setIsLoaded(true);
+        setLoadError(null);
+        
+        // Set initial state
+        playerRef.current?.setVolume(isMuted ? 0 : 1);
+        if (!isPlaying) {
+          playerRef.current?.pause();
+        }
+      }).catch(error => {
+        console.error("Vimeo player failed to initialize:", error);
+        setLoadError("Failed to load video");
+        toast({
+          title: "Video Loading Issue",
+          description: "Failed to load the video. Please refresh the page.",
+          variant: "destructive"
+        });
       });
-      setIsLoaded(true);
-      setLoadError(null);
     }
-  };
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    };
+  }, [toast]);
 
   // Handle play/pause
   useEffect(() => {
-    if (videoRef.current) {
-      try {
-        if (isPlaying) {
-          const playPromise = videoRef.current.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(error => {
-              console.error("Error playing video:", error);
-              toast({
-                title: "Playback Error",
-                description: "Unable to play video. Please try again.",
-                variant: "destructive"
-              });
-            });
-          }
-        } else {
-          videoRef.current.pause();
-        }
-      } catch (error) {
-        console.error("Error controlling video playback:", error);
+    if (playerRef.current) {
+      if (isPlaying) {
+        playerRef.current.play().catch(error => {
+          console.error("Error playing video:", error);
+          toast({
+            title: "Playback Error",
+            description: "Unable to play video. Please try again.",
+            variant: "destructive"
+          });
+        });
+      } else {
+        playerRef.current.pause().catch(console.error);
       }
     }
   }, [isPlaying, toast]);
 
   // Handle mute/unmute
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
+    if (playerRef.current) {
+      playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
     }
   }, [isMuted]);
 
   return (
     <div className="absolute inset-0 z-0">
       {/* Video Container */}
-      <div className="relative w-full h-full z-[1]">
-        <video
-          ref={videoRef}
-          className="w-full h-full object-cover"
-          style={{
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.5s ease-in-out'
-          }}
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          onLoadedData={handleVideoLoad}
-          onError={handleVideoError}
-          poster="/lovable-uploads/2ed5a6a9-28d3-4ccc-86b5-3861a2f86357.png"
-          preload="auto"
-        >
-          {videoSources.map((source, index) => (
-            <source 
-              key={index}
-              src={source.src} 
-              type={source.type}
-              onError={(e) => {
-                console.error(`Failed to load video source: ${source.src}`, e);
-              }}
-            />
-          ))}
-          Your browser does not support the video tag.
-        </video>
-        
-        {/* Loading Indicator */}
-        {!isLoaded && !loadError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-          </div>
-        )}
-        
-        {/* Error Message */}
-        {loadError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-            <p className="text-white text-lg">{loadError}</p>
-          </div>
-        )}
-      </div>
+      <div 
+        ref={containerRef}
+        className="relative w-full h-full z-[1]"
+        style={{
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out'
+        }}
+      />
+      
+      {/* Loading Indicator */}
+      {!isLoaded && !loadError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+        </div>
+      )}
+      
+      {/* Error Message */}
+      {loadError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <p className="text-white text-lg">{loadError}</p>
+        </div>
+      )}
       
       {/* Dark Overlay */}
       <div 
