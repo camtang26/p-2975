@@ -29,7 +29,7 @@ export const VideoBackground = ({
   }, [isLoaded, loadError]);
 
   // Handle video load error
-  const handleVideoError = (e: Event) => {
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     console.error("Video failed to load", e);
     setLoadError("Failed to load video");
     setIsLoaded(false);
@@ -85,7 +85,7 @@ export const VideoBackground = ({
           muted={isMuted}
           playsInline
           onLoadedData={handleVideoLoad}
-          onError={(e) => handleVideoError(e)}
+          onError={handleVideoError}
           poster="/lovable-uploads/2ed5a6a9-28d3-4ccc-86b5-3861a2f86357.png"
         >
           <source 
