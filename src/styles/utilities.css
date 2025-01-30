@@ -61,4 +61,13 @@
   [animation-delay="600ms"] {
     animation-delay: 600ms;
   }
+
+  @keyframes flow {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
 }
