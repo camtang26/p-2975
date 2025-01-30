@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export const StudiosHero = () => {
   return (
     <section 
-      className="relative h-[80vh] flex items-center justify-center overflow-hidden"
+      className="relative h-screen max-h-[56.25vw] flex items-center justify-center overflow-hidden" // 16:9 aspect ratio max height
       role="banner"
       aria-label="Studios hero section"
     >
@@ -15,7 +15,7 @@ export const StudiosHero = () => {
           muted
           playsInline
           className="w-full h-full object-cover"
-          style={{ objectPosition: "50% 30%" }} // Adjust video focus point
+          style={{ objectPosition: "50% 30%" }}
           poster="/placeholder.svg"
         >
           <source src="/studio-hero.mp4" type="video/mp4" />
