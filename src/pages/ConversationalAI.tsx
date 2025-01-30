@@ -3,30 +3,17 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const ConversationalAI = () => {
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [scriptError, setScriptError] = useState<string | null>(null);
-
   useEffect(() => {
+    // Create and load the ElevenLabs script
     const script = document.createElement('script');
     script.src = "https://elevenlabs.io/convai-widget/index.js";
     script.async = true;
-    script.crossOrigin = "anonymous";
-    
-    script.onload = () => {
-      setScriptLoaded(true);
-      console.log("ElevenLabs script loaded successfully");
-    };
-
-    script.onerror = (error) => {
-      setScriptError("Failed to load ElevenLabs widget");
-      console.error("Error loading ElevenLabs script:", error);
-    };
-
     document.body.appendChild(script);
 
+    // Cleanup on unmount
     return () => {
       document.body.removeChild(script);
     };
@@ -36,6 +23,7 @@ const ConversationalAI = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="pt-20">
+        {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1A1A1A] to-[#282828]">
           <div className="container mx-auto px-4 flex flex-col items-center justify-center">
             <motion.h1 
@@ -54,31 +42,14 @@ const ConversationalAI = () => {
               Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
             </motion.p>
             
+            {/* Chat Interface */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="w-full max-w-[400px] bg-[#EEEEEE] border border-[#CCCCCC] rounded-lg h-[300px] mx-auto mt-10 relative"
+              className="w-full max-w-[400px] bg-[#EEEEEE] border border-[#CCCCCC] rounded-lg h-[300px] mx-auto mt-10"
             >
-              <style>{`
-                #convai-widget {
-                  position: static !important;
-                  width: 100% !important;
-                  height: 100% !important;
-                  max-width: 100% !important;
-                  max-height: 100% !important;
-                  margin: 0 !important;
-                  right: auto !important;
-                  bottom: auto !important;
-                }
-              `}</style>
-              {scriptError ? (
-                <div className="flex items-center justify-center h-full text-red-500">
-                  {scriptError}
-                </div>
-              ) : (
-                <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
-              )}
+              <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
             </motion.div>
           </div>
         </section>
