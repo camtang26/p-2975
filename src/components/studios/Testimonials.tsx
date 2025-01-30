@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Testimonial {
   name: string;
@@ -29,6 +30,12 @@ const testimonials: Testimonial[] = [
 ];
 
 export const Testimonials = () => {
+  const brandColors = {
+    blue: "#0EA5E9",
+    orange: "#F97316",
+    green: "#10B981"
+  };
+
   return (
     <section className="py-24 relative overflow-hidden" aria-label="Client testimonials">
       {/* Main Background Gradient */}
@@ -40,76 +47,78 @@ export const Testimonials = () => {
         }}
       />
       
-      {/* Brand Color Accents - Top */}
+      {/* Brand Color Accents */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           background: 
-            'radial-gradient(circle at 30% 20%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
-            'radial-gradient(circle at 70% 80%, rgba(217,70,239,0.15) 0%, transparent 50%)',
-          filter: 'blur(120px)',
-          zIndex: 1
-        }}
-      />
-
-      {/* Brand Color Accents - Bottom */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
-        style={{
-          background: 
-            'radial-gradient(circle at 70% 30%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
-            'radial-gradient(circle at 30% 70%, rgba(217,70,239,0.15) 0%, transparent 50%)',
+            'radial-gradient(circle at 30% 20%, rgba(14,165,233,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 70% 80%, rgba(249,115,22,0.15) 0%, transparent 50%)',
           filter: 'blur(120px)',
           zIndex: 1
         }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
         <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16 relative z-20">
           What Our Clients Say
         </h2>
 
-        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-20">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.name}
-              className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                background: 'linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
-                boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.07)'
-              }}
-            >
-              {/* Quote Icon */}
-              <div className="flex justify-center">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Quote className="w-6 h-6 text-primary" />
+          {testimonials.map((testimonial, index) => {
+            const color = Object.values(brandColors)[index % Object.values(brandColors).length];
+            
+            return (
+              <div
+                key={testimonial.name}
+                className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group"
+                style={{ 
+                  background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
+                  boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  '--card-color': color
+                } as React.CSSProperties}
+              >
+                {/* Quote Icon */}
+                <div className="flex justify-center">
+                  <div 
+                    className="relative group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <div 
+                      className="absolute inset-0 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ background: color }}
+                    />
+                    <Quote 
+                      className={cn(
+                        "w-6 h-6 relative z-10",
+                        "transition-all duration-300",
+                        "drop-shadow-[0_0_8px_var(--card-color)]",
+                        "group-hover:drop-shadow-[0_0_12px_var(--card-color)]"
+                      )}
+                      style={{ color }}
+                    />
+                  </div>
+                </div>
+
+                <blockquote className="text-white/80 text-lg leading-relaxed italic">
+                  "{testimonial.quote}"
+                </blockquote>
+
+                <div className="pt-6 border-t border-white/10">
+                  <div className="text-xl font-semibold text-gradient">
+                    {testimonial.name}
+                  </div>
+                  <div className="font-medium mt-1" style={{ color }}>
+                    {testimonial.company}
+                  </div>
+                  <div className="text-white/60 text-sm mt-1">
+                    {testimonial.title}
+                  </div>
                 </div>
               </div>
-
-              {/* Testimonial Text */}
-              <blockquote className="text-white/80 text-lg leading-relaxed italic">
-                "{testimonial.quote}"
-              </blockquote>
-
-              {/* Author Info */}
-              <div className="pt-6 border-t border-white/10">
-                <div className="text-xl font-semibold text-white">
-                  {testimonial.name}
-                </div>
-                <div className="text-primary font-medium mt-1">
-                  {testimonial.company}
-                </div>
-                <div className="text-white/60 text-sm mt-1">
-                  {testimonial.title}
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -4,6 +4,12 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2 } from "lucide-react";
 
 export const ExpertiseBenefits = () => {
+  const brandColors = {
+    blue: "#0EA5E9",
+    orange: "#F97316",
+    green: "#10B981"
+  };
+
   return (
     <section 
       className="py-32 relative overflow-hidden" 
@@ -17,13 +23,13 @@ export const ExpertiseBenefits = () => {
         }}
       />
       
-      {/* Brand Color Accents - Benefits Section */}
+      {/* Brand Color Accents */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           background: 
-            'radial-gradient(circle at 30% 20%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
-            'radial-gradient(circle at 70% 80%, rgba(217,70,239,0.15) 0%, transparent 50%)',
+            'radial-gradient(circle at 30% 20%, rgba(14,165,233,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 70% 80%, rgba(249,115,22,0.15) 0%, transparent 50%)',
           filter: 'blur(120px)'
         }}
       />
@@ -43,47 +49,56 @@ export const ExpertiseBenefits = () => {
             {
               icon: Clock,
               title: "Speed & Efficiency",
-              description: "Imagine getting professional-quality videos in a fraction of the time. Our AI-powered workflows automate the tedious parts, streamline the creative process, and significantly reduce turnaround times."
+              description: "Imagine getting professional-quality videos in a fraction of the time. Our AI-powered workflows automate the tedious parts, streamline the creative process, and significantly reduce turnaround times.",
+              color: brandColors.blue
             },
             {
               icon: DollarSign,
               title: "Cost-Effectiveness",
-              description: "Traditional video production often involves large crews, expensive equipment, and lengthy post-production. Cre8tive AI Studios cuts out these unnecessary costs, making high-quality video production accessible to all businesses."
+              description: "Traditional video production often involves large crews, expensive equipment, and lengthy post-production. Cre8tive AI Studios cuts out these unnecessary costs, making high-quality video production accessible to all businesses.",
+              color: brandColors.orange
             },
             {
               icon: Layers,
               title: "Scalability & Flexibility",
-              description: "Need videos for different platforms or campaigns? AI video production lets you scale your content creation easily. Adapt your videos for various formats and languages, reaching a wider audience without extra effort or expense."
+              description: "Need videos for different platforms or campaigns? AI video production lets you scale your content creation easily. Adapt your videos for various formats and languages, reaching a wider audience without extra effort or expense.",
+              color: brandColors.green
             },
             {
               icon: Shield,
               title: "Uncompromising Quality",
-              description: "While speed and cost are important, we never sacrifice quality. Our AI algorithms learn from vast amounts of professional video content, guaranteeing visually stunning videos, compelling stories, and a polished final product."
+              description: "While speed and cost are important, we never sacrifice quality. Our AI algorithms learn from vast amounts of professional video content, guaranteeing visually stunning videos, compelling stories, and a polished final product.",
+              color: brandColors.blue
             }
           ].map((benefit, index) => (
             <Card 
               key={index} 
               className={cn(
-                "glass-morphism border-none animate-fade-in hover-lift",
+                "glass-morphism border-none animate-fade-in hover-lift group",
                 "bg-black/40 backdrop-blur-xl",
-                "border border-white/10 hover:border-white/20",
-                "transition-all duration-300",
-                "group"
+                "border border-white/10 hover:border-[var(--card-color)]/30",
+                "transition-all duration-300"
               )}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                '--card-color': benefit.color
+              } as React.CSSProperties}
             >
               <CardContent className="p-8">
                 <div className="flex items-start gap-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full transform group-hover:scale-110 transition-transform duration-300" />
+                  <div className="relative group-hover:scale-110 transition-transform duration-300">
+                    <div 
+                      className="absolute inset-0 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ background: benefit.color }}
+                    />
                     <benefit.icon 
                       className={cn(
                         "w-10 h-10 relative z-10",
-                        "text-primary group-hover:text-white",
                         "transition-all duration-300",
-                        "drop-shadow-[0_0_8px_rgba(155,135,245,0.5)]",
-                        "group-hover:drop-shadow-[0_0_12px_rgba(155,135,245,0.8)]"
+                        "drop-shadow-[0_0_8px_var(--card-color)]",
+                        "group-hover:drop-shadow-[0_0_12px_var(--card-color)]"
                       )}
+                      style={{ color: benefit.color }}
                     />
                   </div>
                   <div>
