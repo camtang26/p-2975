@@ -8,6 +8,7 @@ import Studios from "./pages/Studios";
 import AdManager from "./pages/AdManager";
 import Agents from "./pages/Agents";
 import ConversationalAI from "./pages/ConversationalAI";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/manager" element={<AdManager />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/conversational" element={<ConversationalAI />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
