@@ -3,12 +3,28 @@ import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { FormField } from "./contact/FormField";
+import DOMPurify from "dompurify";
 
 interface ContactFormData {
   name: string;
   email: string;
   message: string;
 }
+
+// Rate limiting implementation
+const RATE_LIMIT_DURATION = 60000; // 1 minute
+const MAX_SUBMISSIONS = 3;
+
+const submissionHistory: number[] = [];
+
+const isRateLimited = (): boolean => {
+  const now = Date.now();
+  // Clean up old submissions
+  while (submissionHistory.length > 0 && submissionHistory[0] < now - RATE_LIMIT_DURATION) {
+    submissionHistory.shift();
+  }
+  return submissionHistory.length >= MAX_SUBMISSIONS;
+};
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,29 +38,50 @@ export const ContactForm = () => {
     mode: "onChange"
   });
 
+  const sanitizeInput = (input: string): string => {
+    return DOMPurify.sanitize(input.trim(), {
+      ALLOWED_TAGS: [], // Strip all HTML tags
+      ALLOWED_ATTR: [] // Strip all attributes
+    });
+  };
+
   const onSubmit = async (data: ContactFormData) => {
     if (!isValid) {
       toast.error("Please fix the form errors before submitting");
       return;
     }
 
+    if (isRateLimited()) {
+      toast.error("Too many submissions. Please try again later.");
+      return;
+    }
+
     setIsSubmitting(true);
     try {
+      // Add current timestamp to submission history
+      submissionHistory.push(Date.now());
+
       const sanitizedData = {
-        name: data.name.trim(),
-        email: data.email.trim().toLowerCase(),
-        message: data.message.trim()
+        name: sanitizeInput(data.name),
+        email: sanitizeInput(data.email).toLowerCase(),
+        message: sanitizeInput(data.message)
       };
+
+      // Validate email format
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      if (!emailRegex.test(sanitizedData.email)) {
+        throw new Error("Invalid email format");
+      }
 
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      console.log("Form submitted with data:", sanitizedData);
+      console.log("Form submitted with sanitized data:", sanitizedData);
       toast.success("Message sent successfully!");
       reset();
     } catch (error) {
       console.error("Form submission error:", error);
-      toast.error("Failed to send message. Please try again.");
+      toast.error(error instanceof Error ? error.message : "Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
