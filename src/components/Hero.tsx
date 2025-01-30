@@ -13,7 +13,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative min-h-[100svh] md:h-[75vh] flex items-center justify-center overflow-hidden" 
+      className="relative w-full aspect-[21/9] md:aspect-video flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Hero section"
     >
