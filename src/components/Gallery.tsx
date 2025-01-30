@@ -2,37 +2,12 @@ import { useState } from "react";
 import { GalleryVideo } from "./gallery/GalleryVideo";
 import { VideoModal } from "./gallery/VideoModal";
 
-// Sample video data - with first real video
+// Real video data
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     source: "https://player.vimeo.com/video/1051820049?h=ba3efabac0",
     title: "Cre8tive AI Automotive Demo"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    source: "https://example.com/video2.mp4",
-    title: "Video 2"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    source: "https://example.com/video3.mp4",
-    title: "Video 3"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    source: "https://example.com/video4.mp4",
-    title: "Video 4"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    source: "https://example.com/video5.mp4",
-    title: "Video 5"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    source: "https://example.com/video6.mp4",
-    title: "Video 6"
   }
 ];
 
