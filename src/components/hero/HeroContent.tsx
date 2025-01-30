@@ -4,7 +4,7 @@ export const HeroContent = () => {
   return (
     <div className="relative z-[2] flex flex-col items-center justify-center text-center space-y-8 max-w-4xl mx-auto px-4">
       <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] animate-fade-in">
-        <span className="bg-gradient-to-r from-white/20 from-5% via-blue-400/80 via-orange-400/80 via-cyan-300/80 via-red-400/80 to-purple-400/80 bg-clip-text text-transparent inline-block hover:scale-105 transition-transform duration-300">
+        <span className="bg-gradient-to-r from-blue-500 via-orange-500 via-pink-500 to-red-500 bg-clip-text text-transparent inline-block hover:scale-105 transition-transform duration-300 [text-shadow:0_0_15px_rgba(59,130,246,0.5),0_0_25px_rgba(239,68,68,0.3)]">
           Cre8tive AI
         </span>
       </h1>
