@@ -27,17 +27,17 @@ export const VideoBackground = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Initialize Vimeo player
   useEffect(() => {
     if (containerRef.current && !playerRef.current) {
       const iframe = document.createElement('iframe');
       iframe.src = "https://player.vimeo.com/video/1051817118?h=4de0228752&background=1&autoplay=1&loop=1&autopause=0";
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
       iframe.style.position = "absolute";
-      iframe.style.top = "0";
-      iframe.style.left = "0";
+      iframe.style.top = "50%";
+      iframe.style.left = "50%";
       iframe.style.width = "100%";
       iframe.style.height = "100%";
+      iframe.style.transform = "translate(-50%, -50%)";
       iframe.style.border = "none";
       
       containerRef.current.appendChild(iframe);
@@ -49,7 +49,6 @@ export const VideoBackground = ({
         setIsLoaded(true);
         setLoadError(null);
         
-        // Set initial state
         playerRef.current?.setVolume(isMuted ? 0 : 1);
         if (!isPlaying) {
           playerRef.current?.pause();
@@ -100,10 +99,9 @@ export const VideoBackground = ({
 
   return (
     <div className="absolute inset-0 z-0">
-      {/* Video Container */}
       <div 
         ref={containerRef}
-        className="relative w-full h-full z-[1]"
+        className="relative w-full h-full z-[1] overflow-hidden"
         style={{
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out'

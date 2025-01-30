@@ -13,7 +13,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative w-full aspect-[18/9] md:aspect-[19/9] flex items-center justify-center overflow-hidden" 
+      className="relative w-full aspect-[16/9] flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Hero section"
     >
@@ -22,7 +22,7 @@ export const Hero = () => {
         isPlaying={isPlaying}
         onToggleMute={toggleMute}
         onTogglePlay={togglePlay}
-        priority={true} // Add priority to ensure fast loading for hero video
+        priority={true}
       />
       <HeroContent />
     </section>
