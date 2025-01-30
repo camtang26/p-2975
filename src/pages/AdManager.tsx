@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
 import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
+import { ContactCTA } from "@/components/shared/ContactCTA";
 
 const AdManager = () => {
   return (
@@ -88,25 +89,8 @@ const AdManager = () => {
         {/* Benefits Section */}
         <Benefits />
 
-        {/* Call to Action Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Call to action section"
-        >
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-8 px-4 max-w-4xl mx-auto">
-              Ready to Transform Your Ad Strategy?
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto mb-12">
-              Join the future of intelligent advertising with Cre8tive AI Ad Manager.
-            </p>
-            <Button 
-              className="text-lg px-8 py-6 bg-gradient-to-r from-[#0EA5E9] via-[#1E40AF] to-[#1E3A8A] hover:from-[#0284C7] hover:via-[#1E3A8A] hover:to-[#172554] border-0 shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] transition-all duration-300"
-            >
-              Get Started Today
-            </Button>
-          </div>
-        </section>
+        {/* Contact CTA Section */}
+        <ContactCTA />
       </main>
 
       <Footer />

@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/conversational/HeroSection";
 import { WhatIsSection } from "@/components/conversational/WhatIsSection";
 import { FeaturesSection } from "@/components/conversational/FeaturesSection";
 import { ApplicationsSection } from "@/components/conversational/ApplicationsSection";
-import { CallToAction } from "@/components/conversational/CallToAction";
+import { ContactCTA } from "@/components/shared/ContactCTA";
 
 const ConversationalAI = () => {
   useEffect(() => {
@@ -44,7 +44,7 @@ const ConversationalAI = () => {
         <WhatIsSection />
         <FeaturesSection />
         <ApplicationsSection />
-        <CallToAction />
+        <ContactCTA />
       </main>
       <Footer />
       <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>

@@ -3,10 +3,10 @@ import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
-import { B2BSection } from "@/components/studios/B2BSection";
 import { MarketingSection } from "@/components/studios/MarketingSection";
+import { B2BSection } from "@/components/studios/B2BSection";
 import { Testimonials } from "@/components/studios/Testimonials";
-import { Button } from "@/components/ui/button";
+import { ContactCTA } from "@/components/shared/ContactCTA";
 
 const Studios = () => {
   return (
@@ -15,8 +15,8 @@ const Studios = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
-          zIndex: 0
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+          opacity: 0.95
         }}
       />
       
@@ -25,66 +25,22 @@ const Studios = () => {
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           background: 
-            'radial-gradient(circle at 40% 30%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
-            'radial-gradient(circle at 60% 70%, rgba(217,70,239,0.15) 0%, transparent 50%)',
-          filter: 'blur(120px)',
-          zIndex: 1
+            'radial-gradient(circle at 20% 20%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
+            'radial-gradient(circle at 80% 80%, rgba(217,70,239,0.15) 0%, transparent 40%)',
+          filter: 'blur(120px)'
         }}
       />
 
       <Navigation />
-      
-      <main className="relative z-10">
+      <main className="relative pt-20">
         <StudiosHero />
         <StudiosIntro />
         <ExpertiseBenefits />
-        <B2BSection />
         <MarketingSection />
+        <B2BSection />
         <Testimonials />
-
-        {/* CTA Section */}
-        <section 
-          className="py-24 relative overflow-hidden"
-          aria-label="Call to action section"
-        >
-          {/* Main Background Gradient */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
-              zIndex: 0
-            }}
-          />
-          
-          {/* Brand Color Accents */}
-          <div 
-            className="absolute inset-0 pointer-events-none opacity-30"
-            style={{
-              background: 
-                'radial-gradient(circle at 30% 70%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
-                'radial-gradient(circle at 70% 30%, rgba(217,70,239,0.15) 0%, transparent 50%)',
-              filter: 'blur(120px)',
-              zIndex: 1
-            }}
-          />
-
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6 relative z-20">
-              Ready to Transform Your Content?
-            </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8 relative z-20">
-              Join the future of content creation with Cre8tive AI Studios. Let's bring your vision to life.
-            </p>
-            <Button 
-              size="lg"
-              className="text-lg px-8 relative z-20 bg-blue-900 text-white shadow-[0_0_10px_rgba(59,130,246,0.5),0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_15px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)] hover:bg-blue-800 transition-all duration-300"
-            >
-              Get Started Today
-            </Button>
-          </div>
-        </section>
+        <ContactCTA />
       </main>
-
       <Footer />
     </div>
   );
