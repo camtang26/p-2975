@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { AgentsHero } from "@/components/agents/AgentsHero";
 import { AiMarketingSolutions } from "@/components/agents/sections/AiMarketingSolutions";
 import { HowItWorks } from "@/components/agents/sections/HowItWorks";
@@ -34,6 +35,7 @@ const Agents = () => {
         <HowItWorks />
         <ContactCTA />
       </main>
+      <Footer />
     </div>
   );
 };

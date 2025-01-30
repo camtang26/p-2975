@@ -1,13 +1,16 @@
+import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
 import { QuoteCard } from "@/components/quotes/QuoteCard";
 import { ContactForm } from "@/components/ContactForm";
+import { Footer } from "@/components/Footer";
 import { WordPressContent } from "@/components/WordPressContent";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-[#111111]">
+      <Navigation />
       <Hero />
       <Services />
       
@@ -57,6 +60,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

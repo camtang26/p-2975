@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import { HeroSection } from "@/components/conversational/HeroSection";
 import { WhatIsSection } from "@/components/conversational/WhatIsSection";
@@ -45,6 +46,7 @@ const ConversationalAI = () => {
         <ApplicationsSection />
         <ContactCTA />
       </main>
+      <Footer />
       <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
     </div>
   );
