@@ -97,8 +97,6 @@ const About = () => {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };

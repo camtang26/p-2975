@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
@@ -9,7 +8,6 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 const AdManager = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Main Gradient Background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -145,8 +143,6 @@ const AdManager = () => {
         {/* Contact CTA Section */}
         <ContactCTA />
       </main>
-
-      <Footer />
     </div>
   );
 };

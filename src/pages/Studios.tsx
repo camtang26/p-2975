@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
@@ -41,7 +40,6 @@ const Studios = () => {
         <Testimonials />
         <ContactCTA />
       </main>
-      <Footer />
     </div>
   );
 };
