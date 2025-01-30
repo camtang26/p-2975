@@ -1,24 +1,13 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 
 const ConversationalAI = () => {
   return (
-    <div className="min-h-screen bg-[#111111]">
-      <Navigation />
-      <main className="relative pt-20">
-        {/* Hero Section */}
-        <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
-              opacity: 0.95
-            }}
-          />
-          <div className="container mx-auto px-4 text-center relative">
+    <main className="min-h-screen bg-background text-foreground">
+      {/* Hero Section */}
+      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -43,18 +32,11 @@ const ConversationalAI = () => {
             Transform your customer interactions with AI agents that understand and respond naturally, 
             providing personalized experiences and driving better business outcomes.
           </motion.p>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* What is a Conversational AI Agent? */}
-        <section className="py-20">
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
-              opacity: 0.95
-            }}
-          />
+      {/* What is a Conversational AI Agent? */}
+      <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-center">
             What is a Conversational AI Agent?
@@ -73,7 +55,7 @@ const ConversationalAI = () => {
             </p>
           </div>
         </div>
-        </section>
+      </section>
 
       {/* Key Features & Capabilities */}
       <section className="py-20">
@@ -170,12 +152,11 @@ const ConversationalAI = () => {
           </Button>
         </div>
       </section>
-      </main>
-      <Footer />
-    </div>
+    </main>
   );
 };
 
+// Feature Component
 const Feature = ({ icon, title, description }: { 
   icon: React.ReactNode;
   title: string;

@@ -6,16 +6,9 @@ import { HowItWorks } from "@/components/agents/sections/HowItWorks";
 
 const Agents = () => {
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="relative pt-20">
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
-            opacity: 0.95
-          }}
-        />
+      <main className="pt-20">
         <AgentsHero />
         <AiMarketingSolutions />
         <HowItWorks />
