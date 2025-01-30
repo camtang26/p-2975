@@ -34,8 +34,8 @@ export const RobotIllustration = () => {
                 className="fill-none stroke-[#00ff80] stroke-2"/>
           <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
           
-          {/* Additional Details */}
-          <path d="M70,75 Q100,85 130,75" 
+          {/* Additional Details - Removed frown line, added friendly accents */}
+          <path d="M80,75 Q100,80 120,75" 
                 className="fill-none stroke-[#00ff80] stroke-2 opacity-50"/>
         </svg>
         
