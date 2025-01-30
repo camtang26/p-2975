@@ -29,8 +29,9 @@ export const RobotIllustration = () => {
           <circle cx="100" cy="32" r="3" className="fill-[#00ff80]"/>
           
           {/* Robot Details - Additional geometric patterns */}
-          <rect x="75" y="110" width="50" height="10" rx="5" 
-                className="fill-white/10 stroke-[#00ff80] stroke-2"/>
+          {/* Updated smile path - warm and pleasant curve */}
+          <path d="M75,110 Q100,125 125,110" 
+                className="fill-none stroke-[#00ff80] stroke-2"/>
           <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
           
           {/* Additional Details */}
