@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 
@@ -72,7 +71,7 @@ export const ServiceCard = ({
           {description}
         </p>
         
-        <div className="text-center">
+        <div className="text-center relative z-10">
           <Link 
             to={link}
             className={cn(
@@ -80,7 +79,8 @@ export const ServiceCard = ({
               "relative overflow-hidden group transition-all duration-300 text-lg",
               "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
               "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
-              "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+              "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
+              "cursor-pointer py-2 px-4"
             )}
             aria-label={`Learn more about ${title}`}
           >
