@@ -30,7 +30,7 @@ export const VideoBackground = ({
   useEffect(() => {
     if (containerRef.current && !playerRef.current) {
       const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/1051817118?h=4de0228752&background=1&autoplay=1&loop=1&autopause=0";
+      iframe.src = "https://player.vimeo.com/video/1051819234?h=d827a9b1ef&background=1&autoplay=1&loop=1&autopause=0";
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
       iframe.style.position = "absolute";
       iframe.style.top = "50%";
