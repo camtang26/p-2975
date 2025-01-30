@@ -20,44 +20,38 @@ export const VideoBackground = ({
 }: VideoBackgroundProps) => {
   const isMobile = useIsMobile();
   const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  // Handle play/pause through postMessage
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.play().catch(error => {
-        console.error('Error playing video:', error);
-      });
-    } else {
-      video.pause();
-    }
+    const message = isPlaying ? 'play' : 'pause';
+    iframeRef.current?.contentWindow?.postMessage(message, '*');
   }, [isPlaying]);
+
+  // Handle mute/unmute through postMessage
+  useEffect(() => {
+    const message = isMuted ? 'mute' : 'unmute';
+    iframeRef.current?.contentWindow?.postMessage(message, '*');
+  }, [isMuted]);
 
   return (
     <div className="absolute inset-0 z-0">
       {/* Video Container */}
       <div className="relative w-full h-full z-[1]">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          className="w-full h-full object-cover"
-          aria-label="Background video showcasing Cre8tive AI capabilities"
-          poster="/placeholder.svg"
+        <iframe
+          ref={iframeRef}
+          src="https://iframe.mediadelivery.net/embed/376993/56c0d74d-b753-4bd7-82cf-e51101163d42"
+          className="w-full h-full"
           style={{
             opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.5s ease-in-out'
+            transition: 'opacity 0.5s ease-in-out',
+            border: 'none'
           }}
-          preload={priority ? "auto" : "metadata"}
-          onLoadedData={() => setIsLoaded(true)}
-        >
-          <source src="/studio-intro.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowFullScreen
+          onLoad={() => setIsLoaded(true)}
+          title="Cre8tive AI Background Video"
+        />
       </div>
       
       {/* Dark Overlay */}
