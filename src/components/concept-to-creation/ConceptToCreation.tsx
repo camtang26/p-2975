@@ -56,14 +56,11 @@ export const ConceptToCreation = () => {
         </div>
       </div>
 
-      {/* Enhanced background texture */}
+      {/* Background gradient */}
       <div 
         className="absolute inset-0 -z-10 opacity-50"
         style={{
-          backgroundImage: `
-            radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%),
-            linear-gradient(45deg, rgba(96,165,250,0.1) 0%, rgba(248,113,113,0.1) 50%, rgba(192,132,252,0.1) 100%)
-          `
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 85%, #0D0D1D 100%)'
         }}
         aria-hidden="true"
       />
