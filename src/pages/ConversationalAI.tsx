@@ -3,13 +3,28 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ConversationalAI = () => {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptError, setScriptError] = useState<string | null>(null);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://elevenlabs.io/convai-widget/index.js";
     script.async = true;
+    script.crossOrigin = "anonymous";
+    
+    script.onload = () => {
+      setScriptLoaded(true);
+      console.log("ElevenLabs script loaded successfully");
+    };
+
+    script.onerror = (error) => {
+      setScriptError("Failed to load ElevenLabs widget");
+      console.error("Error loading ElevenLabs script:", error);
+    };
+
     document.body.appendChild(script);
 
     return () => {
@@ -57,7 +72,13 @@ const ConversationalAI = () => {
                   bottom: auto !important;
                 }
               `}</style>
-              <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
+              {scriptError ? (
+                <div className="flex items-center justify-center h-full text-red-500">
+                  {scriptError}
+                </div>
+              ) : (
+                <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
+              )}
             </motion.div>
           </div>
         </section>
