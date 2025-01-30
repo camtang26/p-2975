@@ -5,9 +5,9 @@ import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2 } from "
 
 export const ExpertiseBenefits = () => {
   const brandColors = {
-    blue: "#0EA5E9",
-    orange: "#F97316",
-    green: "#10B981"
+    blue: "#0EA5E9",    // Ocean blue
+    orange: "#F97316",  // Bright orange
+    green: "#10B981"    // Bright green
   };
 
   return (
@@ -77,7 +77,7 @@ export const ExpertiseBenefits = () => {
                 "glass-morphism border-none animate-fade-in hover-lift group",
                 "bg-black/40 backdrop-blur-xl",
                 "border border-white/10 hover:border-[var(--card-color)]/30",
-                "transition-all duration-300"
+                "transition-all duration-300 hover:shadow-[0_0_30px_var(--card-color)]"
               )}
               style={{ 
                 animationDelay: `${index * 0.1}s`,
