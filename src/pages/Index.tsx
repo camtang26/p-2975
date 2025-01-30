@@ -25,15 +25,6 @@ const Index = () => {
       
       <Gallery />
       
-      {/* Second Quote */}
-      <div className="container mx-auto px-4 py-8">
-        <QuoteCard
-          quote="Any business that isn't using AI in some way in the next few years will be at a significant disadvantage."
-          author="Marc Benioff"
-          title="CEO of Salesforce"
-        />
-      </div>
-      
       <WordPressContent />
       
       {/* Contact Section */}
