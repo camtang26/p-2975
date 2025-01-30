@@ -12,7 +12,7 @@ export const HeroSection = () => {
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-6xl font-extrabold mb-6 text-white"
+          className="text-6xl md:text-7xl font-extrabold mb-6 text-white neon-glow"
         >
           Ignite Natural Conversations
         </motion.h1>
@@ -20,7 +20,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-xl md:text-2xl mb-10 text-white/90 font-semibold max-w-3xl mx-auto"
+          className="text-2xl md:text-3xl mb-10 text-white/90 font-semibold max-w-3xl mx-auto neon-glow-subtle"
         >
           Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
         </motion.p>
@@ -34,8 +34,8 @@ export const HeroSection = () => {
           className="mt-8 relative"
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-4 text-white">Experience the Future of Conversation</h3>
-            <p className="text-lg text-white/80 mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white neon-glow">Experience the Future of Conversation</h3>
+            <p className="text-xl md:text-2xl text-white/80 mb-8 neon-glow-subtle">
               Don't take our word for it – experience the power of our Conversational AI firsthand. 
               Engage with our AI agent now to see how it can transform your customer interactions.
             </p>
