@@ -10,19 +10,16 @@ interface FeatureProps {
 
 const Feature = ({ icon, title, description }: FeatureProps) => (
   <div className={cn(
-    "p-8 rounded-xl transition-all duration-500",
+    "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500",
     "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-    "border border-white/10 hover:border-white/20",
-    "relative z-10 backdrop-blur-xl",
-    "group hover:-translate-y-1"
+    "border border-white/10 group"
   )}>
-    <div className="mb-6 relative">
+    <div className="mb-6 relative group-hover:animate-pulse">
       {React.cloneElement(icon as React.ReactElement, {
         className: cn(
-          "w-12 h-12 transition-all duration-300",
-          "text-white/80 group-hover:text-white",
-          "drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]",
-          "group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]"
+          "w-16 h-16 transition-all duration-300",
+          "drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]",
+          "group-hover:drop-shadow-[0_0_40px_rgba(255,255,255,0.5)]"
         )
       })}
     </div>
