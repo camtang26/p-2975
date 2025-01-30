@@ -73,19 +73,19 @@ export const ServiceCard = ({
         </p>
         
         <div className="text-center">
-          <Button
-            variant="link"
-            className="text-white/90 hover:text-white relative overflow-hidden group transition-all duration-300 text-lg"
-            asChild
+          <Link 
+            to={link}
+            className={cn(
+              "inline-flex items-center justify-center text-white/90 hover:text-white",
+              "relative overflow-hidden group transition-all duration-300 text-lg",
+              "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
+              "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
+              "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            )}
+            aria-label={`Learn more about ${title}`}
           >
-            <Link 
-              to={link}
-              className="after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-              aria-label={`Learn more about ${title}`}
-            >
-              Learn More
-            </Link>
-          </Button>
+            Learn More
+          </Link>
         </div>
       </div>
     </div>
