@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2, Zap, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2 } from "lucide-react";
 
 export const ExpertiseBenefits = () => {
   return (
@@ -44,12 +43,12 @@ export const ExpertiseBenefits = () => {
             {
               icon: Clock,
               title: "Speed & Efficiency",
-              description: "Imagine getting professional-quality videos in a fraction of the time. Our AI-powered workflows automate the tedious parts, streamline the creative process, and significantly reduce turnaround times. This means you can share your message sooner and respond quickly to new trends."
+              description: "Imagine getting professional-quality videos in a fraction of the time. Our AI-powered workflows automate the tedious parts, streamline the creative process, and significantly reduce turnaround times."
             },
             {
               icon: DollarSign,
               title: "Cost-Effectiveness",
-              description: "Traditional video production often involves large crews, expensive equipment, and lengthy post-production. Cre8tive AI Studios cuts out these unnecessary costs, making high-quality video production accessible to all businesses. Invest your budget where it matters most and see a real return."
+              description: "Traditional video production often involves large crews, expensive equipment, and lengthy post-production. Cre8tive AI Studios cuts out these unnecessary costs, making high-quality video production accessible to all businesses."
             },
             {
               icon: Layers,
@@ -59,16 +58,41 @@ export const ExpertiseBenefits = () => {
             {
               icon: Shield,
               title: "Uncompromising Quality",
-              description: "While speed and cost are important, we never sacrifice quality. Our AI algorithms learn from vast amounts of professional video content, guaranteeing visually stunning videos, compelling stories, and a polished final product comparable to traditional productions."
+              description: "While speed and cost are important, we never sacrifice quality. Our AI algorithms learn from vast amounts of professional video content, guaranteeing visually stunning videos, compelling stories, and a polished final product."
             }
           ].map((benefit, index) => (
-            <Card key={index} className="glass-morphism border-none animate-fade-in hover-lift hover-glow" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card 
+              key={index} 
+              className={cn(
+                "glass-morphism border-none animate-fade-in hover-lift",
+                "bg-black/40 backdrop-blur-xl",
+                "border border-white/10 hover:border-white/20",
+                "transition-all duration-300",
+                "group"
+              )}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <CardContent className="p-8">
-                <div className="flex items-start gap-4">
-                  <benefit.icon className="w-8 h-8 text-primary shrink-0" />
+                <div className="flex items-start gap-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full transform group-hover:scale-110 transition-transform duration-300" />
+                    <benefit.icon 
+                      className={cn(
+                        "w-10 h-10 relative z-10",
+                        "text-primary group-hover:text-white",
+                        "transition-all duration-300",
+                        "drop-shadow-[0_0_8px_rgba(155,135,245,0.5)]",
+                        "group-hover:drop-shadow-[0_0_12px_rgba(155,135,245,0.8)]"
+                      )}
+                    />
+                  </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gradient mb-4 tracking-tight">{benefit.title}</h3>
-                    <p className="text-white/80 leading-relaxed">{benefit.description}</p>
+                    <h3 className="text-2xl font-bold text-gradient mb-4 tracking-tight group-hover:scale-105 transition-transform duration-300">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed">
+                      {benefit.description}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -157,10 +181,10 @@ export const ExpertiseBenefits = () => {
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           AI Video vs. Traditional: A Clear Advantage
         </h2>
-        <div className="max-w-5xl mx-auto glass-morphism rounded-lg overflow-hidden">
+        <div className="max-w-5xl mx-auto glass-morphism rounded-lg overflow-hidden backdrop-blur-xl bg-black/40 border border-white/10">
           <Table>
             <TableHeader>
-              <TableRow>
+              <TableRow className="border-b border-white/10">
                 <TableHead className="w-1/3 text-white font-bold text-lg p-6">Feature</TableHead>
                 <TableHead className="w-1/3 text-white font-bold text-lg p-6">Traditional Production</TableHead>
                 <TableHead className="w-1/3 text-white font-bold text-lg p-6">AI-Powered Production</TableHead>
@@ -194,10 +218,10 @@ export const ExpertiseBenefits = () => {
                   ai: "Easy adaptation"
                 }
               ].map((row, index) => (
-                <TableRow key={index} className="border-t border-white/10">
+                <TableRow key={index} className="border-t border-white/10 hover:bg-white/5 transition-colors">
                   <TableCell className="font-medium text-white p-6">{row.feature}</TableCell>
                   <TableCell className="text-white/80 p-6">{row.traditional}</TableCell>
-                  <TableCell className="text-primary p-6">{row.ai}</TableCell>
+                  <TableCell className="text-primary p-6 font-medium">{row.ai}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
