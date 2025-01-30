@@ -1,46 +1,35 @@
-import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
-import { Gallery } from "@/components/Gallery";
+import { Benefits } from "@/components/benefits/Benefits";
+import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
+import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { ContactForm } from "@/components/ContactForm";
+import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { WordPressContent } from "@/components/WordPressContent";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://elevenlabs.io/convai-widget/index.js";
+    script.async = true;
+    script.type = "text/javascript";
+    document.body.appendChild(script);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <Hero />
-      <Services />
-      <Gallery />
-      <WordPressContent />
-      
-      {/* Contact Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
-          }}
-        />
-        
-        <div className="container relative mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-4 font-geist">
-              Get in Touch
-            </h2>
-            <p className="text-white/90 text-lg font-geist">
-              Have a question or want to learn more? Send us a message and we'll get back to you shortly.
-            </p>
-          </div>
-          
-          <div className="max-w-xl mx-auto">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
-      
+      <main>
+        <Hero />
+        <Services />
+        <Benefits />
+        <ConceptToCreation />
+        <HowItWorks />
+        <ContactForm />
+      </main>
       <Footer />
+      <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
     </div>
   );
 };
