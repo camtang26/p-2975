@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useToast } from "../ui/use-toast";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -22,24 +23,56 @@ export const VideoBackground = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { toast } = useToast();
+  
+  // Video sources in order of preference
+  const videoSources = [
+    { src: "/cre8tive-hero.mp4", type: "video/mp4" },
+    { src: "/assets/cre8tive-hero.mp4", type: "video/mp4" },
+    { src: "/videos/cre8tive-hero.mp4", type: "video/mp4" },
+  ];
 
   // Debug loading state
   useEffect(() => {
-    console.log("Video loading state:", { isLoaded, loadError });
+    console.log("Video loading state:", { 
+      isLoaded, 
+      loadError,
+      currentSrc: videoRef.current?.currentSrc,
+      readyState: videoRef.current?.readyState,
+      networkState: videoRef.current?.networkState,
+      error: videoRef.current?.error
+    });
   }, [isLoaded, loadError]);
 
   // Handle video load error
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error("Video failed to load", e);
+    const video = e.currentTarget;
+    console.error("Video failed to load", {
+      error: video.error,
+      networkState: video.networkState,
+      currentSrc: video.currentSrc
+    });
+    
     setLoadError("Failed to load video");
     setIsLoaded(false);
+    
+    toast({
+      title: "Video Loading Issue",
+      description: "Falling back to static image. Please try refreshing the page.",
+      variant: "destructive"
+    });
   };
 
   // Handle successful video load
   const handleVideoLoad = () => {
-    console.log("Video loaded successfully");
-    setIsLoaded(true);
-    setLoadError(null);
+    if (videoRef.current?.readyState >= 3) {
+      console.log("Video loaded successfully", {
+        currentSrc: videoRef.current.currentSrc,
+        readyState: videoRef.current.readyState
+      });
+      setIsLoaded(true);
+      setLoadError(null);
+    }
   };
 
   // Handle play/pause
@@ -51,6 +84,11 @@ export const VideoBackground = ({
           if (playPromise !== undefined) {
             playPromise.catch(error => {
               console.error("Error playing video:", error);
+              toast({
+                title: "Playback Error",
+                description: "Unable to play video. Please try again.",
+                variant: "destructive"
+              });
             });
           }
         } else {
@@ -60,7 +98,7 @@ export const VideoBackground = ({
         console.error("Error controlling video playback:", error);
       }
     }
-  }, [isPlaying]);
+  }, [isPlaying, toast]);
 
   // Handle mute/unmute
   useEffect(() => {
@@ -87,13 +125,27 @@ export const VideoBackground = ({
           onLoadedData={handleVideoLoad}
           onError={handleVideoError}
           poster="/lovable-uploads/2ed5a6a9-28d3-4ccc-86b5-3861a2f86357.png"
+          preload="auto"
         >
-          <source 
-            src="/cre8tive-hero.mp4" 
-            type="video/mp4" 
-          />
+          {videoSources.map((source, index) => (
+            <source 
+              key={index}
+              src={source.src} 
+              type={source.type}
+              onError={(e) => {
+                console.error(`Failed to load video source: ${source.src}`, e);
+              }}
+            />
+          ))}
           Your browser does not support the video tag.
         </video>
+        
+        {/* Loading Indicator */}
+        {!isLoaded && !loadError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+          </div>
+        )}
         
         {/* Error Message */}
         {loadError && (
