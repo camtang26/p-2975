@@ -3,6 +3,7 @@ import { AgentsHero } from "@/components/agents/AgentsHero";
 import { AiMarketingSolutions } from "@/components/agents/sections/AiMarketingSolutions";
 import { HowItWorks } from "@/components/agents/sections/HowItWorks";
 import { ContactCTA } from "@/components/shared/ContactCTA";
+import { FadeIn } from "@/components/shared/FadeIn";
 
 const Agents = () => {
   return (
@@ -30,9 +31,15 @@ const Agents = () => {
       <Navigation />
       <main className="relative pt-20">
         <AgentsHero />
-        <AiMarketingSolutions />
-        <HowItWorks />
-        <ContactCTA />
+        <FadeIn>
+          <AiMarketingSolutions />
+        </FadeIn>
+        <FadeIn>
+          <HowItWorks />
+        </FadeIn>
+        <FadeIn>
+          <ContactCTA />
+        </FadeIn>
       </main>
     </div>
   );

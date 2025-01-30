@@ -6,6 +6,7 @@ import { MarketingSection } from "@/components/studios/MarketingSection";
 import { B2BSection } from "@/components/studios/B2BSection";
 import { Testimonials } from "@/components/studios/Testimonials";
 import { ContactCTA } from "@/components/shared/ContactCTA";
+import { FadeIn } from "@/components/shared/FadeIn";
 
 const Studios = () => {
   return (
@@ -33,12 +34,24 @@ const Studios = () => {
       <Navigation />
       <main className="relative pt-20">
         <StudiosHero />
-        <StudiosIntro />
-        <ExpertiseBenefits />
-        <MarketingSection />
-        <B2BSection />
-        <Testimonials />
-        <ContactCTA />
+        <FadeIn>
+          <StudiosIntro />
+        </FadeIn>
+        <FadeIn>
+          <ExpertiseBenefits />
+        </FadeIn>
+        <FadeIn>
+          <MarketingSection />
+        </FadeIn>
+        <FadeIn>
+          <B2BSection />
+        </FadeIn>
+        <FadeIn>
+          <Testimonials />
+        </FadeIn>
+        <FadeIn>
+          <ContactCTA />
+        </FadeIn>
       </main>
     </div>
   );

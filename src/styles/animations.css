@@ -28,6 +28,17 @@ html {
   outline: none;
 }
 
+/* Fade-in animation classes */
+[data-fade-in] {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.fade-in-visible {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

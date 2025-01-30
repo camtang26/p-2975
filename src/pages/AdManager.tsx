@@ -4,6 +4,7 @@ import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
 import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
 import { ContactCTA } from "@/components/shared/ContactCTA";
+import { FadeIn } from "@/components/shared/FadeIn";
 
 const AdManager = () => {
   return (
@@ -132,16 +133,24 @@ const AdManager = () => {
         </section>
 
         {/* Concept to Creation Section */}
-        <ConceptToCreation />
+        <FadeIn>
+          <ConceptToCreation />
+        </FadeIn>
 
         {/* How It Works Section */}
-        <HowItWorks />
+        <FadeIn>
+          <HowItWorks />
+        </FadeIn>
 
         {/* Benefits Section */}
-        <Benefits />
+        <FadeIn>
+          <Benefits />
+        </FadeIn>
 
         {/* Contact CTA Section */}
-        <ContactCTA />
+        <FadeIn>
+          <ContactCTA />
+        </FadeIn>
       </main>
     </div>
   );
