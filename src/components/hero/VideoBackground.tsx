@@ -22,13 +22,14 @@ export const VideoBackground = ({
   const [videoError, setVideoError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const videoUrl = `https://vz-376993.b-cdn.net/${encodeURIComponent('56c0d74d-b753-4bd7-82cf-e51101163d42')}/playlist.m3u8`;
+
   useEffect(() => {
     const video = document.querySelector('video');
     if (video) {
       video.addEventListener('error', () => setVideoError(true));
       video.addEventListener('loadeddata', () => setIsLoaded(true));
       
-      // Preload video for priority loading
       if (priority) {
         video.preload = "auto";
       }
@@ -75,14 +76,8 @@ export const VideoBackground = ({
         preload={priority ? "auto" : "metadata"}
       >
         <source 
-          src="/hero-video.mp4" 
-          type="video/mp4" 
-        />
-        <track 
-          kind="captions" 
-          src="/captions.vtt" 
-          label="English captions" 
-          default 
+          src={videoUrl}
+          type="application/x-mpegURL"
         />
         Your browser does not support the video tag.
       </video>
