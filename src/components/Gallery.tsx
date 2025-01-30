@@ -3,8 +3,8 @@ import { X, ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Player from "@vimeo/player";
 
-// Updated video data with Vimeo IDs and proper parameters
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
