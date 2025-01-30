@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GalleryVideo } from "./gallery/GalleryVideo";
 import { VideoModal } from "./gallery/VideoModal";
 
-// Real video data
+// Updated video data with correct Vimeo ID
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
@@ -16,6 +16,7 @@ export const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handleVideoClick = (video: typeof videos[0], index: number) => {
+    console.log("Video clicked:", video);
     setSelectedVideo(video);
     setSelectedIndex(index);
   };

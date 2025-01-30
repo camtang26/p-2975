@@ -22,13 +22,14 @@ export const VimeoPlayer = ({
   useEffect(() => {
     if (containerRef.current && !playerRef.current) {
       const iframe = document.createElement('iframe');
+      // Using the correct Vimeo video ID and parameters
       iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
-      iframe.allow = "autoplay; fullscreen; picture-in-picture; clipboard-write";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
       iframe.style.position = "absolute";
       iframe.style.top = "50%";
       iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
+      iframe.style.width = "100vw";
+      iframe.style.height = "100vh";
       iframe.style.transform = "translate(-50%, -50%)";
       iframe.style.border = "none";
       
@@ -37,19 +38,17 @@ export const VimeoPlayer = ({
       playerRef.current = new Player(iframe);
       
       playerRef.current.ready().then(() => {
-        console.log("Vimeo player is ready");
+        console.log("Vimeo player ready");
+        playerRef.current?.setVolume(0);
+        playerRef.current?.setLoop(true);
+        playerRef.current?.play().catch(console.error);
         onLoad();
-        
-        playerRef.current?.setVolume(isMuted ? 0 : 1);
-        if (!isPlaying) {
-          playerRef.current?.pause();
-        }
       }).catch(error => {
-        console.error("Vimeo player failed to initialize:", error);
+        console.error("Vimeo player initialization error:", error);
         onError("Failed to load video");
         toast({
-          title: "Video Loading Issue",
-          description: "Failed to load the video. Please refresh the page.",
+          title: "Video Loading Error",
+          description: "There was an issue loading the video. Please refresh the page.",
           variant: "destructive"
         });
       });
@@ -61,24 +60,7 @@ export const VimeoPlayer = ({
         playerRef.current = null;
       }
     };
-  }, [toast, onLoad, onError, isMuted, isPlaying]);
-
-  useEffect(() => {
-    if (playerRef.current) {
-      if (isPlaying) {
-        playerRef.current.play().catch(error => {
-          console.error("Error playing video:", error);
-          toast({
-            title: "Playback Error",
-            description: "Unable to play video. Please try again.",
-            variant: "destructive"
-          });
-        });
-      } else {
-        playerRef.current.pause().catch(console.error);
-      }
-    }
-  }, [isPlaying, toast]);
+  }, [onLoad, onError, toast]);
 
   useEffect(() => {
     if (playerRef.current) {
@@ -86,10 +68,23 @@ export const VimeoPlayer = ({
     }
   }, [isMuted]);
 
+  useEffect(() => {
+    if (playerRef.current) {
+      if (isPlaying) {
+        playerRef.current.play().catch(error => {
+          console.error("Play error:", error);
+        });
+      } else {
+        playerRef.current.pause().catch(console.error);
+      }
+    }
+  }, [isPlaying]);
+
   return (
     <div 
       ref={containerRef}
       className="relative w-full h-full z-[1] overflow-hidden"
+      style={{ background: '#000' }}
     />
   );
 };
