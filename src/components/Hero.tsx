@@ -14,7 +14,7 @@ export const Hero = () => {
   return (
     <section 
       className="relative w-full flex items-center justify-center overflow-hidden" 
-      style={{ aspectRatio: '16/8.5' }}
+      style={{ aspectRatio: '16/7.5' }}
       role="banner" 
       aria-label="Hero section"
     >
