@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Phone } from "lucide-react";
 
 export const RobotIllustration = () => {
   return (
@@ -8,7 +9,7 @@ export const RobotIllustration = () => {
       transition={{ duration: 0.5, delay: 0.3 }}
       className="relative w-full max-w-[300px] h-[300px] mx-auto my-8"
     >
-      {/* Robot Body */}
+      {/* Robot and Phone Container */}
       <motion.div 
         className="absolute inset-0"
         style={{
@@ -16,46 +17,40 @@ export const RobotIllustration = () => {
         }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Main Circle Head */}
-          <circle cx="100" cy="70" r="35" 
+          {/* Robot Head */}
+          <circle cx="80" cy="70" r="30" 
                   className="fill-white/10 stroke-[#00ff80] stroke-2"/>
           
-          {/* Digital Pattern Lines */}
-          <path d="M75,70 h-10 M135,70 h-10" 
+          {/* Robot Eyes */}
+          <circle cx="70" cy="65" r="5" className="fill-[#00ff80]"/>
+          <circle cx="90" cy="65" r="5" className="fill-[#00ff80]"/>
+          
+          {/* Robot Antenna */}
+          <line x1="80" y1="40" x2="80" y2="30" 
                 className="stroke-[#00ff80] stroke-2"/>
-          <path d="M100,45 v-10 M100,105 v-10" 
+          <circle cx="80" cy="28" r="2" className="fill-[#00ff80]"/>
+          
+          {/* Robot Body */}
+          <rect x="60" y="105" width="40" height="50" rx="5" 
+                className="fill-white/10 stroke-[#00ff80] stroke-2"/>
+          
+          {/* Robot Details */}
+          <line x1="70" y1="120" x2="90" y2="120" 
+                className="stroke-[#00ff80] stroke-2"/>
+          <line x1="70" y1="130" x2="90" y2="130" 
                 className="stroke-[#00ff80] stroke-2"/>
           
-          {/* Animated Display Screen */}
-          <rect x="85" y="60" width="30" height="20" rx="2" 
-                className="fill-[#00ff80]/20 stroke-[#00ff80] stroke-2"/>
+          {/* Phone Icon */}
+          <g transform="translate(120, 60) scale(1.5)">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              className="fill-none stroke-[#00ff80] stroke-2"
+            />
+          </g>
           
-          {/* Connection Points */}
-          <circle cx="75" cy="70" r="3" className="fill-[#00ff80]"/>
-          <circle cx="125" cy="70" r="3" className="fill-[#00ff80]"/>
-          
-          {/* Digital Wave Pattern */}
-          <path d="M60,130 Q80,120 100,130 Q120,140 140,130" 
-                className="fill-none stroke-[#00ff80] stroke-2"/>
-          
-          {/* Floating Data Particles */}
-          <circle cx="70" cy="100" r="2" className="fill-[#00ff80]"/>
-          <circle cx="130" cy="100" r="2" className="fill-[#00ff80]"/>
-          <circle cx="100" cy="110" r="2" className="fill-[#00ff80]"/>
-          
-          {/* Communication Beams */}
-          <path d="M40,60 Q70,70 40,80" 
-                className="fill-none stroke-[#00ff80]/50 stroke-2"/>
-          <path d="M160,60 Q130,70 160,80" 
-                className="fill-none stroke-[#00ff80]/50 stroke-2"/>
-          
-          {/* Central Core */}
-          <circle cx="100" cy="70" r="15" 
-                  className="fill-[#00ff80]/20 stroke-[#00ff80] stroke-2"/>
-          
-          {/* Pulse Ring Animation */}
-          <circle cx="100" cy="70" r="25" 
-                  className="fill-none stroke-[#00ff80]/30 stroke-2"/>
+          {/* Connection Lines */}
+          <path d="M95,70 Q110,70 120,70" 
+                className="fill-none stroke-[#00ff80]/50 stroke-2 stroke-dasharray-2"/>
         </svg>
       </motion.div>
       
