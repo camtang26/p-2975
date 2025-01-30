@@ -64,29 +64,29 @@ const Step = ({ number, title, description, Icon, color }: StepProps) => {
 const steps = [
   {
     number: 1,
-    title: "Define Your Mission",
-    description: "It all starts with a clear vision. Define your specific marketing objectives, target audience, and campaign goals. A well-defined mission provides a solid foundation for your AI team to work effectively and autonomously.",
+    title: "Share Your Vision",
+    description: "Begin by sharing your marketing objectives and challenges with us. We'll work closely with you to understand your specific needs, target audience, and desired outcomes. Your vision becomes our blueprint for creating a perfectly tailored AI marketing solution.",
     Icon: Brain,
     color: "#60A5FA" // blue-400
   },
   {
     number: 2,
-    title: "Assemble Your AI Team",
-    description: "Select and configure specialized AI agents, each with expertise in specific marketing functions. Choose from agents skilled in CRM, content creation, social media management, customer service, and more. Build the perfect team to tackle your unique challenges.",
+    title: "Custom AI Team Design",
+    description: "Our experts design and configure a specialized team of AI agents tailored to your needs. We carefully select and optimize each agent's capabilities - from CRM and content creation to social media management and customer service - ensuring your unique challenges are met with precision.",
     Icon: Users,
     color: "#F87171" // red-400
   },
   {
     number: 3,
-    title: "Assign Tasks & Set Autonomy",
-    description: "Delegate tasks to your AI team and set their level of autonomy. From fully automated campaigns to tasks requiring human input, you're in control. Empower your agents to work independently and efficiently, freeing up your time to focus on strategy.",
+    title: "Precision Configuration",
+    description: "We meticulously configure each AI agent's parameters and autonomy levels to align with your business processes. Our team ensures seamless integration with your existing workflows, striking the perfect balance between automation and human oversight.",
     Icon: Sliders,
     color: "#C084FC" // purple-400
   },
   {
     number: 4,
-    title: "Monitor, Optimize, & Achieve",
-    description: "Track the performance of your AI team with real-time dashboards and data-driven insights. Monitor key metrics, identify areas for improvement, and optimize your campaigns for maximum impact. Achieve your marketing goals with intelligent automation and continuous refinement.",
+    title: "Continuous Optimization",
+    description: "We actively monitor your AI team's performance through advanced analytics and real-time dashboards. Our experts continuously fine-tune and optimize your system, ensuring maximum impact and ROI while adapting to evolving market conditions and business needs.",
     Icon: Target,
     color: "#4ADE80" // green-400
   }
@@ -101,7 +101,7 @@ export const HowItWorks = () => {
             How It Works
           </h2>
           <p className="text-xl text-white/80">
-            Building Your AI Dream Team
+            Transforming Your Vision into Reality
           </p>
         </div>
 
