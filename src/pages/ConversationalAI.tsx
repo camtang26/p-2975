@@ -1,12 +1,16 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
 
 const ConversationalAI = () => {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -33,10 +37,10 @@ const ConversationalAI = () => {
             providing personalized experiences and driving better business outcomes.
           </motion.p>
         </div>
-      </section>
+        </section>
 
-      {/* What is a Conversational AI Agent? */}
-      <section className="py-20 bg-black/30">
+        {/* What is a Conversational AI Agent? */}
+        <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-center">
             What is a Conversational AI Agent?
@@ -55,10 +59,10 @@ const ConversationalAI = () => {
             </p>
           </div>
         </div>
-      </section>
+        </section>
 
-      {/* Key Features & Capabilities */}
-      <section className="py-20">
+        {/* Key Features & Capabilities */}
+        <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
             Key Features & Capabilities
@@ -96,10 +100,10 @@ const ConversationalAI = () => {
             />
           </div>
         </div>
-      </section>
+        </section>
 
-      {/* Use Cases & Applications */}
-      <section className="py-20 bg-black/30">
+        {/* Use Cases & Applications */}
+        <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
             Real-World Applications
@@ -119,10 +123,10 @@ const ConversationalAI = () => {
             />
           </div>
         </div>
-      </section>
+        </section>
 
-      {/* Experience Our AI Agent */}
-      <section className="py-20">
+        {/* Experience Our AI Agent */}
+        <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
             Experience the Future of Conversation
@@ -136,10 +140,10 @@ const ConversationalAI = () => {
             <div className="text-white/60">AI Agent Interface will be embedded here</div>
           </div>
         </div>
-      </section>
+        </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-black/30">
+        {/* Call to Action */}
+        <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
             Ready to Transform Your Customer Interactions?
@@ -151,8 +155,10 @@ const ConversationalAI = () => {
             Get Started Today
           </Button>
         </div>
-      </section>
-    </main>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
