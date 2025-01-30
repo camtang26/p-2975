@@ -29,7 +29,7 @@ const AdManager = () => {
           }}
         />
         
-        <main className="relative pt-20">
+        <div className="relative pt-20">
           {/* Hero Section */}
           <section 
             className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 mb-16"
@@ -142,7 +142,7 @@ const AdManager = () => {
 
           {/* Contact CTA Section */}
           <ContactCTA />
-        </main>
+        </div>
       </div>
     </MainLayout>
   );
