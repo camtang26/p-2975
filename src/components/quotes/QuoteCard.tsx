@@ -8,19 +8,19 @@ interface QuoteCardProps {
 
 export const QuoteCard = ({ quote, author, title }: QuoteCardProps) => {
   return (
-    <div className="relative py-16 px-8">
-      {/* Quote icon with enhanced glow effect */}
-      <div className="absolute -top-4 left-8">
+    <div className="relative py-12">
+      {/* Quote icon with subtle glow effect */}
+      <div className="absolute -top-4 left-4">
         <div className="relative">
-          <div className="absolute inset-0 blur-2xl rounded-full opacity-40">
+          <div className="absolute inset-0 blur-lg rounded-full opacity-30">
             <div className="w-8 h-8 bg-[#00ff80]" />
           </div>
           <Quote className="w-8 h-8 text-[#00ff80] relative z-10" />
         </div>
       </div>
 
-      {/* Quote content with enhanced styling */}
-      <div className="mt-4 space-y-6 max-w-4xl mx-auto">
+      {/* Quote content */}
+      <div className="mt-4 space-y-4 max-w-4xl mx-auto">
         <p className="text-2xl md:text-3xl font-medium italic text-white/95 leading-relaxed text-center">
           "{quote}"
         </p>
