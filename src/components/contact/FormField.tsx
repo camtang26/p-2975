@@ -26,7 +26,7 @@ export const FormField = ({
   const commonProps = {
     ...register(name, rules),
     placeholder,
-    className: "bg-white/5 border-white/10 text-white placeholder:text-white/50",
+    className: "bg-white/10 border-white/20 text-white placeholder:text-white/70",
     "aria-label": label,
     autoComplete: "off",
   };

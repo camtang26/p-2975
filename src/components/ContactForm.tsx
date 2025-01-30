@@ -108,7 +108,7 @@ export const ContactForm = () => {
       <Button
         type="submit"
         disabled={isSubmitting || !isValid}
-        className="w-full transition-all duration-300 hover:scale-105 disabled:opacity-50"
+        className="w-full transition-all duration-300 hover:scale-105 disabled:opacity-50 bg-[#1EAEDB] hover:bg-[#0FA0CE] shadow-[0_0_15px_rgba(30,174,219,0.5)] hover:shadow-[0_0_25px_rgba(30,174,219,0.8)]"
         aria-label={isSubmitting ? "Sending message..." : "Send message"}
       >
         {isSubmitting ? "Sending..." : "Send Message"}
