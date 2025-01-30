@@ -50,9 +50,9 @@ const ConversationalAI = () => {
                   Don't take our word for it – experience the power of our Conversational AI firsthand. 
                   Engage with our AI agent now to see how it can transform your customer interactions.
                 </p>
-                {/* Arrow pointing to bottom right */}
+                {/* Arrow pointing to bottom right - Updated positioning and size */}
                 <motion.div 
-                  className="absolute bottom-[-80px] right-0 text-white/80"
+                  className="absolute bottom-[-120px] right-[80px] text-white/80"
                   animate={{ 
                     x: [0, 10, 0],
                     y: [0, 10, 0],
@@ -63,7 +63,7 @@ const ConversationalAI = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <ArrowDownRight className="w-12 h-12" />
+                  <ArrowDownRight className="w-16 h-16" />
                 </motion.div>
               </div>
             </motion.div>
