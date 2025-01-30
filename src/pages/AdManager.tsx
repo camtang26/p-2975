@@ -47,7 +47,7 @@ const AdManager = () => {
                 From Idea to Storyboard: Effortless Ad Creation, Powered by AI
               </h2>
 
-              {/* Blueprint Visual - Now directly embedded without container */}
+              {/* Blueprint Visual - Now with ad management representation */}
               <div className="relative h-48 w-full max-w-3xl mx-auto animate-fade-in [animation-delay:400ms]">
                 {/* Blueprint Grid Background */}
                 <div 
@@ -77,16 +77,36 @@ const AdManager = () => {
                   }}
                 />
                 
-                {/* Content Nodes */}
-                <div className="relative grid grid-cols-3 gap-4 w-full h-full p-2">
-                  <div className="flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
+                {/* Content Nodes - Now representing different ad formats and stages */}
+                <div className="relative grid grid-cols-5 gap-4 w-full h-full p-2">
+                  {/* Input Node */}
+                  <div className="flex items-center justify-center col-span-1">
+                    <div className="w-10 h-10 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
                   </div>
-                  <div className="flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff] animate-pulse" />
+                  
+                  {/* Processing Nodes */}
+                  <div className="flex items-center justify-center col-span-3 space-x-4">
+                    <div className="w-8 h-8 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_15px_#0095ff] animate-pulse [animation-delay:200ms]" />
+                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_25px_#0095ff] animate-pulse [animation-delay:400ms]" />
+                    <div className="w-8 h-8 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_15px_#0095ff] animate-pulse [animation-delay:600ms]" />
                   </div>
-                  <div className="flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
+                  
+                  {/* Output Node */}
+                  <div className="flex items-center justify-center col-span-1">
+                    <div className="w-14 h-14 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff] animate-pulse [animation-delay:800ms]" />
+                  </div>
+                  
+                  {/* Connecting Lines */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <svg className="w-full h-full" style={{ opacity: 0.5 }}>
+                      <path
+                        d="M 20% 50% L 80% 50%"
+                        stroke="#0095ff"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeDasharray="4 4"
+                      />
+                    </svg>
                   </div>
                 </div>
               </div>
