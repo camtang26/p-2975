@@ -33,8 +33,11 @@ const FeatureCard = ({ title, description, Icon }: FeatureCardProps) => (
 
 export const ApplicationsSection = () => {
   return (
-    <section className="py-20 bg-black/30">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/95">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.02)_0%,transparent_60%)]" />
+      </div>
+      <div className="container mx-auto px-4 relative">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-gradient text-center">
           Beyond the Chat: The Power of Conversational AI
         </h2>
