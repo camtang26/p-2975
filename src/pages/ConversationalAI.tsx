@@ -3,8 +3,22 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
+import { useEffect } from "react";
 
 const ConversationalAI = () => {
+  useEffect(() => {
+    // Create and load the ElevenLabs script
+    const script = document.createElement('script');
+    script.src = "https://elevenlabs.io/convai-widget/index.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -35,15 +49,7 @@ const ConversationalAI = () => {
               transition={{ delay: 0.3 }}
               className="w-full max-w-[400px] bg-[#EEEEEE] border border-[#CCCCCC] rounded-lg h-[300px] mx-auto mt-10"
             >
-              <div 
-                className="w-full h-full"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
-                    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
-                  `
-                }}
-              />
+              <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
             </motion.div>
           </div>
         </section>
