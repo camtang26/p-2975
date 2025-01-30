@@ -29,8 +29,8 @@ export const VideoBackground = ({
   }, [isLoaded, loadError]);
 
   // Handle video load error
-  const handleVideoError = () => {
-    console.error("Video failed to load");
+  const handleVideoError = (e: Event) => {
+    console.error("Video failed to load", e);
     setLoadError("Failed to load video");
     setIsLoaded(false);
   };
@@ -47,7 +47,12 @@ export const VideoBackground = ({
     if (videoRef.current) {
       try {
         if (isPlaying) {
-          videoRef.current.play();
+          const playPromise = videoRef.current.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.error("Error playing video:", error);
+            });
+          }
         } else {
           videoRef.current.pause();
         }
@@ -80,11 +85,11 @@ export const VideoBackground = ({
           muted={isMuted}
           playsInline
           onLoadedData={handleVideoLoad}
-          onError={handleVideoError}
-          poster="/lovable-uploads/490c3210-44c9-4dc7-b102-1d79c9852bb3.png"
+          onError={(e) => handleVideoError(e)}
+          poster="/lovable-uploads/2ed5a6a9-28d3-4ccc-86b5-3861a2f86357.png"
         >
           <source 
-            src="https://cdn.gpteng.co/videos/cre8tive-hero.mp4" 
+            src="/cre8tive-hero.mp4" 
             type="video/mp4" 
           />
           Your browser does not support the video tag.
