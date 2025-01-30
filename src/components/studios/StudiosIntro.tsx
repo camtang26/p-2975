@@ -6,30 +6,44 @@ export const StudiosIntro = () => {
       className="py-24 relative overflow-hidden"
       aria-label="Introduction section"
     >
-      {/* Background Gradients */}
+      {/* Main Background Gradient */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
+          zIndex: 0
         }}
       />
       
-      {/* Brand Color Accents */}
+      {/* Brand Color Accents - Top */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-0 pointer-events-none opacity-20"
         style={{
           background: 
-            'radial-gradient(circle at 20% 20%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
-            'radial-gradient(circle at 80% 80%, rgba(217,70,239,0.15) 0%, transparent 40%)',
-          filter: 'blur(120px)'
+            'radial-gradient(circle at 30% -10%, rgba(155,135,245,0.15) 0%, transparent 60%), ' +
+            'radial-gradient(circle at 70% -20%, rgba(217,70,239,0.15) 0%, transparent 60%)',
+          filter: 'blur(120px)',
+          zIndex: 1
         }}
       />
 
-      <div className="container mx-auto px-4">
+      {/* Brand Color Accents - Bottom */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          background: 
+            'radial-gradient(circle at 20% 130%, rgba(155,135,245,0.15) 0%, transparent 60%), ' +
+            'radial-gradient(circle at 80% 120%, rgba(217,70,239,0.15) 0%, transparent 60%)',
+          filter: 'blur(120px)',
+          zIndex: 1
+        }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
+          <div className="animate-fade-in relative z-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6 relative">
               Introducing Cre8tive AI Studios
             </h2>
             <p className="text-lg text-white/90 leading-relaxed">
