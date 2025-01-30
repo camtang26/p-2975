@@ -43,7 +43,7 @@ export const HowItWorks = () => {
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
           {steps.map((step, index) => (
             <>
               <Step

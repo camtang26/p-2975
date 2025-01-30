@@ -11,15 +11,17 @@ interface StepProps {
 
 export const Step = ({ number, title, description, Icon, color }: StepProps) => {
   return (
-    <div className="relative group">
+    <div className="relative group w-full">
       <div 
         className={cn(
-          "glass-morphism p-8 rounded-xl hover-lift hover-glow",
+          "glass-morphism p-12 rounded-xl hover-lift hover-glow",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
           "transform-gpu transition-all duration-500",
           "border border-white/10",
           "hover:border-[var(--step-color)]/30",
-          "min-h-[320px] flex flex-col items-center justify-center"
+          "h-[400px] w-[300px]", // Fixed dimensions
+          "flex flex-col items-center justify-start", // Changed to justify-start for better spacing
+          "relative"
         )}
         style={{ '--step-color': color } as React.CSSProperties}
       >
@@ -39,7 +41,7 @@ export const Step = ({ number, title, description, Icon, color }: StepProps) => 
         </div>
 
         {/* Icon */}
-        <div className="mb-6 relative group-hover:animate-pulse">
+        <div className="mb-8 relative group-hover:animate-pulse pt-6">
           <Icon 
             className={cn(
               "w-16 h-16 transition-all duration-300",
@@ -51,12 +53,14 @@ export const Step = ({ number, title, description, Icon, color }: StepProps) => 
         </div>
 
         {/* Content */}
-        <h3 className="text-2xl font-bold mb-4 text-gradient">
-          {title}
-        </h3>
-        <p className="text-white/80 leading-relaxed text-center">
-          {description}
-        </p>
+        <div className="flex flex-col items-center space-y-4 px-4">
+          <h3 className="text-2xl font-bold text-gradient text-center">
+            {title}
+          </h3>
+          <p className="text-white/80 leading-relaxed text-center text-base">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
