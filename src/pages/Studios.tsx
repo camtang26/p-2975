@@ -77,7 +77,7 @@ const Studios = () => {
             </p>
             <Button 
               size="lg"
-              className="text-lg px-8 relative z-20"
+              className="text-lg px-8 relative z-20 bg-blue-900 text-white shadow-[0_0_10px_rgba(59,130,246,0.5),0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_15px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)] hover:bg-blue-800 transition-all duration-300"
             >
               Get Started Today
             </Button>
