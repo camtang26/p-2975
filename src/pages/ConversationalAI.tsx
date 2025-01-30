@@ -54,7 +54,6 @@ const ConversationalAI = () => {
           </div>
         </section>
 
-        {/* What is a Conversational AI Agent? */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-center">
@@ -76,7 +75,6 @@ const ConversationalAI = () => {
         </div>
         </section>
 
-        {/* Key Features & Capabilities */}
         <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
@@ -117,7 +115,6 @@ const ConversationalAI = () => {
         </div>
         </section>
 
-        {/* Use Cases & Applications */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
@@ -140,7 +137,6 @@ const ConversationalAI = () => {
         </div>
         </section>
 
-        {/* Experience Our AI Agent */}
         <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
@@ -157,7 +153,6 @@ const ConversationalAI = () => {
         </div>
         </section>
 
-        {/* Call to Action */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
@@ -177,7 +172,6 @@ const ConversationalAI = () => {
   );
 };
 
-// Feature Component
 const Feature = ({ icon, title, description }: { 
   icon: React.ReactNode;
   title: string;
@@ -190,7 +184,6 @@ const Feature = ({ icon, title, description }: {
   </div>
 );
 
-// Use Case Component
 const UseCase = ({ title, description }: {
   title: string;
   description: string;
