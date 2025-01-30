@@ -12,17 +12,17 @@ const ROBOTS = [
     scale: 1.3
   },
   {
-    color: '#33C3F0', // Sky Blue
+    color: '#10B981', // Emerald Green
     x: 50,
     scale: 1.4
   },
   {
-    color: '#0FA0CE', // Bright Blue (different shade)
+    color: '#ea384c', // Red
     x: 66.67,
     scale: 1.3
   },
   {
-    color: '#2563EB', // Royal Blue
+    color: '#9b87f5', // Purple
     x: 83.33,
     scale: 1.4
   }
