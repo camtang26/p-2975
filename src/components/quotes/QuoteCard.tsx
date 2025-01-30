@@ -8,7 +8,7 @@ interface QuoteCardProps {
 
 export const QuoteCard = ({ quote, author, title }: QuoteCardProps) => {
   return (
-    <div className="relative p-8 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1">
+    <div className="relative p-8 transition-all duration-300 hover:-translate-y-1">
       {/* Quote icon with glow effect */}
       <div className="absolute -top-4 left-8">
         <div className="relative">
