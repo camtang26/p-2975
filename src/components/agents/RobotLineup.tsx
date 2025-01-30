@@ -106,8 +106,8 @@ export const RobotLineup = () => {
       ROBOTS.forEach((robot, index) => {
         // Calculate x position based on percentage of canvas width
         const x = (canvasWidth * robot.x) / 100;
-        // Position robots at 80% of canvas height to ensure they're at the bottom
-        const y = canvasHeight * 0.8;
+        // Position robots at 70% of canvas height instead of 80%
+        const y = canvasHeight * 0.7;
         drawRobot(x, y, robot.color, robot.scale, index === hoverIndex);
       });
     };
