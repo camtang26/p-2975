@@ -81,7 +81,7 @@ export const Footer = () => {
             </div>
 
             <div className="flex flex-col items-end">
-              <h3 className="font-geist text-white font-semibold mb-4">© 2024 Cre8tive AI</h3>
+              <h3 className="font-geist text-white font-semibold mb-4">© 2025 Cre8tive AI</h3>
               <Link to="/">
                 <img 
                   src="/lovable-uploads/1695cb6f-90ec-4a79-aedf-92f17ba25444.png" 
