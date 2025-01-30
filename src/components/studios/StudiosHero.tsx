@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export const StudiosHero = () => {
   return (
     <section 
-      className="relative h-[75vh] flex items-center justify-center overflow-hidden" // Adjusted to match home page height
+      className="relative h-[60vh] flex items-center justify-center overflow-hidden"
       role="banner"
       aria-label="Studios hero section"
     >
@@ -14,8 +14,11 @@ export const StudiosHero = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
-          style={{ objectPosition: "50% 30%" }}
+          className="absolute w-full h-full object-cover"
+          style={{ 
+            objectPosition: "center center",
+            transform: "scale(1.1)" // Slight scale to prevent white edges during motion
+          }}
           poster="/placeholder.svg"
         >
           <source src="/studio-hero.mp4" type="video/mp4" />
