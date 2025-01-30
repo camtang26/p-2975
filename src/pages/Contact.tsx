@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, Building2 } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -40,7 +40,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-1">Email Us</h3>
-                    <p className="text-white/70">contact@cre8tiveai.com</p>
+                    <p className="text-white/70">cameron@cre8tive.ai</p>
                   </div>
                 </div>
                 
@@ -50,17 +50,20 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-1">Call Us</h3>
-                    <p className="text-white/70">+1 (555) 123-4567</p>
+                    <p className="text-white/70">0404 713 440</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
+                    <Building2 className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Visit Us</h3>
-                    <p className="text-white/70">123 Innovation Drive<br />Silicon Valley, CA 94025</p>
+                    <h3 className="text-lg font-semibold text-white mb-1">Company Details</h3>
+                    <p className="text-white/70">
+                      Cre8tive AI Pty Ltd<br />
+                      ACN: 670 797 083
+                    </p>
                   </div>
                 </div>
               </div>
