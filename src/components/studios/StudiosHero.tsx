@@ -1,52 +1,65 @@
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 import Player from "@vimeo/player";
+import { useToast } from "@/components/ui/use-toast";
 
 export const StudiosHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<Player | null>(null);
+  const { toast } = useToast();
 
-  // Initialize Vimeo player
-  const initializePlayer = () => {
-    if (containerRef.current && !playerRef.current) {
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/905188141?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.style.position = "absolute";
-      iframe.style.top = "50%";
-      iframe.style.left = "50%";
-      iframe.style.width = "177.77777778vh"; // 16:9 aspect ratio
-      iframe.style.height = "56.25vw"; // 16:9 aspect ratio
-      iframe.style.minHeight = "100%";
-      iframe.style.minWidth = "100%";
-      iframe.style.transform = "translate(-50%, -50%)";
-      iframe.style.border = "none";
-      
-      containerRef.current.appendChild(iframe);
-      
-      playerRef.current = new Player(iframe);
-      
-      playerRef.current.ready().then(() => {
-        console.log("Vimeo player is ready");
-        setIsLoaded(true);
-        playerRef.current?.setVolume(0);
-      }).catch(error => {
-        console.error("Vimeo player failed to initialize:", error);
-      });
-    }
-  };
-
-  // Initialize player on mount
   useEffect(() => {
+    const initializePlayer = async () => {
+      if (containerRef.current && !playerRef.current) {
+        try {
+          console.log("Initializing Studios Vimeo player...");
+          const iframe = document.createElement('iframe');
+          iframe.src = "https://player.vimeo.com/video/905188141?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
+          iframe.allow = "autoplay; fullscreen; picture-in-picture";
+          iframe.style.position = "absolute";
+          iframe.style.top = "50%";
+          iframe.style.left = "50%";
+          iframe.style.width = "177.77777778vh";
+          iframe.style.height = "56.25vw";
+          iframe.style.minHeight = "100%";
+          iframe.style.minWidth = "100%";
+          iframe.style.transform = "translate(-50%, -50%)";
+          iframe.style.border = "none";
+          
+          containerRef.current.appendChild(iframe);
+          
+          playerRef.current = new Player(iframe);
+          
+          await playerRef.current.ready();
+          console.log("Studios Vimeo player ready");
+          setIsLoaded(true);
+          
+          await playerRef.current.setVolume(0);
+          await playerRef.current.setLoop(true);
+          await playerRef.current.play();
+          
+        } catch (error) {
+          console.error("Studios Vimeo player initialization error:", error);
+          toast({
+            title: "Video Loading Issue",
+            description: "Failed to load the video. Please refresh the page.",
+            variant: "destructive"
+          });
+        }
+      }
+    };
+
     initializePlayer();
+
     return () => {
       if (playerRef.current) {
+        console.log("Cleaning up Studios Vimeo player");
         playerRef.current.destroy();
         playerRef.current = null;
       }
     };
-  }, []);
+  }, [toast]);
 
   return (
     <section 
