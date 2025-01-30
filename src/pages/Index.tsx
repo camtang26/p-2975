@@ -4,7 +4,6 @@ import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
 import { QuoteCard } from "@/components/quotes/QuoteCard";
 import { ContactForm } from "@/components/ContactForm";
-import { Footer } from "@/components/Footer";
 import { WordPressContent } from "@/components/WordPressContent";
 
 const Index = () => {
@@ -60,8 +59,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
-      <Footer />
     </div>
   );
 };
