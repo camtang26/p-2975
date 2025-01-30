@@ -95,21 +95,21 @@ export const RobotLineup = () => {
       ctx.restore();
     };
 
-  const render = () => {
-    if (!ctx || !canvas) return;
-    
-    ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
-    
-    const canvasWidth = canvas.width / window.devicePixelRatio;
-    const canvasHeight = canvas.height / window.devicePixelRatio;
-    
-    ROBOTS.forEach((robot, index) => {
-      const x = (canvasWidth * robot.x) / 100;
-      // Position robots at 70% of canvas height instead of 75%
-      const y = canvasHeight * 0.70;
-      drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex);
-    });
-  };
+    const render = () => {
+      if (!ctx || !canvas) return;
+      
+      ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+      
+      const canvasWidth = canvas.width / window.devicePixelRatio;
+      const canvasHeight = canvas.height / window.devicePixelRatio;
+      
+      ROBOTS.forEach((robot, index) => {
+        const x = (canvasWidth * robot.x) / 100;
+        // Position robots at 80% of canvas height
+        const y = canvasHeight * 0.80;
+        drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex);
+      });
+    };
 
     // Handle hover effects
     canvas.addEventListener('mousemove', (e) => {

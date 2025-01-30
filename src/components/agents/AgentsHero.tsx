@@ -3,7 +3,7 @@ import { RobotLineup } from "./RobotLineup";
 export const AgentsHero = () => {
   return (
     <section 
-      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden" 
+      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Agents hero section"
     >
