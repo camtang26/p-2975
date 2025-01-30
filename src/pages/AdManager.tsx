@@ -47,52 +47,46 @@ const AdManager = () => {
                 From Idea to Storyboard: Effortless Ad Creation, Powered by AI
               </h2>
 
-              {/* Blueprint Visual */}
-              <div 
-                className="max-w-5xl mx-auto my-8 aspect-video glass-morphism rounded-lg p-8 animate-fade-in [animation-delay:400ms] relative overflow-hidden"
-                role="img"
-                aria-label="Blueprint visualization of the ad creation process"
-              >
-                <div className="h-full w-full flex items-center justify-center relative">
-                  {/* Blueprint Grid Background */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(90deg, rgba(0,149,255,0.05) 1px, transparent 1px), linear-gradient(0deg, rgba(0,149,255,0.05) 1px, transparent 1px)',
-                      backgroundSize: '20px 20px',
-                      transform: 'perspective(1000px) rotateX(15deg)',
-                    }}
-                  />
-                  
-                  {/* Neon Lines and Elements */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: 'radial-gradient(circle at 50% 50%, rgba(0,149,255,0.2) 0%, transparent 60%)',
-                      boxShadow: 'inset 0 0 50px rgba(0,149,255,0.3)',
-                    }}
-                  />
-                  
-                  {/* Animated Flow Lines */}
-                  <div className="absolute inset-0 opacity-50"
-                    style={{
-                      background: 'linear-gradient(90deg, transparent 0%, #0095ff 50%, transparent 100%)',
-                      backgroundSize: '200% 100%',
-                      animation: 'flow 3s linear infinite',
-                    }}
-                  />
-                  
-                  {/* Content Nodes */}
-                  <div className="relative grid grid-cols-3 gap-8 w-full h-full p-4">
-                    <div className="flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff] animate-pulse" />
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
-                    </div>
+              {/* Blueprint Visual - Now directly embedded without container */}
+              <div className="relative h-48 w-full max-w-3xl mx-auto animate-fade-in [animation-delay:400ms]">
+                {/* Blueprint Grid Background */}
+                <div 
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(90deg, rgba(0,149,255,0.05) 1px, transparent 1px), linear-gradient(0deg, rgba(0,149,255,0.05) 1px, transparent 1px)',
+                    backgroundSize: '20px 20px',
+                    transform: 'perspective(1000px) rotateX(15deg)',
+                  }}
+                />
+                
+                {/* Neon Lines and Elements */}
+                <div 
+                  className="absolute inset-0"
+                  style={{
+                    background: 'radial-gradient(circle at 50% 50%, rgba(0,149,255,0.2) 0%, transparent 60%)',
+                    boxShadow: 'inset 0 0 50px rgba(0,149,255,0.3)',
+                  }}
+                />
+                
+                {/* Animated Flow Lines */}
+                <div className="absolute inset-0 opacity-50"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, #0095ff 50%, transparent 100%)',
+                    backgroundSize: '200% 100%',
+                    animation: 'flow 3s linear infinite',
+                  }}
+                />
+                
+                {/* Content Nodes */}
+                <div className="relative grid grid-cols-3 gap-4 w-full h-full p-2">
+                  <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff] animate-pulse" />
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
                   </div>
                 </div>
               </div>
