@@ -40,7 +40,7 @@ export const Gallery = () => {
   useEffect(() => {
     if (selectedVideo && containerRef.current && !playerRef.current) {
       const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&background=0&autoplay=1&loop=0&autopause=0`;
+      iframe.src = `https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&background=0&autoplay=1&loop=0&autopause=0&transparent=0`;
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
       iframe.style.position = "absolute";
       iframe.style.top = "50%";
@@ -54,17 +54,28 @@ export const Gallery = () => {
       
       playerRef.current = new Player(iframe);
       
+      // Match VideoBackground's initialization sequence
       playerRef.current.ready().then(() => {
         console.log("Vimeo player is ready");
         setIsLoaded(true);
-        playerRef.current?.play().catch(error => {
-          console.error("Error playing video:", error);
-          toast({
-            title: "Playback Error",
-            description: "Unable to play video. Please try again.",
-            variant: "destructive"
+        
+        // Explicitly set volume and attempt playback
+        playerRef.current?.setVolume(1)
+          .then(() => {
+            console.log("Volume set, attempting playback");
+            return playerRef.current?.play();
+          })
+          .then(() => {
+            console.log("Playback started successfully");
+          })
+          .catch(error => {
+            console.error("Error during playback setup:", error);
+            toast({
+              title: "Playback Error",
+              description: "Unable to play video. Please try again.",
+              variant: "destructive"
+            });
           });
-        });
       }).catch(error => {
         console.error("Vimeo player failed to initialize:", error);
         toast({
