@@ -4,12 +4,12 @@ import { Footer } from "@/components/Footer";
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">
-      {/* Gradient Background */}
+      {/* Main Gradient Background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.95) 100%)',
-          zIndex: 0
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+          opacity: 0.95
         }}
       />
       
