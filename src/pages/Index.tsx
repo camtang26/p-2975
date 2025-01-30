@@ -12,8 +12,10 @@ const Index = () => {
     <div className="min-h-screen bg-[#111111]">
       <Navigation />
       <Hero />
+      <Services />
+      <Gallery />
       
-      {/* First Quote */}
+      {/* First Quote - Moved below Gallery */}
       <div className="container mx-auto px-4 py-16">
         <QuoteCard
           quote="The question isn't whether AI will transform your business, but when and how."
@@ -21,8 +23,6 @@ const Index = () => {
           title="CEO of Microsoft"
         />
       </div>
-      
-      <Services />
       
       {/* Second Quote */}
       <div className="container mx-auto px-4 py-16">
@@ -33,7 +33,6 @@ const Index = () => {
         />
       </div>
       
-      <Gallery />
       <WordPressContent />
       
       {/* Contact Section */}
