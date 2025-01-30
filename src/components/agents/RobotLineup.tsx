@@ -105,8 +105,8 @@ export const RobotLineup = () => {
       
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;
-        // Position robots at 75% of canvas height
-        const y = canvasHeight * 0.75;
+        // Position robots at 70% of canvas height
+        const y = canvasHeight * 0.70;
         drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex);
       });
     };
