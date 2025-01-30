@@ -11,7 +11,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative h-screen flex items-center justify-center overflow-hidden" 
+      className="relative h-[75vh] flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Hero section"
     >
