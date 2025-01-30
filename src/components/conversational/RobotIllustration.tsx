@@ -12,42 +12,56 @@ export const RobotIllustration = () => {
       <motion.div 
         className="absolute inset-0"
         style={{
-          filter: "drop-shadow(0 0 15px rgba(155,135,245,0.3))"
+          filter: "drop-shadow(0 0 15px rgba(0,255,128,0.4))"
         }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Robot Head */}
-          <rect x="70" y="40" width="60" height="50" rx="10" 
-                className="fill-white/10 stroke-white/80 stroke-2"/>
+          {/* Main Circle Head */}
+          <circle cx="100" cy="70" r="35" 
+                  className="fill-white/10 stroke-[#00ff80] stroke-2"/>
           
-          {/* Robot Eyes */}
-          <circle cx="85" cy="60" r="5" className="fill-[#9b87f5]"/>
-          <circle cx="115" cy="60" r="5" className="fill-[#9b87f5]"/>
+          {/* Digital Pattern Lines */}
+          <path d="M75,70 h-10 M135,70 h-10" 
+                className="stroke-[#00ff80] stroke-2"/>
+          <path d="M100,45 v-10 M100,105 v-10" 
+                className="stroke-[#00ff80] stroke-2"/>
           
-          {/* Robot Body */}
-          <rect x="60" y="95" width="80" height="70" rx="10" 
-                className="fill-white/10 stroke-white/80 stroke-2"/>
+          {/* Animated Display Screen */}
+          <rect x="85" y="60" width="30" height="20" rx="2" 
+                className="fill-[#00ff80]/20 stroke-[#00ff80] stroke-2"/>
           
-          {/* Robot Arm holding phone */}
-          <path d="M140,120 C160,120 170,140 170,150" 
-                className="stroke-white/80 stroke-2 fill-none"/>
+          {/* Connection Points */}
+          <circle cx="75" cy="70" r="3" className="fill-[#00ff80]"/>
+          <circle cx="125" cy="70" r="3" className="fill-[#00ff80]"/>
           
-          {/* Phone */}
-          <rect x="155" y="140" width="25" height="40" rx="3" 
-                className="fill-white/10 stroke-white/80 stroke-2"/>
+          {/* Digital Wave Pattern */}
+          <path d="M60,130 Q80,120 100,130 Q120,140 140,130" 
+                className="fill-none stroke-[#00ff80] stroke-2"/>
           
-          {/* Speech Bubble */}
-          <path d="M70,30 Q60,30 60,20 L60,10 Q60,0 70,0 L130,0 Q140,0 140,10 L140,20 Q140,30 130,30 Z" 
-                className="fill-white/10 stroke-white/80 stroke-2 translate-x-[-20px] translate-y-[5px]"/>
+          {/* Floating Data Particles */}
+          <circle cx="70" cy="100" r="2" className="fill-[#00ff80]"/>
+          <circle cx="130" cy="100" r="2" className="fill-[#00ff80]"/>
+          <circle cx="100" cy="110" r="2" className="fill-[#00ff80]"/>
           
-          {/* Speech Lines */}
-          <line x1="80" y1="15" x2="120" y2="15" className="stroke-white/80 stroke-2"/>
-          <line x1="85" y1="22" x2="115" y2="22" className="stroke-white/80 stroke-2"/>
+          {/* Communication Beams */}
+          <path d="M40,60 Q70,70 40,80" 
+                className="fill-none stroke-[#00ff80]/50 stroke-2"/>
+          <path d="M160,60 Q130,70 160,80" 
+                className="fill-none stroke-[#00ff80]/50 stroke-2"/>
+          
+          {/* Central Core */}
+          <circle cx="100" cy="70" r="15" 
+                  className="fill-[#00ff80]/20 stroke-[#00ff80] stroke-2"/>
+          
+          {/* Pulse Ring Animation */}
+          <circle cx="100" cy="70" r="25" 
+                  className="fill-none stroke-[#00ff80]/30 stroke-2"/>
         </svg>
       </motion.div>
       
-      {/* Glow Effects */}
-      <div className="absolute inset-0 blur-[50px] opacity-30 bg-gradient-to-r from-[#9b87f5] to-[#d946ef]"/>
+      {/* Enhanced Glow Effects */}
+      <div className="absolute inset-0 blur-[50px] opacity-40 bg-gradient-to-r from-[#00ff80]/40 to-[#00ff80]/20"/>
+      <div className="absolute inset-0 blur-[25px] opacity-20 bg-gradient-radial from-[#00ff80]/30 via-transparent to-transparent"/>
     </motion.div>
   );
 };
