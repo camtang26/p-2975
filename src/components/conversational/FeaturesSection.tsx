@@ -35,8 +35,8 @@ const Feature = ({ icon, title, description }: FeatureProps) => (
 export const FeaturesSection = () => {
   return (
     <section className="relative py-20">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/95 to-black/90">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.02)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.03)_0%,transparent_60%)]" />
       </div>
       <div className="container mx-auto px-4 relative">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-gradient text-center">

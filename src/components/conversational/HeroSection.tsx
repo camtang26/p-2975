@@ -4,8 +4,10 @@ import { RobotIllustration } from "./RobotIllustration";
 
 export const HeroSection = () => {
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-black/95 to-black/90">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.03)_0%,transparent_70%)]" />
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.05)_0%,transparent_70%)]" />
+      </div>
       <div className="container mx-auto px-4 text-center relative">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
