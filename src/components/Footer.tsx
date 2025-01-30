@@ -3,7 +3,7 @@ import { Twitter, Instagram, Youtube, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="relative">
+    <footer className="relative" role="contentinfo">
       {/* Gradient overlay */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -11,6 +11,7 @@ export const Footer = () => {
           background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
           opacity: 0.95
         }}
+        aria-hidden="true"
       />
       
       <div className="relative border-t border-white/10 py-16">
@@ -25,17 +26,17 @@ export const Footer = () => {
                 />
                 <span className="font-geist text-white font-bold">Cre8tive AI</span>
               </div>
-              <div className="flex space-x-4">
-                <Twitter className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
-                <Instagram className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
-                <Youtube className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
-                <Linkedin className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
+              <div className="flex space-x-4" role="list" aria-label="Social media links">
+                <Twitter className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Twitter" />
+                <Instagram className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Instagram" />
+                <Youtube className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Youtube" />
+                <Linkedin className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="LinkedIn" />
               </div>
             </div>
 
-            <div>
+            <nav aria-label="Services navigation">
               <h3 className="font-geist text-white font-semibold mb-4">Services</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2" role="list">
                 <li>
                   <Link to="/studios" className="font-geist text-white/70 hover:text-white transition-colors duration-300">
                     Cre8tive AI Studios
@@ -62,11 +63,11 @@ export const Footer = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div>
+            <nav aria-label="About navigation">
               <h3 className="font-geist text-white font-semibold mb-4">About Us</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2" role="list">
                 <li>
                   <Link to="/contact" className="font-geist text-white/70 hover:text-white transition-colors duration-300">
                     Contact Us
@@ -78,11 +79,11 @@ export const Footer = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </nav>
 
             <div className="flex flex-col items-end">
               <h3 className="font-geist text-white font-semibold mb-4">© 2025 Cre8tive AI</h3>
-              <Link to="/">
+              <Link to="/" aria-label="Return to homepage">
                 <img 
                   src="/lovable-uploads/1695cb6f-90ec-4a79-aedf-92f17ba25444.png" 
                   alt="Footer logo" 

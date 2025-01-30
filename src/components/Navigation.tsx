@@ -4,7 +4,11 @@ import { Menu } from "lucide-react";
 
 export const Navigation = () => {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10" role="navigation" aria-label="Main navigation">
+    <nav 
+      className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10" 
+      role="navigation" 
+      aria-label="Main navigation"
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-24">
           <Link 
