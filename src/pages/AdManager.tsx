@@ -7,10 +7,17 @@ import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCre
 
 const AdManager = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#111111]">
       <Navigation />
-      
       <main className="relative pt-20">
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+            opacity: 0.95
+          }}
+        />
+        
         {/* Hero Section */}
         <section 
           className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16 px-4 mb-24"
@@ -88,7 +95,6 @@ const AdManager = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
