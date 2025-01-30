@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Player from "@vimeo/player";
 
 export const StudiosHero = () => {
@@ -36,7 +36,7 @@ export const StudiosHero = () => {
   };
 
   // Initialize player on mount
-  useState(() => {
+  useEffect(() => {
     initializePlayer();
     return () => {
       if (playerRef.current) {
