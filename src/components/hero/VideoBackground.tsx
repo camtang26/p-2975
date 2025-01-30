@@ -28,45 +28,59 @@ export const VideoBackground = ({
   const { toast } = useToast();
 
   useEffect(() => {
-    if (containerRef.current && !playerRef.current) {
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.style.position = "absolute";
-      iframe.style.top = "50%";
-      iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      iframe.style.transform = "translate(-50%, -50%)";
-      iframe.style.border = "none";
-      
-      containerRef.current.appendChild(iframe);
-      
-      playerRef.current = new Player(iframe);
-      
-      playerRef.current.ready().then(() => {
-        console.log("Vimeo player is ready");
-        setIsLoaded(true);
-        setLoadError(null);
-        
-        playerRef.current?.setVolume(isMuted ? 0 : 1);
-        if (!isPlaying) {
-          playerRef.current?.pause();
+    let isMounted = true;
+
+    const initializePlayer = async () => {
+      if (containerRef.current && !playerRef.current) {
+        try {
+          const iframe = document.createElement('iframe');
+          iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
+          iframe.allow = "autoplay; fullscreen; picture-in-picture";
+          iframe.style.position = "absolute";
+          iframe.style.top = "50%";
+          iframe.style.left = "50%";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.transform = "translate(-50%, -50%)";
+          iframe.style.border = "none";
+          
+          containerRef.current.appendChild(iframe);
+          
+          const player = new Player(iframe);
+          playerRef.current = player;
+          
+          await player.ready();
+          console.log("Vimeo player is ready");
+          
+          if (isMounted) {
+            setIsLoaded(true);
+            setLoadError(null);
+            
+            await player.setVolume(isMuted ? 0 : 1);
+            if (!isPlaying) {
+              await player.pause();
+            }
+          }
+        } catch (error) {
+          console.error("Vimeo player failed to initialize:", error);
+          if (isMounted) {
+            setLoadError("Failed to load video");
+            toast({
+              title: "Video Loading Issue",
+              description: "Failed to load the video. Please refresh the page.",
+              variant: "destructive"
+            });
+          }
         }
-      }).catch(error => {
-        console.error("Vimeo player failed to initialize:", error);
-        setLoadError("Failed to load video");
-        toast({
-          title: "Video Loading Issue",
-          description: "Failed to load the video. Please refresh the page.",
-          variant: "destructive"
-        });
-      });
-    }
+      }
+    };
+
+    initializePlayer();
 
     return () => {
+      isMounted = false;
       if (playerRef.current) {
-        playerRef.current.destroy();
+        playerRef.current.destroy().catch(console.error);
         playerRef.current = null;
       }
     };
@@ -74,9 +88,10 @@ export const VideoBackground = ({
 
   // Handle play/pause
   useEffect(() => {
-    if (playerRef.current) {
+    const player = playerRef.current;
+    if (player) {
       if (isPlaying) {
-        playerRef.current.play().catch(error => {
+        player.play().catch(error => {
           console.error("Error playing video:", error);
           toast({
             title: "Playback Error",
@@ -85,15 +100,16 @@ export const VideoBackground = ({
           });
         });
       } else {
-        playerRef.current.pause().catch(console.error);
+        player.pause().catch(console.error);
       }
     }
   }, [isPlaying, toast]);
 
   // Handle mute/unmute
   useEffect(() => {
-    if (playerRef.current) {
-      playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
+    const player = playerRef.current;
+    if (player) {
+      player.setVolume(isMuted ? 0 : 1).catch(console.error);
     }
   }, [isMuted]);
 
