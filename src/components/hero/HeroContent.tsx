@@ -13,7 +13,7 @@ export const HeroContent = () => {
       </p>
       <Button
         size="lg"
-        className="font-inter text-base font-semibold bg-[#4A90E2] hover:bg-[#357ABD] text-white px-6 sm:px-8 py-4 sm:py-5 h-auto transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 animate-fade-in [animation-delay:300ms] tracking-[-0.01em] w-full sm:w-auto"
+        className="font-inter text-lg sm:text-xl md:text-2xl font-semibold bg-[#1EAEDB] hover:bg-[#0FA0CE] text-white px-6 sm:px-8 py-4 sm:py-5 h-auto transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(30,174,219,0.5),0_0_30px_rgba(30,174,219,0.3)] hover:shadow-[0_0_20px_rgba(30,174,219,0.6),0_0_40px_rgba(30,174,219,0.4)] active:scale-95 animate-fade-in [animation-delay:300ms] tracking-[-0.01em] w-full sm:w-auto"
         aria-label="Get a free consultation"
       >
         Get a Free Consultation
