@@ -3,11 +3,11 @@ import { Button } from "../ui/button";
 export const HeroContent = () => {
   const letters = "Cre8tive AI".split("");
   const colors = {
-    blue: "text-blue-500 [text-shadow:0_0_8px_rgba(59,130,246,0.6),0_0_15px_rgba(59,130,246,0.3),0_0_25px_rgba(59,130,246,0.15)]",
-    orange: "text-orange-500 [text-shadow:0_0_8px_rgba(249,115,22,0.6),0_0_15px_rgba(249,115,22,0.3),0_0_25px_rgba(249,115,22,0.15)]",
-    green: "text-green-500 [text-shadow:0_0_8px_rgba(34,197,94,0.6),0_0_15px_rgba(34,197,94,0.3),0_0_25px_rgba(34,197,94,0.15)]",
-    red: "text-red-500 [text-shadow:0_0_8px_rgba(239,68,68,0.6),0_0_15px_rgba(239,68,68,0.3),0_0_25px_rgba(239,68,68,0.15)]",
-    purple: "text-purple-500 [text-shadow:0_0_8px_rgba(168,85,247,0.6),0_0_15px_rgba(168,85,247,0.3),0_0_25px_rgba(168,85,247,0.15)]",
+    blue: "text-blue-500 [text-shadow:0_0_15px_rgba(59,130,246,0.9),0_0_30px_rgba(59,130,246,0.7),0_0_45px_rgba(59,130,246,0.4)]",
+    orange: "text-orange-500 [text-shadow:0_0_15px_rgba(249,115,22,0.9),0_0_30px_rgba(249,115,22,0.7),0_0_45px_rgba(249,115,22,0.4)]",
+    green: "text-green-500 [text-shadow:0_0_15px_rgba(34,197,94,0.9),0_0_30px_rgba(34,197,94,0.7),0_0_45px_rgba(34,197,94,0.4)]",
+    red: "text-red-500 [text-shadow:0_0_15px_rgba(239,68,68,0.9),0_0_30px_rgba(239,68,68,0.7),0_0_45px_rgba(239,68,68,0.4)]",
+    purple: "text-purple-500 [text-shadow:0_0_15px_rgba(168,85,247,0.9),0_0_30px_rgba(168,85,247,0.7),0_0_45px_rgba(168,85,247,0.4)]",
   };
 
   const colorOrder = ['blue', 'orange', 'green', 'red', 'purple'];
