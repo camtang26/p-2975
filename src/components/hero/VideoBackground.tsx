@@ -18,18 +18,27 @@ export const VideoBackground = ({
 }: VideoBackgroundProps) => {
   const isMobile = useIsMobile();
   const [videoError, setVideoError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const video = document.querySelector('video');
     if (video) {
       video.addEventListener('error', () => setVideoError(true));
-      return () => video.removeEventListener('error', () => setVideoError(true));
+      video.addEventListener('loadeddata', () => setIsLoaded(true));
+      return () => {
+        video.removeEventListener('error', () => setVideoError(true));
+        video.removeEventListener('loadeddata', () => setIsLoaded(true));
+      };
     }
   }, []);
 
   if (videoError) {
     return (
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"
+        role="img"
+        aria-label="Fallback background gradient"
+      />
     );
   }
 
@@ -48,6 +57,10 @@ export const VideoBackground = ({
           }
         }}
         poster="/placeholder.svg"
+        style={{
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out'
+        }}
       >
         <source 
           src="/hero-video.mp4" 
@@ -73,7 +86,7 @@ export const VideoBackground = ({
             variant="outline"
             size="icon"
             onClick={onToggleMute}
-            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
             aria-label={isMuted ? "Unmute video" : "Mute video"}
           >
             {isMuted ? 
@@ -85,7 +98,7 @@ export const VideoBackground = ({
             variant="outline"
             size="icon"
             onClick={onTogglePlay}
-            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
             aria-label={isPlaying ? "Pause video" : "Play video"}
           >
             {isPlaying ? 
