@@ -104,11 +104,10 @@ export const RobotLineup = () => {
     const canvasHeight = canvas.height / window.devicePixelRatio;
     
     ROBOTS.forEach((robot, index) => {
-      // Calculate x position based on percentage of canvas width
       const x = (canvasWidth * robot.x) / 100;
-      // Position robots at 75% of canvas height instead of 70%
-      const y = canvasHeight * 0.75;
-      drawRobot(x, y, robot.color, robot.scale, index === hoverIndex);
+      // Position robots at 70% of canvas height instead of 75%
+      const y = canvasHeight * 0.70;
+      drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex);
     });
   };
 
