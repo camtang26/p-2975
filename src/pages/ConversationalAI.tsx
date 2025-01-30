@@ -10,33 +10,42 @@ const ConversationalAI = () => {
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-7xl font-bold mb-6 text-gradient"
-          >
-            Unlock the Power of Natural Conversations
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl mb-8 text-white/80"
-          >
-            Engage, Convert, and Grow with Intelligent Conversational AI Agents
-          </motion.p>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-white/70"
-          >
-            Transform your customer interactions with AI agents that understand and respond naturally, 
-            providing personalized experiences and driving better business outcomes.
-          </motion.p>
-        </div>
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1A1A1A] to-[#282828]">
+          <div className="container mx-auto px-4 flex flex-col items-center justify-center">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-extrabold text-white text-center mb-6 font-inter"
+            >
+              Ignite Natural Conversations
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl md:text-2xl font-semibold mb-10 text-white text-center max-w-3xl font-inter"
+            >
+              Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
+            </motion.p>
+            
+            {/* Chat Interface */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="w-full max-w-[400px] bg-[#EEEEEE] border border-[#CCCCCC] rounded-lg h-[300px] mx-auto mt-10"
+            >
+              <div 
+                className="w-full h-full"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
+                    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+                  `
+                }}
+              />
+            </motion.div>
+          </div>
         </section>
 
         {/* What is a Conversational AI Agent? */}
