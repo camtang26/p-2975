@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
+import { QuotesSection } from "@/components/quotes/QuotesSection";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { WordPressContent } from "@/components/WordPressContent";
@@ -13,6 +14,7 @@ const Index = () => {
       <Hero />
       <Services />
       <Gallery />
+      <QuotesSection />
       <WordPressContent />
       
       {/* Contact Section */}
