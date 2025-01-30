@@ -23,66 +23,113 @@ export const VideoBackground = ({
   const [videoError, setVideoError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hlsRef = useRef<Hls | null>(null);
 
   const videoUrl = `https://vz-376993.b-cdn.net/${encodeURIComponent('56c0d74d-b753-4bd7-82cf-e51101163d42')}/playlist.m3u8`;
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      console.error('Video element not found');
+      return;
+    }
 
-    let hls: Hls | null = null;
+    console.log('Initializing video with HLS.js');
 
-    const initializeVideo = () => {
-      if (Hls.isSupported()) {
-        hls = new Hls({
-          enableWorker: true,
-          lowLatencyMode: true,
-        });
-        
-        hls.loadSource(videoUrl);
-        hls.attachMedia(video);
-        
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+    const initializeVideo = async () => {
+      try {
+        if (Hls.isSupported()) {
+          console.log('HLS.js is supported');
+          
+          // Cleanup existing HLS instance if any
+          if (hlsRef.current) {
+            hlsRef.current.destroy();
+          }
+
+          const hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: true,
+            debug: true, // Enable debug logs
+          });
+          
+          hlsRef.current = hls;
+          
+          hls.loadSource(videoUrl);
+          hls.attachMedia(video);
+          
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            console.log('HLS manifest parsed, attempting to play');
+            video.play().catch(error => {
+              console.error('Error playing video:', error);
+            });
+          });
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            console.error('HLS error:', event, data);
+            if (data.fatal) {
+              setVideoError(true);
+            }
+          });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          console.log('Using native HLS support');
+          video.src = videoUrl;
           if (isPlaying) {
-            video.play().catch(console.error);
+            try {
+              await video.play();
+            } catch (error) {
+              console.error('Error playing video:', error);
+            }
           }
-        });
-
-        hls.on(Hls.Events.ERROR, (event, data) => {
-          console.error('HLS error:', data);
-          if (data.fatal) {
-            setVideoError(true);
-          }
-        });
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // For Safari which has native HLS support
-        video.src = videoUrl;
-        video.addEventListener('loadedmetadata', () => {
-          if (isPlaying) {
-            video.play().catch(console.error);
-          }
-        });
-      } else {
-        console.error('HLS is not supported in this browser');
+        } else {
+          console.error('HLS is not supported in this browser');
+          setVideoError(true);
+        }
+      } catch (error) {
+        console.error('Error initializing video:', error);
         setVideoError(true);
       }
     };
 
     initializeVideo();
 
-    video.addEventListener('error', () => setVideoError(true));
-    video.addEventListener('loadeddata', () => setIsLoaded(true));
+    const handleError = (error: Event) => {
+      console.error('Video error:', error);
+      setVideoError(true);
+    };
+
+    const handleLoaded = () => {
+      console.log('Video loaded successfully');
+      setIsLoaded(true);
+    };
+
+    video.addEventListener('error', handleError);
+    video.addEventListener('loadeddata', handleLoaded);
 
     return () => {
-      if (hls) {
-        hls.destroy();
+      video.removeEventListener('error', handleError);
+      video.removeEventListener('loadeddata', handleLoaded);
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
       }
-      video.removeEventListener('error', () => setVideoError(true));
-      video.removeEventListener('loadeddata', () => setIsLoaded(true));
     };
-  }, [videoUrl, isPlaying]);
+  }, [videoUrl]);
+
+  // Handle play/pause state changes
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.play().catch(error => {
+        console.error('Error playing video:', error);
+      });
+    } else {
+      video.pause();
+    }
+  }, [isPlaying]);
 
   if (videoError) {
+    console.error('Video error state activated');
     return (
       <div 
         className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"
