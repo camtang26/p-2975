@@ -11,7 +11,7 @@ export const ContactCTA = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-6 z-10">
+      <div className="container relative mx-auto px-6 z-20">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist neon-glow">
             Contact Us
@@ -30,7 +30,7 @@ export const ContactCTA = () => {
           </p>
         </div>
         
-        <div className="max-w-xl mx-auto relative z-20">
+        <div className="max-w-xl mx-auto relative z-30">
           <ContactForm />
         </div>
       </div>
