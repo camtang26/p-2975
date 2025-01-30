@@ -1,21 +1,49 @@
 import { useState } from "react";
-import { GalleryVideo } from "./gallery/GalleryVideo";
-import { VideoModal } from "./gallery/VideoModal";
+import { X, ArrowLeft, ArrowRight, Play } from "lucide-react";
+import { Button } from "./ui/button";
+import { AspectRatio } from "./ui/aspect-ratio";
+import { useIsMobile } from "@/hooks/use-mobile";
 
+// Sample video data - replace with actual video sources
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-    source: "https://player.vimeo.com/video/1051820049?h=ba3efabac0",
-    title: "Cre8tive AI Automotive Demo"
+    source: "https://example.com/video1.mp4",
+    title: "Video 1"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    source: "https://example.com/video2.mp4",
+    title: "Video 2"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    source: "https://example.com/video3.mp4",
+    title: "Video 3"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    source: "https://example.com/video4.mp4",
+    title: "Video 4"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    source: "https://example.com/video5.mp4",
+    title: "Video 5"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    source: "https://example.com/video6.mp4",
+    title: "Video 6"
   }
 ];
 
 export const Gallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const isMobile = useIsMobile();
 
   const handleVideoClick = (video: typeof videos[0], index: number) => {
-    console.log("Video clicked:", video);
     setSelectedVideo(video);
     setSelectedIndex(index);
   };
@@ -48,7 +76,7 @@ export const Gallery = () => {
 
   return (
     <section 
-      className="py-32 relative overflow-hidden"
+      className="py-32 relative overflow-hidden" // Increased padding
       onKeyDown={handleKeyDown}
       role="region"
       aria-label="Video gallery"
@@ -60,15 +88,15 @@ export const Gallery = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
+      <div className="container relative mx-auto px-6"> {/* Increased horizontal padding */}
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in"> {/* Increased max-width and margin-bottom */}
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist"> {/* Increased text size and margin */}
             Our Work
           </h2>
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" // Increased gap
           style={{
             display: "grid",
             gridTemplateRows: "masonry",
@@ -76,23 +104,117 @@ export const Gallery = () => {
           }}
         >
           {videos.map((video, index) => (
-            <GalleryVideo
+            <div
               key={index}
-              video={video}
-              index={index}
-              onClick={handleVideoClick}
-            />
+              className="relative break-inside-avoid cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#9b87f5]/10 animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+              onClick={() => handleVideoClick(video, index)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Play ${video.title}`}
+            >
+              <AspectRatio ratio={16 / 9}>
+                <picture>
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
+                  />
+                  <source
+                    media="(max-width: 1024px)"
+                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
+                  />
+                  <source
+                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
+                  />
+                  <img
+                    src={`${video.thumbnail}?w=1024&q=80`} // Increased base image size
+                    alt={`Video thumbnail for ${video.title}`}
+                    className="w-full h-full object-cover rounded-lg"
+                    loading="lazy"
+                    decoding="async"
+                    width={1024} // Increased dimensions
+                    height={576}
+                  />
+                </picture>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                  <Play className="w-20 h-20 text-white" aria-hidden="true" /> {/* Increased icon size */}
+                </div>
+              </AspectRatio>
+            </div>
           ))}
         </div>
       </div>
 
       {selectedVideo && (
-        <VideoModal
-          video={selectedVideo}
-          onClose={() => setSelectedVideo(null)}
-          onPrevious={handlePrevious}
-          onNext={handleNext}
-        />
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-fade-in"
+          onClick={() => setSelectedVideo(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Video player - ${selectedVideo.title}`}
+        >
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute top-4 right-4 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 h-8 w-8"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedVideo(null);
+            }}
+            aria-label="Close video player"
+          >
+            <X className="h-8 w-8 text-red-500" aria-hidden="true" />
+          </Button>
+
+          {!isMobile && (
+            <>
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+                onClick={handlePrevious}
+                aria-label="Previous video"
+              >
+                <ArrowLeft className="h-6 w-6 text-white" aria-hidden="true" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300"
+                onClick={handleNext}
+                aria-label="Next video"
+              >
+                <ArrowRight className="h-6 w-6 text-white" aria-hidden="true" />
+              </Button>
+            </>
+          )}
+
+          <div 
+            className="max-w-[90vw] max-h-[90vh] w-full aspect-video animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src={selectedVideo.source}
+              className="w-full h-full rounded-lg"
+              controls
+              autoPlay
+              playsInline
+              aria-label={`Playing: ${selectedVideo.title}`}
+            >
+              <track 
+                kind="captions"
+                src="/captions.vtt"
+                label="English captions"
+                default
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       )}
     </section>
   );
