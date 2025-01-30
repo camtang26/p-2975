@@ -3,37 +3,39 @@ import { X, ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Player from "@vimeo/player";
 
-// Sample video data - replace with actual video sources
+// Updated video data with Vimeo IDs
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-    source: "https://example.com/video1.mp4",
-    title: "Video 1"
+    vimeoId: "1051820049",
+    title: "Cre8tive AI Automotive Demo"
   },
   {
     thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    source: "https://example.com/video2.mp4",
-    title: "Video 2"
+    vimeoId: "1051824336",
+    title: "Cre8tive AI DHM Video"
   },
+  // Keep other placeholder videos for now
   {
     thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    source: "https://example.com/video3.mp4",
+    vimeoId: "",
     title: "Video 3"
   },
   {
     thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    source: "https://example.com/video4.mp4",
+    vimeoId: "",
     title: "Video 4"
   },
   {
     thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    source: "https://example.com/video5.mp4",
+    vimeoId: "",
     title: "Video 5"
   },
   {
     thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    source: "https://example.com/video6.mp4",
+    vimeoId: "",
     title: "Video 6"
   }
 ];
@@ -76,7 +78,7 @@ export const Gallery = () => {
 
   return (
     <section 
-      className="py-32 relative overflow-hidden" // Increased padding
+      className="py-32 relative overflow-hidden"
       onKeyDown={handleKeyDown}
       role="region"
       aria-label="Video gallery"
@@ -88,15 +90,15 @@ export const Gallery = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-6"> {/* Increased horizontal padding */}
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in"> {/* Increased max-width and margin-bottom */}
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist"> {/* Increased text size and margin */}
+      <div className="container relative mx-auto px-6">
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
             Our Work
           </h2>
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" // Increased gap
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           style={{
             display: "grid",
             gridTemplateRows: "masonry",
@@ -117,30 +119,30 @@ export const Gallery = () => {
                 <picture>
                   <source
                     media="(max-width: 640px)"
-                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`} // Increased image sizes
+                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`}
                     type="image/webp"
                   />
                   <source
                     media="(max-width: 1024px)"
-                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`} // Increased image sizes
+                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`}
                     type="image/webp"
                   />
                   <source
-                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`} // Increased image sizes
+                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`}
                     type="image/webp"
                   />
                   <img
-                    src={`${video.thumbnail}?w=1024&q=80`} // Increased base image size
+                    src={`${video.thumbnail}?w=1024&q=80`}
                     alt={`Video thumbnail for ${video.title}`}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
                     decoding="async"
-                    width={1024} // Increased dimensions
+                    width={1024}
                     height={576}
                   />
                 </picture>
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
-                  <Play className="w-20 h-20 text-white" aria-hidden="true" /> {/* Increased icon size */}
+                  <Play className="w-20 h-20 text-white" aria-hidden="true" />
                 </div>
               </AspectRatio>
             </div>
@@ -197,22 +199,21 @@ export const Gallery = () => {
             className="max-w-[90vw] max-h-[90vh] w-full aspect-video animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              src={selectedVideo.source}
-              className="w-full h-full rounded-lg"
-              controls
-              autoPlay
-              playsInline
-              aria-label={`Playing: ${selectedVideo.title}`}
-            >
-              <track 
-                kind="captions"
-                src="/captions.vtt"
-                label="English captions"
-                default
-              />
-              Your browser does not support the video tag.
-            </video>
+            {selectedVideo.vimeoId ? (
+              <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                <iframe
+                  src={`https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=ba3efabac0&badge=0&autopause=0&player_id=0&app_id=58479`}
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                  title={selectedVideo.title}
+                />
+              </div>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-black rounded-lg">
+                <p className="text-white text-lg">Video coming soon</p>
+              </div>
+            )}
           </div>
         </div>
       )}
