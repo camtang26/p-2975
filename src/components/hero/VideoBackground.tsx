@@ -28,51 +28,44 @@ export const VideoBackground = ({
   const { toast } = useToast();
 
   useEffect(() => {
-    const initializePlayer = async () => {
-      if (containerRef.current && !playerRef.current) {
-        try {
-          console.log("Initializing Vimeo player...");
-          const iframe = document.createElement('iframe');
-          iframe.src = "https://player.vimeo.com/video/905188141?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
-          iframe.allow = "autoplay; fullscreen; picture-in-picture";
-          iframe.style.position = "absolute";
-          iframe.style.top = "50%";
-          iframe.style.left = "50%";
-          iframe.style.width = "100%";
-          iframe.style.height = "100%";
-          iframe.style.transform = "translate(-50%, -50%)";
-          iframe.style.border = "none";
-          
-          containerRef.current.appendChild(iframe);
-          
-          playerRef.current = new Player(iframe);
-          
-          await playerRef.current.ready();
-          console.log("Vimeo player ready");
-          setIsLoaded(true);
-          setLoadError(null);
-          
-          await playerRef.current.setVolume(0);
-          await playerRef.current.setLoop(true);
-          await playerRef.current.play();
-          
-        } catch (error) {
-          console.error("Vimeo player initialization error:", error);
-          setLoadError("Failed to load video");
-          toast({
-            title: "Video Loading Issue",
-            description: "Failed to load the video. Please refresh the page.",
-            variant: "destructive"
-          });
+    if (containerRef.current && !playerRef.current) {
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.style.position = "absolute";
+      iframe.style.top = "50%";
+      iframe.style.left = "50%";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.transform = "translate(-50%, -50%)";
+      iframe.style.border = "none";
+      
+      containerRef.current.appendChild(iframe);
+      
+      playerRef.current = new Player(iframe);
+      
+      playerRef.current.ready().then(() => {
+        console.log("Vimeo player is ready");
+        setIsLoaded(true);
+        setLoadError(null);
+        
+        playerRef.current?.setVolume(isMuted ? 0 : 1);
+        if (!isPlaying) {
+          playerRef.current?.pause();
         }
-      }
-    };
-
-    initializePlayer();
+      }).catch(error => {
+        console.error("Vimeo player failed to initialize:", error);
+        setLoadError("Failed to load video");
+        toast({
+          title: "Video Loading Issue",
+          description: "Failed to load the video. Please refresh the page.",
+          variant: "destructive"
+        });
+      });
+    }
 
     return () => {
       if (playerRef.current) {
-        console.log("Cleaning up Vimeo player");
         playerRef.current.destroy();
         playerRef.current = null;
       }
@@ -81,7 +74,7 @@ export const VideoBackground = ({
 
   // Handle play/pause
   useEffect(() => {
-    if (playerRef.current && isLoaded) {
+    if (playerRef.current) {
       if (isPlaying) {
         playerRef.current.play().catch(error => {
           console.error("Error playing video:", error);
@@ -95,14 +88,14 @@ export const VideoBackground = ({
         playerRef.current.pause().catch(console.error);
       }
     }
-  }, [isPlaying, isLoaded, toast]);
+  }, [isPlaying, toast]);
 
   // Handle mute/unmute
   useEffect(() => {
-    if (playerRef.current && isLoaded) {
+    if (playerRef.current) {
       playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
     }
-  }, [isMuted, isLoaded]);
+  }, [isMuted]);
 
   return (
     <div className="absolute inset-0 z-0">

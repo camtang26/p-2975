@@ -1,89 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { useState, useRef, useEffect } from "react";
-import Player from "@vimeo/player";
-import { useToast } from "@/components/ui/use-toast";
+import { useState, useRef } from "react";
 
 export const StudiosHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<Player | null>(null);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const initializePlayer = async () => {
-      if (containerRef.current && !playerRef.current) {
-        try {
-          console.log("Initializing Studios Vimeo player...");
-          const iframe = document.createElement('iframe');
-          iframe.src = "https://player.vimeo.com/video/905188141?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
-          iframe.allow = "autoplay; fullscreen; picture-in-picture";
-          iframe.style.position = "absolute";
-          iframe.style.top = "50%";
-          iframe.style.left = "50%";
-          iframe.style.width = "177.77777778vh";
-          iframe.style.height = "56.25vw";
-          iframe.style.minHeight = "100%";
-          iframe.style.minWidth = "100%";
-          iframe.style.transform = "translate(-50%, -50%)";
-          iframe.style.border = "none";
-          
-          containerRef.current.appendChild(iframe);
-          
-          playerRef.current = new Player(iframe);
-          
-          await playerRef.current.ready();
-          console.log("Studios Vimeo player ready");
-          setIsLoaded(true);
-          
-          await playerRef.current.setVolume(0);
-          await playerRef.current.setLoop(true);
-          await playerRef.current.play();
-          
-        } catch (error) {
-          console.error("Studios Vimeo player initialization error:", error);
-          toast({
-            title: "Video Loading Issue",
-            description: "Failed to load the video. Please refresh the page.",
-            variant: "destructive"
-          });
-        }
-      }
-    };
-
-    initializePlayer();
-
-    return () => {
-      if (playerRef.current) {
-        console.log("Cleaning up Studios Vimeo player");
-        playerRef.current.destroy();
-        playerRef.current = null;
-      }
-    };
-  }, [toast]);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <section 
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-[60vh] flex items-center justify-center overflow-hidden"
       role="banner"
       aria-label="Studios hero section"
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-[1]">
-        <div 
-          ref={containerRef}
-          className="relative w-full h-full"
-          style={{
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          style={{ 
+            objectPosition: "center center",
             opacity: isLoaded ? 1 : 0,
             transition: 'opacity 0.5s ease-in-out'
           }}
-        />
-        
-        {/* Loading Indicator */}
-        {!isLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-          </div>
-        )}
+          poster="/placeholder.svg"
+          onLoadedData={() => setIsLoaded(true)}
+        >
+          <source src="/studio-intro.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         
         {/* Dark Overlay */}
         <div 
