@@ -4,38 +4,19 @@ import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-// Updated video data with Vimeo IDs
+// Updated video data with Vimeo IDs and proper parameters
 const videos = [
   {
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     vimeoId: "1051820049",
+    vimeoHash: "ba3efabac0",
     title: "Cre8tive AI Automotive Demo"
   },
   {
     thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     vimeoId: "1051824336",
+    vimeoHash: "f848b5b131",
     title: "Cre8tive AI DHM Video"
-  },
-  // Keep other placeholder videos for now
-  {
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    vimeoId: "",
-    title: "Video 3"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    vimeoId: "",
-    title: "Video 4"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    vimeoId: "",
-    title: "Video 5"
-  },
-  {
-    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    vimeoId: "",
-    title: "Video 6"
   }
 ];
 
@@ -97,7 +78,7 @@ export const Gallery = () => {
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
           style={{
             display: "grid",
             gridTemplateRows: "masonry",
@@ -140,7 +121,7 @@ export const Gallery = () => {
                     height={576}
                   />
                 </picture>
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <Play className="w-20 h-20 text-white" aria-hidden="true" />
                 </div>
               </AspectRatio>
@@ -198,21 +179,15 @@ export const Gallery = () => {
             className="max-w-[90vw] max-h-[90vh] w-full aspect-video animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            {selectedVideo.vimeoId ? (
-              <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-                <iframe
-                  src={`https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=ba3efabac0&badge=0&autopause=0&player_id=0&app_id=58479`}
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                  title={selectedVideo.title}
-                />
-              </div>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-black rounded-lg">
-                <p className="text-white text-lg">Video coming soon</p>
-              </div>
-            )}
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+              <iframe
+                src={`https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&badge=0&autopause=0&player_id=0&app_id=58479`}
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                title={selectedVideo.title}
+              />
+            </div>
           </div>
         </div>
       )}
