@@ -1,28 +1,12 @@
 import { Button } from "../ui/button";
 
 export const HeroContent = () => {
-  const letters = "Cre8tive AI".split("");
-  const colors = {
-    blue: "text-blue-500 bg-gradient-to-b from-blue-400 to-blue-600 bg-clip-text [text-shadow:0_0_15px_rgba(59,130,246,0.9),0_0_30px_rgba(59,130,246,0.7),0_0_45px_rgba(59,130,246,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
-    orange: "text-orange-500 bg-gradient-to-b from-orange-400 to-orange-600 bg-clip-text [text-shadow:0_0_15px_rgba(251,146,60,0.9),0_0_30px_rgba(251,146,60,0.7),0_0_45px_rgba(251,146,60,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
-    turquoise: "text-cyan-400 bg-gradient-to-b from-cyan-300 to-cyan-500 bg-clip-text [text-shadow:0_0_15px_rgba(34,211,238,0.9),0_0_30px_rgba(34,211,238,0.7),0_0_45px_rgba(34,211,238,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
-    red: "text-red-500 bg-gradient-to-b from-red-400 to-red-600 bg-clip-text [text-shadow:0_0_15px_rgba(239,68,68,0.9),0_0_30px_rgba(239,68,68,0.7),0_0_45px_rgba(239,68,68,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
-    purple: "text-purple-500 bg-gradient-to-b from-purple-400 to-purple-600 bg-clip-text [text-shadow:0_0_15px_rgba(168,85,247,0.9),0_0_30px_rgba(168,85,247,0.7),0_0_45px_rgba(168,85,247,0.4),0_3px_6px_rgba(0,0,0,0.4)]",
-  };
-
-  const colorOrder = ['blue', 'orange', 'turquoise', 'red', 'purple'];
-
   return (
     <div className="relative z-[2] flex flex-col items-center justify-center text-center space-y-8 max-w-4xl mx-auto px-4">
-      <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] animate-fade-in flex">
-        {letters.map((letter, index) => (
-          <span
-            key={index}
-            className={colors[colorOrder[index % colorOrder.length] as keyof typeof colors]}
-          >
-            {letter}
-          </span>
-        ))}
+      <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] animate-fade-in">
+        <span className="bg-gradient-to-r from-blue-400 via-orange-400 via-cyan-300 via-red-400 to-purple-400 bg-clip-text text-transparent inline-block [text-shadow:0_0_20px_rgba(255,255,255,0.9),0_0_35px_rgba(255,255,255,0.7),0_0_50px_rgba(255,255,255,0.4),0_4px_8px_rgba(0,0,0,0.6)] hover:scale-105 transition-transform duration-300">
+          Cre8tive AI
+        </span>
       </h1>
       <p className="font-inter text-2xl md:text-3xl font-medium tracking-[-0.01em] text-white/90 animate-fade-in [animation-delay:200ms] [text-shadow:0_0_4px_rgba(255,255,255,0.4),0_0_8px_rgba(255,255,255,0.2)]">
         Cutting Edge AI Solutions For Your Business
