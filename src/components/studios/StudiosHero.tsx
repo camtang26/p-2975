@@ -1,9 +1,50 @@
 import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
+import Player from "@vimeo/player";
 
 export const StudiosHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<Player | null>(null);
+
+  // Initialize Vimeo player
+  const initializePlayer = () => {
+    if (containerRef.current && !playerRef.current) {
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.style.position = "absolute";
+      iframe.style.top = "50%";
+      iframe.style.left = "50%";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.transform = "translate(-50%, -50%)";
+      iframe.style.border = "none";
+      
+      containerRef.current.appendChild(iframe);
+      
+      playerRef.current = new Player(iframe);
+      
+      playerRef.current.ready().then(() => {
+        console.log("Vimeo player is ready");
+        setIsLoaded(true);
+        playerRef.current?.setVolume(0);
+      }).catch(error => {
+        console.error("Vimeo player failed to initialize:", error);
+      });
+    }
+  };
+
+  // Initialize player on mount
+  useState(() => {
+    initializePlayer();
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <section 
@@ -13,24 +54,21 @@ export const StudiosHero = () => {
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-[1]">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute w-full h-full object-cover"
-          style={{ 
-            objectPosition: "center center",
+        <div 
+          ref={containerRef}
+          className="relative w-full h-full"
+          style={{
             opacity: isLoaded ? 1 : 0,
             transition: 'opacity 0.5s ease-in-out'
           }}
-          poster="/placeholder.svg"
-          onLoadedData={() => setIsLoaded(true)}
-        >
-          <source src="/studio-intro.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
+        
+        {/* Loading Indicator */}
+        {!isLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+          </div>
+        )}
         
         {/* Dark Overlay */}
         <div 
