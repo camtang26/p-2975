@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useToast } from "../ui/use-toast";
+import Player from "@vimeo/player";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -15,89 +18,145 @@ export const VideoBackground = ({
   isPlaying,
   onToggleMute,
   onTogglePlay,
-  priority = false,
+  priority = false
 }: VideoBackgroundProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useIsMobile();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const playerRef = useRef<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleCanPlay = () => setIsLoading(false);
-    
-    video.addEventListener('canplay', handleCanPlay);
-    
-    // Reset video when component mounts
-    video.load();
-    
-    return () => {
-      video.removeEventListener('canplay', handleCanPlay);
-      video.pause();
-      video.currentTime = 0;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!videoRef.current) return;
-    
-    if (isPlaying) {
-      videoRef.current.play().catch(console.error);
-    } else {
-      videoRef.current.pause();
+    if (containerRef.current && !playerRef.current) {
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.style.position = "absolute";
+      iframe.style.top = "50%";
+      iframe.style.left = "50%";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.transform = "translate(-50%, -50%)";
+      iframe.style.border = "none";
+      
+      containerRef.current.appendChild(iframe);
+      
+      playerRef.current = new Player(iframe);
+      
+      playerRef.current.ready().then(() => {
+        console.log("Vimeo player is ready");
+        setIsLoaded(true);
+        setLoadError(null);
+        
+        playerRef.current?.setVolume(isMuted ? 0 : 1);
+        if (!isPlaying) {
+          playerRef.current?.pause();
+        }
+      }).catch(error => {
+        console.error("Vimeo player failed to initialize:", error);
+        setLoadError("Failed to load video");
+        toast({
+          title: "Video Loading Issue",
+          description: "Failed to load the video. Please refresh the page.",
+          variant: "destructive"
+        });
+      });
     }
-  }, [isPlaying]);
 
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    };
+  }, [toast]);
+
+  // Handle play/pause
   useEffect(() => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = isMuted;
+    if (playerRef.current) {
+      if (isPlaying) {
+        playerRef.current.play().catch(error => {
+          console.error("Error playing video:", error);
+          toast({
+            title: "Playback Error",
+            description: "Unable to play video. Please try again.",
+            variant: "destructive"
+          });
+        });
+      } else {
+        playerRef.current.pause().catch(console.error);
+      }
+    }
+  }, [isPlaying, toast]);
+
+  // Handle mute/unmute
+  useEffect(() => {
+    if (playerRef.current) {
+      playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
+    }
   }, [isMuted]);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+    <div className="absolute inset-0 z-0">
+      <div 
+        ref={containerRef}
+        className="relative w-full h-full z-[1] overflow-hidden"
+        style={{
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out'
+        }}
+      />
+      
+      {/* Loading Indicator */}
+      {!isLoaded && !loadError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
         </div>
       )}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        playsInline
-        muted={isMuted}
-        className={cn(
-          "absolute top-0 left-0 w-full h-full object-cover",
-          isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"
-        )}
-        preload={priority ? "auto" : "metadata"}
-      >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute bottom-4 right-4 flex gap-2">
-        <button
-          onClick={onToggleMute}
-          className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
-          aria-label={isMuted ? "Unmute" : "Mute"}
-        >
-          {isMuted ? (
-            <VolumeX className="w-5 h-5 text-white" />
-          ) : (
-            <Volume2 className="w-5 h-5 text-white" />
-          )}
-        </button>
-        <button
-          onClick={onTogglePlay}
-          className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
-          aria-label={isPlaying ? "Pause" : "Play"}
-        >
-          {isPlaying ? (
-            <Pause className="w-5 h-5 text-white" />
-          ) : (
-            <Play className="w-5 h-5 text-white" />
-          )}
-        </button>
-      </div>
+      
+      {/* Error Message */}
+      {loadError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <p className="text-white text-lg">{loadError}</p>
+        </div>
+      )}
+      
+      {/* Dark Overlay */}
+      <div 
+        className="absolute inset-0 bg-black/50 z-[2]" 
+        aria-hidden="true" 
+      />
+      
+      {/* Controls */}
+      {!isMobile && (
+        <div className="absolute bottom-8 right-8 flex gap-4 z-[3]">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onToggleMute}
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? 
+              <VolumeX className="h-4 w-4" aria-hidden="true" /> : 
+              <Volume2 className="h-4 w-4" aria-hidden="true" />
+            }
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onTogglePlay}
+            className="bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 backdrop-blur-sm"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            {isPlaying ? 
+              <Pause className="h-4 w-4" aria-hidden="true" /> : 
+              <Play className="h-4 w-4" aria-hidden="true" />
+            }
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

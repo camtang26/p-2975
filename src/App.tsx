@@ -23,7 +23,7 @@ const App = () => (
     <TooltipProvider>
       <Helmet>
         {/* Security Headers */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://elevenlabs.io; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://elevenlabs.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://www.google-analytics.com; font-src 'self' data: https:; connect-src 'self' https: https://www.google-analytics.com https://elevenlabs.io;" />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://www.google-analytics.com; font-src 'self' data: https:; connect-src 'self' https: https://www.google-analytics.com;" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
