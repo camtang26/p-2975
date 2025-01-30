@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export const StudiosHero = () => {
   return (
     <section 
-      className="relative h-screen max-h-[56.25vw] flex items-center justify-center overflow-hidden" // 16:9 aspect ratio max height
+      className="relative h-[75vh] flex items-center justify-center overflow-hidden" // Adjusted to match home page height
       role="banner"
       aria-label="Studios hero section"
     >
