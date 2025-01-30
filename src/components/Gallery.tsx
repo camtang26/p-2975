@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { X, ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useToast } from "./ui/use-toast";
 import Player from "@vimeo/player";
 
 const videos = [
   {
-    thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     vimeoId: "1051820049",
     vimeoHash: "ba3efabac0",
     title: "Cre8tive AI Automotive Demo"
   },
   {
-    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     vimeoId: "1051824336",
     vimeoHash: "f848b5b131",
     title: "Cre8tive AI DHM Video"
@@ -23,25 +22,84 @@ const videos = [
 export const Gallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
+  const playerRef = useRef<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+
+  // Cleanup function for the Vimeo player
+  const cleanupPlayer = () => {
+    if (playerRef.current) {
+      playerRef.current.destroy();
+      playerRef.current = null;
+    }
+  };
+
+  // Initialize player when modal opens
+  useEffect(() => {
+    if (selectedVideo && containerRef.current && !playerRef.current) {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&background=0&autoplay=1&loop=0&autopause=0`;
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.style.position = "absolute";
+      iframe.style.top = "50%";
+      iframe.style.left = "50%";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.transform = "translate(-50%, -50%)";
+      iframe.style.border = "none";
+      
+      containerRef.current.appendChild(iframe);
+      
+      playerRef.current = new Player(iframe);
+      
+      playerRef.current.ready().then(() => {
+        console.log("Vimeo player is ready");
+        setIsLoaded(true);
+        playerRef.current?.play().catch(error => {
+          console.error("Error playing video:", error);
+          toast({
+            title: "Playback Error",
+            description: "Unable to play video. Please try again.",
+            variant: "destructive"
+          });
+        });
+      }).catch(error => {
+        console.error("Vimeo player failed to initialize:", error);
+        toast({
+          title: "Video Loading Issue",
+          description: "Failed to load the video. Please refresh and try again.",
+          variant: "destructive"
+        });
+      });
+    }
+
+    return cleanupPlayer;
+  }, [selectedVideo, toast]);
 
   const handleVideoClick = (video: typeof videos[0], index: number) => {
     setSelectedVideo(video);
     setSelectedIndex(index);
+    setIsLoaded(false);
   };
 
   const handlePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
+    cleanupPlayer();
     const newIndex = selectedIndex > 0 ? selectedIndex - 1 : videos.length - 1;
     setSelectedIndex(newIndex);
     setSelectedVideo(videos[newIndex]);
+    setIsLoaded(false);
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
+    cleanupPlayer();
     const newIndex = selectedIndex < videos.length - 1 ? selectedIndex + 1 : 0;
     setSelectedIndex(newIndex);
     setSelectedVideo(videos[newIndex]);
+    setIsLoaded(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -51,6 +109,7 @@ export const Gallery = () => {
       } else if (e.key === 'ArrowRight') {
         handleNext(e as unknown as React.MouseEvent);
       } else if (e.key === 'Escape') {
+        cleanupPlayer();
         setSelectedVideo(null);
       }
     }
@@ -99,20 +158,20 @@ export const Gallery = () => {
                 <picture>
                   <source
                     media="(max-width: 640px)"
-                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`}
-                    type="image/webp"
+                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
+                    type="image/jpeg"
                   />
                   <source
                     media="(max-width: 1024px)"
-                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`}
-                    type="image/webp"
+                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
+                    type="image/jpeg"
                   />
                   <source
-                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`}
-                    type="image/webp"
+                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
+                    type="image/jpeg"
                   />
                   <img
-                    src={`${video.thumbnail}?w=1024&q=80`}
+                    src={`https://vumbnail.com/${video.vimeoId}.jpg`}
                     alt={`Video thumbnail for ${video.title}`}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
@@ -133,7 +192,10 @@ export const Gallery = () => {
       {selectedVideo && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-fade-in"
-          onClick={() => setSelectedVideo(null)}
+          onClick={() => {
+            cleanupPlayer();
+            setSelectedVideo(null);
+          }}
           role="dialog"
           aria-modal="true"
           aria-label={`Video player - ${selectedVideo.title}`}
@@ -144,6 +206,7 @@ export const Gallery = () => {
             className="absolute top-4 right-4 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 h-8 w-8"
             onClick={(e) => {
               e.stopPropagation();
+              cleanupPlayer();
               setSelectedVideo(null);
             }}
             aria-label="Close video player"
@@ -179,15 +242,22 @@ export const Gallery = () => {
             className="max-w-[90vw] max-h-[90vh] w-full aspect-video animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-              <iframe
-                src={`https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&badge=0&autopause=0&player_id=0&app_id=58479`}
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                title={selectedVideo.title}
-              />
-            </div>
+            <div 
+              ref={containerRef}
+              style={{ 
+                padding: '56.25% 0 0 0', 
+                position: 'relative',
+                opacity: isLoaded ? 1 : 0,
+                transition: 'opacity 0.5s ease-in-out'
+              }}
+            />
+            
+            {/* Loading Indicator */}
+            {!isLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+              </div>
+            )}
           </div>
         </div>
       )}
