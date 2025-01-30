@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { AgentsHero } from "@/components/agents/AgentsHero";
 import { AiMarketingSolutions } from "@/components/agents/sections/AiMarketingSolutions";
-import { FutureMarketing } from "@/components/agents/sections/FutureMarketing";
+import { HowItWorks } from "@/components/agents/sections/HowItWorks";
 
 const Agents = () => {
   return (
@@ -11,7 +11,7 @@ const Agents = () => {
       <main className="pt-20">
         <AgentsHero />
         <AiMarketingSolutions />
-        <FutureMarketing />
+        <HowItWorks />
       </main>
       <Footer />
     </div>
