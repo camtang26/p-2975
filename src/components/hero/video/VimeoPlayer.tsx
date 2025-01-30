@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import Player from "@vimeo/player";
-import { useToast } from "../../ui/use-toast";
+import { useEffect, useRef } from "react";
 
 interface VimeoPlayerProps {
   isMuted: boolean;
@@ -16,13 +14,11 @@ export const VimeoPlayer = ({
   onError
 }: VimeoPlayerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<Player | null>(null);
-  const { toast } = useToast();
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
-    if (containerRef.current && !playerRef.current) {
+    if (containerRef.current && !iframeRef.current) {
       const iframe = document.createElement('iframe');
-      // Using the correct Vimeo video ID and parameters
       iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
       iframe.style.position = "absolute";
@@ -33,52 +29,27 @@ export const VimeoPlayer = ({
       iframe.style.transform = "translate(-50%, -50%)";
       iframe.style.border = "none";
       
-      containerRef.current.appendChild(iframe);
-      
-      playerRef.current = new Player(iframe);
-      
-      playerRef.current.ready().then(() => {
-        console.log("Vimeo player ready");
-        playerRef.current?.setVolume(0);
-        playerRef.current?.setLoop(true);
-        playerRef.current?.play().catch(console.error);
+      iframe.onload = () => {
+        console.log("Vimeo iframe loaded successfully");
         onLoad();
-      }).catch(error => {
-        console.error("Vimeo player initialization error:", error);
+      };
+
+      iframe.onerror = () => {
+        console.error("Failed to load Vimeo iframe");
         onError("Failed to load video");
-        toast({
-          title: "Video Loading Error",
-          description: "There was an issue loading the video. Please refresh the page.",
-          variant: "destructive"
-        });
-      });
+      };
+
+      containerRef.current.appendChild(iframe);
+      iframeRef.current = iframe;
     }
 
     return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy();
-        playerRef.current = null;
+      if (iframeRef.current && containerRef.current) {
+        containerRef.current.removeChild(iframeRef.current);
+        iframeRef.current = null;
       }
     };
-  }, [onLoad, onError, toast]);
-
-  useEffect(() => {
-    if (playerRef.current) {
-      playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
-    }
-  }, [isMuted]);
-
-  useEffect(() => {
-    if (playerRef.current) {
-      if (isPlaying) {
-        playerRef.current.play().catch(error => {
-          console.error("Play error:", error);
-        });
-      } else {
-        playerRef.current.pause().catch(console.error);
-      }
-    }
-  }, [isPlaying]);
+  }, [onLoad, onError]);
 
   return (
     <div 
