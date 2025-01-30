@@ -24,14 +24,18 @@ export const VideoBackground = ({
 
   // Handle play/pause through postMessage
   useEffect(() => {
-    const message = isPlaying ? 'play' : 'pause';
-    iframeRef.current?.contentWindow?.postMessage(message, '*');
+    const message = {
+      type: isPlaying ? 'play' : 'pause'
+    };
+    iframeRef.current?.contentWindow?.postMessage(JSON.stringify(message), '*');
   }, [isPlaying]);
 
   // Handle mute/unmute through postMessage
   useEffect(() => {
-    const message = isMuted ? 'mute' : 'unmute';
-    iframeRef.current?.contentWindow?.postMessage(message, '*');
+    const message = {
+      type: isMuted ? 'mute' : 'unmute'
+    };
+    iframeRef.current?.contentWindow?.postMessage(JSON.stringify(message), '*');
   }, [isMuted]);
 
   return (
@@ -40,7 +44,7 @@ export const VideoBackground = ({
       <div className="relative w-full h-full z-[1]">
         <iframe
           ref={iframeRef}
-          src="https://iframe.mediadelivery.net/embed/376993/56c0d74d-b753-4bd7-82cf-e51101163d42"
+          src={`https://iframe.mediadelivery.net/embed/376993/56c0d74d-b753-4bd7-82cf-e51101163d42?autoplay=true&loop=true&muted=${isMuted}&controls=false`}
           className="w-full h-full"
           style={{
             opacity: isLoaded ? 1 : 0,
