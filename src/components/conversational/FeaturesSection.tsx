@@ -1,3 +1,4 @@
+import React from 'react';
 import { PhoneCall, Sun, User, GitMerge, Speech, BarChart2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
