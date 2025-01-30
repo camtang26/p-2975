@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { RobotIllustration } from "./RobotIllustration";
 
 export const HeroSection = () => {
   return (
-    <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-black/95 to-black/90">
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-black/95 to-black/90">
       <div className="container mx-auto px-4 text-center relative">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -22,11 +22,13 @@ export const HeroSection = () => {
           Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
         </motion.p>
         
+        <RobotIllustration />
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mt-16 relative"
+          className="mt-8 relative"
         >
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4 text-white">Experience the Future of Conversation</h3>
