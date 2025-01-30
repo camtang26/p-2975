@@ -3,86 +3,43 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Clock, Zap, GitMerge, Scale, Database } from "lucide-react";
-import { useEffect, useState } from "react";
 
 const ConversationalAI = () => {
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [scriptError, setScriptError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://elevenlabs.io/convai-widget/index.js";
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    
-    script.onload = () => {
-      setScriptLoaded(true);
-      console.log("ElevenLabs script loaded successfully");
-    };
-
-    script.onerror = (error) => {
-      setScriptError("Failed to load ElevenLabs widget");
-      console.error("Error loading ElevenLabs script:", error);
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="pt-20">
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1A1A1A] to-[#282828]">
-          <div className="container mx-auto px-4 flex flex-col items-center justify-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-extrabold text-white text-center mb-6 font-inter"
-            >
-              Ignite Natural Conversations
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl font-semibold mb-10 text-white text-center max-w-3xl font-inter"
-            >
-              Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="w-full max-w-[400px] bg-[#EEEEEE] border border-[#CCCCCC] rounded-lg h-[300px] mx-auto mt-10 relative"
-            >
-              <style>{`
-                #convai-widget {
-                  position: static !important;
-                  width: 100% !important;
-                  height: 100% !important;
-                  max-width: 100% !important;
-                  max-height: 100% !important;
-                  margin: 0 !important;
-                  right: auto !important;
-                  bottom: auto !important;
-                }
-              `}</style>
-              {scriptError ? (
-                <div className="flex items-center justify-center h-full text-red-500">
-                  {scriptError}
-                </div>
-              ) : (
-                <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
-              )}
-            </motion.div>
-          </div>
+        {/* Hero Section */}
+        <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-6xl md:text-7xl font-bold mb-6 text-gradient"
+          >
+            Unlock the Power of Natural Conversations
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl md:text-2xl mb-8 text-white/80"
+          >
+            Engage, Convert, and Grow with Intelligent Conversational AI Agents
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-white/70"
+          >
+            Transform your customer interactions with AI agents that understand and respond naturally, 
+            providing personalized experiences and driving better business outcomes.
+          </motion.p>
+        </div>
         </section>
 
+        {/* What is a Conversational AI Agent? */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-center">
@@ -104,6 +61,7 @@ const ConversationalAI = () => {
         </div>
         </section>
 
+        {/* Key Features & Capabilities */}
         <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
@@ -144,6 +102,7 @@ const ConversationalAI = () => {
         </div>
         </section>
 
+        {/* Use Cases & Applications */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient text-center">
@@ -166,6 +125,7 @@ const ConversationalAI = () => {
         </div>
         </section>
 
+        {/* Experience Our AI Agent */}
         <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
@@ -182,6 +142,7 @@ const ConversationalAI = () => {
         </div>
         </section>
 
+        {/* Call to Action */}
         <section className="py-20 bg-black/30">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
@@ -201,6 +162,7 @@ const ConversationalAI = () => {
   );
 };
 
+// Feature Component
 const Feature = ({ icon, title, description }: { 
   icon: React.ReactNode;
   title: string;
@@ -213,6 +175,7 @@ const Feature = ({ icon, title, description }: {
   </div>
 );
 
+// Use Case Component
 const UseCase = ({ title, description }: {
   title: string;
   description: string;
