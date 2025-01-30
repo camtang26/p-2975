@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { Mail, Phone, Building2 } from "lucide-react";
 
@@ -120,8 +119,6 @@ const Contact = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
