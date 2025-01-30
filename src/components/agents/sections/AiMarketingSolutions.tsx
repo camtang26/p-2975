@@ -5,25 +5,49 @@ export const AiMarketingSolutions = () => {
   const solutions = [
     {
       title: "AI-Powered CRM",
-      description: "Supercharge your customer relationships with our AI-powered CRM. We monitor customer interactions and behaviors to create truly personalized experiences. Streamline lead nurturing with customized messaging and timely follow-ups, uncovering high-potential opportunities using advanced AI analytics. Boost conversions and build stronger customer loyalty.",
+      description: "Supercharge your customer relationships with our AI-powered CRM system.",
+      benefits: [
+        "Monitor customer interactions and behaviors for personalized experiences",
+        "Streamline lead nurturing with customized messaging",
+        "Uncover high-potential opportunities using advanced AI analytics",
+        "Boost conversions and strengthen customer loyalty"
+      ],
       Icon: Database,
       color: "#60A5FA" // blue-400
     },
     {
       title: "AI-Driven Customer Service",
-      description: "Provide instant, 24/7 support with our AI-driven customer service solution. Our intelligent agents serve as the first line of response for marketing-related inquiries, providing quick, consistent, and tailored support around the clock. Seamlessly route leads and feedback to the appropriate teams for swift action, ensuring no opportunity is missed.",
+      description: "Provide instant, 24/7 support with our intelligent customer service solution.",
+      benefits: [
+        "First-line response for all marketing-related inquiries",
+        "Quick, consistent, and tailored support around the clock",
+        "Seamless routing of leads and feedback to appropriate teams",
+        "Ensure no opportunity is missed with constant monitoring"
+      ],
       Icon: MessageSquare,
       color: "#F87171" // red-400
     },
     {
       title: "AI Content Generation",
-      description: "Unlock your content creation potential with our AI-powered content generation. Our system learns your brand's unique voice and leverages your business knowledge to create engaging and relevant content. From emails and blogs to website copy and white papers, we generate diverse content types that resonate with your target audience and drive results.",
+      description: "Unlock your content creation potential with our AI-powered system that learns your brand's unique voice.",
+      benefits: [
+        "Generate diverse content types from emails to white papers",
+        "Create engaging and relevant content that resonates",
+        "Leverage your business knowledge for authentic content",
+        "Drive results with targeted content strategies"
+      ],
       Icon: Text,
       color: "#C084FC" // purple-400
     },
     {
       title: "AI Social Media Management",
-      description: "Elevate your social media presence with our AI-powered social media management. We craft engaging posts that connect with your target audience, tailoring content to match their preferences and behaviors. Stay ahead of the curve by identifying trending topics and hashtags, maximizing your reach and impact.",
+      description: "Elevate your social media presence with intelligent content crafting and audience targeting.",
+      benefits: [
+        "Create engaging posts tailored to your audience",
+        "Match content to audience preferences and behaviors",
+        "Identify and leverage trending topics and hashtags",
+        "Maximize reach and impact across platforms"
+      ],
       Icon: Share2,
       color: "#4ADE80" // green-400
     }
@@ -81,9 +105,18 @@ export const AiMarketingSolutions = () => {
                   {solution.title}
                 </h3>
                 
-                <p className="text-xl text-white/80 leading-relaxed">
+                <p className="text-xl text-white/80 leading-relaxed mb-6">
                   {solution.description}
                 </p>
+
+                <ul className="text-lg text-white/70 space-y-3 text-left w-full">
+                  {solution.benefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="mr-2 text-[var(--solution-color)]">•</span>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}
