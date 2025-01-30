@@ -10,7 +10,7 @@ export const ExpertiseBenefits = () => {
       className="py-32 relative overflow-hidden" 
       aria-label="Expertise and benefits section"
     >
-      {/* Background Gradients */}
+      {/* Main Background Gradient */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -18,19 +18,19 @@ export const ExpertiseBenefits = () => {
         }}
       />
       
-      {/* Brand Color Accents */}
+      {/* Brand Color Accents - Benefits Section */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           background: 
-            'radial-gradient(circle at 20% 20%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
-            'radial-gradient(circle at 80% 80%, rgba(217,70,239,0.15) 0%, transparent 40%)',
+            'radial-gradient(circle at 30% 20%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 70% 80%, rgba(217,70,239,0.15) 0%, transparent 50%)',
           filter: 'blur(120px)'
         }}
       />
 
       {/* Benefits Section */}
-      <div className="container mx-auto px-4 mb-32 relative">
+      <div className="container mx-auto px-4 mb-32 relative z-10">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           Get More From Your Video Content
         </h2>
@@ -77,8 +77,19 @@ export const ExpertiseBenefits = () => {
         </div>
       </div>
 
+      {/* Brand Color Accents - Expertise Section */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 
+            'radial-gradient(circle at 70% 30%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 30% 70%, rgba(217,70,239,0.15) 0%, transparent 50%)',
+          filter: 'blur(120px)'
+        }}
+      />
+
       {/* Expertise Section */}
-      <div className="container mx-auto px-4 mb-32 relative">
+      <div className="container mx-auto px-4 mb-32 relative z-10">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           The Craft of AI Video: Expertise Makes the Difference
         </h2>
@@ -130,8 +141,19 @@ export const ExpertiseBenefits = () => {
         </div>
       </div>
 
+      {/* Brand Color Accents - Comparison Section */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 
+            'radial-gradient(circle at 40% 60%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 60% 40%, rgba(217,70,239,0.15) 0%, transparent 50%)',
+          filter: 'blur(120px)'
+        }}
+      />
+
       {/* Comparison Section */}
-      <div className="container mx-auto px-4 mb-32 relative">
+      <div className="container mx-auto px-4 mb-32 relative z-10">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           AI Video vs. Traditional: A Clear Advantage
         </h2>
@@ -183,45 +205,26 @@ export const ExpertiseBenefits = () => {
         </div>
       </div>
 
+      {/* Brand Color Accents - Future Section */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 
+            'radial-gradient(circle at 20% 80%, rgba(155,135,245,0.15) 0%, transparent 50%), ' +
+            'radial-gradient(circle at 80% 20%, rgba(217,70,239,0.15) 0%, transparent 50%)',
+          filter: 'blur(120px)'
+        }}
+      />
+
       {/* Future Section */}
-      <div className="container mx-auto px-4 relative">
-        <div className="glass-morphism rounded-3xl p-16 relative overflow-hidden">
-          {/* Abstract Background Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
-          <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          
-          {/* Content Container */}
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            {/* Icon */}
-            <div className="mb-8 flex justify-center">
-              <div className="p-4 rounded-full bg-primary/10 backdrop-blur-sm animate-fade-in">
-                <Sparkles className="w-12 h-12 text-primary animate-pulse" />
-              </div>
-            </div>
-
-            {/* Heading */}
-            <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-8 tracking-tight animate-fade-in">
-              The Future of Video is Intelligent
-            </h2>
-
-            {/* Description */}
-            <p className="text-xl text-white/80 leading-relaxed mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              As AI technology continues to evolve, the possibilities for video production become even more exciting. 
-              Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
-            </p>
-
-            {/* CTA Button */}
-            <Button 
-              size="lg" 
-              className="animate-fade-in hover-lift hover-glow bg-primary text-white text-lg px-8 py-6 h-auto font-semibold tracking-wide"
-              style={{ animationDelay: '0.4s' }}
-            >
-              <Rocket className="w-5 h-5 mr-2" />
-              Get Started Today
-            </Button>
-          </div>
-        </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-8 tracking-tight">
+          The Future of Video is Intelligent
+        </h2>
+        <p className="text-xl text-white/80 leading-relaxed mb-12">
+          As AI technology continues to evolve, the possibilities for video production become even more exciting. 
+          Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
+        </p>
       </div>
     </section>
   );
