@@ -13,7 +13,8 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative w-full aspect-video flex items-center justify-center overflow-hidden" 
+      className="relative w-full flex items-center justify-center overflow-hidden" 
+      style={{ aspectRatio: '16/8.5' }}
       role="banner" 
       aria-label="Hero section"
     >
