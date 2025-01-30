@@ -19,24 +19,24 @@ export const RobotIllustration = () => {
           <circle cx="100" cy="100" r="50" 
                   className="fill-white/10 stroke-[#00ff80] stroke-2"/>
           
-          {/* Robot Eyes - Larger and with glow effect */}
-          <circle cx="85" cy="90" r="8" className="fill-[#00ff80]"/>
-          <circle cx="115" cy="90" r="8" className="fill-[#00ff80]"/>
+          {/* Robot Eyes - More geometric and robotic */}
+          <rect x="77" y="82" width="16" height="16" rx="2" className="fill-[#00ff80]"/>
+          <rect x="107" y="82" width="16" height="16" rx="2" className="fill-[#00ff80]"/>
           
           {/* Robot Antenna */}
           <line x1="100" y1="50" x2="100" y2="35" 
                 className="stroke-[#00ff80] stroke-2"/>
           <circle cx="100" cy="32" r="3" className="fill-[#00ff80]"/>
           
-          {/* Robot Details - Additional geometric patterns */}
-          {/* Updated smile path - warm and pleasant curve */}
-          <path d="M75,110 Q100,125 125,110" 
+          {/* Robot Details - Geometric patterns for more robotic look */}
+          {/* Wider, friendlier smile */}
+          <path d="M70,110 Q100,130 130,110" 
                 className="fill-none stroke-[#00ff80] stroke-2"/>
-          <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
           
-          {/* Additional Details - Removed frown line, added friendly accents */}
-          <path d="M80,75 Q100,80 120,75" 
-                className="fill-none stroke-[#00ff80] stroke-2 opacity-50"/>
+          {/* Circuit-like details instead of human-like features */}
+          <line x1="70" y1="65" x2="85" y2="65" className="stroke-[#00ff80] stroke-1 opacity-30"/>
+          <line x1="115" y1="65" x2="130" y2="65" className="stroke-[#00ff80] stroke-1 opacity-30"/>
+          <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
         </svg>
         
         {/* Glow Effects for Robot */}
