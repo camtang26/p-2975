@@ -1,34 +1,58 @@
-import { Brain, Layers, Target, Rocket } from "lucide-react";
+import { Brain, Users, Sliders, Target } from "lucide-react";
 import { StepCard } from "./StepCard";
 import { StepArrow } from "./StepArrow";
 
 const steps = [
   {
     number: 1,
-    title: "Input Your Vision",
-    description: "Share your product details and creative vision through our intuitive interface.",
+    title: "Define Your Mission",
+    description: "Set clear marketing objectives for your AI team to achieve.",
+    benefits: [
+      "Clearly define marketing goals and KPIs",
+      "Specify target audience and desired outcomes",
+      "Create detailed campaign requirements",
+      "Enable data-driven decision making"
+    ],
     Icon: Brain,
     color: "#60A5FA" // blue-400
   },
   {
     number: 2,
-    title: "AI Processing",
-    description: "Our AI analyzes your input and generates creative concepts and storyboards.",
-    Icon: Layers,
+    title: "Assemble Your AI Team",
+    description: "Build your dream team of specialized AI marketing agents.",
+    benefits: [
+      "Select agents with diverse skill sets",
+      "Configure agent specializations",
+      "Create balanced team compositions",
+      "Scale team size as needed"
+    ],
+    Icon: Users,
     color: "#F87171" // red-400
   },
   {
     number: 3,
-    title: "Review & Refine",
-    description: "Review the generated concepts and make refinements as needed.",
-    Icon: Target,
+    title: "Assign Tasks & Set Autonomy",
+    description: "Define tasks and customize autonomy levels for each agent.",
+    benefits: [
+      "Set granular permission levels",
+      "Define workflow parameters",
+      "Establish approval processes",
+      "Enable autonomous operations"
+    ],
+    Icon: Sliders,
     color: "#C084FC" // purple-400
   },
   {
     number: 4,
-    title: "Production Ready",
-    description: "Receive production-ready storyboards for your creative team.",
-    Icon: Rocket,
+    title: "Monitor, Optimize, & Achieve",
+    description: "Track performance and optimize for marketing success.",
+    benefits: [
+      "Real-time performance monitoring",
+      "Data-driven optimization",
+      "Automated reporting",
+      "Continuous improvement"
+    ],
+    Icon: Target,
     color: "#4ADE80" // green-400
   }
 ];
@@ -40,9 +64,12 @@ export const HowItWorks = () => {
       aria-label="How it works section"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-24 animate-fade-in">
+        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-4 animate-fade-in">
           How It Works
         </h2>
+        <p className="text-xl text-white/80 text-center mb-24 max-w-3xl mx-auto animate-fade-in [animation-delay:200ms]">
+          Building Your AI Dream Team
+        </p>
         
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-4">
           {steps.map((step, index) => (

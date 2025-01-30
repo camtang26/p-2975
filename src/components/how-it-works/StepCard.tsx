@@ -5,6 +5,7 @@ interface StepCardProps {
   number: number;
   title: string;
   description: string;
+  benefits: string[];
   Icon: LucideIcon;
   color: string;
   className?: string;
@@ -14,6 +15,7 @@ export const StepCard = ({
   number,
   title,
   description,
+  benefits,
   Icon,
   color,
   className,
@@ -76,9 +78,27 @@ export const StepCard = ({
         >
           {title}
         </h3>
-        <p className="text-lg text-white/80 leading-relaxed">
+        <p className="text-lg text-white/80 leading-relaxed mb-6">
           {description}
         </p>
+
+        {/* Benefits List */}
+        <ul className="space-y-3 text-white/70">
+          {benefits.map((benefit, index) => (
+            <li 
+              key={index}
+              className="flex items-start text-sm"
+            >
+              <span 
+                className="mr-2 text-[var(--step-color)]"
+                style={{ textShadow: `0 0 10px ${color}` }}
+              >
+                •
+              </span>
+              {benefit}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
