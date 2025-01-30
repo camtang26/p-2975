@@ -13,10 +13,9 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Services />
-      <Gallery />
       
-      {/* First Quote - Moved below Gallery */}
-      <div className="container mx-auto px-4 py-16">
+      {/* First Quote - Between Services and Gallery */}
+      <div className="container mx-auto px-4 py-8">
         <QuoteCard
           quote="The question isn't whether AI will transform your business, but when and how."
           author="Satya Nadella"
@@ -24,8 +23,10 @@ const Index = () => {
         />
       </div>
       
+      <Gallery />
+      
       {/* Second Quote */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8">
         <QuoteCard
           quote="Any business that isn't using AI in some way in the next few years will be at a significant disadvantage."
           author="Marc Benioff"

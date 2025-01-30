@@ -8,24 +8,24 @@ interface QuoteCardProps {
 
 export const QuoteCard = ({ quote, author, title }: QuoteCardProps) => {
   return (
-    <div className="relative p-8 transition-all duration-300 hover:-translate-y-1">
+    <div className="relative p-6 transition-all duration-300">
       {/* Quote icon with glow effect */}
-      <div className="absolute -top-4 left-8">
+      <div className="absolute -top-3 left-6">
         <div className="relative">
-          <div className="absolute inset-0 blur-xl rounded-full opacity-50">
-            <div className="w-8 h-8 bg-[#00ff80]" />
+          <div className="absolute inset-0 blur-xl rounded-full opacity-30">
+            <div className="w-6 h-6 bg-[#00ff80]" />
           </div>
-          <Quote className="w-8 h-8 text-[#00ff80] relative z-10" />
+          <Quote className="w-6 h-6 text-[#00ff80] relative z-10" />
         </div>
       </div>
 
       {/* Quote content */}
-      <div className="mt-4 space-y-4">
-        <p className="text-xl md:text-2xl font-medium italic text-white/90 leading-relaxed">
+      <div className="mt-3 space-y-3">
+        <p className="text-lg md:text-xl font-medium italic text-white/90 leading-relaxed">
           "{quote}"
         </p>
         <div className="space-y-1">
-          <p className="text-lg font-semibold text-[#00ff80]">{author}</p>
+          <p className="text-base font-semibold text-[#00ff80]">{author}</p>
           <p className="text-sm text-white/60">{title}</p>
         </div>
       </div>
