@@ -7,11 +7,30 @@ import { Button } from "@/components/ui/button";
 export const ExpertiseBenefits = () => {
   return (
     <section 
-      className="py-32 relative overflow-hidden bg-gradient-to-b from-background to-background/80" 
+      className="py-32 relative overflow-hidden" 
       aria-label="Expertise and benefits section"
     >
+      {/* Background Gradients */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
+        }}
+      />
+      
+      {/* Brand Color Accents */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 
+            'radial-gradient(circle at 20% 20%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
+            'radial-gradient(circle at 80% 80%, rgba(217,70,239,0.15) 0%, transparent 40%)',
+          filter: 'blur(120px)'
+        }}
+      />
+
       {/* Benefits Section */}
-      <div className="container mx-auto px-4 mb-32">
+      <div className="container mx-auto px-4 mb-32 relative">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           Get More From Your Video Content
         </h2>
@@ -59,7 +78,7 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Expertise Section */}
-      <div className="container mx-auto px-4 mb-32">
+      <div className="container mx-auto px-4 mb-32 relative">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           The Craft of AI Video: Expertise Makes the Difference
         </h2>
@@ -112,7 +131,7 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Comparison Section */}
-      <div className="container mx-auto px-4 mb-32">
+      <div className="container mx-auto px-4 mb-32 relative">
         <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
           AI Video vs. Traditional: A Clear Advantage
         </h2>
@@ -165,7 +184,7 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Future Section */}
-      <div className="container mx-auto px-4 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative">
         <div className="glass-morphism rounded-3xl p-16 relative overflow-hidden">
           {/* Abstract Background Elements */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
