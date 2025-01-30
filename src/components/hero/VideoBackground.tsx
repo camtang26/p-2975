@@ -8,13 +8,15 @@ interface VideoBackgroundProps {
   isPlaying: boolean;
   onToggleMute: () => void;
   onTogglePlay: () => void;
+  priority?: boolean;
 }
 
 export const VideoBackground = ({
   isMuted,
   isPlaying,
   onToggleMute,
-  onTogglePlay
+  onTogglePlay,
+  priority = false
 }: VideoBackgroundProps) => {
   const isMobile = useIsMobile();
   const [videoError, setVideoError] = useState(false);
@@ -25,12 +27,18 @@ export const VideoBackground = ({
     if (video) {
       video.addEventListener('error', () => setVideoError(true));
       video.addEventListener('loadeddata', () => setIsLoaded(true));
+      
+      // Preload video for priority loading
+      if (priority) {
+        video.preload = "auto";
+      }
+      
       return () => {
         video.removeEventListener('error', () => setVideoError(true));
         video.removeEventListener('loadeddata', () => setIsLoaded(true));
       };
     }
-  }, []);
+  }, [priority]);
 
   if (videoError) {
     return (
@@ -54,6 +62,9 @@ export const VideoBackground = ({
         ref={(el) => {
           if (el) {
             isPlaying ? el.play() : el.pause();
+            if (priority) {
+              el.preload = "auto";
+            }
           }
         }}
         poster="/placeholder.svg"
@@ -61,6 +72,7 @@ export const VideoBackground = ({
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out'
         }}
+        preload={priority ? "auto" : "metadata"}
       >
         <source 
           src="/hero-video.mp4" 

@@ -22,6 +22,7 @@ export const Hero = () => {
         isPlaying={isPlaying}
         onToggleMute={toggleMute}
         onTogglePlay={togglePlay}
+        priority={true} // Add priority to ensure fast loading for hero video
       />
       <HeroContent />
     </section>
