@@ -76,7 +76,7 @@ export const Gallery = () => {
 
   return (
     <section 
-      className="py-24 relative overflow-hidden"
+      className="py-32 relative overflow-hidden" // Increased padding
       onKeyDown={handleKeyDown}
       role="region"
       aria-label="Video gallery"
@@ -88,15 +88,15 @@ export const Gallery = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-4 font-geist">
+      <div className="container relative mx-auto px-6"> {/* Increased horizontal padding */}
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in"> {/* Increased max-width and margin-bottom */}
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist"> {/* Increased text size and margin */}
             Our Work
           </h2>
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" // Increased gap
           style={{
             display: "grid",
             gridTemplateRows: "masonry",
@@ -117,30 +117,30 @@ export const Gallery = () => {
                 <picture>
                   <source
                     media="(max-width: 640px)"
-                    srcSet={`${video.thumbnail}?w=480&fm=webp&q=80 1x, ${video.thumbnail}?w=960&fm=webp&q=80 2x`}
+                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`} // Increased image sizes
                     type="image/webp"
                   />
                   <source
                     media="(max-width: 1024px)"
-                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`}
+                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`} // Increased image sizes
                     type="image/webp"
                   />
                   <source
-                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`}
+                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`} // Increased image sizes
                     type="image/webp"
                   />
                   <img
-                    src={`${video.thumbnail}?w=800&q=80`}
+                    src={`${video.thumbnail}?w=1024&q=80`} // Increased base image size
                     alt={`Video thumbnail for ${video.title}`}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
                     decoding="async"
-                    width={800}
-                    height={450}
+                    width={1024} // Increased dimensions
+                    height={576}
                   />
                 </picture>
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
-                  <Play className="w-16 h-16 text-white" aria-hidden="true" />
+                  <Play className="w-20 h-20 text-white" aria-hidden="true" /> {/* Increased icon size */}
                 </div>
               </AspectRatio>
             </div>
