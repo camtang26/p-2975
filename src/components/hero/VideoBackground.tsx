@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Hls from "hls.js";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -21,25 +22,65 @@ export const VideoBackground = ({
   const isMobile = useIsMobile();
   const [videoError, setVideoError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const videoUrl = `https://vz-376993.b-cdn.net/${encodeURIComponent('56c0d74d-b753-4bd7-82cf-e51101163d42')}/playlist.m3u8`;
 
   useEffect(() => {
-    const video = document.querySelector('video');
-    if (video) {
-      video.addEventListener('error', () => setVideoError(true));
-      video.addEventListener('loadeddata', () => setIsLoaded(true));
-      
-      if (priority) {
-        video.preload = "auto";
+    const video = videoRef.current;
+    if (!video) return;
+
+    let hls: Hls | null = null;
+
+    const initializeVideo = () => {
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        
+        hls.loadSource(videoUrl);
+        hls.attachMedia(video);
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          if (isPlaying) {
+            video.play().catch(console.error);
+          }
+        });
+
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          console.error('HLS error:', data);
+          if (data.fatal) {
+            setVideoError(true);
+          }
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // For Safari which has native HLS support
+        video.src = videoUrl;
+        video.addEventListener('loadedmetadata', () => {
+          if (isPlaying) {
+            video.play().catch(console.error);
+          }
+        });
+      } else {
+        console.error('HLS is not supported in this browser');
+        setVideoError(true);
       }
-      
-      return () => {
-        video.removeEventListener('error', () => setVideoError(true));
-        video.removeEventListener('loadeddata', () => setIsLoaded(true));
-      };
-    }
-  }, [priority]);
+    };
+
+    initializeVideo();
+
+    video.addEventListener('error', () => setVideoError(true));
+    video.addEventListener('loadeddata', () => setIsLoaded(true));
+
+    return () => {
+      if (hls) {
+        hls.destroy();
+      }
+      video.removeEventListener('error', () => setVideoError(true));
+      video.removeEventListener('loadeddata', () => setIsLoaded(true));
+    };
+  }, [videoUrl, isPlaying]);
 
   if (videoError) {
     return (
@@ -54,20 +95,13 @@ export const VideoBackground = ({
   return (
     <div className="absolute inset-0 z-0">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted={isMuted}
         playsInline
         className="w-full h-full object-cover"
         aria-label="Background video showcasing Cre8tive AI capabilities"
-        ref={(el) => {
-          if (el) {
-            isPlaying ? el.play() : el.pause();
-            if (priority) {
-              el.preload = "auto";
-            }
-          }
-        }}
         poster="/placeholder.svg"
         style={{
           opacity: isLoaded ? 1 : 0,
@@ -75,10 +109,6 @@ export const VideoBackground = ({
         }}
         preload={priority ? "auto" : "metadata"}
       >
-        <source 
-          src={videoUrl}
-          type="application/x-mpegURL"
-        />
         Your browser does not support the video tag.
       </video>
       
