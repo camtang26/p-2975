@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 export const StudiosIntro = () => {
   return (
     <section 
-      className="py-24 relative overflow-hidden"
+      className="py-32 relative overflow-hidden"
       aria-label="Introduction section"
     >
       {/* Main Background Gradient */}
@@ -39,14 +39,14 @@ export const StudiosIntro = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div className="animate-fade-in relative z-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6 relative">
+            <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold text-gradient mb-8 relative">
               Introducing Cre8tive AI Studios
             </h2>
-            <p className="text-lg text-white/90 leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               At Cre8tive AI, we're here to help you harness the transformative power 
               of AI-driven media services. Our comprehensive suite of solutions is 
               designed to elevate your content, streamline your workflows, and position 
@@ -57,7 +57,7 @@ export const StudiosIntro = () => {
           {/* Visual */}
           <div 
             className={cn(
-              "relative aspect-video rounded-lg overflow-hidden",
+              "relative aspect-video rounded-xl overflow-hidden",
               "glass-morphism animate-scale-in"
             )}
           >
