@@ -1,5 +1,4 @@
-import { NetworkVisualization } from "./NetworkVisualization";
-import { Button } from "../ui/button";
+import { RobotLineup } from "./RobotLineup";
 
 export const AgentsHero = () => {
   return (
@@ -8,10 +7,22 @@ export const AgentsHero = () => {
       role="banner" 
       aria-label="Agents hero section"
     >
-      <div className="absolute inset-0 z-0">
-        <NetworkVisualization />
+      {/* Dark gradient backdrop */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
+          opacity: 0.95
+        }}
+      />
+      
+      {/* Robot lineup */}
+      <div className="absolute inset-0 z-10">
+        <RobotLineup />
       </div>
-      <div className="relative z-10">
+
+      {/* Content */}
+      <div className="relative z-20">
         <div className="flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto px-4">
           <h1 className="font-inter text-6xl md:text-7xl font-bold tracking-[-0.02em] text-white neon-glow animate-fade-in">
             AI Autonomous Agents
@@ -19,13 +30,6 @@ export const AgentsHero = () => {
           <p className="font-inter text-xl md:text-2xl font-medium tracking-[-0.01em] text-white/90 neon-glow-subtle animate-fade-in [animation-delay:200ms]">
             Cre8tive AI Autonomous Agents: Smarter Solutions for Smarter Businesses
           </p>
-          <Button
-            size="lg"
-            className="font-inter text-lg font-semibold bg-[#4A90E2] hover:bg-[#357ABD] text-white px-8 py-6 h-auto transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 animate-fade-in [animation-delay:300ms] tracking-[-0.01em]"
-            aria-label="Explore our AI solutions"
-          >
-            Explore Our Solutions
-          </Button>
         </div>
       </div>
     </section>
