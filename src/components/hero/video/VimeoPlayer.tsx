@@ -22,8 +22,8 @@ export const VimeoPlayer = ({
   useEffect(() => {
     if (containerRef.current && !playerRef.current) {
       const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0&muted=1";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture; clipboard-write";
       iframe.style.position = "absolute";
       iframe.style.top = "50%";
       iframe.style.left = "50%";
