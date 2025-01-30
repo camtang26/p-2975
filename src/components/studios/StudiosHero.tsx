@@ -16,8 +16,10 @@ export const StudiosHero = () => {
       iframe.style.position = "absolute";
       iframe.style.top = "50%";
       iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
+      iframe.style.width = "177.77777778vh"; // 16:9 aspect ratio
+      iframe.style.height = "56.25vw"; // 16:9 aspect ratio
+      iframe.style.minHeight = "100%";
+      iframe.style.minWidth = "100%";
       iframe.style.transform = "translate(-50%, -50%)";
       iframe.style.border = "none";
       
@@ -48,7 +50,7 @@ export const StudiosHero = () => {
 
   return (
     <section 
-      className="relative h-[60vh] flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
       role="banner"
       aria-label="Studios hero section"
     >
