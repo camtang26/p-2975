@@ -13,8 +13,7 @@ const Studios = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, #000000 0%, #000000 75%, #0D0D1D 100%)',
-          opacity: 0.95
+          background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
         }}
       />
       
@@ -23,8 +22,8 @@ const Studios = () => {
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           background: 
-            'radial-gradient(circle at 20% 20%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
-            'radial-gradient(circle at 80% 80%, rgba(217,70,239,0.15) 0%, transparent 40%)',
+            'radial-gradient(circle at 40% 30%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
+            'radial-gradient(circle at 60% 70%, rgba(217,70,239,0.15) 0%, transparent 40%)',
           filter: 'blur(120px)'
         }}
       />
@@ -42,6 +41,25 @@ const Studios = () => {
           className="py-24 relative overflow-hidden"
           aria-label="Call to action section"
         >
+          {/* Background Gradients */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
+            }}
+          />
+          
+          {/* Brand Color Accents */}
+          <div 
+            className="absolute inset-0 pointer-events-none opacity-30"
+            style={{
+              background: 
+                'radial-gradient(circle at 30% 70%, rgba(155,135,245,0.15) 0%, transparent 40%), ' +
+                'radial-gradient(circle at 70% 30%, rgba(217,70,239,0.15) 0%, transparent 40%)',
+              filter: 'blur(120px)'
+            }}
+          />
+
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
               Ready to Transform Your Content?
