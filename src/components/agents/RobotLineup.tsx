@@ -3,23 +3,28 @@ import { useEffect, useRef } from 'react';
 const ROBOTS = [
   {
     color: '#0EA5E9', // Ocean Blue
-    x: 20,
-    scale: 1.2
+    x: 16.67,
+    scale: 1.4
   },
   {
     color: '#F97316', // Bright Orange
-    x: 30,
-    scale: 1.1
+    x: 33.33,
+    scale: 1.3
   },
   {
     color: '#1EAEDB', // Bright Blue
-    x: 40,
-    scale: 1
+    x: 50,
+    scale: 1.4
   },
   {
     color: '#38BDF8', // Lighter Blue
-    x: 50,
-    scale: 1.1
+    x: 66.67,
+    scale: 1.3
+  },
+  {
+    color: '#0284C7', // Darker Ocean Blue
+    x: 83.33,
+    scale: 1.4
   }
 ];
 
@@ -97,11 +102,12 @@ export const RobotLineup = () => {
       
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
-      const spacing = canvasWidth / (ROBOTS.length + 1);
       
       ROBOTS.forEach((robot, index) => {
-        const x = spacing * (index + 1);
-        const y = canvasHeight * 0.6; // Position robots in lower third
+        // Calculate x position based on percentage of canvas width
+        const x = (canvasWidth * robot.x) / 100;
+        // Position robots at 80% of canvas height to ensure they're at the bottom
+        const y = canvasHeight * 0.8;
         drawRobot(x, y, robot.color, robot.scale, index === hoverIndex);
       });
     };
@@ -110,9 +116,11 @@ export const RobotLineup = () => {
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      const spacing = canvas.width / (ROBOTS.length + 1);
+      const width = canvas.width / window.devicePixelRatio;
       
-      const index = Math.floor(x / spacing);
+      // Calculate which robot is being hovered based on x position
+      const robotWidth = width / ROBOTS.length;
+      const index = Math.floor(x / robotWidth);
       hoverIndex = index >= 0 && index < ROBOTS.length ? index : -1;
       
       render();
