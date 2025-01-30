@@ -49,7 +49,7 @@ export const VideoBackground = ({
           const hls = new Hls({
             enableWorker: true,
             lowLatencyMode: true,
-            debug: true, // Enable debug logs
+            debug: true,
           });
           
           hlsRef.current = hls;
@@ -114,7 +114,6 @@ export const VideoBackground = ({
     };
   }, [videoUrl]);
 
-  // Handle play/pause state changes
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -141,31 +140,36 @@ export const VideoBackground = ({
 
   return (
     <div className="absolute inset-0 z-0">
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted={isMuted}
-        playsInline
-        className="w-full h-full object-cover"
-        aria-label="Background video showcasing Cre8tive AI capabilities"
-        poster="/placeholder.svg"
-        style={{
-          opacity: isLoaded ? 1 : 0,
-          transition: 'opacity 0.5s ease-in-out'
-        }}
-        preload={priority ? "auto" : "metadata"}
-      >
-        Your browser does not support the video tag.
-      </video>
+      {/* Video Container */}
+      <div className="relative w-full h-full z-[1]">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          className="w-full h-full object-cover"
+          aria-label="Background video showcasing Cre8tive AI capabilities"
+          poster="/placeholder.svg"
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transition: 'opacity 0.5s ease-in-out'
+          }}
+          preload={priority ? "auto" : "metadata"}
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
       
+      {/* Dark Overlay */}
       <div 
-        className="absolute inset-0 bg-black/50 z-[1]" 
+        className="absolute inset-0 bg-black/50 z-[2]" 
         aria-hidden="true" 
       />
       
+      {/* Controls */}
       {!isMobile && (
-        <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
+        <div className="absolute bottom-8 right-8 flex gap-4 z-[3]">
           <Button
             variant="outline"
             size="icon"
