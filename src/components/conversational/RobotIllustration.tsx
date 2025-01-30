@@ -3,60 +3,91 @@ import { Phone } from "lucide-react";
 
 export const RobotIllustration = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      className="relative w-full max-w-[300px] h-[300px] mx-auto my-8"
-    >
-      {/* Robot and Phone Container */}
-      <motion.div 
-        className="absolute inset-0"
+    <div className="flex justify-center items-center gap-32 relative w-full max-w-[800px] h-[300px] mx-auto my-8">
+      {/* Robot Head Illustration */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="relative w-[300px] h-[300px]"
         style={{
           filter: "drop-shadow(0 0 15px rgba(0,255,128,0.4))"
         }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Robot Head */}
-          <circle cx="80" cy="70" r="30" 
+          {/* Robot Head - Larger and more detailed */}
+          <circle cx="100" cy="100" r="50" 
                   className="fill-white/10 stroke-[#00ff80] stroke-2"/>
           
-          {/* Robot Eyes */}
-          <circle cx="70" cy="65" r="5" className="fill-[#00ff80]"/>
-          <circle cx="90" cy="65" r="5" className="fill-[#00ff80]"/>
+          {/* Robot Eyes - Larger and with glow effect */}
+          <circle cx="85" cy="90" r="8" className="fill-[#00ff80]"/>
+          <circle cx="115" cy="90" r="8" className="fill-[#00ff80]"/>
           
           {/* Robot Antenna */}
-          <line x1="80" y1="40" x2="80" y2="30" 
+          <line x1="100" y1="50" x2="100" y2="35" 
                 className="stroke-[#00ff80] stroke-2"/>
-          <circle cx="80" cy="28" r="2" className="fill-[#00ff80]"/>
+          <circle cx="100" cy="32" r="3" className="fill-[#00ff80]"/>
           
-          {/* Robot Body */}
-          <rect x="60" y="105" width="40" height="50" rx="5" 
+          {/* Robot Details - Additional geometric patterns */}
+          <rect x="75" y="110" width="50" height="10" rx="5" 
                 className="fill-white/10 stroke-[#00ff80] stroke-2"/>
+          <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
           
-          {/* Robot Details */}
-          <line x1="70" y1="120" x2="90" y2="120" 
-                className="stroke-[#00ff80] stroke-2"/>
-          <line x1="70" y1="130" x2="90" y2="130" 
-                className="stroke-[#00ff80] stroke-2"/>
-          
-          {/* Phone Icon */}
-          <g transform="translate(120, 60) scale(1.5)">
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-              className="fill-none stroke-[#00ff80] stroke-2"
-            />
-          </g>
-          
-          {/* Connection Lines */}
-          <path d="M95,70 Q110,70 120,70" 
-                className="fill-none stroke-[#00ff80]/50 stroke-2 stroke-dasharray-2"/>
+          {/* Additional Details */}
+          <path d="M70,75 Q100,85 130,75" 
+                className="fill-none stroke-[#00ff80] stroke-2 opacity-50"/>
         </svg>
+        
+        {/* Glow Effects for Robot */}
+        <div className="absolute inset-0 blur-[50px] opacity-40 bg-gradient-to-r from-[#00ff80]/40 to-[#00ff80]/20"/>
+        <div className="absolute inset-0 blur-[25px] opacity-20 bg-gradient-radial from-[#00ff80]/30 via-transparent to-transparent"/>
       </motion.div>
-      
-      {/* Enhanced Glow Effects */}
-      <div className="absolute inset-0 blur-[50px] opacity-40 bg-gradient-to-r from-[#00ff80]/40 to-[#00ff80]/20"/>
-      <div className="absolute inset-0 blur-[25px] opacity-20 bg-gradient-radial from-[#00ff80]/30 via-transparent to-transparent"/>
-    </motion.div>
+
+      {/* Phone Illustration */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="relative w-[300px] h-[300px] flex items-center justify-center"
+        style={{
+          filter: "drop-shadow(0 0 15px rgba(0,255,128,0.4))"
+        }}
+      >
+        <div className="relative">
+          <Phone 
+            size={120} 
+            className="text-[#00ff80] transform -rotate-12"
+            strokeWidth={1.5}
+          />
+          
+          {/* Phone Connection Lines */}
+          <motion.div
+            className="absolute inset-0"
+            animate={{ 
+              opacity: [0.3, 0.7, 0.3],
+              scale: [0.95, 1.05, 0.95]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <svg viewBox="0 0 120 120" className="w-full h-full absolute top-0 left-0">
+              <circle cx="60" cy="60" r="55" 
+                      className="fill-none stroke-[#00ff80] stroke-1 opacity-20"/>
+              <circle cx="60" cy="60" r="45" 
+                      className="fill-none stroke-[#00ff80] stroke-1 opacity-30"/>
+              <circle cx="60" cy="60" r="35" 
+                      className="fill-none stroke-[#00ff80] stroke-1 opacity-40"/>
+            </svg>
+          </motion.div>
+        </div>
+        
+        {/* Glow Effects for Phone */}
+        <div className="absolute inset-0 blur-[50px] opacity-40 bg-gradient-to-r from-[#00ff80]/40 to-[#00ff80]/20"/>
+        <div className="absolute inset-0 blur-[25px] opacity-20 bg-gradient-radial from-[#00ff80]/30 via-transparent to-transparent"/>
+      </motion.div>
+    </div>
   );
 };
