@@ -19,6 +19,19 @@ export const ServiceCard = ({
   color,
   index
 }: ServiceCardProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // Navigate to the page
+    window.location.href = link;
+    // After a small delay to ensure navigation, scroll to top
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }, 100);
+  };
+
   return (
     <div 
       className={cn(
@@ -74,6 +87,7 @@ export const ServiceCard = ({
         <div className="text-center relative z-10">
           <Link 
             to={link}
+            onClick={handleClick}
             className={cn(
               "inline-flex items-center justify-center text-white/90 hover:text-white",
               "relative overflow-hidden group transition-all duration-300 text-lg",

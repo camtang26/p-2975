@@ -25,7 +25,20 @@ export const VideoBackground = ({
   const [loadError, setLoadError] = useState<string | null>(null);
   const playerRef = useRef<Player | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const { toast } = useToast();
+
+  // Cleanup function to properly destroy the player
+  const cleanupPlayer = () => {
+    if (playerRef.current) {
+      playerRef.current.destroy().catch(console.error);
+      playerRef.current = null;
+    }
+    if (iframeRef.current && iframeRef.current.parentNode) {
+      iframeRef.current.parentNode.removeChild(iframeRef.current);
+    }
+    iframeRef.current = null;
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -33,6 +46,12 @@ export const VideoBackground = ({
     const initializePlayer = async () => {
       if (containerRef.current && !playerRef.current) {
         try {
+          // Clean up any existing iframe
+          if (iframeRef.current) {
+            cleanupPlayer();
+          }
+
+          // Create new iframe
           const iframe = document.createElement('iframe');
           iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
           iframe.allow = "autoplay; fullscreen; picture-in-picture";
@@ -45,6 +64,7 @@ export const VideoBackground = ({
           iframe.style.border = "none";
           
           containerRef.current.appendChild(iframe);
+          iframeRef.current = iframe;
           
           const player = new Player(iframe);
           playerRef.current = player;
@@ -79,12 +99,9 @@ export const VideoBackground = ({
 
     return () => {
       isMounted = false;
-      if (playerRef.current) {
-        playerRef.current.destroy().catch(console.error);
-        playerRef.current = null;
-      }
+      cleanupPlayer();
     };
-  }, [toast]);
+  }, [toast, isMuted, isPlaying]);
 
   // Handle play/pause
   useEffect(() => {
