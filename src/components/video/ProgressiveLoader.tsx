@@ -24,13 +24,15 @@ export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) =>
   });
 
   useEffect(() => {
-    // Fetch thumbnail when component mounts
+    // Fetch thumbnail using Vimeo oEmbed API
     const fetchThumbnail = async () => {
       try {
-        const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
+        const response = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`);
         const data = await response.json();
-        if (data && data[0] && data[0].thumbnail_large) {
-          setThumbnailUrl(data[0].thumbnail_large);
+        if (data && data.thumbnail_url) {
+          // Get larger thumbnail by modifying the URL
+          const largerThumbnail = data.thumbnail_url.replace('_295x166', '_640x360');
+          setThumbnailUrl(largerThumbnail);
         }
       } catch (error) {
         console.error('Failed to fetch thumbnail:', error);
@@ -101,7 +103,7 @@ export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) =>
     toast({
       title: "Video Loading Error",
       description: "Failed to load video. Please try again.",
-      variant: "destructive",
+      variant: "destructive"
     });
 
     trackEvent({
