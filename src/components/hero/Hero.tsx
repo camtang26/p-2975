@@ -12,7 +12,6 @@ export const Hero = () => {
   const isMobile = useIsMobile();
   const { toast } = useToast();
 
-  // Mobile: Force mute and disable autoplay
   useEffect(() => {
     if (isMobile && playerRef.current) {
       playerRef.current.setMuted(true);
@@ -77,18 +76,17 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="relative z-[3] flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 max-w-[90vw] md:max-w-4xl mx-auto px-4">
-        <h1 className="font-inter text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.02em] animate-fade-in">
+        <h1 className="font-inter text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-[-0.02em] animate-fade-in">
           <span className="text-white inline-block transition-transform duration-300 [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
             Cre8tive AI
           </span>
         </h1>
-        <p className="font-inter text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium tracking-[-0.01em] text-white/90 animate-fade-in [animation-delay:200ms] [text-shadow:0_0_4px_rgba(255,255,255,0.4),0_0_8px_rgba(255,255,255,0.2)]">
+        <p className="font-inter text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.01em] text-white/90 animate-fade-in [animation-delay:200ms] [text-shadow:0_0_4px_rgba(255,255,255,0.4),0_0_8px_rgba(255,255,255,0.2)]">
           Cutting Edge AI Solutions For Your Business
         </p>
         <Button
           size="lg"
-          className="font-inter text-lg sm:text-xl md:text-2xl font-semibold bg-[#1EAEDB] hover:bg-[#0FA0CE] text-white px-6 sm:px-8 py-4 sm:py-5 h-auto transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(30,174,219,0.5),0_0_30px_rgba(30,174,219,0.3)] hover:shadow-[0_0_20px_rgba(30,174,219,0.6),0_0_40px_rgba(30,174,219,0.4)] active:scale-95 animate-fade-in [animation-delay:300ms] tracking-[-0.01em] w-full sm:w-auto"
-          aria-label="Get a free consultation"
+          className="font-inter text-lg sm:text-xl md:text-2xl font-semibold bg-[#1EAEDB] hover:bg-[#0FA0CE] text-white px-5 sm:px-7 py-3 sm:py-4 h-auto transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(30,174,219,0.5),0_0_30px_rgba(30,174,219,0.3)] hover:shadow-[0_0_20px_rgba(30,174,219,0.6),0_0_40px_rgba(30,174,219,0.4)] active:scale-95 animate-fade-in [animation-delay:300ms] tracking-[-0.01em] w-full sm:w-auto scale-95"
         >
           Get a Free Consultation
         </Button>
