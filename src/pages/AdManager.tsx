@@ -38,17 +38,16 @@ const AdManager = () => {
         >
           <div className="container mx-auto max-w-7xl">
             <div className="text-center space-y-10">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gradient animate-fade-in neon-glow">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gradient opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards] neon-glow">
                 Cre8tive AI Ad Manager
               </h1>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-white/90 font-semibold animate-fade-in [animation-delay:200ms] max-w-5xl mx-auto neon-glow-subtle">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-white/90 font-semibold opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards] max-w-5xl mx-auto neon-glow-subtle">
                 From Idea to Storyboard: Effortless Ad Creation, Powered by AI
               </h2>
 
               {/* Blueprint Visual - Now with ad management representation */}
-              <div className="relative h-48 w-full max-w-3xl mx-auto animate-fade-in [animation-delay:400ms]">
-                {/* Blueprint Grid Background */}
+              <div className="relative h-48 w-full max-w-3xl mx-auto opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]">
                 <div 
                   className="absolute inset-0"
                   style={{
@@ -110,11 +109,11 @@ const AdManager = () => {
                 </div>
               </div>
 
-              <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed animate-fade-in [animation-delay:600ms] px-4 neon-glow-subtle">
+              <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed opacity-0 animate-[fadeIn_3s_ease-out_1.5s_forwards] px-4 neon-glow-subtle">
                 Transform your advertising process with the Cre8tive AI Ad Manager—a state-of-the-art platform that takes your product and brand from concept to storyboard in minutes. Whether you're a client or a digital marketing agency, our tool empowers you to develop stunning, professional creatives with ease, ready for production by our Cre8tive AI Studio Team.
               </p>
 
-              <div className="animate-fade-in [animation-delay:800ms]">
+              <div className="opacity-0 animate-[fadeIn_6s_ease-out_2s_forwards]">
                 <Button 
                   size="lg" 
                   className="text-xl px-10 py-7 bg-gradient-to-r from-[#0EA5E9] via-[#1E40AF] to-[#1E3A8A] hover:from-[#0284C7] hover:via-[#1E3A8A] hover:to-[#172554] border-0 shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] transition-all duration-300"
