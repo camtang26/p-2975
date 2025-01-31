@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import { Analytics } from '@vercel/analytics/react';
 import { MainLayout } from "./components/layout/MainLayout";
 import { CookieConsent } from "./components/analytics/CookieConsent";
+import { ScrollToTop } from "./components/core/ScrollToTop";
 import { useEffect } from 'react';
 import { scrollAnimator } from './utils/scrollAnimations';
 import Index from "./pages/Index";
@@ -50,6 +51,7 @@ const App = () => {
         </Helmet>
 
         <BrowserRouter>
+          <ScrollToTop />
           <MainLayout>
             <Toaster />
             <Sonner />
