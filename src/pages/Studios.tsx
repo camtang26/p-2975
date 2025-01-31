@@ -7,8 +7,12 @@ import { B2BSection } from "@/components/studios/B2BSection";
 import { Testimonials } from "@/components/studios/Testimonials";
 import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Studios = () => {
+  // Initialize smooth scrolling
+  useSmoothScroll();
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Main Gradient Background */}
