@@ -2,6 +2,7 @@ import { Clock, DollarSign, Layers, Shield, Award, Rocket, Brain, Wand2 } from "
 import { BenefitCard } from "./benefits/BenefitCard";
 import { ExpertiseCard } from "./benefits/ExpertiseCard";
 import { ComparisonTable } from "./benefits/ComparisonTable";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 export const ExpertiseBenefits = () => {
   const brandColors = {
@@ -75,73 +76,93 @@ export const ExpertiseBenefits = () => {
       
       {/* Benefits Section */}
       <div className="container mx-auto px-4 mb-32 relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          Get More From Your Video Content
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
-          <p>
-            Video content is essential for success in today's digital world. But traditional production methods can be slow, costly, and complicated. Cre8tive AI Studios offers a smarter approach: AI-driven video production that delivers exceptional results faster, more efficiently, and more affordably.
-          </p>
-        </div>
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
+            Get More From Your Video Content
+          </h2>
+        </ScrollFade>
+        <ScrollFade delay={200}>
+          <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
+            <p>
+              Video content is essential for success in today's digital world. But traditional production methods can be slow, costly, and complicated. Cre8tive AI Studios offers a smarter approach: AI-driven video production that delivers exceptional results faster, more efficiently, and more affordably.
+            </p>
+          </div>
+        </ScrollFade>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {benefits.map((benefit, index) => (
-            <BenefitCard
-              key={index}
-              icon={benefit.icon}
-              title={benefit.title}
-              description={benefit.description}
-              color={benefit.color}
-              index={index}
-            />
+            <ScrollFade key={index} delay={300 + (index * 100)}>
+              <BenefitCard
+                icon={benefit.icon}
+                title={benefit.title}
+                description={benefit.description}
+                color={benefit.color}
+                index={index}
+              />
+            </ScrollFade>
           ))}
         </div>
       </div>
 
       {/* Expertise Section */}
       <div className="container mx-auto px-4 mb-32 relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          The Craft of AI Video: Expertise Makes the Difference
-        </h2>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
-          <p>
-            Creating truly effective AI videos takes more than just a few prompts. It demands a deep understanding of the rapidly changing AI video world, hands-on experience with a wide range of specialized tools, and a strong creative vision. At Cre8tive AI Studios, that's exactly what we offer.
-          </p>
-        </div>
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
+            The Craft of AI Video: Expertise Makes the Difference
+          </h2>
+        </ScrollFade>
+        <ScrollFade delay={200}>
+          <div className="max-w-3xl mx-auto text-lg text-white/80 space-y-6 mb-16 leading-relaxed">
+            <p>
+              Creating truly effective AI videos takes more than just a few prompts. It demands a deep understanding of the rapidly changing AI video world, hands-on experience with a wide range of specialized tools, and a strong creative vision. At Cre8tive AI Studios, that's exactly what we offer.
+            </p>
+          </div>
+        </ScrollFade>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {expertiseItems.map((item, index) => (
-            <ExpertiseCard
-              key={index}
-              icon={item.icon}
-              title={item.title}
-              description={item.description}
-              index={index}
-            />
+            <ScrollFade key={index} delay={300 + (index * 100)}>
+              <ExpertiseCard
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                index={index}
+              />
+            </ScrollFade>
           ))}
         </div>
-        <div className="max-w-3xl mx-auto text-lg text-white/80 mt-16 leading-relaxed">
-          <p>
-            AI video is constantly getting more sophisticated, with more tools and more complex workflows. It takes real expertise to navigate this landscape effectively. Cre8tive AI Studios takes care of the technical complexities so you can concentrate on your message and your business.
-          </p>
-        </div>
+        <ScrollFade delay={800}>
+          <div className="max-w-3xl mx-auto text-lg text-white/80 mt-16 leading-relaxed">
+            <p>
+              AI video is constantly getting more sophisticated, with more tools and more complex workflows. It takes real expertise to navigate this landscape effectively. Cre8tive AI Studios takes care of the technical complexities so you can concentrate on your message and your business.
+            </p>
+          </div>
+        </ScrollFade>
       </div>
 
       {/* Comparison Section */}
       <div className="container mx-auto px-4 mb-32 relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
-          AI Video vs. Traditional: A Clear Advantage
-        </h2>
-        <ComparisonTable />
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16 tracking-tight">
+            AI Video vs. Traditional: A Clear Advantage
+          </h2>
+        </ScrollFade>
+        <ScrollFade delay={200}>
+          <ComparisonTable />
+        </ScrollFade>
       </div>
 
       {/* Future Section */}
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-8 tracking-tight">
-          The Future of Video is Intelligent
-        </h2>
-        <p className="text-xl text-white/80 leading-relaxed mb-12">
-          As AI technology continues to evolve, the possibilities for video production become even more exciting. 
-          Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
-        </p>
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-8 tracking-tight">
+            The Future of Video is Intelligent
+          </h2>
+        </ScrollFade>
+        <ScrollFade delay={200}>
+          <p className="text-xl text-white/80 leading-relaxed mb-12">
+            As AI technology continues to evolve, the possibilities for video production become even more exciting. 
+            Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
+          </p>
+        </ScrollFade>
       </div>
     </section>
   );
