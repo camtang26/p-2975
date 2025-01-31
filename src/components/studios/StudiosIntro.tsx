@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ScrollFade } from "../shared/ScrollFade";
 
 export const StudiosIntro = () => {
   return (
@@ -41,8 +42,7 @@ export const StudiosIntro = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div className="animate-fade-in relative z-20">
+          <ScrollFade className="relative z-20">
             <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold text-gradient mb-8 relative">
               Introducing Cre8tive AI Studios
             </h2>
@@ -52,15 +52,13 @@ export const StudiosIntro = () => {
               designed to elevate your content, streamline your workflows, and position 
               you as a leader in your industry.
             </p>
-          </div>
+          </ScrollFade>
 
-          {/* Visual */}
-          <div 
-            className={cn(
+          <ScrollFade>
+            <div className={cn(
               "relative aspect-video rounded-xl overflow-hidden",
-              "bg-black/10 backdrop-blur-sm animate-scale-in"
-            )}
-          >
+              "bg-black/10 backdrop-blur-sm"
+            )}>
             <img
               src="/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png"
               alt="Neural Tree Visualization"
@@ -72,7 +70,8 @@ export const StudiosIntro = () => {
               className="absolute inset-0 bg-black/20"
               aria-hidden="true"
             />
-          </div>
+            </div>
+          </ScrollFade>
         </div>
       </div>
     </section>

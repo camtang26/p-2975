@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { ScrollFade } from "../shared/ScrollFade";
 
 export const MarketingSection = () => {
   const agencies = [
@@ -50,13 +51,15 @@ export const MarketingSection = () => {
       />
       
       <div className="container relative z-10 mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
-          Digital Marketing Agencies & Clients
-        </h2>
+        <ScrollFade>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
+            Digital Marketing Agencies & Clients
+          </h2>
+        </ScrollFade>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Agencies Column */}
-          <div className="space-y-8">
+          <ScrollFade className="space-y-8">
             <h3 className="text-3xl font-bold mb-8 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
               Digital Marketing Agencies
             </h3>
@@ -73,10 +76,10 @@ export const MarketingSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollFade>
 
           {/* Clients Column */}
-          <div className="space-y-8">
+          <ScrollFade className="space-y-8">
             <h3 className="text-3xl font-bold mb-8 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
               Clients
             </h3>
@@ -93,14 +96,16 @@ export const MarketingSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollFade>
         </div>
 
-        <div className="text-center mt-12">
+        <ScrollFade>
+          <div className="text-center mt-12">
           <p className="text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto mb-8 italic [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
             "Ready to transform your video production process? With AI, you can create faster, save more, and stay ahead of the competition."
           </p>
-        </div>
+          </div>
+        </ScrollFade>
       </div>
     </section>
   );
