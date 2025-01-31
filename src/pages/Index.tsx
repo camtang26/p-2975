@@ -4,6 +4,7 @@ import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
 import { QuoteCard } from "@/components/quotes/QuoteCard";
 import { ContactForm } from "@/components/ContactForm";
+import { WordPressContent } from "@/components/WordPressContent";
 import { Helmet } from "react-helmet";
 
 const Index = () => {
@@ -34,6 +35,8 @@ const Index = () => {
           </div>
           
           <Gallery />
+          
+          <WordPressContent />
           
           {/* Contact Section */}
           <section 

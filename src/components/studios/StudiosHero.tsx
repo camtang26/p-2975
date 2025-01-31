@@ -1,10 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { useState, useRef } from "react";
 
 export const StudiosHero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
   return (
     <section 
       className="relative h-[60vh] flex items-center justify-center overflow-hidden"
@@ -12,9 +8,8 @@ export const StudiosHero = () => {
       aria-label="Studios hero section"
     >
       {/* Video Background */}
-      <div className="absolute inset-0 z-[1]">
+      <div className="absolute inset-0">
         <video
-          ref={videoRef}
           autoPlay
           loop
           muted
@@ -22,25 +17,23 @@ export const StudiosHero = () => {
           className="absolute w-full h-full object-cover"
           style={{ 
             objectPosition: "center center",
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.5s ease-in-out'
+            transform: "scale(1.1)" // Slight scale to prevent white edges during motion
           }}
           poster="/placeholder.svg"
-          onLoadedData={() => setIsLoaded(true)}
         >
-          <source src="/studio-intro.mp4" type="video/mp4" />
+          <source src="/studio-hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         
         {/* Dark Overlay */}
         <div 
-          className="absolute inset-0 bg-black/60 z-[2]"
+          className="absolute inset-0 bg-black/60"
           aria-hidden="true"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-[3] container mx-auto px-4 text-center mt-4">
+      <div className="relative z-10 container mx-auto px-4 text-center mt-4"> {/* Shifted down slightly */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
           Cre8tive AI Studios
         </h1>

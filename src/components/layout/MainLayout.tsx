@@ -8,6 +8,7 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
+    // Using semantic HTML5 elements for better accessibility and structure
     <div className="min-h-screen flex flex-col bg-black">
       <header role="banner">
         <Navigation />

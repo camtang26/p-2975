@@ -1,11 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useToast } from "@/hooks/use-toast";
-import { VideoErrorBoundary } from "../error/VideoErrorBoundary";
-import { videoLogger } from "@/utils/videoLogger";
-import { useVimeoPlayer } from "@/hooks/use-vimeo-player";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -15,7 +11,7 @@ interface VideoBackgroundProps {
   priority?: boolean;
 }
 
-const VideoBackgroundContent = ({
+export const VideoBackground = ({
   isMuted,
   isPlaying,
   onToggleMute,
@@ -23,111 +19,81 @@ const VideoBackgroundContent = ({
   priority = false
 }: VideoBackgroundProps) => {
   const isMobile = useIsMobile();
+  const [videoError, setVideoError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [loadError, setLoadError] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
 
-  const { error, isReady, setMuted, play, pause } = useVimeoPlayer(containerRef, {
-    url: "https://player.vimeo.com/video/1051821551?h=cff11aa998",
-    background: true,
-    autoplay: true,
-    loop: true,
-    muted: isMuted
-  });
-
-  // Effect to handle video state changes
-  useState(() => {
-    videoLogger.mount({ isMuted, isPlaying });
-    return () => {
-      videoLogger.unmount();
-    };
-  }, []);
-
-  // Effect to handle play/pause state
-  useState(() => {
-    if (isReady) {
-      if (isPlaying) {
-        play().catch(error => {
-          toast({
-            title: "Playback Error",
-            description: "Unable to play video. Please try again.",
-            variant: "destructive"
-          });
-        });
-      } else {
-        pause().catch(error => {
-          videoLogger.error(error, 'Error pausing video');
-        });
+  useEffect(() => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.addEventListener('error', () => setVideoError(true));
+      video.addEventListener('loadeddata', () => setIsLoaded(true));
+      
+      // Preload video for priority loading
+      if (priority) {
+        video.preload = "auto";
       }
+      
+      return () => {
+        video.removeEventListener('error', () => setVideoError(true));
+        video.removeEventListener('loadeddata', () => setIsLoaded(true));
+      };
     }
-    videoLogger.stateChange({ isPlaying: !isPlaying }, { isPlaying });
-  }, [isPlaying, isReady, play, pause, toast]);
+  }, [priority]);
 
-  // Effect to handle mute state
-  useState(() => {
-    if (isReady) {
-      setMuted(isMuted).catch(error => {
-        videoLogger.error(error, 'Error setting volume');
-      });
-    }
-    videoLogger.stateChange({ isMuted: !isMuted }, { isMuted });
-  }, [isMuted, isReady, setMuted]);
-
-  // Update loading state based on player ready status
-  useState(() => {
-    if (isReady) {
-      setIsLoaded(true);
-      setLoadError(null);
-    }
-  }, [isReady]);
-
-  // Update error state if player fails to initialize
-  useState(() => {
-    if (error) {
-      setLoadError("Failed to load video");
-      toast({
-        title: "Video Loading Issue",
-        description: "Failed to load the video. Please refresh the page.",
-        variant: "destructive"
-      });
-    }
-  }, [error, toast]);
+  if (videoError) {
+    return (
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"
+        role="img"
+        aria-label="Fallback background gradient"
+      />
+    );
+  }
 
   return (
     <div className="absolute inset-0 z-0">
-      <div 
-        ref={containerRef}
-        className="relative w-full h-full z-[1] overflow-hidden"
+      <video
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        className="w-full h-full object-cover"
+        aria-label="Background video showcasing Cre8tive AI capabilities"
+        ref={(el) => {
+          if (el) {
+            isPlaying ? el.play() : el.pause();
+            if (priority) {
+              el.preload = "auto";
+            }
+          }
+        }}
+        poster="/placeholder.svg"
         style={{
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out'
         }}
-      />
+        preload={priority ? "auto" : "metadata"}
+      >
+        <source 
+          src="/hero-video.mp4" 
+          type="video/mp4" 
+        />
+        <track 
+          kind="captions" 
+          src="/captions.vtt" 
+          label="English captions" 
+          default 
+        />
+        Your browser does not support the video tag.
+      </video>
       
-      {/* Loading Indicator */}
-      {!isLoaded && !loadError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-        </div>
-      )}
-      
-      {/* Error Message */}
-      {loadError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <p className="text-white text-lg">{loadError}</p>
-        </div>
-      )}
-      
-      {/* Dark Overlay */}
       <div 
-        className="absolute inset-0 bg-black/50 z-[2]" 
+        className="absolute inset-0 bg-black/50 z-[1]" 
         aria-hidden="true" 
       />
       
-      {/* Controls */}
       {!isMobile && (
-        <div className="absolute bottom-8 right-8 flex gap-4 z-[3]">
+        <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
           <Button
             variant="outline"
             size="icon"
@@ -155,13 +121,5 @@ const VideoBackgroundContent = ({
         </div>
       )}
     </div>
-  );
-};
-
-export const VideoBackground = (props: VideoBackgroundProps) => {
-  return (
-    <VideoErrorBoundary>
-      <VideoBackgroundContent {...props} />
-    </VideoErrorBoundary>
   );
 };

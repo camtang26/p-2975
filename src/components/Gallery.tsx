@@ -1,116 +1,65 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { X, ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useToast } from "./ui/use-toast";
-import Player from "@vimeo/player";
 
+// Sample video data - replace with actual video sources
 const videos = [
   {
-    vimeoId: "1051820049",
-    vimeoHash: "ba3efabac0",
-    title: "Cre8tive AI Automotive Demo"
+    thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
+    source: "https://example.com/video1.mp4",
+    title: "Video 1"
   },
   {
-    vimeoId: "1051824336",
-    vimeoHash: "f848b5b131",
-    title: "Cre8tive AI DHM Video"
+    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    source: "https://example.com/video2.mp4",
+    title: "Video 2"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    source: "https://example.com/video3.mp4",
+    title: "Video 3"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    source: "https://example.com/video4.mp4",
+    title: "Video 4"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    source: "https://example.com/video5.mp4",
+    title: "Video 5"
+  },
+  {
+    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    source: "https://example.com/video6.mp4",
+    title: "Video 6"
   }
 ];
 
 export const Gallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
-  const playerRef = useRef<Player | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
-
-  // Cleanup function for the Vimeo player
-  const cleanupPlayer = () => {
-    if (playerRef.current) {
-      playerRef.current.destroy();
-      playerRef.current = null;
-    }
-  };
-
-  // Initialize player when modal opens
-  useEffect(() => {
-    if (selectedVideo && containerRef.current && !playerRef.current) {
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${selectedVideo.vimeoId}?h=${selectedVideo.vimeoHash}&background=0&autoplay=1&loop=0&autopause=0&transparent=0`;
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.style.position = "absolute";
-      iframe.style.top = "50%";
-      iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      iframe.style.transform = "translate(-50%, -50%)";
-      iframe.style.border = "none";
-      
-      containerRef.current.appendChild(iframe);
-      
-      playerRef.current = new Player(iframe);
-      
-      // Match VideoBackground's initialization sequence
-      playerRef.current.ready().then(() => {
-        console.log("Vimeo player is ready");
-        setIsLoaded(true);
-        
-        // Explicitly set volume and attempt playback
-        playerRef.current?.setVolume(1)
-          .then(() => {
-            console.log("Volume set, attempting playback");
-            return playerRef.current?.play();
-          })
-          .then(() => {
-            console.log("Playback started successfully");
-          })
-          .catch(error => {
-            console.error("Error during playback setup:", error);
-            toast({
-              title: "Playback Error",
-              description: "Unable to play video. Please try again.",
-              variant: "destructive"
-            });
-          });
-      }).catch(error => {
-        console.error("Vimeo player failed to initialize:", error);
-        toast({
-          title: "Video Loading Issue",
-          description: "Failed to load the video. Please refresh and try again.",
-          variant: "destructive"
-        });
-      });
-    }
-
-    return cleanupPlayer;
-  }, [selectedVideo, toast]);
 
   const handleVideoClick = (video: typeof videos[0], index: number) => {
     setSelectedVideo(video);
     setSelectedIndex(index);
-    setIsLoaded(false);
   };
 
   const handlePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
-    cleanupPlayer();
     const newIndex = selectedIndex > 0 ? selectedIndex - 1 : videos.length - 1;
     setSelectedIndex(newIndex);
     setSelectedVideo(videos[newIndex]);
-    setIsLoaded(false);
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    cleanupPlayer();
     const newIndex = selectedIndex < videos.length - 1 ? selectedIndex + 1 : 0;
     setSelectedIndex(newIndex);
     setSelectedVideo(videos[newIndex]);
-    setIsLoaded(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -120,7 +69,6 @@ export const Gallery = () => {
       } else if (e.key === 'ArrowRight') {
         handleNext(e as unknown as React.MouseEvent);
       } else if (e.key === 'Escape') {
-        cleanupPlayer();
         setSelectedVideo(null);
       }
     }
@@ -128,7 +76,7 @@ export const Gallery = () => {
 
   return (
     <section 
-      className="py-32 relative overflow-hidden"
+      className="py-32 relative overflow-hidden" // Increased padding
       onKeyDown={handleKeyDown}
       role="region"
       aria-label="Video gallery"
@@ -140,15 +88,15 @@ export const Gallery = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
+      <div className="container relative mx-auto px-6"> {/* Increased horizontal padding */}
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in"> {/* Increased max-width and margin-bottom */}
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist"> {/* Increased text size and margin */}
             Our Work
           </h2>
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" // Increased gap
           style={{
             display: "grid",
             gridTemplateRows: "masonry",
@@ -169,30 +117,30 @@ export const Gallery = () => {
                 <picture>
                   <source
                     media="(max-width: 640px)"
-                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
-                    type="image/jpeg"
+                    srcSet={`${video.thumbnail}?w=640&fm=webp&q=80 1x, ${video.thumbnail}?w=1280&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
                   />
                   <source
                     media="(max-width: 1024px)"
-                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
-                    type="image/jpeg"
+                    srcSet={`${video.thumbnail}?w=800&fm=webp&q=80 1x, ${video.thumbnail}?w=1600&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
                   />
                   <source
-                    srcSet={`https://vumbnail.com/${video.vimeoId}.jpg`}
-                    type="image/jpeg"
+                    srcSet={`${video.thumbnail}?w=1024&fm=webp&q=80 1x, ${video.thumbnail}?w=2048&fm=webp&q=80 2x`} // Increased image sizes
+                    type="image/webp"
                   />
                   <img
-                    src={`https://vumbnail.com/${video.vimeoId}.jpg`}
+                    src={`${video.thumbnail}?w=1024&q=80`} // Increased base image size
                     alt={`Video thumbnail for ${video.title}`}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
                     decoding="async"
-                    width={1024}
+                    width={1024} // Increased dimensions
                     height={576}
                   />
                 </picture>
-                <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
-                  <Play className="w-20 h-20 text-white" aria-hidden="true" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                  <Play className="w-20 h-20 text-white" aria-hidden="true" /> {/* Increased icon size */}
                 </div>
               </AspectRatio>
             </div>
@@ -203,10 +151,7 @@ export const Gallery = () => {
       {selectedVideo && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-fade-in"
-          onClick={() => {
-            cleanupPlayer();
-            setSelectedVideo(null);
-          }}
+          onClick={() => setSelectedVideo(null)}
           role="dialog"
           aria-modal="true"
           aria-label={`Video player - ${selectedVideo.title}`}
@@ -217,7 +162,6 @@ export const Gallery = () => {
             className="absolute top-4 right-4 bg-black/20 border-white/10 hover:bg-white/10 transition-colors duration-300 h-8 w-8"
             onClick={(e) => {
               e.stopPropagation();
-              cleanupPlayer();
               setSelectedVideo(null);
             }}
             aria-label="Close video player"
@@ -253,22 +197,22 @@ export const Gallery = () => {
             className="max-w-[90vw] max-h-[90vh] w-full aspect-video animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div 
-              ref={containerRef}
-              style={{ 
-                padding: '56.25% 0 0 0', 
-                position: 'relative',
-                opacity: isLoaded ? 1 : 0,
-                transition: 'opacity 0.5s ease-in-out'
-              }}
-            />
-            
-            {/* Loading Indicator */}
-            {!isLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-              </div>
-            )}
+            <video
+              src={selectedVideo.source}
+              className="w-full h-full rounded-lg"
+              controls
+              autoPlay
+              playsInline
+              aria-label={`Playing: ${selectedVideo.title}`}
+            >
+              <track 
+                kind="captions"
+                src="/captions.vtt"
+                label="English captions"
+                default
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       )}

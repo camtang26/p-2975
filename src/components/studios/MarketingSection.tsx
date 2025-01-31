@@ -97,7 +97,7 @@ export const MarketingSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto mb-8 italic [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
+          <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8 italic [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
             "Ready to transform your video production process? With AI, you can create faster, save more, and stay ahead of the competition."
           </p>
         </div>
