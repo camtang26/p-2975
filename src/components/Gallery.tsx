@@ -1,5 +1,6 @@
 import { VideoGallery } from './gallery/VideoGallery';
 import { ErrorBoundary } from '@/lib/error/ErrorBoundary';
+import { ScrollFade } from '@/components/shared/ScrollFade';
 
 // Video data with actual Cre8tive AI Vimeo videos
 const videos = [
@@ -46,11 +47,13 @@ export const Gallery = () => {
       />
       
       <div className="container relative mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
-            Our Work
-          </h2>
-        </div>
+        <ScrollFade>
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
+              Our Work
+            </h2>
+          </div>
+        </ScrollFade>
 
         <ErrorBoundary context="Video Gallery">
           <VideoGallery videos={videos} />

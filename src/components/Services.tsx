@@ -1,5 +1,6 @@
 import { Brain, Layers, Bot, Phone } from "lucide-react";
 import { ServiceCard } from "./services/ServiceCard";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 const services = [
   {
@@ -50,15 +51,16 @@ export const Services = () => {
       <div className="container relative mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              description={service.description}
-              link={service.link}
-              Icon={service.icon}
-              color={service.color}
-              index={index}
-            />
+            <ScrollFade key={index} delay={index * 100}>
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                link={service.link}
+                Icon={service.icon}
+                color={service.color}
+                index={index}
+              />
+            </ScrollFade>
           ))}
         </div>
       </div>
