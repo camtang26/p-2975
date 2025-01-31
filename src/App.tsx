@@ -23,11 +23,6 @@ const queryClient = new QueryClient();
 const App = () => {
   useEffect(() => {
     scrollAnimator.init();
-    
-    // Cleanup on unmount
-    return () => {
-      scrollAnimator.cleanup();
-    };
   }, []);
 
   return (

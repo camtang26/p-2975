@@ -1,7 +1,6 @@
 class ScrollAnimator {
   private observer: IntersectionObserver;
   private threshold: number = 0.1;
-  private debounceTimeout: number | null = null;
 
   constructor() {
     this.observer = new IntersectionObserver(
@@ -34,56 +33,14 @@ class ScrollAnimator {
   }
 
   private isExcluded(element: Element): boolean {
-    // Check if element is within a hero section or has role="banner"
-    return (
-      element.closest('.hero, section[role="banner"]') !== null ||
-      element.closest('.navbar') !== null ||
-      element.getAttribute('role') === 'banner' ||
-      element.classList.contains('hero')
-    );
-  }
-
-  private debounce(callback: () => void, wait: number) {
-    if (this.debounceTimeout) {
-      window.clearTimeout(this.debounceTimeout);
-    }
-    this.debounceTimeout = window.setTimeout(callback, wait);
+    return element.closest('.navbar, .hero') !== null;
   }
 
   public init() {
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (prefersReducedMotion) {
-      document.querySelectorAll('.fade-in').forEach(element => {
-        element.classList.remove('fade-in');
-        (element as HTMLElement).style.opacity = '1';
-      });
-      return;
-    }
-
-    // Initialize observers with debouncing
-    this.debounce(() => {
-      document.querySelectorAll('.fade-in').forEach(element => {
-        // Double-check exclusion before observing
-        if (!this.isExcluded(element)) {
-          this.observer.observe(element);
-        } else {
-          // Remove fade-in class from excluded elements
-          element.classList.remove('fade-in');
-          (element as HTMLElement).style.opacity = '1';
-        }
-      });
-    }, 100);
-
+    document.querySelectorAll('.fade-in').forEach(element => {
+      this.observer.observe(element);
+    });
     console.log('ScrollAnimator initialized');
-  }
-
-  public cleanup() {
-    if (this.debounceTimeout) {
-      window.clearTimeout(this.debounceTimeout);
-    }
-    this.observer.disconnect();
   }
 }
 

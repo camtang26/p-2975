@@ -33,7 +33,6 @@ html {
   opacity: 0;
   animation-fill-mode: forwards;
   will-change: opacity, transform;
-  transform: translate3d(0, 0, 0); /* Hardware acceleration */
 }
 
 /* Motion-enabled devices */
@@ -52,15 +51,12 @@ html {
   }
 }
 
-/* Excluded elements - Make sure hero sections are always visible */
-section[role="banner"],
-section[role="banner"] *,
+/* Excluded elements */
 .navbar,
 .hero,
 .hero * {
   animation: none !important;
   opacity: 1 !important;
-  transform: none !important;
 }
 
 /* Staggered animations */
