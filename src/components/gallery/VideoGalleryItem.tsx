@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import VimeoPlayer, { VimeoPlayerHandle } from '../core/VimeoPlayer';
+import { ProgressiveLoader } from '../video/ProgressiveLoader';
 import VideoModal from '../core/VideoModal';
 import { useFullscreen } from '@/hooks/useFullscreen';
 import { AspectRatio } from "../ui/aspect-ratio";
@@ -18,17 +18,16 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
   const containerRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const playerRef = useRef<VimeoPlayerHandle>(null);
   const { isFullscreen, toggleFullscreen } = useFullscreen(containerRef);
   const { trackEvent } = useAnalytics();
 
-  const handleError = (error: Error) => {
-    console.error(`Video ${videoId} error:`, error);
+  const handleError = () => {
+    console.error(`Video ${videoId} error`);
     setHasError(true);
     trackEvent({
       action: 'error',
       category: 'video',
-      label: `${videoId}: ${error.message}`
+      label: videoId
     });
   };
 
@@ -83,15 +82,9 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
               </Alert>
             </div>
           ) : (
-            <VimeoPlayer
-              ref={playerRef}
+            <ProgressiveLoader
               videoId={videoId}
-              autoplay={isActive}
-              muted={true}
-              loop={false}
-              isBackground={true}
-              className="w-full h-full rounded-lg"
-              onError={handleError}
+              title={title}
             />
           )}
         </AspectRatio>
