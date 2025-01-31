@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import Player from "@vimeo/player";
+import { useEffect, useState } from "react";
+import CoreVimeoPlayer from "../core/VimeoPlayer";
 import { useToast } from "../ui/use-toast";
 
 interface VimeoPlayerProps {
@@ -21,61 +21,43 @@ const VimeoPlayer = ({
   onReady,
   onError
 }: VimeoPlayerProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<Player | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (containerRef.current && !playerRef.current) {
-      const iframeSrc = `https://player.vimeo.com/video/${videoId}?h=cff11aa998&background=1&autoplay=${autoplay ? 1 : 0}&loop=${loop ? 1 : 0}&muted=${muted ? 1 : 0}`;
-      const iframe = document.createElement("iframe");
-      iframe.src = iframeSrc;
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.style.position = "absolute";
-      iframe.style.top = "50%";
-      iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      iframe.style.transform = "translate(-50%, -50%)";
-      iframe.style.border = "none";
-      
-      containerRef.current.appendChild(iframe);
-      
-      try {
-        playerRef.current = new Player(iframe);
-        
-        playerRef.current.ready().then(() => {
-          console.log("Vimeo player is ready");
-          onReady?.();
-        }).catch(error => {
-          console.error("Vimeo player failed to initialize:", error);
-          onError?.(error);
-          toast({
-            title: "Video Loading Issue",
-            description: "Failed to load the video. Please refresh the page.",
-            variant: "destructive"
-          });
-        });
-      } catch (error) {
-        console.error("Error creating Vimeo player:", error);
-        onError?.(error as Error);
-      }
-    }
+  const handleReady = () => {
+    console.log("Vimeo player is ready");
+    setIsLoaded(true);
+    onReady?.();
+  };
 
-    return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy();
-        playerRef.current = null;
-      }
-    };
-  }, [videoId, autoplay, loop, muted, onReady, onError, toast]);
+  const handleError = (error: Error) => {
+    console.error("Vimeo player error:", error);
+    toast({
+      title: "Video Loading Issue",
+      description: "Failed to load the video. Please refresh the page.",
+      variant: "destructive"
+    });
+    onError?.(error);
+  };
 
   return (
     <div
-      ref={containerRef}
       className={`relative w-full h-full ${className}`}
+      style={{ 
+        opacity: isLoaded ? 1 : 0,
+        transition: 'opacity 0.5s ease-in-out'
+      }}
       role="presentation"
-    />
+    >
+      <CoreVimeoPlayer
+        videoId={videoId}
+        autoplay={autoplay}
+        loop={loop}
+        muted={muted}
+        onReady={handleReady}
+        onError={handleError}
+      />
+    </div>
   );
 };
 
