@@ -48,7 +48,6 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setIsFullscreen(false);
     trackEvent({
       action: 'close_modal',
       category: 'video',
