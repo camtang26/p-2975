@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useToast } from "../ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { VideoErrorBoundary } from "../error/VideoErrorBoundary";
 import Player from "@vimeo/player";
 
 interface VideoBackgroundProps {
@@ -13,7 +14,7 @@ interface VideoBackgroundProps {
   priority?: boolean;
 }
 
-export const VideoBackground = ({
+const VideoBackgroundContent = ({
   isMuted,
   isPlaying,
   onToggleMute,
@@ -191,5 +192,13 @@ export const VideoBackground = ({
         </div>
       )}
     </div>
+  );
+};
+
+export const VideoBackground = (props: VideoBackgroundProps) => {
+  return (
+    <VideoErrorBoundary>
+      <VideoBackgroundContent {...props} />
+    </VideoErrorBoundary>
   );
 };
