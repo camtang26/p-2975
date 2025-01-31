@@ -16,7 +16,7 @@ export const StudiosHero = () => {
       <AnimatedBackground />
 
       {/* Content */}
-      <div className="relative z-[3] container mx-auto px-4 text-center mt-4">
+      <div className="relative z-10 container mx-auto px-4 text-center mt-4">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
           Cre8tive AI Studios
         </h1>

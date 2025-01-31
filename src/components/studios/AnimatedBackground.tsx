@@ -111,7 +111,7 @@ export const AnimatedBackground = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 -z-10"
+      className="absolute inset-0 z-0"
       style={{
         background: 'radial-gradient(circle at center, rgba(2,8,23,0.95) 0%, rgba(2,8,23,0.98) 75%, rgba(2,8,23,0.99) 100%)',
       }}
