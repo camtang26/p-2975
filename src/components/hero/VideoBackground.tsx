@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
 import { VideoErrorBoundary } from "../error/VideoErrorBoundary";
+import { videoLogger } from "@/utils/videoLogger";
 import Player from "@vimeo/player";
 
 interface VideoBackgroundProps {
@@ -42,17 +43,23 @@ const VideoBackgroundContent = ({
   };
 
   useEffect(() => {
+    videoLogger.mount({ isMuted, isPlaying });
+
+    return () => {
+      videoLogger.unmount();
+    };
+  }, []);
+
+  useEffect(() => {
     let isMounted = true;
 
     const initializePlayer = async () => {
       if (containerRef.current && !playerRef.current) {
         try {
-          // Clean up any existing iframe
           if (iframeRef.current) {
             cleanupPlayer();
           }
 
-          // Create new iframe
           const iframe = document.createElement('iframe');
           iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
           iframe.allow = "autoplay; fullscreen; picture-in-picture";
@@ -71,7 +78,7 @@ const VideoBackgroundContent = ({
           playerRef.current = player;
           
           await player.ready();
-          console.log("Vimeo player is ready");
+          videoLogger.playerReady();
           
           if (isMounted) {
             setIsLoaded(true);
@@ -83,7 +90,8 @@ const VideoBackgroundContent = ({
             }
           }
         } catch (error) {
-          console.error("Vimeo player failed to initialize:", error);
+          const err = error instanceof Error ? error : new Error('Unknown error');
+          videoLogger.error(err, 'Failed to initialize Vimeo player');
           if (isMounted) {
             setLoadError("Failed to load video");
             toast({
@@ -104,13 +112,13 @@ const VideoBackgroundContent = ({
     };
   }, [toast, isMuted, isPlaying]);
 
-  // Handle play/pause
   useEffect(() => {
+    const prevState = { isPlaying };
     const player = playerRef.current;
     if (player) {
       if (isPlaying) {
         player.play().catch(error => {
-          console.error("Error playing video:", error);
+          videoLogger.error(error instanceof Error ? error : new Error(String(error)), 'Error playing video');
           toast({
             title: "Playback Error",
             description: "Unable to play video. Please try again.",
@@ -118,17 +126,23 @@ const VideoBackgroundContent = ({
           });
         });
       } else {
-        player.pause().catch(console.error);
+        player.pause().catch(error => {
+          videoLogger.error(error instanceof Error ? error : new Error(String(error)), 'Error pausing video');
+        });
       }
     }
+    videoLogger.stateChange(prevState, { isPlaying });
   }, [isPlaying, toast]);
 
-  // Handle mute/unmute
   useEffect(() => {
+    const prevState = { isMuted };
     const player = playerRef.current;
     if (player) {
-      player.setVolume(isMuted ? 0 : 1).catch(console.error);
+      player.setVolume(isMuted ? 0 : 1).catch(error => {
+        videoLogger.error(error instanceof Error ? error : new Error(String(error)), 'Error setting volume');
+      });
     }
+    videoLogger.stateChange(prevState, { isMuted });
   }, [isMuted]);
 
   return (
