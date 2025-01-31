@@ -1,5 +1,6 @@
 import { Brain, Layers, Palette, Send, Video } from "lucide-react";
 import { ConceptCard } from "./ConceptCard";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 const steps = [
   {
@@ -41,17 +42,20 @@ export const ConceptToCreation = () => {
       aria-label="From concept to creation section"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-24 animate-fade-in">
-          From Concept to Creation: Crafting Your Perfect Video Ad
-        </h2>
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-24">
+            From Concept to Creation: Crafting Your Perfect Video Ad
+          </h2>
+        </ScrollFade>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <ConceptCard
-              key={index}
-              {...step}
-              className={`animate-fade-in [animation-delay:${index * 200}ms]`}
-            />
+            <ScrollFade key={index} delay={index * 100}>
+              <ConceptCard
+                {...step}
+                className={`animate-fade-in [animation-delay:${index * 200}ms]`}
+              />
+            </ScrollFade>
           ))}
         </div>
       </div>

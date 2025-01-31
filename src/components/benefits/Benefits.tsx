@@ -1,6 +1,7 @@
 import { Lightbulb, HandshakeIcon, DollarSign, MessageSquare, Users, Network, TrendingUp, Scale } from "lucide-react";
 import { BenefitCard } from "./BenefitCard";
 import { Separator } from "../ui/separator";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 const clientBenefits = [
   {
@@ -60,25 +61,30 @@ export const Benefits = () => {
   return (
     <section className="py-24 relative overflow-hidden" aria-label="Benefits section">
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16">
-          Benefits for Everyone
-        </h2>
+        <ScrollFade>
+          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-16">
+            Benefits for Everyone
+          </h2>
+        </ScrollFade>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Client Benefits Column */}
           <div className="space-y-8">
-            <h3 className="text-3xl font-semibold text-gradient text-center mb-8">
-              For Clients
-            </h3>
+            <ScrollFade>
+              <h3 className="text-3xl font-semibold text-gradient text-center mb-8">
+                For Clients
+              </h3>
+            </ScrollFade>
             <div className="grid gap-6">
               {clientBenefits.map((benefit, index) => (
-                <BenefitCard
-                  key={index}
-                  Icon={benefit.icon}
-                  title={benefit.title}
-                  description={benefit.description}
-                  color={benefit.color}
-                />
+                <ScrollFade key={index} delay={index * 100}>
+                  <BenefitCard
+                    Icon={benefit.icon}
+                    title={benefit.title}
+                    description={benefit.description}
+                    color={benefit.color}
+                  />
+                </ScrollFade>
               ))}
             </div>
           </div>
@@ -90,18 +96,21 @@ export const Benefits = () => {
           
           {/* Agency Benefits Column */}
           <div className="space-y-8">
-            <h3 className="text-3xl font-semibold text-gradient text-center mb-8">
-              For Agencies
-            </h3>
+            <ScrollFade>
+              <h3 className="text-3xl font-semibold text-gradient text-center mb-8">
+                For Agencies
+              </h3>
+            </ScrollFade>
             <div className="grid gap-6">
               {agencyBenefits.map((benefit, index) => (
-                <BenefitCard
-                  key={index}
-                  Icon={benefit.icon}
-                  title={benefit.title}
-                  description={benefit.description}
-                  color={benefit.color}
-                />
+                <ScrollFade key={index} delay={index * 100}>
+                  <BenefitCard
+                    Icon={benefit.icon}
+                    title={benefit.title}
+                    description={benefit.description}
+                    color={benefit.color}
+                  />
+                </ScrollFade>
               ))}
             </div>
           </div>
