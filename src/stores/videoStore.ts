@@ -3,6 +3,9 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Player from '@vimeo/player';
 
+// Utility type for safe player operations
+type SafePlayer = Pick<Player, 'getCurrentTime' | 'getVolume' | 'destroy'>;
+
 interface VideoState {
   timestamp: number;
   isMuted: boolean;
@@ -11,15 +14,31 @@ interface VideoState {
   setTimestamp: (timestamp: number) => void;
   setMuted: (isMuted: boolean) => void;
   setConsent: (consent: boolean) => void;
-  syncWithPlayer: (player: Player) => Promise<void>;
+  syncWithPlayer: (player: SafePlayer) => Promise<void>;
   resetState: () => void;
 }
 
 const INITIAL_STATE = {
   timestamp: 0,
-  isMuted: true, // Default to muted for better UX
+  isMuted: true,
   lastUpdated: new Date(),
   isConsentGiven: false,
+};
+
+// Safe localStorage access utilities
+const getStoredConsent = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem('videoConsent') === 'true';
+};
+
+const syncStateToStorage = (state: Partial<VideoState>) => {
+  if (typeof window === 'undefined') return;
+  if (getStoredConsent()) {
+    localStorage.setItem('videoState', JSON.stringify({
+      t: state.timestamp,
+      m: state.isMuted
+    }));
+  }
 };
 
 export const useVideoStore = create<VideoState>()(
@@ -28,17 +47,21 @@ export const useVideoStore = create<VideoState>()(
       ...INITIAL_STATE,
 
       setTimestamp: (timestamp: number) => {
-        set({
+        const newState = {
           timestamp,
           lastUpdated: new Date(),
-        });
+        };
+        set(newState);
+        syncStateToStorage(newState);
       },
 
       setMuted: (isMuted: boolean) => {
-        set({
+        const newState = {
           isMuted,
           lastUpdated: new Date(),
-        });
+        };
+        set(newState);
+        syncStateToStorage(newState);
       },
 
       setConsent: (consent: boolean) => {
@@ -46,11 +69,13 @@ export const useVideoStore = create<VideoState>()(
           isConsentGiven: consent,
           lastUpdated: new Date(),
         });
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('videoConsent', String(consent));
+        }
       },
 
-      syncWithPlayer: async (player: Player) => {
+      syncWithPlayer: async (player: SafePlayer) => {
         try {
-          // Only sync if we have consent
           if (!get().isConsentGiven) {
             console.log('No consent given for video state persistence');
             return;
@@ -61,11 +86,14 @@ export const useVideoStore = create<VideoState>()(
             player.getVolume(),
           ]);
 
-          set({
+          const newState = {
             timestamp: currentTime,
             isMuted: volume === 0,
             lastUpdated: new Date(),
-          });
+          };
+
+          set(newState);
+          syncStateToStorage(newState);
 
           console.log('Video state synced with player:', {
             timestamp: currentTime,
@@ -78,13 +106,15 @@ export const useVideoStore = create<VideoState>()(
 
       resetState: () => {
         set(INITIAL_STATE);
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('videoState');
+        }
       },
     }),
     {
       name: 'video-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => 
-        // Only persist if consent is given
         state.isConsentGiven ? {
           timestamp: state.timestamp,
           isMuted: state.isMuted,
@@ -94,12 +124,10 @@ export const useVideoStore = create<VideoState>()(
   )
 );
 
-// Hook to get video state with mobile awareness
 export const useVideoState = () => {
   const isMobile = useIsMobile();
   const videoState = useVideoStore();
 
-  // Always return muted state on mobile regardless of stored preference
   return {
     ...videoState,
     isMuted: isMobile ? true : videoState.isMuted,
