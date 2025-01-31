@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { perf } from '@/lib/perf-monitoring';
 
 export const AnimatedBackground = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,6 +20,9 @@ export const AnimatedBackground = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
+
+    // Initialize performance monitoring
+    const cleanup = perf.init(renderer);
 
     // Create dynamic particle system with updated neon colors
     const particleCount = 1000;
@@ -65,18 +69,13 @@ export const AnimatedBackground = () => {
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // Add subtle ambient light for better particle visibility
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
-    scene.add(ambientLight);
-
-    // Position camera
-    camera.position.z = 10;
-
     // Animation
     let animationFrameId: number;
     const animate = () => {
+      perf.begin();
+      
       animationFrameId = requestAnimationFrame(animate);
-
+      
       const time = Date.now() * 0.0001;
       
       particles.rotation.x = time * 0.5;
@@ -90,6 +89,8 @@ export const AnimatedBackground = () => {
       geometry.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
+      
+      perf.end();
     };
 
     animate();
@@ -115,6 +116,7 @@ export const AnimatedBackground = () => {
       material.dispose();
       scene.clear();
       renderer.dispose();
+      cleanup?.();
     };
   }, []);
 
