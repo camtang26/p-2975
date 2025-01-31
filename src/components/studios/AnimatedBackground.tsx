@@ -20,19 +20,19 @@ export const AnimatedBackground = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create dynamic particle system with multiple neon colors
+    // Create dynamic particle system with updated neon colors
     const particleCount = 1000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
 
-    // Define neon color palette
+    // Define updated neon color palette
     const neonColors = [
-      [1.0, 0.2, 0.8],  // Neon Pink
-      [0.2, 1.0, 0.8],  // Neon Cyan
-      [0.8, 0.2, 1.0],  // Neon Purple
-      [0.2, 0.8, 1.0],  // Neon Blue
-      [1.0, 0.8, 0.2],  // Neon Yellow
+      [0.92, 0.22, 0.30],  // Red (#ea384c) replacing pink
+      [0.2, 1.0, 0.8],     // Neon Cyan
+      [0.8, 0.2, 1.0],     // Neon Purple
+      [0.2, 0.8, 1.0],     // Neon Blue
+      [0.95, 0.99, 0.89],  // Green (#F2FCE2) replacing yellow
     ];
 
     for (let i = 0; i < particleCount; i++) {
