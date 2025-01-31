@@ -17,17 +17,17 @@ export const AgentsHero = () => {
       />
       
       {/* Robot lineup */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z-10 opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]">
         <RobotLineup />
       </div>
 
       {/* Content */}
       <div className="relative z-20 mt-[-12rem]">
         <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-5xl mx-auto px-4">
-          <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] text-white neon-glow animate-fade-in">
+          <h1 className="font-inter text-7xl md:text-8xl font-bold tracking-[-0.02em] text-white neon-glow opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards]">
             AI Autonomous Agents
           </h1>
-          <p className="font-inter text-2xl md:text-3xl font-medium tracking-[-0.01em] text-white/90 neon-glow-subtle animate-fade-in [animation-delay:200ms]">
+          <p className="font-inter text-2xl md:text-3xl font-medium tracking-[-0.01em] text-white/90 neon-glow-subtle opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]">
             Cre8tive AI Autonomous Agents: Smarter Solutions for Smarter Businesses
           </p>
         </div>
