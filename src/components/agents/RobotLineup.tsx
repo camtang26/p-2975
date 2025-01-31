@@ -19,7 +19,7 @@ const ROBOTS = [
     color: '#10B981', // Emerald Green
     x: 50,
     scale: 1.4,
-    role: 'Team Lead',
+    role: 'Marketing Lead',
     textColor: '#4ADE80' // Neon Green
   },
   {
@@ -107,6 +107,8 @@ export const RobotLineup = () => {
       ctx.save();
       
       // Text settings - increased font size from 16px to 18px
+
+      // Text settings
       ctx.font = '18px Inter';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
@@ -119,8 +121,8 @@ export const RobotLineup = () => {
       // Draw text multiple times for stronger glow
       for (let i = 0; i < 3; i++) {
         ctx.shadowBlur = (i + 1) * 5;
-        // Increased y position from 140 to 160 to move text further down
-        ctx.fillText(role, x, y + 160);
+        // Increased y position from 160 to 200 to move text even further down
+        ctx.fillText(role, x, y + 200);
       }
       
       ctx.restore();
