@@ -1,34 +1,38 @@
 import { Brain, Sparkles, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollFade } from "../shared/ScrollFade";
 
 interface FeatureCardProps {
   title: string;
   description: string;
   Icon: React.ElementType;
+  delay?: number;
 }
 
-const FeatureCard = ({ title, description, Icon }: FeatureCardProps) => (
-  <div className={cn(
-    "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
-    "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-    "border border-white/10 group"
-  )}>
-    <div className="mb-6 relative group-hover:animate-pulse flex justify-center">
-      <Icon 
-        className={cn(
-          "w-16 h-16 transition-all duration-300 text-[#00ff80]",
-          "drop-shadow-[0_0_20px_rgba(0,255,128,0.5)]",
-          "group-hover:drop-shadow-[0_0_40px_rgba(0,255,128,0.7)]"
-        )}
-      />
+const FeatureCard = ({ title, description, Icon, delay = 0 }: FeatureCardProps) => (
+  <ScrollFade delay={delay}>
+    <div className={cn(
+      "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
+      "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
+      "border border-white/10 group"
+    )}>
+      <div className="mb-6 relative group-hover:animate-pulse flex justify-center">
+        <Icon 
+          className={cn(
+            "w-16 h-16 transition-all duration-300 text-[#00ff80]",
+            "drop-shadow-[0_0_20px_rgba(0,255,128,0.5)]",
+            "group-hover:drop-shadow-[0_0_40px_rgba(0,255,128,0.7)]"
+          )}
+        />
+      </div>
+      <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+        {title}
+      </h3>
+      <p className="text-white/70 leading-relaxed">
+        {description}
+      </p>
     </div>
-    <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-      {title}
-    </h3>
-    <p className="text-white/70 leading-relaxed">
-      {description}
-    </p>
-  </div>
+  </ScrollFade>
 );
 
 export const ApplicationsSection = () => {
@@ -38,24 +42,29 @@ export const ApplicationsSection = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.04)_0%,transparent_60%)]" />
       </div>
       <div className="container mx-auto px-4 relative">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-gradient text-center">
-          Beyond the Chat: The Power of Conversational AI
-        </h2>
+        <ScrollFade>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-gradient text-center">
+            Beyond the Chat: The Power of Conversational AI
+          </h2>
+        </ScrollFade>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <FeatureCard
             Icon={Brain}
             title="Intelligent Automation"
             description="Our Conversational AI agents are designed to handle complex conversations and automate tasks, freeing up your team to focus on strategic initiatives. Seamlessly integrate with your existing systems to streamline workflows and improve efficiency."
+            delay={100}
           />
           <FeatureCard
             Icon={Sparkles}
             title="Personalized Experiences"
             description="Deliver tailored conversations that resonate with individual customers. Our AI agents understand user preferences and adapt their responses accordingly, creating a more engaging and satisfying experience."
+            delay={200}
           />
           <FeatureCard
             Icon={BarChart3}
             title="Data-Driven Insights"
             description="Gain valuable insights into customer behavior and preferences through the data collected by our Conversational AI agents. Use these insights to optimize your marketing strategies and improve business outcomes."
+            delay={300}
           />
         </div>
       </div>
