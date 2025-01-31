@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade {
+    transition: none !important;
+    transform: none !important;
+  }
+}
