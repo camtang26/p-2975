@@ -6,6 +6,7 @@ import { AspectRatio } from "../ui/aspect-ratio";
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Alert, AlertDescription } from "../ui/alert";
 import { Button } from "../ui/button";
+import { ErrorBoundary } from '@/lib/error/ErrorBoundary';
 
 interface VideoGalleryItemProps {
   videoId: string;
@@ -83,16 +84,18 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
               </Alert>
             </div>
           ) : (
-            <VimeoPlayer
-              ref={playerRef}
-              videoId={videoId}
-              autoplay={isActive}
-              muted={true}
-              loop={false}
-              isBackground={true}
-              className="w-full h-full rounded-lg"
-              onError={handleError}
-            />
+            <ErrorBoundary context={`Video: ${title}`}>
+              <VimeoPlayer
+                ref={playerRef}
+                videoId={videoId}
+                autoplay={isActive}
+                muted={true}
+                loop={false}
+                isBackground={true}
+                className="w-full h-full rounded-lg"
+                onError={handleError}
+              />
+            </ErrorBoundary>
           )}
         </AspectRatio>
       </div>

@@ -1,4 +1,5 @@
 import { VideoGallery } from './gallery/VideoGallery';
+import { ErrorBoundary } from '@/lib/error/ErrorBoundary';
 
 // Video data with actual Cre8tive AI Vimeo videos
 const videos = [
@@ -51,7 +52,9 @@ export const Gallery = () => {
           </h2>
         </div>
 
-        <VideoGallery videos={videos} />
+        <ErrorBoundary context="Video Gallery">
+          <VideoGallery videos={videos} />
+        </ErrorBoundary>
       </div>
     </section>
   );
