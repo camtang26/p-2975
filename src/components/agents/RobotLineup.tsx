@@ -4,27 +4,37 @@ const ROBOTS = [
   {
     color: '#0EA5E9', // Ocean Blue
     x: 16.67,
-    scale: 1.4
+    scale: 1.4,
+    role: 'Content Creator',
+    textColor: '#3B82F6' // Neon Blue
   },
   {
     color: '#F97316', // Bright Orange
     x: 33.33,
-    scale: 1.3
+    scale: 1.3,
+    role: 'Social Media Manager',
+    textColor: '#FB923C' // Neon Orange
   },
   {
     color: '#10B981', // Emerald Green
     x: 50,
-    scale: 1.4
+    scale: 1.4,
+    role: 'Team Lead',
+    textColor: '#4ADE80' // Neon Green
   },
   {
     color: '#ea384c', // Red
     x: 66.67,
-    scale: 1.3
+    scale: 1.3,
+    role: 'SEO Specialist',
+    textColor: '#FB7185' // Neon Red
   },
   {
     color: '#9b87f5', // Purple
     x: 83.33,
-    scale: 1.4
+    scale: 1.4,
+    role: 'Data Analyst',
+    textColor: '#A78BFA' // Neon Purple
   }
 ];
 
@@ -48,7 +58,7 @@ export const RobotLineup = () => {
 
     let hoverIndex = -1;
     
-    const drawRobot = (x: number, y: number, color: string, scale: number, isHovered: boolean) => {
+    const drawRobot = (x: number, y: number, color: string, scale: number, isHovered: boolean, role: string, textColor: string) => {
       ctx.save();
       ctx.translate(x, y);
       ctx.scale(scale, scale);
@@ -91,6 +101,26 @@ export const RobotLineup = () => {
       ctx.moveTo(20, 80);
       ctx.lineTo(20, 120);
       ctx.stroke();
+
+      // Role text with neon effect
+      ctx.restore();
+      ctx.save();
+      
+      // Text settings
+      ctx.font = '16px Inter';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      
+      // Multiple shadow layers for neon effect
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = textColor;
+      ctx.fillStyle = textColor;
+      
+      // Draw text multiple times for stronger glow
+      for (let i = 0; i < 3; i++) {
+        ctx.shadowBlur = (i + 1) * 5;
+        ctx.fillText(role, x, y + 140);
+      }
       
       ctx.restore();
     };
@@ -107,7 +137,7 @@ export const RobotLineup = () => {
         const x = (canvasWidth * robot.x) / 100;
         // Position robots at 70% of canvas height
         const y = canvasHeight * 0.70;
-        drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex);
+        drawRobot(x, y, robot.color, robot.scale * 1.2, index === hoverIndex, robot.role, robot.textColor);
       });
     };
 
