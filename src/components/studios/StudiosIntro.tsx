@@ -61,36 +61,16 @@ export const StudiosIntro = () => {
               "bg-black/10 backdrop-blur-sm animate-scale-in"
             )}
           >
-            {/* Premium Glow Effects */}
-            <div className="absolute inset-0 z-10 opacity-40"
-              style={{
-                background: 'radial-gradient(circle at center, rgba(96,165,250,0.3) 0%, rgba(139,92,246,0.3) 50%, rgba(236,72,153,0.3) 100%)',
-                filter: 'blur(40px)',
-              }}
-            />
-            
-            <div className="absolute -inset-2 z-0 opacity-30"
-              style={{
-                background: 'conic-gradient(from 0deg at 50% 50%, #60A5FA, #8B5CF6, #EC4899, #60A5FA)',
-                filter: 'blur(60px)',
-              }}
-            />
-
             <img
-              src="/lovable-uploads/fc255e07-2984-4056-b429-07bfc6c065b6.png"
+              src="/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png"
               alt="Neural Tree Visualization"
-              className="w-[120%] h-[120%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-              style={{
-                filter: 'drop-shadow(0 0 20px rgba(139,92,246,0.3)) drop-shadow(0 0 40px rgba(236,72,153,0.2))',
-              }}
+              className="w-[110%] h-[110%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             />
             
-            {/* Overlay with subtle gradient */}
+            {/* Overlay */}
             <div 
-              className="absolute inset-0 z-30 mix-blend-overlay"
-              style={{
-                background: 'linear-gradient(45deg, rgba(96,165,250,0.1), rgba(139,92,246,0.1), rgba(236,72,153,0.1))',
-              }}
+              className="absolute inset-0 bg-black/20"
+              aria-hidden="true"
             />
           </div>
         </div>
