@@ -15,15 +15,6 @@ export const StudiosHero = () => {
       {/* Animated Background */}
       <AnimatedBackground />
 
-      {/* Gradient Overlay for Bottom Blend */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-32 z-[1]"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.95))',
-          backdropFilter: 'blur(4px)'
-        }}
-      />
-
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center mt-4">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
