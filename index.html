@@ -8,7 +8,7 @@
     <meta name="author" content="Cre8tive AI" />
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co https://convai.elevenlabs.io; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co https://convai.elevenlabs.io; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io https://convai.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io https://convai.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website" />
@@ -83,35 +83,19 @@
       }
     </script>
     
-    <!-- ElevenLabs Widget (Updated) -->
+    <!-- Third-party scripts with crossorigin -->
     <script 
-      src="https://convai.elevenlabs.io/v1/chat.js" 
+      src="https://elevenlabs.io/convai-widget/index.js" 
       async 
       defer
       type="text/javascript"
-      crossorigin="use-credentials"
-    ></script>
-
-    <!-- GPT Engineer (Safe Implementation) -->
-    <script 
-      src="https://cdn.gpteng.co/gptengineer.js" 
-      type="module" 
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" crossorigin="anonymous"></script>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Error Boundary Fallback -->
-    <script>
-      window.onerror = (msg, url, line, col, error) => {
-        if(msg === 'Script error.') {
-          console.warn('Third-party script error suppressed:', error);
-          return true; // Prevent default handler
-        }
-      };
-    </script>
   </body>
 </html>
