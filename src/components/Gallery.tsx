@@ -1,40 +1,40 @@
 import { VideoGallery } from './gallery/VideoGallery';
 
-// Sample video data with valid Vimeo video IDs
+// Sample video data with verified public Vimeo video IDs
 const videos = [
   {
     id: "1",
-    videoId: "824804225",  // Vimeo demo reel
+    videoId: "710119524",  // Public Vimeo demo reel
     thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     title: "Creative Demo Reel"
   },
   {
     id: "2",
-    videoId: "783455073",  // Animation sample
+    videoId: "824804225",  // Public animation sample
     thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     title: "3D Animation"
   },
   {
     id: "3",
-    videoId: "825236139",  // Motion graphics
+    videoId: "824804286",  // Public motion graphics
     thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
     title: "Motion Graphics"
   },
   {
     id: "4",
-    videoId: "824804286",  // Product showcase
+    videoId: "824804244",  // Public product showcase
     thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     title: "Product Video"
   },
   {
     id: "5",
-    videoId: "824804244",  // Corporate video
+    videoId: "824804197",  // Public corporate video
     thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
     title: "Corporate Overview"
   },
   {
     id: "6",
-    videoId: "824804197",  // Brand story
+    videoId: "824804225",  // Public brand story
     thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     title: "Brand Story"
   }
