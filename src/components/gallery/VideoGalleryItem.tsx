@@ -1,12 +1,11 @@
 import { useState, useRef } from 'react';
-import VimeoPlayer, { VimeoPlayerHandle } from '../core/VimeoPlayer';
-import VideoModal from '../core/VideoModal';
 import { useFullscreen } from '@/hooks/useFullscreen';
-import { AspectRatio } from "../ui/aspect-ratio";
 import { useAnalytics } from '@/hooks/useAnalytics';
-import { Alert, AlertDescription } from "../ui/alert";
-import { Button } from "../ui/button";
-import { ErrorBoundary } from '@/lib/error/ErrorBoundary';
+import { AspectRatio } from "../ui/aspect-ratio";
+import VideoModal from '../core/VideoModal';
+import { ErrorAlert } from './components/ErrorAlert';
+import { VideoContainer } from './components/VideoContainer';
+import type { VimeoPlayerHandle } from '../core/VimeoPlayer';
 
 interface VideoGalleryItemProps {
   videoId: string;
@@ -69,33 +68,15 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
       >
         <AspectRatio ratio={16 / 9}>
           {hasError ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Alert variant="destructive" className="max-w-[80%]">
-                <AlertDescription className="flex flex-col items-center gap-4">
-                  <p>Failed to load video</p>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleRetry}
-                    className="w-full sm:w-auto"
-                  >
-                    Try Again
-                  </Button>
-                </AlertDescription>
-              </Alert>
-            </div>
+            <ErrorAlert onRetry={handleRetry} />
           ) : (
-            <ErrorBoundary context={`Video: ${title}`}>
-              <VimeoPlayer
-                ref={playerRef}
-                videoId={videoId}
-                autoplay={isActive}
-                muted={true}
-                loop={false}
-                isBackground={true}
-                className="w-full h-full rounded-lg"
-                onError={handleError}
-              />
-            </ErrorBoundary>
+            <VideoContainer
+              ref={playerRef}
+              videoId={videoId}
+              title={title}
+              isActive={isActive}
+              onError={handleError}
+            />
           )}
         </AspectRatio>
       </div>
