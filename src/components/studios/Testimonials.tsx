@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 interface Testimonial {
   name: string;
