@@ -15,8 +15,8 @@ export const useVideoConsent = () => {
         action: (
           <ConsentButton
             consentLabel="Allow"
-            onClick={() => setConsent(true)}
             altText="Allow video preferences"
+            onClick={() => setConsent(true)}
           />
         ),
         duration: 10000,
