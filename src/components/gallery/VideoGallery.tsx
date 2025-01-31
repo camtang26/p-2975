@@ -4,7 +4,6 @@ import VideoGalleryItem from './VideoGalleryItem';
 interface VideoItem {
   id: string;
   videoId: string;
-  thumbnail: string;
   title: string;
 }
 
@@ -17,7 +16,6 @@ export const VideoGallery = ({ videos }: { videos: VideoItem[] }) => {
         <VideoGalleryItem
           key={video.id}
           videoId={video.videoId}
-          thumbnail={video.thumbnail}
           title={video.title}
           isActive={activeVideo === video.id}
           onActivate={() => setActiveVideo(activeVideo === video.id ? null : video.id)}
