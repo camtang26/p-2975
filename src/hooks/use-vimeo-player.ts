@@ -65,7 +65,7 @@ export const useVimeoPlayer = (
           setPlayer(vimeoPlayer);
           setIsReady(true);
           setError(null);
-          videoLogger.info('Player ready');
+          videoLogger.log('STATE_CHANGE', 'Player ready', { context: 'useVimeoPlayer' });
         }
       } catch (err) {
         if (!controller.signal.aborted) {
