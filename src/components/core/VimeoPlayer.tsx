@@ -1,7 +1,5 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import Player from '@vimeo/player';
-import { useConnectionSpeed, ConnectionQuality } from '@/hooks/useConnectionSpeed';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface VimeoPlayerProps {
   videoId: string;
@@ -22,19 +20,6 @@ export interface VimeoPlayerHandle {
   setMuted: (muted: boolean) => Promise<void>;
 }
 
-const getQualitySettings = (quality: ConnectionQuality, isMobile: boolean) => {
-  switch (quality) {
-    case 'low':
-      return { quality: '360p', autoplay: false };
-    case 'medium':
-      return { quality: isMobile ? '720p' : '1080p', autoplay: true };
-    case 'high':
-      return { quality: '1080p', autoplay: true };
-    default:
-      return { quality: '720p', autoplay: true };
-  }
-};
-
 const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
   ({ 
     videoId, 
@@ -50,17 +35,13 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
   }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const playerRef = useRef<Player | null>(null);
-    const connectionQuality = useConnectionSpeed();
-    const isMobile = useIsMobile();
-    
-    const { quality, autoplay: shouldAutoplay } = getQualitySettings(connectionQuality, isMobile);
 
     useEffect(() => {
       if (!containerRef.current) return;
 
       const iframe = document.createElement('iframe');
       iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=${
-        (autoplay && shouldAutoplay) ? 1 : 0
+        autoplay ? 1 : 0
       }&loop=${
         loop ? 1 : 0
       }&muted=${
@@ -69,8 +50,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         isBackground ? 1 : 0
       }&controls=${
         controls ? 1 : 0
-      }&quality=${
-        quality
       }&title=0&byline=0&portrait=0&dnt=1&playsinline=1&transparent=1`;
       
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
@@ -87,7 +66,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       const player = new Player(iframe, {
         background: isBackground,
         controls: controls,
-        quality
       });
       
       playerRef.current = player;
@@ -97,7 +75,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
           console.log('Vimeo player ready');
           onReady?.();
           player.setVolume(muted ? 0 : 1);
-          player.setQuality(quality);
         })
         .catch((error) => {
           console.error('Vimeo player error:', error);
@@ -109,7 +86,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         player.destroy();
         playerRef.current = null;
       };
-    }, [videoId, autoplay, loop, muted, controls, isBackground, quality, shouldAutoplay, onReady, onError]);
+    }, [videoId, autoplay, loop, muted, controls, isBackground, onReady, onError]);
 
     useImperativeHandle(ref, () => ({
       play: async () => {
