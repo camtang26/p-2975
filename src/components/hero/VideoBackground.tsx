@@ -38,9 +38,9 @@ const VideoBackgroundContent = ({
 
   // Effect to handle video state changes
   useState(() => {
-    videoLogger.info('Component mounted', { isMuted, isPlaying });
+    videoLogger.mount({ isMuted, isPlaying });
     return () => {
-      videoLogger.info('Component unmounted');
+      videoLogger.unmount();
     };
   }, []);
 
@@ -61,7 +61,7 @@ const VideoBackgroundContent = ({
         });
       }
     }
-    videoLogger.info('Play state changed', { isPlaying });
+    videoLogger.stateChange({ isPlaying: !isPlaying }, { isPlaying });
   }, [isPlaying, isReady, play, pause, toast]);
 
   // Effect to handle mute state
@@ -71,7 +71,7 @@ const VideoBackgroundContent = ({
         videoLogger.error(error, 'Error setting volume');
       });
     }
-    videoLogger.info('Mute state changed', { isMuted });
+    videoLogger.stateChange({ isMuted: !isMuted }, { isMuted });
   }, [isMuted, isReady, setMuted]);
 
   // Update loading state based on player ready status

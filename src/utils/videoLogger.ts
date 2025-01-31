@@ -29,6 +29,10 @@ export const videoLogger = {
     }
   },
 
+  info(message: string, context?: Record<string, any>) {
+    this.log('STATE_CHANGE', message, { diff: context });
+  },
+
   mount(initialState: Record<string, any>) {
     this.log('MOUNT', 'Component mounted', { diff: initialState });
   },
