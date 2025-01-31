@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 interface ScrollFadeProps {
   children: React.ReactNode;
   className?: string;
+  delay?: number;  // Added delay prop
 }
 
-export const ScrollFade = ({ children, className }: ScrollFadeProps) => {
+export const ScrollFade = ({ children, className, delay = 0 }: ScrollFadeProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -14,7 +15,10 @@ export const ScrollFade = ({ children, className }: ScrollFadeProps) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-visible');
+            // Apply delay if specified
+            setTimeout(() => {
+              entry.target.classList.add('fade-in-visible');
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
@@ -35,7 +39,7 @@ export const ScrollFade = ({ children, className }: ScrollFadeProps) => {
         observer.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [delay]);
 
   return (
     <div 
