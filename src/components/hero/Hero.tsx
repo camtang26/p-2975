@@ -54,6 +54,7 @@ export const Hero = () => {
             autoplay={!isMobile}
             loop={true}
             muted={isMuted}
+            isBackground={true}
             onReady={handleReady}
             onError={handleError}
             className="absolute inset-0"

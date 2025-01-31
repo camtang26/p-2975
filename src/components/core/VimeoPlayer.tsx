@@ -6,6 +6,7 @@ interface VimeoPlayerProps {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  isBackground?: boolean;
   className?: string;
   onReady?: () => void;
   onError?: (error: Error) => void;
@@ -18,7 +19,7 @@ export interface VimeoPlayerHandle {
 }
 
 const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
-  ({ videoId, autoplay = false, loop = false, muted = false, className = '', onReady, onError }, ref) => {
+  ({ videoId, autoplay = false, loop = false, muted = false, isBackground = false, className = '', onReady, onError }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const playerRef = useRef<Player | null>(null);
 
@@ -27,7 +28,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       if (!containerRef.current) return;
 
       const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=${autoplay ? 1 : 0}&loop=${loop ? 1 : 0}&muted=${muted ? 1 : 0}`;
+      iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=${autoplay ? 1 : 0}&loop=${loop ? 1 : 0}&muted=${muted ? 1 : 0}${isBackground ? '&background=1' : ''}`;
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
       iframe.style.cssText = 'position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);border:none;';
       
@@ -52,7 +53,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         player.destroy();
         playerRef.current = null;
       };
-    }, [videoId, autoplay, loop, muted, onReady, onError]);
+    }, [videoId, autoplay, loop, muted, isBackground, onReady, onError]);
 
     // Expose player controls via ref
     useImperativeHandle(ref, () => ({
