@@ -106,8 +106,6 @@ export const RobotLineup = () => {
       ctx.restore();
       ctx.save();
       
-      // Text settings - increased font size from 16px to 18px
-
       // Text settings
       ctx.font = '18px Inter';
       ctx.textAlign = 'center';
@@ -121,8 +119,8 @@ export const RobotLineup = () => {
       // Draw text multiple times for stronger glow
       for (let i = 0; i < 3; i++) {
         ctx.shadowBlur = (i + 1) * 5;
-        // Increased y position from 160 to 200 to move text even further down
-        ctx.fillText(role, x, y + 200);
+        // Increased y position from 200 to 240 to move text even further down
+        ctx.fillText(role, x, y + 240);
       }
       
       ctx.restore();
