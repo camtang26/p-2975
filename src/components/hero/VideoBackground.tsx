@@ -25,21 +25,24 @@ export const VideoBackground = ({
   return (
     <div className="absolute inset-0 z-0">
       <div className="relative w-full h-full">
-        <VimeoEmbed
-          videoId="1051821551"
-          autoplay={isPlaying}
-          loop={true}
-          muted={isMuted}
-          className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        />
+        <div className="absolute inset-0 z-[1]">
+          <VimeoEmbed
+            videoId="1051821551"
+            autoplay={isPlaying}
+            loop={true}
+            muted={isMuted}
+            className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          />
+        </div>
         
+        {/* Reduced opacity of overlay from 0.5 to 0.2 */}
         <div 
-          className="absolute inset-0 bg-black/50 z-[1]" 
+          className="absolute inset-0 bg-black/20 z-[2]" 
           aria-hidden="true" 
         />
         
         {!isMobile && (
-          <div className="absolute bottom-8 right-8 flex gap-4 z-[2]">
+          <div className="absolute bottom-8 right-8 flex gap-4 z-[3]">
             <Button
               variant="outline"
               size="icon"
