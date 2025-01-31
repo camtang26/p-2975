@@ -10,7 +10,7 @@ export const StudiosIntro = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
+          background: 'radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.99) 75%, rgba(13,13,29,1) 100%)',
           zIndex: 0
         }}
       />
@@ -36,6 +36,22 @@ export const StudiosIntro = () => {
             'radial-gradient(circle at 80% 120%, rgba(217,70,239,0.15) 0%, transparent 60%)',
           filter: 'blur(120px)',
           zIndex: 1
+        }}
+      />
+
+      {/* Neural Tree Image with Radial Gradient Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.95) 70%),
+            url('/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png')
+          `,
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.9,
+          zIndex: 2
         }}
       />
 
