@@ -1,5 +1,6 @@
 import { Database, MessageSquare, Text, Share2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 export const AiMarketingSolutions = () => {
   const solutions = [
@@ -64,60 +65,64 @@ export const AiMarketingSolutions = () => {
       />
       
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-semibold text-gradient text-center mb-16 relative z-50">
-          Our AI Marketing Solutions
-        </h2>
+        <ScrollFade>
+          <h2 className="text-4xl md:text-5xl font-semibold text-gradient text-center mb-16 relative z-50">
+            Our AI Marketing Solutions
+          </h2>
+        </ScrollFade>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {solutions.map((solution, index) => {
             const { Icon } = solution;
             return (
-              <div 
-                key={index} 
-                className={cn(
-                  "glass-morphism p-16 rounded-xl hover-glow border border-white/10",
-                  "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
-                  "transform-gpu transition-transform duration-500 hover:scale-105",
-                  "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
-                  "before:opacity-0 before:transition-opacity hover:before:opacity-100",
-                  "after:absolute after:inset-0 after:rounded-xl",
-                  "after:opacity-0 after:transition-opacity hover:after:opacity-100",
-                  "flex flex-col items-center justify-center text-center"
-                )}
-                style={{
-                  '--solution-color': solution.color,
-                  boxShadow: `0 0 30px ${solution.color}25`
-                } as React.CSSProperties}
-              >
-                {/* Icon with enhanced glow */}
-                <div className="mb-10 relative group-hover:animate-pulse">
-                  <Icon 
-                    className={cn(
-                      "w-28 h-28 transition-all duration-300",
-                      "drop-shadow-[0_0_20px_var(--solution-color)]",
-                      "group-hover:drop-shadow-[0_0_40px_var(--solution-color)]"
-                    )}
-                    style={{ color: solution.color }}
-                  />
-                </div>
-                
-                {/* Content */}
-                <h3 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                  {solution.title}
-                </h3>
-                
-                <p className="text-xl text-white/80 leading-relaxed mb-6">
-                  {solution.description}
-                </p>
+              <ScrollFade key={index} delay={index * 100}>
+                <div 
+                  className={cn(
+                    "glass-morphism p-16 rounded-xl hover-glow border border-white/10",
+                    "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
+                    "transform-gpu transition-transform duration-500 hover:scale-105",
+                    "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
+                    "before:opacity-0 before:transition-opacity hover:before:opacity-100",
+                    "after:absolute after:inset-0 after:rounded-xl",
+                    "after:opacity-0 after:transition-opacity hover:after:opacity-100",
+                    "flex flex-col items-center justify-center text-center"
+                  )}
+                  style={{
+                    '--solution-color': solution.color,
+                    boxShadow: `0 0 30px ${solution.color}25`
+                  } as React.CSSProperties}
+                >
+                  {/* Icon with enhanced glow */}
+                  <div className="mb-10 relative group-hover:animate-pulse">
+                    <Icon 
+                      className={cn(
+                        "w-28 h-28 transition-all duration-300",
+                        "drop-shadow-[0_0_20px_var(--solution-color)]",
+                        "group-hover:drop-shadow-[0_0_40px_var(--solution-color)]"
+                      )}
+                      style={{ color: solution.color }}
+                    />
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    {solution.title}
+                  </h3>
+                  
+                  <p className="text-xl text-white/80 leading-relaxed mb-6">
+                    {solution.description}
+                  </p>
 
-                <ul className="text-lg text-white/70 space-y-3 text-left w-full">
-                  {solution.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="mr-2 text-[var(--solution-color)]">•</span>
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  <ul className="text-lg text-white/70 space-y-3 text-left w-full">
+                    {solution.benefits.map((benefit, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="mr-2 text-[var(--solution-color)]">•</span>
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollFade>
             );
           })}
         </div>

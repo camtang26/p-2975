@@ -1,5 +1,5 @@
 import { ContactForm } from "../ContactForm";
-import { ScrollFade } from "../shared/ScrollFade";
+import { ScrollFade } from "./ScrollFade";
 
 export const ContactCTA = () => {
   return (

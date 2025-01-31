@@ -1,5 +1,6 @@
 import { Brain, Users, Sliders, Target } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollFade } from "@/components/shared/ScrollFade";
 
 interface StepProps {
   number: number;
@@ -97,20 +98,23 @@ export const HowItWorks = () => {
     <section className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
-            How It Works
-          </h2>
-          <p className="text-2xl md:text-3xl text-white/80">
-            Transforming Your Vision into Reality
-          </p>
+          <ScrollFade>
+            <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
+              How It Works
+            </h2>
+          </ScrollFade>
+          <ScrollFade delay={100}>
+            <p className="text-2xl md:text-3xl text-white/80">
+              Transforming Your Vision into Reality
+            </p>
+          </ScrollFade>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {steps.map((step, index) => (
-            <Step
-              key={index}
-              {...step}
-            />
+            <ScrollFade key={index} delay={index * 100}>
+              <Step {...step} />
+            </ScrollFade>
           ))}
         </div>
       </div>
