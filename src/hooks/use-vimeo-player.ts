@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from 'react';
+import { useState, useEffect, useCallback, RefObject, useRef } from 'react';
 import Player from '@vimeo/player';
 import { videoLogger } from '@/utils/videoLogger';
 
@@ -26,15 +26,15 @@ export const useVimeoPlayer = (
   const [player, setPlayer] = useState<Player | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const abortController = useRef(new AbortController());
 
   useEffect(() => {
-    let abortController = new AbortController();
+    const controller = abortController.current;
     
     const initializePlayer = async () => {
-      if (!containerRef.current || abortController.signal.aborted) return;
+      if (!containerRef.current || controller.signal.aborted) return;
 
       try {
-        // Create iframe element
         const iframe = document.createElement('iframe');
         iframe.src = options.url;
         iframe.allow = "autoplay; fullscreen; picture-in-picture";
@@ -48,11 +48,9 @@ export const useVimeoPlayer = (
           border: none;
         `;
 
-        // Clear container and append iframe
         containerRef.current.innerHTML = '';
         containerRef.current.appendChild(iframe);
 
-        // Initialize Vimeo player
         const vimeoPlayer = new Player(iframe, {
           url: options.url,
           background: options.background,
@@ -61,17 +59,16 @@ export const useVimeoPlayer = (
           muted: options.muted,
         });
 
-        // Wait for player to be ready
         await vimeoPlayer.ready();
         
-        if (!abortController.signal.aborted) {
+        if (!controller.signal.aborted) {
           setPlayer(vimeoPlayer);
           setIsReady(true);
           setError(null);
-          videoLogger.playerReady();
+          videoLogger.info('Player ready');
         }
       } catch (err) {
-        if (!abortController.signal.aborted) {
+        if (!controller.signal.aborted) {
           const error = err instanceof Error ? err : new Error('Failed to initialize player');
           setError(error);
           videoLogger.error(error, 'Player initialization failed');
@@ -82,7 +79,7 @@ export const useVimeoPlayer = (
     initializePlayer();
 
     return () => {
-      abortController.abort();
+      controller.abort();
       if (player) {
         player.destroy().catch(err => {
           videoLogger.error(err instanceof Error ? err : new Error(String(err)), 'Error destroying player');
@@ -91,7 +88,7 @@ export const useVimeoPlayer = (
     };
   }, [containerRef, options.url]);
 
-  const play = async () => {
+  const play = useCallback(async () => {
     try {
       await player?.play();
     } catch (err) {
@@ -100,9 +97,9 @@ export const useVimeoPlayer = (
       videoLogger.error(error, 'Play failed');
       throw error;
     }
-  };
+  }, [player]);
 
-  const pause = async () => {
+  const pause = useCallback(async () => {
     try {
       await player?.pause();
     } catch (err) {
@@ -111,9 +108,9 @@ export const useVimeoPlayer = (
       videoLogger.error(error, 'Pause failed');
       throw error;
     }
-  };
+  }, [player]);
 
-  const setMuted = async (muted: boolean) => {
+  const setMuted = useCallback(async (muted: boolean) => {
     try {
       await player?.setVolume(muted ? 0 : 1);
     } catch (err) {
@@ -122,7 +119,7 @@ export const useVimeoPlayer = (
       videoLogger.error(error, 'Set volume failed');
       throw error;
     }
-  };
+  }, [player]);
 
   return {
     player,
