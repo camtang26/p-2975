@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
+import { AnimatedBackground } from "./AnimatedBackground";
 
 export const StudiosHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,33 +12,8 @@ export const StudiosHero = () => {
       role="banner"
       aria-label="Studios hero section"
     >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-[1]">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute w-full h-full object-cover"
-          style={{ 
-            objectPosition: "center center",
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.5s ease-in-out'
-          }}
-          poster="/placeholder.svg"
-          onLoadedData={() => setIsLoaded(true)}
-        >
-          <source src="/studio-intro.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        
-        {/* Dark Overlay */}
-        <div 
-          className="absolute inset-0 bg-black/60 z-[2]"
-          aria-hidden="true"
-        />
-      </div>
+      {/* Animated Background */}
+      <AnimatedBackground />
 
       {/* Content */}
       <div className="relative z-[3] container mx-auto px-4 text-center mt-4">
