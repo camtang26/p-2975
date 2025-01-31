@@ -52,12 +52,15 @@ html {
   }
 }
 
-/* Excluded elements */
+/* Excluded elements - Make sure hero sections are always visible */
+section[role="banner"],
+section[role="banner"] *,
 .navbar,
 .hero,
 .hero * {
   animation: none !important;
   opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Staggered animations */

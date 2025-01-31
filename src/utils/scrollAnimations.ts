@@ -34,7 +34,13 @@ class ScrollAnimator {
   }
 
   private isExcluded(element: Element): boolean {
-    return element.closest('.navbar, .hero') !== null;
+    // Check if element is within a hero section or has role="banner"
+    return (
+      element.closest('.hero, section[role="banner"]') !== null ||
+      element.closest('.navbar') !== null ||
+      element.getAttribute('role') === 'banner' ||
+      element.classList.contains('hero')
+    );
   }
 
   private debounce(callback: () => void, wait: number) {
@@ -59,7 +65,14 @@ class ScrollAnimator {
     // Initialize observers with debouncing
     this.debounce(() => {
       document.querySelectorAll('.fade-in').forEach(element => {
-        this.observer.observe(element);
+        // Double-check exclusion before observing
+        if (!this.isExcluded(element)) {
+          this.observer.observe(element);
+        } else {
+          // Remove fade-in class from excluded elements
+          element.classList.remove('fade-in');
+          (element as HTMLElement).style.opacity = '1';
+        }
       });
     }, 100);
 
