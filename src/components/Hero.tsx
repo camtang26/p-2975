@@ -1,15 +1,19 @@
+import { useState } from "react";
 import { VideoBackground } from "./hero/VideoBackground";
 import { HeroContent } from "./hero/HeroContent";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useVideoStore } from "@/stores/useVideoStore";
 
 export const Hero = () => {
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
   const isMobile = useIsMobile();
-  const { isMuted, isPlaying, toggleMute, togglePlay } = useVideoStore();
+
+  const toggleMute = () => setIsMuted(!isMuted);
+  const togglePlay = () => setIsPlaying(!isPlaying);
 
   return (
     <section 
-      className="relative w-full aspect-[18/9] md:aspect-[19/9] flex items-center justify-center overflow-hidden" 
+      className="relative w-full aspect-video flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Hero section"
     >
