@@ -1,8 +1,9 @@
-import { AnimatedBackground } from "@/components/studios/AnimatedBackground";
+import { Navigation } from "@/components/Navigation";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
-import { B2BSection } from "@/components/studios/B2BSection";
+import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
 import { MarketingSection } from "@/components/studios/MarketingSection";
+import { B2BSection } from "@/components/studios/B2BSection";
 import { Testimonials } from "@/components/studios/Testimonials";
 import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
@@ -30,16 +31,20 @@ const Studios = () => {
         }}
       />
 
-      <main className="relative">
+      <Navigation />
+      <main className="relative pt-20">
         <StudiosHero />
         <FadeIn>
           <StudiosIntro />
         </FadeIn>
         <FadeIn>
-          <B2BSection />
+          <ExpertiseBenefits />
         </FadeIn>
         <FadeIn>
           <MarketingSection />
+        </FadeIn>
+        <FadeIn>
+          <B2BSection />
         </FadeIn>
         <FadeIn>
           <Testimonials />
