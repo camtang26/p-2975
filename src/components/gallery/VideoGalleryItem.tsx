@@ -1,11 +1,10 @@
 import { useState, useRef } from 'react';
-import VimeoPlayer, { VimeoPlayerHandle } from '../core/VimeoPlayer';
-import VideoModal from '../core/VideoModal';
 import { useFullscreen } from '@/hooks/useFullscreen';
-import { AspectRatio } from "../ui/aspect-ratio";
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Alert, AlertDescription } from "../ui/alert";
 import { Button } from "../ui/button";
+import VideoModal from '../core/VideoModal';
+import { ProgressiveLoader } from '../video/ProgressiveLoader';
 
 interface VideoGalleryItemProps {
   videoId: string;
@@ -18,7 +17,6 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
   const containerRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const playerRef = useRef<VimeoPlayerHandle>(null);
   const { isFullscreen, toggleFullscreen } = useFullscreen(containerRef);
   const { trackEvent } = useAnalytics();
 
@@ -66,35 +64,27 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
         tabIndex={0}
         aria-label={`Play ${title}`}
       >
-        <AspectRatio ratio={16 / 9}>
-          {hasError ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Alert variant="destructive" className="max-w-[80%]">
-                <AlertDescription className="flex flex-col items-center gap-4">
-                  <p>Failed to load video</p>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleRetry}
-                    className="w-full sm:w-auto"
-                  >
-                    Try Again
-                  </Button>
-                </AlertDescription>
-              </Alert>
-            </div>
-          ) : (
-            <VimeoPlayer
-              ref={playerRef}
-              videoId={videoId}
-              autoplay={isActive}
-              muted={true}
-              loop={false}
-              isBackground={true}
-              className="w-full h-full rounded-lg"
-              onError={handleError}
-            />
-          )}
-        </AspectRatio>
+        {hasError ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Alert variant="destructive" className="max-w-[80%]">
+              <AlertDescription className="flex flex-col items-center gap-4">
+                <p>Failed to load video</p>
+                <Button 
+                  variant="outline" 
+                  onClick={handleRetry}
+                  className="w-full sm:w-auto"
+                >
+                  Try Again
+                </Button>
+              </AlertDescription>
+            </Alert>
+          </div>
+        ) : (
+          <ProgressiveLoader
+            videoId={videoId}
+            title={title}
+          />
+        )}
       </div>
 
       {isModalOpen && (
