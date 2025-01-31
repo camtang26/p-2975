@@ -15,19 +15,6 @@ export const StudiosHero = () => {
       {/* Animated Background */}
       <AnimatedBackground />
 
-      {/* Neural Tree Image Overlay */}
-      <div 
-        className="absolute inset-0 z-[2] opacity-30 pointer-events-none"
-        style={{
-          backgroundImage: 'url(/lovable-uploads/f610921b-60fd-4c34-8d42-c58b7f9506e7.png)',
-          backgroundSize: 'contain',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          mixBlendMode: 'screen'
-        }}
-        aria-hidden="true"
-      />
-
       {/* Content */}
       <div className="relative z-[3] container mx-auto px-4 text-center mt-4">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
