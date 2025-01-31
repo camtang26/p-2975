@@ -20,21 +20,31 @@ export const AnimatedBackground = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create dynamic particle system
+    // Create dynamic particle system with multiple neon colors
     const particleCount = 1000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
+
+    // Define neon color palette
+    const neonColors = [
+      [1.0, 0.2, 0.8],  // Neon Pink
+      [0.2, 1.0, 0.8],  // Neon Cyan
+      [0.8, 0.2, 1.0],  // Neon Purple
+      [0.2, 0.8, 1.0],  // Neon Blue
+      [1.0, 0.8, 0.2],  // Neon Yellow
+    ];
 
     for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 20;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
 
-      // Blue-centric color palette
-      colors[i * 3] = 0.2 + Math.random() * 0.2;     // R
-      colors[i * 3 + 1] = 0.5 + Math.random() * 0.3; // G
-      colors[i * 3 + 2] = 0.8 + Math.random() * 0.2; // B
+      // Randomly select a neon color from the palette
+      const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+      colors[i * 3] = color[0];     // R
+      colors[i * 3 + 1] = color[1]; // G
+      colors[i * 3 + 2] = color[2]; // B
 
       sizes[i] = Math.random() * 2;
     }
@@ -55,8 +65,8 @@ export const AnimatedBackground = () => {
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // Add subtle ambient light
-    const ambientLight = new THREE.AmbientLight(0x404040);
+    // Add subtle ambient light for better particle visibility
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
 
     // Position camera
@@ -113,7 +123,7 @@ export const AnimatedBackground = () => {
       ref={containerRef} 
       className="absolute inset-0 z-0"
       style={{
-        background: 'radial-gradient(circle at center, rgba(2,8,23,0.95) 0%, rgba(2,8,23,0.98) 75%, rgba(2,8,23,0.99) 100%)',
+        background: 'radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.99) 75%, rgba(0,0,0,1) 100%)',
       }}
     />
   );
