@@ -83,18 +83,19 @@
       }
     </script>
     
-    <!-- Third-party scripts -->
+    <!-- Third-party scripts with crossorigin -->
     <script 
       src="https://elevenlabs.io/convai-widget/index.js" 
       async 
       defer
       type="text/javascript"
+      crossorigin="anonymous"
     ></script>
   </head>
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" crossorigin="anonymous"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
