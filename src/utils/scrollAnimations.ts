@@ -1,6 +1,7 @@
 class ScrollAnimator {
   private observer: IntersectionObserver;
   private threshold: number = 0.1;
+  private debounceTimeout: number | null = null;
 
   constructor() {
     this.observer = new IntersectionObserver(
@@ -36,11 +37,40 @@ class ScrollAnimator {
     return element.closest('.navbar, .hero') !== null;
   }
 
+  private debounce(callback: () => void, wait: number) {
+    if (this.debounceTimeout) {
+      window.clearTimeout(this.debounceTimeout);
+    }
+    this.debounceTimeout = window.setTimeout(callback, wait);
+  }
+
   public init() {
-    document.querySelectorAll('.fade-in').forEach(element => {
-      this.observer.observe(element);
-    });
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.fade-in').forEach(element => {
+        element.classList.remove('fade-in');
+        (element as HTMLElement).style.opacity = '1';
+      });
+      return;
+    }
+
+    // Initialize observers with debouncing
+    this.debounce(() => {
+      document.querySelectorAll('.fade-in').forEach(element => {
+        this.observer.observe(element);
+      });
+    }, 100);
+
     console.log('ScrollAnimator initialized');
+  }
+
+  public cleanup() {
+    if (this.debounceTimeout) {
+      window.clearTimeout(this.debounceTimeout);
+    }
+    this.observer.disconnect();
   }
 }
 
