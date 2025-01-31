@@ -11,8 +11,8 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     name: "Kurt Burnette",
-    company: "Seven West Media",
-    title: "Chief Revenue Officer",
+    company: "Kotia",
+    title: "Kotia Skincare Director",
     quote: "In the fast-paced media landscape, staying ahead of the curve is crucial. Cre8tive AI Studios has been instrumental in helping us leverage the power of AI video production. Their innovative approach has allowed us to create high-quality content quickly and efficiently, significantly enhancing our ability to engage our audience across multiple platforms. I'm particularly impressed with their team's deep understanding of both the technology and our business needs."
   },
   {
