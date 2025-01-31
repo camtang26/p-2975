@@ -20,8 +20,8 @@
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     .scroll-fade {
-      transition: none;
-      transform: none;
+      transition: opacity 0.6s ease !important;
+      transform: none !important;
     }
   }
 }
