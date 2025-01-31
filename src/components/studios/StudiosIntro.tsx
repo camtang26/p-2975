@@ -58,18 +58,18 @@ export const StudiosIntro = () => {
           <div 
             className={cn(
               "relative aspect-video rounded-xl overflow-hidden",
-              "glass-morphism animate-scale-in"
+              "bg-black/30 backdrop-blur-sm animate-scale-in"
             )}
           >
             <img
               src="/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png"
               alt="Neural Tree Visualization"
-              className="w-full h-full object-cover"
+              className="w-[110%] h-[110%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             />
             
             {/* Overlay */}
             <div 
-              className="absolute inset-0 bg-black/20"
+              className="absolute inset-0 bg-black/10 backdrop-blur-[2px]"
               aria-hidden="true"
             />
           </div>
