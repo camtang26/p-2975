@@ -1,42 +1,31 @@
 import { VideoGallery } from './gallery/VideoGallery';
 
-// Sample video data with verified public Vimeo video IDs
+// Video data with actual Cre8tive AI Vimeo videos
 const videos = [
   {
     id: "1",
-    videoId: "710119524",  // Public Vimeo demo reel
-    thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-    title: "Creative Demo Reel"
+    videoId: "1051824336",
+    title: "Cre8tive AI DHM Video"
   },
   {
     id: "2",
-    videoId: "824804225",  // Public animation sample
-    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    title: "3D Animation"
+    videoId: "1051846744",
+    title: "RAM 30 sec Cre8tive AI Demo"
   },
   {
     id: "3",
-    videoId: "824804286",  // Public motion graphics
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    title: "Motion Graphics"
+    videoId: "1051820049",
+    title: "Cre8tive AI Automotive Demo"
   },
   {
     id: "4",
-    videoId: "824804244",  // Public product showcase
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    title: "Product Video"
+    videoId: "1051819670",
+    title: "Cre8tive AI Demo"
   },
   {
     id: "5",
-    videoId: "824804197",  // Public corporate video
-    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    title: "Corporate Overview"
-  },
-  {
-    id: "6",
-    videoId: "824804225",  // Public brand story
-    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    title: "Brand Story"
+    videoId: "1052203361",
+    title: "Cre8tive AI Marina Project"
   }
 ];
 

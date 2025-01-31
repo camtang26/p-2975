@@ -8,13 +8,12 @@ import { Button } from "../ui/button";
 
 interface VideoGalleryItemProps {
   videoId: string;
-  thumbnail: string;
   title: string;
   isActive: boolean;
   onActivate: () => void;
 }
 
-const VideoGalleryItem = ({ videoId, thumbnail, title, isActive, onActivate }: VideoGalleryItemProps) => {
+const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGalleryItemProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -92,48 +91,16 @@ const VideoGalleryItem = ({ videoId, thumbnail, title, isActive, onActivate }: V
                 </Alert>
               </div>
             ) : (
-              <>
-                <VimeoPlayer
-                  ref={playerRef}
-                  videoId={videoId}
-                  autoplay={isActive}
-                  muted={true}
-                  loop={false}
-                  isBackground={!isActive}
-                  className="w-full h-full rounded-lg"
-                  onError={handleError}
-                />
-                {!isActive && (
-                  <div className="absolute inset-0 bg-black/40 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
-                    <picture>
-                      <source
-                        media="(max-width: 640px)"
-                        srcSet={`${thumbnail}?w=640&fm=webp&q=80 1x, ${thumbnail}?w=1280&fm=webp&q=80 2x`}
-                        type="image/webp"
-                      />
-                      <source
-                        media="(max-width: 1024px)"
-                        srcSet={`${thumbnail}?w=800&fm=webp&q=80 1x, ${thumbnail}?w=1600&fm=webp&q=80 2x`}
-                        type="image/webp"
-                      />
-                      <source
-                        srcSet={`${thumbnail}?w=1024&fm=webp&q=80 1x, ${thumbnail}?w=2048&fm=webp&q=80 2x`}
-                        type="image/webp"
-                      />
-                      <img
-                        src={`${thumbnail}?w=1024&q=80`}
-                        alt={`Video thumbnail for ${title}`}
-                        className="w-full h-full object-cover rounded-lg"
-                        loading="lazy"
-                        decoding="async"
-                        width={1024}
-                        height={576}
-                      />
-                    </picture>
-                    <Play className="absolute w-20 h-20 text-white" aria-hidden="true" />
-                  </div>
-                )}
-              </>
+              <VimeoPlayer
+                ref={playerRef}
+                videoId={videoId}
+                autoplay={isActive}
+                muted={true}
+                loop={false}
+                isBackground={!isActive}
+                className="w-full h-full rounded-lg"
+                onError={handleError}
+              />
             )}
           </>
         ) : (
