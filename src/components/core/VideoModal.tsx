@@ -13,6 +13,7 @@ interface VideoModalProps {
 const VideoModal = ({ videoId, onClose, isFullscreen, toggleFullscreen }: VideoModalProps) => {
   const modalRoot = document.getElementById('modal-root');
   const playerRef = useRef<VimeoPlayerHandle>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -40,21 +41,29 @@ const VideoModal = ({ videoId, onClose, isFullscreen, toggleFullscreen }: VideoM
 
   return createPortal(
     <div 
-      className={`fixed inset-0 z-50 bg-black/90 flex items-center justify-center ${
-        isFullscreen ? '!fixed !inset-0' : ''
+      className={`fixed inset-0 z-50 flex items-center justify-center ${
+        isFullscreen ? 'bg-black' : 'bg-black/90'
       }`}
       onClick={(e) => {
-        e.stopPropagation();
-        onClose();
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
       }}
     >
       <div 
-        className={`relative ${isFullscreen ? 'w-screen h-screen' : 'w-full max-w-6xl mx-4'} aspect-video`}
+        ref={containerRef}
+        className={`relative ${
+          isFullscreen 
+            ? 'w-screen h-screen' 
+            : 'w-full max-w-6xl mx-4 aspect-video'
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={onClose}
-          className={`absolute ${isFullscreen ? 'top-4 right-4' : '-top-8 right-0'} text-white hover:text-gray-300 transition-colors z-[60]`}
+          className={`absolute ${
+            isFullscreen ? 'top-4 right-4' : '-top-8 right-0'
+          } text-white hover:text-gray-300 transition-colors z-[60]`}
           aria-label="Close video"
         >
           <X className="w-6 h-6" />

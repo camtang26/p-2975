@@ -54,7 +54,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       }&title=0&byline=0&portrait=0&dnt=1&playsinline=1&transparent=1`;
       
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.style.cssText = 'position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);border:none;';
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
       
       if (!isBackground) {
         iframe.style.pointerEvents = 'auto';
@@ -76,9 +76,10 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         .then(() => {
           console.log('Vimeo player ready');
           onReady?.();
-          player.setVolume(muted ? 0 : 1);
           if (autoplay) {
-            player.play().catch(console.error);
+            player.setVolume(isBackground ? 0 : 1)
+              .then(() => player.play())
+              .catch(console.error);
           }
         })
         .catch((error) => {
@@ -88,21 +89,24 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
 
       return () => {
         console.log('Cleaning up Vimeo player');
-        player.destroy();
+        if (playerRef.current) {
+          playerRef.current.destroy();
+        }
         playerRef.current = null;
         iframeRef.current = null;
       };
     }, [videoId, autoplay, loop, muted, controls, isBackground, onReady, onError]);
 
-    // Update player when fullscreen state changes
+    // Handle fullscreen state changes
     useEffect(() => {
-      if (playerRef.current && iframeRef.current) {
+      if (playerRef.current && !isBackground) {
         if (isFullscreen) {
-          playerRef.current.setVolume(1);
-          playerRef.current.play().catch(console.error);
+          playerRef.current.setVolume(1)
+            .then(() => playerRef.current?.play())
+            .catch(console.error);
         }
       }
-    }, [isFullscreen]);
+    }, [isFullscreen, isBackground]);
 
     useImperativeHandle(ref, () => ({
       play: async () => {
@@ -134,9 +138,14 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
     return (
       <div 
         ref={containerRef}
-        className={`relative h-0 pb-[56.25%] overflow-hidden ${className} ${
-          isFullscreen ? '!fixed !inset-0 !h-screen !pb-0 z-[9999]' : ''
+        className={`relative ${className} ${
+          isFullscreen 
+            ? 'fixed inset-0 w-screen h-screen z-[9999]' 
+            : 'h-0 pb-[56.25%]'
         }`}
+        style={{
+          overflow: 'hidden',
+        }}
         role="presentation"
       />
     );
