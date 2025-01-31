@@ -7,7 +7,7 @@ export const AnimatedBackground = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    // Scene setup with improved settings
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ 
@@ -17,59 +17,67 @@ export const AnimatedBackground = () => {
     });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Performance optimization
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create flowing lines
-    const lines: THREE.Line[] = [];
-    const numLines = 30; // Reduced for better performance
-    
-    for (let i = 0; i < numLines; i++) {
-      const points = [];
-      const numPoints = 50; // Reduced for better performance
-      
-      for (let j = 0; j < numPoints; j++) {
-        points.push(
-          new THREE.Vector3(
-            (Math.random() - 0.5) * 15,
-            (Math.random() - 0.5) * 15,
-            (Math.random() - 0.5) * 15
-          )
-        );
-      }
+    // Create dynamic particle system
+    const particleCount = 1000;
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
 
-      const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const material = new THREE.LineBasicMaterial({
-        color: new THREE.Color(0.2 + Math.random() * 0.3, 0.2 + Math.random() * 0.3, 0.8 + Math.random() * 0.2),
-        transparent: true,
-        opacity: 0.3,
-      });
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
 
-      const line = new THREE.Line(geometry, material);
-      lines.push(line);
-      scene.add(line);
+      // Blue-centric color palette
+      colors[i * 3] = 0.2 + Math.random() * 0.2;     // R
+      colors[i * 3 + 1] = 0.5 + Math.random() * 0.3; // G
+      colors[i * 3 + 2] = 0.8 + Math.random() * 0.2; // B
+
+      sizes[i] = Math.random() * 2;
     }
 
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    const material = new THREE.PointsMaterial({
+      size: 0.1,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending,
+    });
+
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+
+    // Add subtle ambient light
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    scene.add(ambientLight);
+
     // Position camera
-    camera.position.z = 8;
+    camera.position.z = 10;
 
     // Animation
     let animationFrameId: number;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      lines.forEach((line, i) => {
-        const time = Date.now() * 0.0005; // Slowed down animation
-        const points = line.geometry.attributes.position.array as Float32Array;
-        
-        for (let j = 0; j < points.length; j += 3) {
-          points[j] += Math.sin(time + i * 0.1) * 0.001;
-          points[j + 1] += Math.cos(time + i * 0.1) * 0.001;
-          points[j + 2] += Math.sin(time + i * 0.05) * 0.001; // Added Z-axis movement
-        }
-        
-        line.geometry.attributes.position.needsUpdate = true;
-      });
+      const time = Date.now() * 0.0001;
+      
+      particles.rotation.x = time * 0.5;
+      particles.rotation.y = time * 0.3;
+
+      const positions = geometry.attributes.position.array as Float32Array;
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        positions[i3 + 1] += Math.sin(time + positions[i3] * 0.1) * 0.01;
+      }
+      geometry.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
     };
@@ -93,10 +101,8 @@ export const AnimatedBackground = () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
       containerRef.current?.removeChild(renderer.domElement);
-      lines.forEach(line => {
-        line.geometry.dispose();
-        (line.material as THREE.Material).dispose();
-      });
+      geometry.dispose();
+      material.dispose();
       scene.clear();
       renderer.dispose();
     };
@@ -107,7 +113,7 @@ export const AnimatedBackground = () => {
       ref={containerRef} 
       className="absolute inset-0 -z-10"
       style={{
-        background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 75%, rgba(13,13,29,0.99) 100%)',
+        background: 'radial-gradient(circle at center, rgba(2,8,23,0.95) 0%, rgba(2,8,23,0.98) 75%, rgba(2,8,23,0.99) 100%)',
       }}
     />
   );
