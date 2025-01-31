@@ -12,6 +12,7 @@ interface ProgressiveLoaderProps {
 
 export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) => {
   const [loadPhase, setLoadPhase] = useState<'placeholder' | 'preview' | 'full'>('placeholder');
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
   const { toast } = useToast();
   const { trackEvent } = useAnalytics();
   const timeoutRef = useRef<NodeJS.Timeout>();
@@ -21,6 +22,23 @@ export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) =>
     rootMargin: '200px',
     triggerOnce: true,
   });
+
+  useEffect(() => {
+    // Fetch thumbnail when component mounts
+    const fetchThumbnail = async () => {
+      try {
+        const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
+        const data = await response.json();
+        if (data && data[0] && data[0].thumbnail_large) {
+          setThumbnailUrl(data[0].thumbnail_large);
+        }
+      } catch (error) {
+        console.error('Failed to fetch thumbnail:', error);
+      }
+    };
+
+    fetchThumbnail();
+  }, [videoId]);
 
   useEffect(() => {
     if (!inView) return;
@@ -100,9 +118,18 @@ export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) =>
       role="region"
       aria-label={title ? `Video: ${title}` : 'Video player'}
     >
-      {/* Placeholder/Preview Phase */}
+      {/* Thumbnail */}
+      {thumbnailUrl && loadPhase !== 'full' && (
+        <img
+          src={thumbnailUrl}
+          alt={title || 'Video thumbnail'}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+
+      {/* Loading Overlay */}
       {loadPhase !== 'full' && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <div className="flex flex-col items-center gap-4">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
             <span className="text-sm text-white/80">
@@ -112,7 +139,7 @@ export const ProgressiveLoader = ({ videoId, title }: ProgressiveLoaderProps) =>
         </div>
       )}
 
-      {/* Full Quality Phase */}
+      {/* Video Player */}
       <div
         className={`transition-opacity duration-500 ${
           loadPhase === 'full' ? 'opacity-100' : 'opacity-0'
