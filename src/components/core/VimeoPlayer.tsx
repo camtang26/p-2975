@@ -35,6 +35,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
   }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const playerRef = useRef<Player | null>(null);
+    const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
     useEffect(() => {
       if (!containerRef.current) return;
@@ -62,6 +63,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       }
       
       containerRef.current.appendChild(iframe);
+      iframeRef.current = iframe;
       
       const player = new Player(iframe, {
         background: isBackground,
@@ -75,6 +77,9 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
           console.log('Vimeo player ready');
           onReady?.();
           player.setVolume(muted ? 0 : 1);
+          if (autoplay) {
+            player.play().catch(console.error);
+          }
         })
         .catch((error) => {
           console.error('Vimeo player error:', error);
@@ -85,8 +90,19 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         console.log('Cleaning up Vimeo player');
         player.destroy();
         playerRef.current = null;
+        iframeRef.current = null;
       };
     }, [videoId, autoplay, loop, muted, controls, isBackground, onReady, onError]);
+
+    // Update player when fullscreen state changes
+    useEffect(() => {
+      if (playerRef.current && iframeRef.current) {
+        if (isFullscreen) {
+          playerRef.current.setVolume(1);
+          playerRef.current.play().catch(console.error);
+        }
+      }
+    }, [isFullscreen]);
 
     useImperativeHandle(ref, () => ({
       play: async () => {
