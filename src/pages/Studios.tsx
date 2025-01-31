@@ -1,18 +1,13 @@
-import { Navigation } from "@/components/Navigation";
+import { AnimatedBackground } from "@/components/studios/AnimatedBackground";
 import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
-import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
-import { MarketingSection } from "@/components/studios/MarketingSection";
 import { B2BSection } from "@/components/studios/B2BSection";
+import { MarketingSection } from "@/components/studios/MarketingSection";
 import { Testimonials } from "@/components/studios/Testimonials";
 import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Studios = () => {
-  // Initialize smooth scrolling
-  useSmoothScroll();
-
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Main Gradient Background */}
@@ -35,20 +30,16 @@ const Studios = () => {
         }}
       />
 
-      <Navigation />
-      <main className="relative pt-20">
+      <main className="relative">
         <StudiosHero />
         <FadeIn>
           <StudiosIntro />
         </FadeIn>
         <FadeIn>
-          <ExpertiseBenefits />
+          <B2BSection />
         </FadeIn>
         <FadeIn>
           <MarketingSection />
-        </FadeIn>
-        <FadeIn>
-          <B2BSection />
         </FadeIn>
         <FadeIn>
           <Testimonials />
