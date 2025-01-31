@@ -60,63 +60,66 @@ export const Testimonials = () => {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16 relative z-20">
-          What Our Clients Say
-        </h2>
+        <ScrollFade>
+          <h2 className="text-4xl md:text-5xl font-bold text-gradient text-center mb-16 relative z-20">
+            What Our Clients Say
+          </h2>
+        </ScrollFade>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-20">
           {testimonials.map((testimonial, index) => {
             const color = Object.values(brandColors)[index % Object.values(brandColors).length];
             
             return (
-              <div
-                key={testimonial.name}
-                className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group"
-                style={{ 
-                  background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
-                  boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  '--card-color': color
-                } as React.CSSProperties}
-              >
-                {/* Quote Icon */}
-                <div className="flex justify-center">
-                  <div 
-                    className="relative group-hover:scale-110 transition-transform duration-300"
-                  >
+              <ScrollFade key={testimonial.name} delay={index * 100}>
+                <div
+                  className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group"
+                  style={{ 
+                    background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
+                    boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    '--card-color': color
+                  } as React.CSSProperties}
+                >
+                  {/* Quote Icon */}
+                  <div className="flex justify-center">
                     <div 
-                      className="absolute inset-0 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-300"
-                      style={{ background: color }}
-                    />
-                    <Quote 
-                      className={cn(
-                        "w-6 h-6 relative z-10",
-                        "transition-all duration-300",
-                        "drop-shadow-[0_0_8px_var(--card-color)]",
-                        "group-hover:drop-shadow-[0_0_12px_var(--card-color)]"
-                      )}
-                      style={{ color }}
-                    />
+                      className="relative group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <div 
+                        className="absolute inset-0 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                        style={{ background: color }}
+                      />
+                      <Quote 
+                        className={cn(
+                          "w-6 h-6 relative z-10",
+                          "transition-all duration-300",
+                          "drop-shadow-[0_0_8px_var(--card-color)]",
+                          "group-hover:drop-shadow-[0_0_12px_var(--card-color)]"
+                        )}
+                        style={{ color }}
+                      />
+                    </div>
+                  </div>
+
+                  <blockquote className="text-white/80 text-lg leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  <div className="pt-6 border-t border-white/10">
+                    <div className="text-xl font-semibold text-gradient">
+                      {testimonial.name}
+                    </div>
+                    <div className="font-medium mt-1" style={{ color }}>
+                      {testimonial.company}
+                    </div>
+                    <div className="text-white/60 text-sm mt-1">
+                      {testimonial.title}
+                    </div>
                   </div>
                 </div>
-
-                <blockquote className="text-white/80 text-lg leading-relaxed italic">
-                  "{testimonial.quote}"
-                </blockquote>
-
-                <div className="pt-6 border-t border-white/10">
-                  <div className="text-xl font-semibold text-gradient">
-                    {testimonial.name}
-                  </div>
-                  <div className="font-medium mt-1" style={{ color }}>
-                    {testimonial.company}
-                  </div>
-                  <div className="text-white/60 text-sm mt-1">
-                    {testimonial.title}
-                  </div>
-                </div>
-              </div>
+              </ScrollFade>
             );
           })}
         </div>
