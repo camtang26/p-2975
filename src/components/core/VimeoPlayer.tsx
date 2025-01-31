@@ -28,13 +28,18 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       if (!containerRef.current) return;
 
       const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=${autoplay ? 1 : 0}&loop=${loop ? 1 : 0}&muted=${muted ? 1 : 0}${isBackground ? '&background=1' : ''}`;
+      // Add background=1 and controls=0 to completely hide the interface
+      iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=${autoplay ? 1 : 0}&loop=${loop ? 1 : 0}&muted=${muted ? 1 : 0}&background=1&controls=0&playsinline=1&transparent=1`;
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.style.cssText = 'position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);border:none;';
+      iframe.style.cssText = 'position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);border:none;pointer-events:none;';
       
       containerRef.current.appendChild(iframe);
       
-      const player = new Player(iframe);
+      const player = new Player(iframe, {
+        background: true, // Enable background mode
+        controls: false, // Disable controls
+      });
+      
       playerRef.current = player;
 
       player.ready()
