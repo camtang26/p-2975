@@ -1,15 +1,11 @@
-import { useState } from "react";
 import { VideoBackground } from "./hero/VideoBackground";
 import { HeroContent } from "./hero/HeroContent";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useVideoStore } from "@/stores/useVideoStore";
 
 export const Hero = () => {
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
   const isMobile = useIsMobile();
-
-  const toggleMute = () => setIsMuted(!isMuted);
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const { isMuted, isPlaying, toggleMute, togglePlay } = useVideoStore();
 
   return (
     <section 
@@ -22,7 +18,7 @@ export const Hero = () => {
         isPlaying={isPlaying}
         onToggleMute={toggleMute}
         onTogglePlay={togglePlay}
-        priority={true} // Add priority to ensure fast loading for hero video
+        priority={true}
       />
       <HeroContent />
     </section>
