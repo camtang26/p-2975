@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "../ui/use-toast";
-import Player from "@vimeo/player";
+import VimeoPlayer from "../video/VimeoPlayer";
 
 interface VideoBackgroundProps {
   isMuted: boolean;
@@ -23,90 +23,42 @@ export const VideoBackground = ({
   const isMobile = useIsMobile();
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const playerRef = useRef<Player | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (containerRef.current && !playerRef.current) {
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/1051821551?h=cff11aa998&background=1&autoplay=1&loop=1&autopause=0";
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.style.position = "absolute";
-      iframe.style.top = "50%";
-      iframe.style.left = "50%";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      iframe.style.transform = "translate(-50%, -50%)";
-      iframe.style.border = "none";
-      
-      containerRef.current.appendChild(iframe);
-      
-      playerRef.current = new Player(iframe);
-      
-      playerRef.current.ready().then(() => {
-        console.log("Vimeo player is ready");
-        setIsLoaded(true);
-        setLoadError(null);
-        
-        playerRef.current?.setVolume(isMuted ? 0 : 1);
-        if (!isPlaying) {
-          playerRef.current?.pause();
-        }
-      }).catch(error => {
-        console.error("Vimeo player failed to initialize:", error);
-        setLoadError("Failed to load video");
-        toast({
-          title: "Video Loading Issue",
-          description: "Failed to load the video. Please refresh the page.",
-          variant: "destructive"
-        });
-      });
-    }
+  const handleReady = () => {
+    console.log("Video is ready");
+    setIsLoaded(true);
+    setLoadError(null);
+  };
 
-    return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy();
-        playerRef.current = null;
-      }
-    };
-  }, [toast]);
-
-  // Handle play/pause
-  useEffect(() => {
-    if (playerRef.current) {
-      if (isPlaying) {
-        playerRef.current.play().catch(error => {
-          console.error("Error playing video:", error);
-          toast({
-            title: "Playback Error",
-            description: "Unable to play video. Please try again.",
-            variant: "destructive"
-          });
-        });
-      } else {
-        playerRef.current.pause().catch(console.error);
-      }
-    }
-  }, [isPlaying, toast]);
-
-  // Handle mute/unmute
-  useEffect(() => {
-    if (playerRef.current) {
-      playerRef.current.setVolume(isMuted ? 0 : 1).catch(console.error);
-    }
-  }, [isMuted]);
+  const handleError = (error: Error) => {
+    console.error("Video error:", error);
+    setLoadError("Failed to load video");
+    toast({
+      title: "Video Loading Issue",
+      description: "Failed to load the video. Please refresh the page.",
+      variant: "destructive"
+    });
+  };
 
   return (
     <div className="absolute inset-0 z-0">
       <div 
-        ref={containerRef}
         className="relative w-full h-full z-[1] overflow-hidden"
         style={{
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out'
         }}
-      />
+      >
+        <VimeoPlayer
+          videoId="1051821551"
+          autoplay={isPlaying}
+          loop={true}
+          muted={isMuted}
+          onReady={handleReady}
+          onError={handleError}
+        />
+      </div>
       
       {/* Loading Indicator */}
       {!isLoaded && !loadError && (
@@ -124,7 +76,7 @@ export const VideoBackground = ({
       
       {/* Dark Overlay */}
       <div 
-        className="absolute inset-0 bg-black/50 z-[2]" 
+        className="absolute inset-0 bg-black/20 z-[2]" 
         aria-hidden="true" 
       />
       
