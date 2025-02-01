@@ -36,7 +36,7 @@ const services = [
 export const Services = () => {
   return (
     <section 
-      className="py-24 relative overflow-hidden" 
+      className="py-12 md:py-24 relative overflow-hidden" 
       role="region" 
       aria-label="Our Services"
     >
@@ -49,7 +49,7 @@ export const Services = () => {
       />
       
       <div className="container relative mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
           {services.map((service, index) => (
             <ScrollFade key={index} delay={index * 100}>
               <ServiceCard

@@ -33,7 +33,7 @@ export const ServiceCard = ({
     >
       <div 
         className={cn(
-          "glass-morphism p-16 rounded-xl hover-glow border border-white/10",
+          "glass-morphism p-6 md:p-16 rounded-xl hover-glow border border-white/10",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
           "transform-gpu transition-transform duration-500 hover:scale-105",
           "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
@@ -48,10 +48,10 @@ export const ServiceCard = ({
         } as React.CSSProperties}
       >
         {/* Icon with enhanced glow */}
-        <div className="mb-10 relative group-hover:animate-pulse">
+        <div className="mb-6 md:mb-10 relative group-hover:animate-pulse">
           <Icon 
             className={cn(
-              "w-28 h-28 transition-all duration-300",
+              "w-16 h-16 md:w-28 md:h-28 transition-all duration-300",
               "drop-shadow-[0_0_20px_var(--service-color)]",
               "group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
             )}
@@ -62,12 +62,12 @@ export const ServiceCard = ({
         {/* Content */}
         <h3 
           id={`service-title-${index}`}
-          className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
+          className="text-2xl md:text-4xl font-semibold mb-4 md:mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight"
         >
           {title}
         </h3>
         
-        <p className="text-xl text-white/80 leading-relaxed mb-8">
+        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6 md:mb-8">
           {description}
         </p>
         
@@ -76,7 +76,7 @@ export const ServiceCard = ({
             to={link}
             className={cn(
               "inline-flex items-center justify-center text-white/90 hover:text-white",
-              "relative overflow-hidden group transition-all duration-300 text-lg",
+              "relative overflow-hidden group transition-all duration-300 text-base md:text-lg",
               "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
               "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
               "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
