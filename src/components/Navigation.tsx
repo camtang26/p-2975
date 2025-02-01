@@ -29,10 +29,10 @@ export const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-sm border-b border-white/10" 
-      style={{ isolation: 'isolate' }}
+      className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-sm border-b border-white/10 transform-gpu" 
       role="navigation" 
       aria-label="Main navigation"
+      style={{ isolation: 'isolate' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-24">
