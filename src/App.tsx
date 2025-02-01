@@ -10,6 +10,7 @@ import { CookieConsent } from "./components/analytics/CookieConsent";
 import { ScrollToTop } from "./components/core/ScrollToTop";
 import { useEffect } from 'react';
 import { scrollAnimator } from './utils/scrollAnimations';
+import smoothscroll from 'smoothscroll-polyfill';
 import Index from "./pages/Index";
 import Studios from "./pages/Studios";
 import AdManager from "./pages/AdManager";
@@ -20,6 +21,9 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+// Initialize smoothscroll polyfill
+smoothscroll.polyfill();
 
 const App = () => {
   useEffect(() => {
