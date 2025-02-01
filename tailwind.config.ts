@@ -22,42 +22,9 @@ export default {
         'max': '2147483647'
       },
       fontFamily: {
-        sans: [
-          'Geist',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'system-ui',
-          'sans-serif'
-        ],
-        geist: [
-          'Geist',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'system-ui',
-          'sans-serif'
-        ],
-        inter: [
-          'Inter',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'system-ui',
-          'sans-serif'
-        ],
+        sans: ['Geist', 'system-ui', 'sans-serif'],
+        geist: ['Geist', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
