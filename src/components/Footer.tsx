@@ -58,7 +58,7 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/studios#marketing-section" className="font-geist text-white/70 hover:text-white transition-colors duration-300">
+                  <Link to="/b2b" className="font-geist text-white/70 hover:text-white transition-colors duration-300">
                     B2B Services
                   </Link>
                 </li>

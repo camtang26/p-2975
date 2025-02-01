@@ -68,7 +68,6 @@
     "react-router-dom": "^6.26.2",
     "recharts": "^2.12.7",
     "screenfull": "^6.0.2",
-    "smoothscroll-polyfill": "^0.4.4",
     "sonner": "^1.5.0",
     "stats.js": "^0.17.0",
     "tailwind-merge": "^2.5.2",
