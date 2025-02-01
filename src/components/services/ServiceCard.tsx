@@ -42,20 +42,14 @@ export const ServiceCard = ({
           "after:absolute after:inset-0 after:rounded-xl",
           "after:opacity-0 after:transition-opacity hover:after:opacity-100",
           "flex flex-col items-center justify-center text-center",
-          // Touch-specific optimizations
-          "@media (hover: none)": {
-            "touch-action": "manipulation",
-            "-webkit-tap-highlight-color": "transparent"
-          }
+          "touch-action-manipulation" // Added Tailwind utility class
         )}
         style={{
           '--service-color': color,
           boxShadow: `0 0 30px ${color}25`,
-          // Performance optimizations for mobile
-          '@media (max-width: 768px)': {
-            willChange: 'transform',
-            backfaceVisibility: 'hidden'
-          }
+          WebkitTapHighlightColor: 'transparent',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden'
         } as React.CSSProperties}
       >
         {/* Icon with enhanced glow and mobile optimization */}
@@ -92,7 +86,6 @@ export const ServiceCard = ({
               "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
               "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
               "cursor-pointer py-2 px-4",
-              // Touch feedback styles
               "active:scale-95 transition-transform"
             )}
             aria-label={`Learn more about ${title}`}
