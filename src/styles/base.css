@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Geist';
+  src: url('/font/geist/GeistVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/font/geist/GeistMonoVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 0 0% 7%;
@@ -29,12 +43,12 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-white/10 selection:text-white font-inter;
+    @apply border-border selection:bg-white/10 selection:text-white font-geist;
     -webkit-tap-highlight-color: transparent;
   }
   
   body {
-    @apply bg-background text-foreground antialiased font-inter min-h-screen overflow-x-hidden;
+    @apply bg-background text-foreground antialiased font-geist min-h-screen overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
