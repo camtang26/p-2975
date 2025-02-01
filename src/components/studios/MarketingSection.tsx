@@ -42,7 +42,8 @@ export const MarketingSection = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="marketing-section" className="py-24 relative overflow-hidden">
+      {/* Gradient overlay */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
