@@ -22,29 +22,13 @@
 
   /* Mobile menu specific overrides */
   .mobile-menu-overlay {
-    z-index: 2147483647 !important;
-    isolation: isolate;
     position: fixed;
-  }
-
-  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
-    .mobile-menu-overlay {
-      background: rgba(0, 0, 0, 0.8) !important;
-      -webkit-backdrop-filter: blur(12px) !important;
-      backdrop-filter: blur(12px) !important;
-    }
-  }
-
-  /* Fix iOS backdrop-filter rendering */
-  @supports (-webkit-touch-callout: none) {
-    .mobile-menu-overlay::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: inherit;
-      -webkit-backdrop-filter: blur(12px);
-      z-index: -1;
-    }
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+    isolation: isolate;
   }
 
   /* Stack grid layouts vertically */
