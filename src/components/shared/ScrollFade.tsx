@@ -21,8 +21,10 @@ export const ScrollFade = ({ children, className, delay = 0 }: ScrollFadeProps) 
             // Apply optimized animations based on device preferences
             setTimeout(() => {
               if (prefersReducedMotion) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'none';
+                if (ref.current) {
+                  ref.current.style.opacity = '1';
+                  ref.current.style.transform = 'none';
+                }
               } else {
                 entry.target.classList.add('fade-in-visible');
               }
@@ -59,15 +61,11 @@ export const ScrollFade = ({ children, className, delay = 0 }: ScrollFadeProps) 
       className={cn(
         "opacity-0 translate-y-8 transition-all duration-700 ease-out",
         "fade-in-visible:opacity-100 fade-in-visible:translate-y-0",
-        // Optimize GPU usage on mobile
         "transform-gpu",
         className
       )}
       style={{
-        // Reduce animation duration on mobile for better performance
-        '@media (max-width: 768px)': {
-          transitionDuration: '500ms'
-        }
+        transitionDuration: window.matchMedia('(max-width: 768px)').matches ? '500ms' : '700ms'
       }}
     >
       {children}
