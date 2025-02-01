@@ -36,20 +36,20 @@ export const Navigation = () => {
       aria-label="Main navigation"
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-12">
+        <div className="flex items-center justify-between h-8">
           <Link 
             to="/" 
-            className="flex items-center space-x-4" 
+            className="flex items-center space-x-3" 
             aria-label="Go to homepage"
           >
             <img 
               src="/lovable-uploads/a5f0ca2b-7777-4887-8e92-d1d0959c2448.png" 
               alt="Cre8tive AI Logo" 
-              className="h-8 w-auto"
-              width="32"
-              height="32"
+              className="h-6 w-auto"
+              width="24"
+              height="24"
             />
-            <span className="text-white font-geist font-bold text-lg tracking-[-0.02em] leading-none">
+            <span className="text-white font-geist font-bold text-base tracking-[-0.02em] leading-none">
               Cre8tive AI
             </span>
           </Link>
@@ -58,42 +58,42 @@ export const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8 h-full" role="menubar">
             <Link 
               to="/studios" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-base font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               Cre8tive AI Studios
             </Link>
             <Link 
               to="/manager" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-lg font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               Ad Manager
             </Link>
             <Link 
               to="/agents" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-lg font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               AI Agents
             </Link>
             <Link 
               to="/conversational" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-lg font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               Conversational AI Agents
             </Link>
             <Link 
               to="/about" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-lg font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               About Us
             </Link>
             <Link 
               to="/contact" 
-              className="text-white/90 hover:text-white transition-colors font-geist text-lg font-medium tracking-[-0.01em] flex items-center h-full"
+              className="text-white/90 hover:text-white transition-colors font-geist text-sm font-medium tracking-[-0.01em] flex items-center h-full"
               role="menuitem"
             >
               Contact
@@ -103,7 +103,7 @@ export const Navigation = () => {
           <div className="flex items-center space-x-4">
             <Button 
               variant="outline" 
-              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-sm flex items-center hidden md:flex"
+              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-xs flex items-center hidden md:flex"
               aria-label="Sign in to your account"
             >
               Sign in
@@ -117,7 +117,7 @@ export const Navigation = () => {
               onClick={openMenu}
               aria-label="Open mobile menu"
             >
-              <Menu className="h-4 w-4 text-white" />
+              <Menu className="h-3 w-3 text-white" />
             </Button>
           </div>
         </div>
