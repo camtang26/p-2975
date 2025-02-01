@@ -9,6 +9,7 @@ interface ServiceCardProps {
   Icon: LucideIcon;
   color: string;
   index: number;
+  isMobile: boolean;
 }
 
 export const ServiceCard = ({ 
@@ -17,7 +18,8 @@ export const ServiceCard = ({
   link, 
   Icon,
   color,
-  index
+  index,
+  isMobile
 }: ServiceCardProps) => {
   return (
     <div 
@@ -33,14 +35,15 @@ export const ServiceCard = ({
     >
       <div 
         className={cn(
-          "glass-morphism p-4 md:p-16 rounded-xl hover-glow border border-white/10",
+          "glass-morphism rounded-xl hover-glow border border-white/10",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
           "transform-gpu transition-transform duration-500 hover:scale-105",
           "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
           "before:opacity-0 before:transition-opacity hover:before:opacity-100",
           "after:absolute after:inset-0 after:rounded-xl",
           "after:opacity-0 after:transition-opacity hover:after:opacity-100",
-          "flex flex-col items-center justify-center text-center"
+          "flex flex-col items-center justify-center text-center",
+          isMobile ? "p-4" : "p-4 md:p-16"
         )}
         style={{
           '--service-color': color,
@@ -48,12 +51,16 @@ export const ServiceCard = ({
         } as React.CSSProperties}
       >
         {/* Icon with enhanced glow and mobile optimization */}
-        <div className="mb-4 md:mb-10 relative group-hover:animate-pulse">
+        <div className={cn(
+          "relative group-hover:animate-pulse",
+          isMobile ? "mb-3" : "mb-4 md:mb-10"
+        )}>
           <Icon 
             className={cn(
-              "w-12 h-12 md:w-28 md:h-28 transition-all duration-300",
-              "drop-shadow-[0_0_15px_var(--service-color)] md:drop-shadow-[0_0_20px_var(--service-color)]",
-              "group-hover:drop-shadow-[0_0_30px_var(--service-color)] md:group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
+              "transition-all duration-300",
+              "drop-shadow-[0_0_15px_var(--service-color)]",
+              "group-hover:drop-shadow-[0_0_30px_var(--service-color)]",
+              isMobile ? "w-12 h-12" : "w-12 h-12 md:w-28 md:h-28"
             )}
             style={{ color: color }}
           />
@@ -62,12 +69,18 @@ export const ServiceCard = ({
         {/* Content */}
         <h3 
           id={`service-title-${index}`}
-          className="text-2xl md:text-4xl font-semibold mb-3 md:mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight"
+          className={cn(
+            "font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight",
+            isMobile ? "text-xl mb-2" : "text-2xl md:text-4xl mb-3 md:mb-6"
+          )}
         >
           {title}
         </h3>
         
-        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-4 md:mb-8">
+        <p className={cn(
+          "text-white/80 leading-relaxed",
+          isMobile ? "text-sm mb-3" : "text-lg md:text-xl mb-4 md:mb-8"
+        )}>
           {description}
         </p>
         
@@ -76,11 +89,12 @@ export const ServiceCard = ({
             to={link}
             className={cn(
               "inline-flex items-center justify-center text-white/90 hover:text-white",
-              "relative overflow-hidden group transition-all duration-300 text-base md:text-lg",
+              "relative overflow-hidden group transition-all duration-300",
               "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
               "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
               "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
-              "cursor-pointer py-2 px-4"
+              "cursor-pointer py-2 px-4",
+              isMobile ? "text-sm" : "text-base md:text-lg"
             )}
             aria-label={`Learn more about ${title}`}
           >
