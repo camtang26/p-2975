@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { VideoBackground } from "../hero/VideoBackground";
 import { HeroContent } from "../hero/HeroContent";
+import { TouchRipple } from "./TouchRipple";
 
 export const MobileHero = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -11,7 +12,7 @@ export const MobileHero = () => {
 
   return (
     <section 
-      className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden" 
+      className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden touch-manipulation" 
       role="banner" 
       aria-label="Hero section"
     >
@@ -22,7 +23,10 @@ export const MobileHero = () => {
         onTogglePlay={togglePlay}
         priority={true}
       />
-      <div className="relative z-[2] flex flex-col items-center justify-center text-center space-y-4 max-w-[90vw] mx-auto px-4">
+      <div 
+        className="relative z-[2] flex flex-col items-center justify-center text-center space-y-4 max-w-[90vw] mx-auto px-4"
+        style={{ touchAction: 'manipulation' }}
+      >
         <h1 className="font-inter text-4xl sm:text-5xl font-bold tracking-[-0.02em] opacity-0 animate-[fadeIn_3s_ease-out_forwards]">
           <span className="text-white inline-block transition-transform duration-300 [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
             Cre8tive AI
@@ -32,6 +36,7 @@ export const MobileHero = () => {
           Cutting Edge AI Solutions For Your Business
         </p>
       </div>
+      <TouchRipple />
     </section>
   );
 };
