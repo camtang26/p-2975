@@ -10,14 +10,7 @@ interface MobileMenuOverlayProps {
 export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100]"
-      style={{ 
-        backgroundColor: 'rgba(0, 0, 0, 0.8) !important', 
-        backdropFilter: 'blur(12px) !important',
-        isolation: 'isolate',
-        transform: 'translateZ(0)',
-        willChange: 'transform'
-      }}
+      className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 md:hidden"
       aria-modal="true"
       role="dialog"
     >

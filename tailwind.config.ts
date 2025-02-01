@@ -86,17 +86,8 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
-      },
-      backdropBlur: {
-        md: '12px'
       }
     }
   },
   plugins: [require("tailwindcss-animate")],
-  safelist: [
-    'bg-black/80',
-    'backdrop-blur-md',
-    'backdrop-blur-sm',
-    'backdrop-filter'
-  ]
 } satisfies Config;
