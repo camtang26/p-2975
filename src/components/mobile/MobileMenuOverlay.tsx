@@ -10,12 +10,12 @@ interface MobileMenuOverlayProps {
 
 export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    document.body.style.touchAction = 'none';
+    document.documentElement.style.overflow = 'hidden';
+    document.documentElement.style.touchAction = 'none';
     
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.touchAction = '';
     };
   }, []);
 
@@ -25,7 +25,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[2147483647] mobile-menu-overlay mobile-active"
+        className="fixed inset-0 z-[2147483647] mobile-overlay md:hidden"
         style={{ 
           isolation: 'isolate',
         }}

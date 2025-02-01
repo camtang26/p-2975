@@ -18,6 +18,9 @@ export default {
       }
     },
     extend: {
+      zIndex: {
+        'max': '2147483647'
+      },
       fontFamily: {
         sans: ['Geist', 'system-ui', 'sans-serif'],
         geist: ['Geist', 'system-ui', 'sans-serif'],
@@ -98,7 +101,7 @@ export default {
     'backdrop-blur-md',
     'backdrop-blur-sm',
     'backdrop-filter',
-    'mobile-menu-overlay',
-    'mobile-active'
+    'mobile-overlay',
+    'md:hidden'
   ]
 } satisfies Config;

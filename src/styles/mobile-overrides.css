@@ -20,27 +20,33 @@
     padding: 0.75rem 1.25rem !important;
   }
 
-  /* Mobile menu specific overrides */
-  .mobile-menu-overlay {
-    z-index: 2147483647 !important;
-    isolation: isolate;
-    position: fixed;
+  /* Mobile overlay specific styles */
+  .mobile-overlay {
+    background: rgba(0,0,0,0.8) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    backdrop-filter: blur(5px) !important;
+    
+    /* Firefox fallback */
+    @-moz-document url-prefix() {
+      background: rgba(0,0,0,0.95) !important;
+    }
   }
 
-  .mobile-menu-overlay.mobile-active {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    backdrop-filter: blur(12px) !important;
+  /* Fallback for browsers without backdrop-filter support */
+  @supports not (backdrop-filter: blur(1px)) {
+    .mobile-overlay {
+      background: rgba(0,0,0,0.95) !important;
+    }
   }
 
   /* Fix iOS backdrop-filter rendering */
   @supports (-webkit-touch-callout: none) {
-    .mobile-menu-overlay::before {
+    .mobile-overlay::before {
       content: '';
       position: absolute;
       inset: 0;
       background: inherit;
-      -webkit-backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: -1;
     }
   }
