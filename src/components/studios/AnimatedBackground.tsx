@@ -24,8 +24,8 @@ export const AnimatedBackground = () => {
     // Initialize performance monitoring
     const cleanup = perf.init(renderer);
 
-    // Create dynamic particle system with increased count and spherical distribution
-    const particleCount = 2000; // Increased from 1000
+    // Create dynamic particle system with increased count
+    const particleCount = 2000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
@@ -39,17 +39,10 @@ export const AnimatedBackground = () => {
       [0.95, 0.99, 0.89],  // Green (#F2FCE2)
     ];
 
-    // Distribute particles in a spherical pattern
     for (let i = 0; i < particleCount; i++) {
-      // Spherical coordinates
-      const radius = 10 * Math.cbrt(Math.random()); // Cube root for better distribution
-      const theta = Math.random() * Math.PI * 2; // Azimuthal angle
-      const phi = Math.acos((2 * Math.random()) - 1); // Polar angle
-
-      // Convert to Cartesian coordinates
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = radius * Math.cos(phi);
+      positions[i * 3] = (Math.random() - 0.5) * 20;     // X position
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 20; // Y position
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20; // Z position
 
       // Randomly select a neon color from the palette
       const color = neonColors[Math.floor(Math.random() * neonColors.length)];
