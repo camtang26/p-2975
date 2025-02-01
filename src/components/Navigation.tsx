@@ -9,12 +9,10 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -31,7 +29,7 @@ export const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10" 
+      className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-sm border-b border-white/10" 
       role="navigation" 
       aria-label="Main navigation"
     >
