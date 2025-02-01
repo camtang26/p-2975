@@ -1,26 +1,52 @@
-import { Link as RouterLink, LinkProps } from 'react-router-dom';
+import { Link as RouterLink, LinkProps, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const Link = ({ to, children, ...props }: LinkProps) => {
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (typeof to === 'string') {
       if (to.includes('#')) {
+        event.preventDefault();
         const [pathname, hash] = to.split('#');
-        const currentPath = window.location.pathname;
         
-        // If we're already on the correct page, handle smooth scrolling
-        if (!pathname || pathname === '/' + currentPath.split('/')[1]) {
-          event.preventDefault();
-          const targetElement = document.getElementById(hash);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+        if (!pathname || pathname === window.location.pathname || pathname === '/' + window.location.pathname.split('/')[1]) {
+          // If we're already on the correct page, handle smooth scrolling
+          const target = document.getElementById(hash);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
           }
+        } else {
+          // Navigate to new page with hash
+          navigate(`${pathname}#${hash}`);
         }
       } else {
-        // Maintain existing scroll behavior for non-hash links
+        // Reset scroll for non-hash links
         window.history.scrollRestoration = 'manual';
       }
     }
   };
+
+  // Handle scroll after navigation for hash links
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const target = document.getElementById(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    // Initial check for hash in URL
+    if (window.location.hash) {
+      handleHashChange();
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <RouterLink 
