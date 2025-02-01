@@ -64,7 +64,8 @@ export const ContactForm = () => {
       const sanitizedData = {
         name: sanitizeInput(data.name),
         email: sanitizeInput(data.email).toLowerCase(),
-        message: sanitizeInput(data.message)
+        message: sanitizeInput(data.message),
+        recipient: "sales@cre8tive.ai" // Added recipient email
       };
 
       // Validate email format
