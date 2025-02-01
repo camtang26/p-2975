@@ -10,9 +10,14 @@ interface MobileMenuOverlayProps {
 export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] md:hidden"
+      className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100]"
       aria-modal="true"
       role="dialog"
+      style={{ 
+        isolation: 'isolate',
+        transform: 'translateZ(0)',
+        willChange: 'transform'
+      }}
     >
       <div className="container mx-auto px-4 py-6 h-full flex flex-col">
         <div className="flex justify-between items-center">
