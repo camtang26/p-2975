@@ -29,7 +29,7 @@ const About = () => {
       <main className="relative flex-grow container mx-auto px-4 md:px-10 py-24 md:py-32 z-10">
         <div className="max-w-7xl mx-auto">
           {/* Headline with gradient text */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-16 md:mb-24 font-inter tracking-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-16 md:mb-24 font-geist tracking-tight">
             <span className="text-gradient">About Us</span>
           </h1>
           
@@ -37,10 +37,10 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
             {/* Mission Statement Column */}
             <div className="glass-morphism p-8 md:p-10 rounded-2xl space-y-6">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-inter tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-geist tracking-tight">
                 Our Mission
               </h2>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-inter">
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-geist">
                 Our mission is to revolutionize media production through cutting-edge AI technology, 
                 delivering efficiencies leading to margin and unparalleled quality and innovation 
                 in video production and content creation.
@@ -49,10 +49,10 @@ const About = () => {
             
             {/* Company Overview Column */}
             <div className="glass-morphism p-8 md:p-10 rounded-2xl space-y-6">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-inter tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-geist tracking-tight">
                 Company Overview
               </h2>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-inter">
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-geist">
                 We help media companies, production houses, and digital marketing agencies stay 
                 ahead of the curve by implementing the best AI media tools and technologies into 
                 traditional workflows. Specializing in high-quality AI video production, we utilize 
@@ -66,30 +66,30 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
               {/* Innovation Card */}
               <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+                <h3 className="text-2xl font-semibold text-white mb-4 font-geist tracking-tight">
                   Innovation
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-white/80 leading-relaxed font-geist">
                   Pushing the boundaries of what's possible with AI-driven media production.
                 </p>
               </div>
 
               {/* Quality Card */}
               <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+                <h3 className="text-2xl font-semibold text-white mb-4 font-geist tracking-tight">
                   Quality
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-white/80 leading-relaxed font-geist">
                   Delivering exceptional results through state-of-the-art AI technologies.
                 </p>
               </div>
 
               {/* Efficiency Card */}
               <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+                <h3 className="text-2xl font-semibold text-white mb-4 font-geist tracking-tight">
                   Efficiency
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-white/80 leading-relaxed font-geist">
                   Streamlining workflows and maximizing productivity with AI automation.
                 </p>
               </div>
