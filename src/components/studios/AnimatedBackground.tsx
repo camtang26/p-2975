@@ -25,18 +25,18 @@ export const AnimatedBackground = () => {
     const cleanup = perf.init(renderer);
 
     // Create holographic orbs with updated colors
-    const particleCount = 50; // Reduced count for better performance
+    const particleCount = 50;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
 
     // Define holographic color palette
     const holographicColors = [
-      [0.608, 0.529, 0.961],  // Primary Purple: #9b87f5
-      [0.494, 0.412, 0.671],  // Secondary Purple: #7E69AB
-      [0.431, 0.349, 0.647],  // Tertiary Purple: #6E59A5
-      [0.839, 0.737, 0.980],  // Light Purple: #D6BCFA
-      [0.847, 0.275, 0.937],  // Magenta Pink: #D946EF
+      [0.059, 0.627, 0.808],  // Neon Blue: #0FA0CE
+      [0.000, 1.000, 0.500],  // Neon Green: #00FF80
+      [0.976, 0.451, 0.086],  // Neon Orange/Red: #F97316
+      [0.847, 0.275, 0.937],  // Neon Pink: #D946EF
+      [0.545, 0.361, 0.965],  // Neon Purple: #8B5CF6
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -139,7 +139,6 @@ export const AnimatedBackground = () => {
     // Position camera
     camera.position.z = 30;
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
