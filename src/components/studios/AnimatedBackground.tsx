@@ -24,34 +24,33 @@ export const AnimatedBackground = () => {
     // Initialize performance monitoring
     const cleanup = perf.init(renderer);
 
-    // Create holographic orbs with updated colors
-    const particleCount = 50;
+    // Create dynamic particle system with updated neon colors
+    const particleCount = 1000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
 
-    // Define holographic color palette
-    const holographicColors = [
-      [0.059, 0.627, 0.808],  // Neon Blue: #0FA0CE
-      [0.000, 1.000, 0.500],  // Neon Green: #00FF80
-      [0.976, 0.451, 0.086],  // Neon Orange/Red: #F97316
-      [0.847, 0.275, 0.937],  // Neon Pink: #D946EF
-      [0.545, 0.361, 0.965],  // Neon Purple: #8B5CF6
+    // Define updated neon color palette
+    const neonColors = [
+      [0.92, 0.22, 0.30],  // Red (#ea384c) replacing pink
+      [0.2, 1.0, 0.8],     // Neon Cyan
+      [0.8, 0.2, 1.0],     // Neon Purple
+      [0.2, 0.8, 1.0],     // Neon Blue
+      [0.95, 0.99, 0.89],  // Green (#F2FCE2) replacing yellow
     ];
 
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 15;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
 
-      // Randomly select a holographic color
-      const color = holographicColors[Math.floor(Math.random() * holographicColors.length)];
-      colors[i * 3] = color[0];
-      colors[i * 3 + 1] = color[1];
-      colors[i * 3 + 2] = color[2];
+      // Randomly select a neon color from the palette
+      const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+      colors[i * 3] = color[0];     // R
+      colors[i * 3 + 1] = color[1]; // G
+      colors[i * 3 + 2] = color[2]; // B
 
-      // Larger sizes for orbs
-      sizes[i] = Math.random() * 5 + 2;
+      sizes[i] = Math.random() * 2;
     }
 
     const geometry = new THREE.BufferGeometry();
@@ -59,36 +58,12 @@ export const AnimatedBackground = () => {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-    // Create custom shader material for holographic effect
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        time: { value: 0 },
-        pointTexture: { value: new THREE.TextureLoader().load('/orb-texture.png') }
-      },
-      vertexShader: `
-        attribute float size;
-        varying vec3 vColor;
-        uniform float time;
-        void main() {
-          vColor = color;
-          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_Position = projectionMatrix * mvPosition;
-          gl_PointSize = size * (300.0 / -mvPosition.z) * (1.0 + 0.3 * sin(time + position.x + position.y));
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vColor;
-        uniform sampler2D pointTexture;
-        void main() {
-          vec4 texColor = texture2D(pointTexture, gl_PointCoord);
-          gl_FragColor = vec4(vColor, 1.0) * texColor;
-          gl_FragColor.a *= 0.8;
-        }
-      `,
+    const material = new THREE.PointsMaterial({
+      size: 0.1,
+      vertexColors: true,
       transparent: true,
-      depthWrite: false,
+      opacity: 0.8,
       blending: THREE.AdditiveBlending,
-      vertexColors: true
     });
 
     const particles = new THREE.Points(geometry, material);
@@ -96,24 +71,20 @@ export const AnimatedBackground = () => {
 
     // Animation
     let animationFrameId: number;
-    const clock = new THREE.Clock();
-
     const animate = () => {
       perf.begin();
       
       animationFrameId = requestAnimationFrame(animate);
       
-      const time = clock.getElapsedTime();
-      material.uniforms.time.value = time;
+      const time = Date.now() * 0.0001;
       
-      particles.rotation.x = time * 0.1;
-      particles.rotation.y = time * 0.15;
+      particles.rotation.x = time * 0.5;
+      particles.rotation.y = time * 0.3;
 
       const positions = geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
-        positions[i3 + 1] += Math.sin(time + positions[i3] * 0.5) * 0.005;
-        positions[i3] += Math.cos(time + positions[i3 + 1] * 0.5) * 0.005;
+        positions[i3 + 1] += Math.sin(time + positions[i3] * 0.1) * 0.01;
       }
       geometry.attributes.position.needsUpdate = true;
 
@@ -136,9 +107,7 @@ export const AnimatedBackground = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Position camera
-    camera.position.z = 30;
-
+    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
