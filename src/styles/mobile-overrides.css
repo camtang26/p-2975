@@ -27,10 +27,12 @@
     position: fixed;
   }
 
-  .mobile-menu-overlay.mobile-active {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    backdrop-filter: blur(12px) !important;
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    .mobile-menu-overlay {
+      background: rgba(0, 0, 0, 0.8) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      backdrop-filter: blur(12px) !important;
+    }
   }
 
   /* Fix iOS backdrop-filter rendering */

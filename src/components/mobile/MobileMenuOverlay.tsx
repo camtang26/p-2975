@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
@@ -9,7 +9,7 @@ interface MobileMenuOverlayProps {
 }
 
 export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.style.overflow = 'hidden';
     document.body.style.touchAction = 'none';
     
@@ -25,8 +25,11 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[2147483647] mobile-menu-overlay mobile-active"
+        className="fixed inset-0 z-[2147483647] mobile-menu-overlay"
         style={{ 
+          background: 'rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           isolation: 'isolate',
         }}
         aria-modal="true"
