@@ -33,7 +33,7 @@ export const ServiceCard = ({
     >
       <div 
         className={cn(
-          "glass-morphism p-6 md:p-16 rounded-xl hover-glow border border-white/10",
+          "glass-morphism p-4 md:p-16 rounded-xl hover-glow border border-white/10",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent relative group",
           "transform-gpu transition-transform duration-500 hover:scale-105",
           "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r",
@@ -47,13 +47,13 @@ export const ServiceCard = ({
           boxShadow: `0 0 30px ${color}25`
         } as React.CSSProperties}
       >
-        {/* Icon with enhanced glow */}
-        <div className="mb-6 md:mb-10 relative group-hover:animate-pulse">
+        {/* Icon with enhanced glow and mobile optimization */}
+        <div className="mb-4 md:mb-10 relative group-hover:animate-pulse">
           <Icon 
             className={cn(
-              "w-16 h-16 md:w-28 md:h-28 transition-all duration-300",
-              "drop-shadow-[0_0_20px_var(--service-color)]",
-              "group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
+              "w-12 h-12 md:w-28 md:h-28 transition-all duration-300",
+              "drop-shadow-[0_0_15px_var(--service-color)] md:drop-shadow-[0_0_20px_var(--service-color)]",
+              "group-hover:drop-shadow-[0_0_30px_var(--service-color)] md:group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
             )}
             style={{ color: color }}
           />
@@ -62,12 +62,12 @@ export const ServiceCard = ({
         {/* Content */}
         <h3 
           id={`service-title-${index}`}
-          className="text-2xl md:text-4xl font-semibold mb-4 md:mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight"
+          className="text-2xl md:text-4xl font-semibold mb-3 md:mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight"
         >
           {title}
         </h3>
         
-        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6 md:mb-8">
+        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-4 md:mb-8">
           {description}
         </p>
         
