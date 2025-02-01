@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { useFullscreen } from '@/hooks/useFullscreen';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { AspectRatio } from "../ui/aspect-ratio";
 import VideoModal from '../core/VideoModal';
@@ -15,11 +14,9 @@ interface VideoGalleryItemProps {
 }
 
 const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGalleryItemProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasError, setHasError] = useState(false);
   const playerRef = useRef<VimeoPlayerHandle>(null);
-  const { isFullscreen, toggleFullscreen } = useFullscreen(containerRef);
   const { trackEvent } = useAnalytics();
 
   const handleError = (error: Error) => {
@@ -58,7 +55,6 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
   return (
     <>
       <div
-        ref={containerRef}
         className="relative break-inside-avoid cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#9b87f5]/10 animate-fade-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         onClick={handleOpenModal}
         onKeyDown={(e) => e.key === 'Enter' && handleOpenModal()}
@@ -85,8 +81,6 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
         <VideoModal
           videoId={videoId}
           onClose={handleCloseModal}
-          isFullscreen={isFullscreen}
-          toggleFullscreen={toggleFullscreen}
         />
       )}
     </>

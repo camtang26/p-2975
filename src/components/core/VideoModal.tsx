@@ -1,16 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Maximize2, Minimize2 } from 'lucide-react';
+import { X } from 'lucide-react';
 import VimeoPlayer, { VimeoPlayerHandle } from './VimeoPlayer';
 
 interface VideoModalProps {
   videoId: string;
   onClose: () => void;
-  isFullscreen: boolean;
-  toggleFullscreen: () => void;
 }
 
-const VideoModal = ({ videoId, onClose, isFullscreen, toggleFullscreen }: VideoModalProps) => {
+const VideoModal = ({ videoId, onClose }: VideoModalProps) => {
   const modalRoot = document.getElementById('modal-root');
   const playerRef = useRef<VimeoPlayerHandle>(null);
 
@@ -25,13 +23,12 @@ const VideoModal = ({ videoId, onClose, isFullscreen, toggleFullscreen }: VideoM
 
   return createPortal(
     <div 
-      className={`fixed inset-0 z-50 bg-black/90 flex items-center justify-center ${
-        isFullscreen ? '!fixed !inset-0' : ''
-      }`}
+      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center opacity-0 animate-fade-in"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-6xl mx-4 aspect-video"
+        className="relative w-full max-w-6xl mx-4 aspect-video opacity-0 animate-scale-in"
+        style={{ animationDelay: '150ms' }}
         onClick={(e) => e.stopPropagation()}
       >
         <button 
@@ -49,16 +46,7 @@ const VideoModal = ({ videoId, onClose, isFullscreen, toggleFullscreen }: VideoM
           controls={true}
           className="rounded-lg shadow-xl"
           isBackground={false}
-          isFullscreen={isFullscreen}
         />
-
-        <button
-          onClick={toggleFullscreen}
-          className="absolute bottom-4 right-4 p-2 bg-black/50 text-white rounded-lg hover:bg-black/70 transition-colors"
-          aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-        >
-          {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
-        </button>
       </div>
     </div>,
     modalRoot
