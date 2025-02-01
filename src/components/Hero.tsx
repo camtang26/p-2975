@@ -1,30 +1,9 @@
-import { useState } from "react";
-import { VideoBackground } from "./hero/VideoBackground";
-import { HeroContent } from "./hero/HeroContent";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { MobileHero } from "./mobile/MobileHero";
+import { DesktopHero } from "./desktop/DesktopHero";
 
 export const Hero = () => {
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
   const isMobile = useIsMobile();
 
-  const toggleMute = () => setIsMuted(!isMuted);
-  const togglePlay = () => setIsPlaying(!isPlaying);
-
-  return (
-    <section 
-      className="relative w-full aspect-video flex items-center justify-center overflow-hidden" 
-      role="banner" 
-      aria-label="Hero section"
-    >
-      <VideoBackground
-        isMuted={isMuted}
-        isPlaying={isPlaying}
-        onToggleMute={toggleMute}
-        onTogglePlay={togglePlay}
-        priority={true}
-      />
-      <HeroContent />
-    </section>
-  );
+  return isMobile ? <MobileHero /> : <DesktopHero />;
 };
