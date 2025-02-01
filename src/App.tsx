@@ -37,8 +37,6 @@ const App: React.FC = () => {
           {/* Security Headers */}
           <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
           <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-          <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
-          <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
           <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
           
