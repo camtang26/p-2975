@@ -24,33 +24,25 @@ export const AnimatedBackground = () => {
     // Initialize performance monitoring
     const cleanup = perf.init(renderer);
 
-    // Create dynamic particle system with increased count
-    const particleCount = 3000;
+    // Create dynamic particle system with updated neon colors
+    const particleCount = 1000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
-    const velocities = new Float32Array(particleCount * 3);
 
     // Define updated neon color palette
     const neonColors = [
-      [0.92, 0.22, 0.30],  // Red (#ea384c)
+      [0.92, 0.22, 0.30],  // Red (#ea384c) replacing pink
       [0.2, 1.0, 0.8],     // Neon Cyan
       [0.8, 0.2, 1.0],     // Neon Purple
       [0.2, 0.8, 1.0],     // Neon Blue
-      [0.95, 0.99, 0.89],  // Green (#F2FCE2)
+      [0.95, 0.99, 0.89],  // Green (#F2FCE2) replacing yellow
     ];
 
-    // Initialize particles with wider distribution
     for (let i = 0; i < particleCount; i++) {
-      // Distribute particles in a larger space
-      positions[i * 3] = (Math.random() - 0.5) * 40;     // X position (wider range)
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 40; // Y position (wider range)
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 40; // Z position (wider range)
-
-      // Initialize velocities with more variation
-      velocities[i * 3] = (Math.random() - 0.5) * 0.05;     // X velocity
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.05; // Y velocity
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.05; // Z velocity
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
 
       // Randomly select a neon color from the palette
       const color = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -77,47 +69,25 @@ export const AnimatedBackground = () => {
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // Position camera further back to see more particles
-    camera.position.z = 30;
-
     // Animation
     let animationFrameId: number;
     const animate = () => {
       perf.begin();
       
       animationFrameId = requestAnimationFrame(animate);
-      const positions = geometry.attributes.position.array as Float32Array;
       
-      // Update particle positions independently
+      const time = Date.now() * 0.0001;
+      
+      particles.rotation.x = time * 0.5;
+      particles.rotation.y = time * 0.3;
+
+      const positions = geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
-        
-        // Update positions with velocities
-        positions[i3] += velocities[i3];
-        positions[i3 + 1] += velocities[i3 + 1];
-        positions[i3 + 2] += velocities[i3 + 2];
-
-        // Boundary check and wrap around (instead of bounce)
-        for (let j = 0; j < 3; j++) {
-          if (positions[i3 + j] > 20) {
-            positions[i3 + j] = -20;
-          } else if (positions[i3 + j] < -20) {
-            positions[i3 + j] = 20;
-          }
-        }
-
-        // Add slight randomness to velocities
-        velocities[i3] += (Math.random() - 0.5) * 0.001;
-        velocities[i3 + 1] += (Math.random() - 0.5) * 0.001;
-        velocities[i3 + 2] += (Math.random() - 0.5) * 0.001;
-
-        // Limit maximum velocity
-        for (let j = 0; j < 3; j++) {
-          velocities[i3 + j] = Math.max(Math.min(velocities[i3 + j], 0.1), -0.1);
-        }
+        positions[i3 + 1] += Math.sin(time + positions[i3] * 0.1) * 0.01;
       }
-      
       geometry.attributes.position.needsUpdate = true;
+
       renderer.render(scene, camera);
       
       perf.end();
