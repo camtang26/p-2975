@@ -10,7 +10,7 @@ export const QuoteCard = ({ quote, author, title }: QuoteCardProps) => {
   return (
     <div className="relative p-12 md:p-16 transition-all duration-300 max-w-4xl mx-auto">
       {/* Quote icon with glow effect */}
-      <div className="absolute top-12 md:top-16 left-8 md:left-12">
+      <div className="absolute top-8 md:top-12 left-8 md:left-12">
         <div className="relative">
           <div className="absolute inset-0 blur-xl rounded-full opacity-30">
             <div className="w-8 h-8 bg-[#00ff80]" />
