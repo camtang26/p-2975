@@ -25,10 +25,11 @@ export const AnimatedBackground = () => {
     const cleanup = perf.init(renderer);
 
     // Create dynamic particle system with increased count
-    const particleCount = 2000;
+    const particleCount = 3000; // Increased from 2000
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
+    const velocities = new Float32Array(particleCount * 3); // Add velocities for random movement
 
     // Define updated neon color palette
     const neonColors = [
@@ -43,6 +44,11 @@ export const AnimatedBackground = () => {
       positions[i * 3] = (Math.random() - 0.5) * 20;     // X position
       positions[i * 3 + 1] = (Math.random() - 0.5) * 20; // Y position
       positions[i * 3 + 2] = (Math.random() - 0.5) * 20; // Z position
+
+      // Initialize random velocities for each particle
+      velocities[i * 3] = (Math.random() - 0.5) * 0.02;     // X velocity
+      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02; // Y velocity
+      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.02; // Z velocity
 
       // Randomly select a neon color from the palette
       const color = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -77,17 +83,26 @@ export const AnimatedBackground = () => {
       animationFrameId = requestAnimationFrame(animate);
       
       const time = Date.now() * 0.0001;
-      
-      particles.rotation.x = time * 0.5;
-      particles.rotation.y = time * 0.3;
-
       const positions = geometry.attributes.position.array as Float32Array;
+      
+      // Update particle positions with individual velocities
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
-        positions[i3 + 1] += Math.sin(time + positions[i3] * 0.1) * 0.01;
-      }
-      geometry.attributes.position.needsUpdate = true;
+        
+        // Apply velocity and add slight randomness
+        positions[i3] += velocities[i3] + (Math.random() - 0.5) * 0.01;
+        positions[i3 + 1] += velocities[i3 + 1] + (Math.random() - 0.5) * 0.01;
+        positions[i3 + 2] += velocities[i3 + 2] + (Math.random() - 0.5) * 0.01;
 
+        // Boundary check and bounce
+        for (let j = 0; j < 3; j++) {
+          if (Math.abs(positions[i3 + j]) > 10) {
+            velocities[i3 + j] *= -1;
+          }
+        }
+      }
+      
+      geometry.attributes.position.needsUpdate = true;
       renderer.render(scene, camera);
       
       perf.end();
