@@ -1,4 +1,4 @@
-import { ServiceCard } from "./desktop/DesktopServiceCard";
+import { DesktopServiceCard } from "./desktop/DesktopServiceCard";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { services } from "./servicesData";
 
@@ -21,7 +21,7 @@ export const DesktopServices = () => {
         <div className="grid grid-cols-2 gap-8">
           {services.map((service, index) => (
             <ScrollFade key={index} delay={index * 100}>
-              <ServiceCard
+              <DesktopServiceCard
                 title={service.title}
                 description={service.description}
                 link={service.link}

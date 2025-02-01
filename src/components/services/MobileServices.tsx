@@ -1,4 +1,4 @@
-import { ServiceCard } from "./mobile/MobileServiceCard";
+import { MobileServiceCard } from "./mobile/MobileServiceCard";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { services } from "./servicesData";
 
@@ -21,7 +21,7 @@ export const MobileServices = () => {
         <div className="grid grid-cols-1 gap-4">
           {services.map((service, index) => (
             <ScrollFade key={index} delay={index * 100}>
-              <ServiceCard
+              <MobileServiceCard
                 title={service.title}
                 description={service.description}
                 link={service.link}
