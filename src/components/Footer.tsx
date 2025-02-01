@@ -27,10 +27,30 @@ export const Footer = () => {
                 <span className="font-geist text-white font-bold">Cre8tive AI</span>
               </div>
               <div className="flex space-x-4" role="list" aria-label="Social media links">
-                <Twitter className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Twitter" />
-                <Instagram className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Instagram" />
-                <Youtube className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="Youtube" />
-                <Linkedin className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" aria-label="LinkedIn" />
+                <a 
+                  href="https://www.instagram.com/cre8tiveai_/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
+                </a>
+                <a 
+                  href="https://www.youtube.com/@Cre8tiveAI-nd4ms" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Youtube"
+                >
+                  <Youtube className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/cre8tive-ai/?viewAsMember=true" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" />
+                </a>
               </div>
             </div>
 
