@@ -8,7 +8,6 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    // Using semantic HTML5 elements for better accessibility and structure
     <div className="min-h-screen flex flex-col bg-black">
       <header role="banner">
         <Navigation />
@@ -19,7 +18,10 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       </main>
 
       <Footer />
-      <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
+      <elevenlabs-convai 
+        agent-id="lQXvJFg8zSqlerOKPXm6"
+        data-allow-cors="true"
+      ></elevenlabs-convai>
     </div>
   );
 };
