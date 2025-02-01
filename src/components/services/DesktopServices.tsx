@@ -1,4 +1,4 @@
-import { ServiceCard } from "./ServiceCard";
+import { ServiceCard } from "./desktop/DesktopServiceCard";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { services } from "./servicesData";
 
@@ -28,7 +28,6 @@ export const DesktopServices = () => {
                 Icon={service.icon}
                 color={service.color}
                 index={index}
-                isMobile={false}
               />
             </ScrollFade>
           ))}

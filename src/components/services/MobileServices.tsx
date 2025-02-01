@@ -1,5 +1,4 @@
-import { Brain, Layers, Bot, Phone } from "lucide-react";
-import { ServiceCard } from "./ServiceCard";
+import { ServiceCard } from "./mobile/MobileServiceCard";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { services } from "./servicesData";
 
@@ -29,7 +28,6 @@ export const MobileServices = () => {
                 Icon={service.icon}
                 color={service.color}
                 index={index}
-                isMobile={true}
               />
             </ScrollFade>
           ))}
