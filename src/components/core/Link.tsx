@@ -1,22 +1,28 @@
 import { Link as RouterLink, LinkProps, useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 
 export const Link = ({ to, children, ...props }: LinkProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const scrollAttempts = useRef(0);
 
   const scrollToHash = useCallback((hash: string) => {
-    const target = document.getElementById(hash);
-    if (target) {
-      // Small delay to ensure DOM stability
-      setTimeout(() => {
+    const attemptScroll = () => {
+      const target = document.getElementById(hash);
+      if (target) {
         target.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
           inline: 'nearest'
         });
-      }, 50);
-    }
+        scrollAttempts.current = 0;
+      } else if (scrollAttempts.current < 5) {
+        scrollAttempts.current += 1;
+        setTimeout(attemptScroll, 100 * scrollAttempts.current);
+      }
+    };
+
+    attemptScroll();
   }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -30,27 +36,33 @@ export const Link = ({ to, children, ...props }: LinkProps) => {
           window.history.replaceState(null, '', `#${hash}`);
           scrollToHash(hash);
         } else {
-          // Cross-page navigation
-          navigate({
-            pathname,
-            hash,
-          }, {
-            replace: location.pathname === '/',
-            state: { from: location.pathname }
-          });
+          // Cross-page navigation with scroll preservation
+          navigate(
+            { pathname, hash },
+            {
+              state: { 
+                from: location.pathname,
+                shouldScroll: true 
+              }
+            }
+          );
         }
       } else {
+        // Only reset scroll for non-hash links
         window.history.scrollRestoration = 'manual';
       }
     }
   };
 
   useEffect(() => {
-    if (location.hash) {
+    if (location.hash && location.state?.shouldScroll) {
       const hash = location.hash.replace('#', '');
       scrollToHash(hash);
+      
+      // Clear scroll state after handling
+      navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location.hash, scrollToHash]);
+  }, [location.hash, location.pathname, location.state, navigate, scrollToHash]);
 
   return (
     <RouterLink 
