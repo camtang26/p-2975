@@ -10,7 +10,7 @@ interface MobileMenuOverlayProps {
 export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
   return (
     <div 
-      className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 md:hidden"
+      className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 md:hidden"
       aria-modal="true"
       role="dialog"
     >
@@ -38,7 +38,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-white"
+            className="text-white hover:bg-white/10 transition-colors rounded-full border-2 border-white/20 hover:border-white/40"
             aria-label="Close mobile menu"
           >
             <X className="h-6 w-6" />
@@ -50,7 +50,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/studios"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -60,7 +60,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/manager"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -70,7 +70,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/agents"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -80,7 +80,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/conversational"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -90,7 +90,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/about"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -100,7 +100,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
             <li role="none">
               <Link
                 to="/contact"
-                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3 px-4 rounded-lg hover:bg-white/10"
                 onClick={onClose}
                 role="menuitem"
               >
@@ -113,7 +113,7 @@ export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose })
         <div className="mt-auto pb-8">
           <Button 
             variant="outline" 
-            className="w-full bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg h-14"
+            className="w-full bg-white text-black hover:bg-white/90 font-geist font-medium tracking-[-0.01em] text-lg h-14 border-0"
             onClick={onClose}
           >
             Sign in
