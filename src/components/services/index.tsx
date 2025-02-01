@@ -1,31 +1,32 @@
-import { Brain, Layers, Bot, Phone } from "lucide-react";
-import { ServiceCard } from "./services/ServiceCard";
-import { ScrollFade } from "@/components/shared/ScrollFade";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { MobileServices } from "./mobile/MobileServices";
+import { DesktopServices } from "./desktop/DesktopServices";
+import { ServiceData } from "./types";
 
-const services = [
+const services: ServiceData[] = [
   {
-    icon: Brain,
+    icon: "Brain",
     title: "Cre8tive AI Studios",
     description: "Transform your creative vision with our cutting-edge AI-powered studio tools. Create stunning visuals and immersive experiences with our intuitive interface, perfect for both professionals and newcomers alike.",
     link: "/studios",
     color: "#60A5FA" // blue-400
   },
   {
-    icon: Layers,
+    icon: "Layers",
     title: "Ad Manager",
     description: "Revolutionize your advertising with AI-driven optimization. Our intelligent system analyzes trends and behavior to craft compelling content, while providing data-driven insights that keep you ahead of competitors.",
     link: "/manager",
     color: "#F87171" // red-400
   },
   {
-    icon: Bot,
+    icon: "Bot",
     title: "AI Agents",
     description: "Streamline your workflow with sophisticated AI agents that handle complex tasks with precision. Our intelligent automation solutions learn and adapt to your needs, delivering unprecedented productivity gains.",
     link: "/agents",
     color: "#C084FC" // purple-400
   },
   {
-    icon: Phone,
+    icon: "Phone",
     title: "Conversational AI",
     description: "Elevate customer engagement with our advanced conversational AI platform. Create natural, context-aware interactions that drive meaningful results while continuously learning from each interaction.",
     link: "/conversational",
@@ -34,6 +35,9 @@ const services = [
 ];
 
 export const Services = () => {
+  const isMobile = useIsMobile();
+  console.log('Services component rendered, isMobile:', isMobile);
+
   return (
     <section 
       className="py-8 md:py-24 relative overflow-hidden" 
@@ -48,22 +52,11 @@ export const Services = () => {
         aria-hidden="true"
       />
       
-      <div className="container relative mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
-          {services.map((service, index) => (
-            <ScrollFade key={index} delay={index * 100}>
-              <ServiceCard
-                title={service.title}
-                description={service.description}
-                link={service.link}
-                Icon={service.icon}
-                color={service.color}
-                index={index}
-              />
-            </ScrollFade>
-          ))}
-        </div>
-      </div>
+      {isMobile ? (
+        <MobileServices services={services} />
+      ) : (
+        <DesktopServices services={services} />
+      )}
     </section>
   );
 };
