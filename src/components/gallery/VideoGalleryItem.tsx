@@ -52,6 +52,9 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
     });
   };
 
+  // Check if this is one of the 21:9 videos that needs special handling
+  const isWideVideo = videoId === "1052203361" || videoId === "1052204241";
+
   return (
     <>
       <div
@@ -66,13 +69,15 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
           {hasError ? (
             <ErrorAlert onRetry={handleRetry} />
           ) : (
-            <VideoContainer
-              ref={playerRef}
-              videoId={videoId}
-              title={title}
-              isActive={isActive}
-              onError={handleError}
-            />
+            <div className={`relative w-full h-full overflow-hidden ${isWideVideo ? 'scale-[1.15]' : ''}`}>
+              <VideoContainer
+                ref={playerRef}
+                videoId={videoId}
+                title={title}
+                isActive={isActive}
+                onError={handleError}
+              />
+            </div>
           )}
         </AspectRatio>
       </div>
