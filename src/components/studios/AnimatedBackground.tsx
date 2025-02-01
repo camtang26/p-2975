@@ -24,25 +24,42 @@ export const AnimatedBackground = () => {
     // Initialize performance monitoring
     const cleanup = perf.init(renderer);
 
-    // Create dynamic particle system with updated neon colors
-    const particleCount = 1000;
+    // Increased particle count and improved distribution
+    const particleCount = 2000; // Increased from 1000
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
 
     // Define updated neon color palette
     const neonColors = [
-      [0.92, 0.22, 0.30],  // Red (#ea384c) replacing pink
+      [0.92, 0.22, 0.30],  // Red (#ea384c)
       [0.2, 1.0, 0.8],     // Neon Cyan
       [0.8, 0.2, 1.0],     // Neon Purple
       [0.2, 0.8, 1.0],     // Neon Blue
-      [0.95, 0.99, 0.89],  // Green (#F2FCE2) replacing yellow
+      [0.95, 0.99, 0.89],  // Green (#F2FCE2)
     ];
 
+    // Helper function to generate points on a sphere
+    const generateSpherePoint = () => {
+      const radius = 15;
+      const u = Math.random();
+      const v = Math.random();
+      const theta = 2 * Math.PI * u;
+      const phi = Math.acos(2 * v - 1);
+      
+      return {
+        x: radius * Math.sin(phi) * Math.cos(theta),
+        y: radius * Math.sin(phi) * Math.sin(theta),
+        z: radius * Math.cos(phi)
+      };
+    };
+
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+      // Generate point on sphere
+      const point = generateSpherePoint();
+      positions[i * 3] = point.x;
+      positions[i * 3 + 1] = point.y;
+      positions[i * 3 + 2] = point.z;
 
       // Randomly select a neon color from the palette
       const color = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -106,6 +123,7 @@ export const AnimatedBackground = () => {
     };
 
     window.addEventListener('resize', handleResize);
+    camera.position.z = 30; // Adjusted camera position for better view
 
     // Cleanup
     return () => {
