@@ -36,7 +36,7 @@ export const Navigation = () => {
       aria-label="Main navigation"
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-12">
           <Link 
             to="/" 
             className="flex items-center space-x-4" 
@@ -45,11 +45,11 @@ export const Navigation = () => {
             <img 
               src="/lovable-uploads/a5f0ca2b-7777-4887-8e92-d1d0959c2448.png" 
               alt="Cre8tive AI Logo" 
-              className="h-10 w-auto"
-              width="40"
-              height="40"
+              className="h-8 w-auto"
+              width="32"
+              height="32"
             />
-            <span className="text-white font-geist font-bold text-xl tracking-[-0.02em] leading-none">
+            <span className="text-white font-geist font-bold text-lg tracking-[-0.02em] leading-none">
               Cre8tive AI
             </span>
           </Link>
@@ -103,7 +103,7 @@ export const Navigation = () => {
           <div className="flex items-center space-x-4">
             <Button 
               variant="outline" 
-              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-base flex items-center hidden md:flex"
+              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-sm flex items-center hidden md:flex"
               aria-label="Sign in to your account"
             >
               Sign in
@@ -117,7 +117,7 @@ export const Navigation = () => {
               onClick={openMenu}
               aria-label="Open mobile menu"
             >
-              <Menu className="h-5 w-5 text-white" />
+              <Menu className="h-4 w-4 text-white" />
             </Button>
           </div>
         </div>
