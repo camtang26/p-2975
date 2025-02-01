@@ -2,99 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cre8tive AI - AI-Powered Video Production & Content Creation</title>
-    <meta name="description" content="Transform your business with AI-powered video production, autonomous agents, and innovative content creation solutions. Cre8tive AI helps you stay ahead of the competition." />
-    <meta name="author" content="Cre8tive AI" />
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Cre8tive AI - AI-Powered Video Production & Content Creation" />
-    <meta property="og:description" content="Transform your business with AI-powered video production, autonomous agents, and innovative content creation solutions." />
-    <meta property="og:image" content="/og-image.png" />
-    <meta property="og:url" content="https://cre8tive.ai" />
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cre8tive AI - AI-Powered Video Production & Content Creation" />
-    <meta name="twitter:description" content="Transform your business with AI-powered video production, autonomous agents, and innovative content creation solutions." />
-    <meta name="twitter:image" content="/og-image.png" />
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://assets.vercel.com" crossorigin />
-    <link rel="dns-prefetch" href="https://assets.vercel.com" />
-    
-    <!-- Preload critical fonts -->
-    <link 
-      rel="preload" 
-      as="font" 
-      href="https://assets.vercel.com/fonts/geist/geist-regular.woff2" 
-      type="font/woff2" 
-      crossorigin="anonymous" 
-    />
-    <link 
-      rel="preload" 
-      as="font" 
-      href="https://assets.vercel.com/fonts/geist/geist-bold.woff2" 
-      type="font/woff2" 
-      crossorigin="anonymous" 
-    />
-    
-    <!-- Font definitions -->
+    <title>Cre8tive AI</title>
+    <link rel="preload" href="/fonts/geist/GeistVariable.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/geist/GeistMonoVariable.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <style>
-      @font-face {
-        font-family: 'Geist';
-        src: url('https://assets.vercel.com/fonts/geist/geist-regular.woff2') format('woff2');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'Geist';
-        src: url('https://assets.vercel.com/fonts/geist/geist-bold.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
+      @supports (font-variation-settings: normal) {
+        body {
+          font-family: 'Geist', sans-serif;
+        }
+        code {
+          font-family: 'Geist Mono', monospace;
+        }
       }
     </style>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Cre8tive AI",
-        "description": "AI-powered video production and content creation solutions",
-        "url": "https://cre8tive.ai",
-        "logo": "/og-image.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "0404 713 440",
-          "contactType": "customer service",
-          "email": "cameron@cre8tive.ai"
-        },
-        "sameAs": [
-          "https://twitter.com/cre8tiveai",
-          "https://linkedin.com/company/cre8tiveai"
-        ]
-      }
-    </script>
-    
-    <!-- Third-party scripts -->
-    <script 
-      src="https://elevenlabs.io/convai-widget/index.js" 
-      async 
-      defer
-      type="text/javascript"
-    ></script>
   </head>
   <body>
     <div id="root"></div>
-    <div id="modal-root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
