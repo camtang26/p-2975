@@ -27,6 +27,7 @@ export const ServiceCard = ({
       )}
       style={{ 
         animationDelay: `${index * 100}ms`,
+        willChange: 'transform, opacity'
       }}
       role="article"
       aria-labelledby={`service-title-${index}`}
@@ -40,11 +41,21 @@ export const ServiceCard = ({
           "before:opacity-0 before:transition-opacity hover:before:opacity-100",
           "after:absolute after:inset-0 after:rounded-xl",
           "after:opacity-0 after:transition-opacity hover:after:opacity-100",
-          "flex flex-col items-center justify-center text-center"
+          "flex flex-col items-center justify-center text-center",
+          // Touch-specific optimizations
+          "@media (hover: none)": {
+            "touch-action": "manipulation",
+            "-webkit-tap-highlight-color": "transparent"
+          }
         )}
         style={{
           '--service-color': color,
-          boxShadow: `0 0 30px ${color}25`
+          boxShadow: `0 0 30px ${color}25`,
+          // Performance optimizations for mobile
+          '@media (max-width: 768px)': {
+            willChange: 'transform',
+            backfaceVisibility: 'hidden'
+          }
         } as React.CSSProperties}
       >
         {/* Icon with enhanced glow and mobile optimization */}
@@ -55,7 +66,7 @@ export const ServiceCard = ({
               "drop-shadow-[0_0_15px_var(--service-color)] md:drop-shadow-[0_0_20px_var(--service-color)]",
               "group-hover:drop-shadow-[0_0_30px_var(--service-color)] md:group-hover:drop-shadow-[0_0_40px_var(--service-color)]"
             )}
-            style={{ color: color }}
+            style={{ color }}
           />
         </div>
         
@@ -80,7 +91,9 @@ export const ServiceCard = ({
               "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px]",
               "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
               "after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
-              "cursor-pointer py-2 px-4"
+              "cursor-pointer py-2 px-4",
+              // Touch feedback styles
+              "active:scale-95 transition-transform"
             )}
             aria-label={`Learn more about ${title}`}
           >
