@@ -63,7 +63,7 @@ export const AnimatedBackground = () => {
     const material = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        pointTexture: { value: new THREE.TextureLoader().load('/lovable-uploads/orb-texture.png') }
+        pointTexture: { value: new THREE.TextureLoader().load('/orb-texture.png') }
       },
       vertexShader: `
         attribute float size;
