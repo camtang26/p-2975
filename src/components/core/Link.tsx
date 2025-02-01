@@ -1,8 +1,23 @@
-import { Link as RouterLink, LinkProps, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Link as RouterLink, LinkProps, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useCallback } from 'react';
 
 export const Link = ({ to, children, ...props }: LinkProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToHash = useCallback((hash: string) => {
+    const target = document.getElementById(hash);
+    if (target) {
+      // Small delay to ensure DOM stability
+      setTimeout(() => {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, 50);
+    }
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (typeof to === 'string') {
@@ -10,49 +25,39 @@ export const Link = ({ to, children, ...props }: LinkProps) => {
         event.preventDefault();
         const [pathname, hash] = to.split('#');
         
-        if (!pathname || pathname === window.location.pathname || pathname === '/' + window.location.pathname.split('/')[1]) {
-          // If we're already on the correct page, handle smooth scrolling
-          const target = document.getElementById(hash);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
+        if (pathname === location.pathname) {
+          // Existing page navigation
+          window.history.replaceState(null, '', `#${hash}`);
+          scrollToHash(hash);
         } else {
-          // Navigate to new page with hash
-          navigate(`${pathname}#${hash}`);
+          // Cross-page navigation
+          navigate({
+            pathname,
+            hash,
+          }, {
+            replace: location.pathname === '/',
+            state: { from: location.pathname }
+          });
         }
       } else {
-        // Reset scroll for non-hash links
         window.history.scrollRestoration = 'manual';
       }
     }
   };
 
-  // Handle scroll after navigation for hash links
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const target = document.getElementById(hash);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    };
-
-    // Initial check for hash in URL
-    if (window.location.hash) {
-      handleHashChange();
+    if (location.hash) {
+      const hash = location.hash.replace('#', '');
+      scrollToHash(hash);
     }
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [location.hash, scrollToHash]);
 
   return (
     <RouterLink 
       to={to}
       onClick={handleClick}
       {...props}
+      state={{ ...(props as any).state, preserveScroll: true }}
     >
       {children}
     </RouterLink>
