@@ -48,7 +48,6 @@ export const DesktopServiceCard = ({
           boxShadow: `0 0 30px ${color}25`
         } as React.CSSProperties}
       >
-        {/* Icon with enhanced desktop hover effects */}
         <div className="mb-10 relative group-hover:animate-pulse">
           <Icon 
             className={cn(
@@ -60,7 +59,6 @@ export const DesktopServiceCard = ({
           />
         </div>
         
-        {/* Content with desktop-optimized typography */}
         <h3 
           id={`desktop-service-title-${index}`}
           className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-tight"

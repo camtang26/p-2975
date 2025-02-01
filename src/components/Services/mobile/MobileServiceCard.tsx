@@ -24,7 +24,7 @@ export const MobileServiceCard = ({
     <div 
       className={cn(
         "relative w-full animate-fade-in",
-        "touch-manipulation" // Optimize for touch
+        "touch-manipulation"
       )}
       style={{ 
         animationDelay: `${index * 100}ms`,
@@ -36,7 +36,7 @@ export const MobileServiceCard = ({
         className={cn(
           "p-6 rounded-xl border border-white/10",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-          "active:scale-[0.98] transition-transform", // Mobile-friendly touch feedback
+          "active:scale-[0.98] transition-transform",
           "flex flex-col items-center text-center"
         )}
         style={{
@@ -44,7 +44,6 @@ export const MobileServiceCard = ({
           boxShadow: `0 0 20px ${color}15`
         } as React.CSSProperties}
       >
-        {/* Icon optimized for mobile */}
         <div className="mb-4 relative">
           <Icon 
             className="w-12 h-12 transition-all duration-300"
@@ -52,7 +51,6 @@ export const MobileServiceCard = ({
           />
         </div>
         
-        {/* Content optimized for mobile */}
         <h3 
           id={`mobile-service-title-${index}`}
           className="text-xl font-semibold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
@@ -68,7 +66,7 @@ export const MobileServiceCard = ({
           to={link}
           className={cn(
             "inline-flex items-center justify-center",
-            "text-white/90 active:text-white", // Mobile-optimized states
+            "text-white/90 active:text-white",
             "text-base py-2 px-4",
             "relative transition-colors duration-300"
           )}
