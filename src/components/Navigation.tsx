@@ -1,8 +1,33 @@
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Navigation = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  const openMenu = () => setIsMobileMenuOpen(true);
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <nav 
       className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10" 
@@ -26,6 +51,7 @@ export const Navigation = () => {
             <span className="text-white font-geist font-bold text-2xl tracking-[-0.02em] leading-none">Cre8tive AI</span>
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12 h-full -mt-1" role="menubar">
             <Link 
               to="/studios" 
@@ -71,15 +97,144 @@ export const Navigation = () => {
             </Link>
           </div>
 
-          <Button 
-            variant="outline" 
-            className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg flex items-center -mt-1"
-            aria-label="Sign in to your account"
-          >
-            Sign in
-          </Button>
+          <div className="flex items-center space-x-4">
+            <Button 
+              variant="outline" 
+              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg flex items-center -mt-1 hidden md:flex"
+              aria-label="Sign in to your account"
+            >
+              Sign in
+            </Button>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={openMenu}
+              aria-label="Open mobile menu"
+            >
+              <Menu className="h-6 w-6 text-white" />
+            </Button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && isMobile && (
+        <div 
+          className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 md:hidden"
+          aria-modal="true"
+          role="dialog"
+        >
+          <div className="container mx-auto px-4 py-6 h-full flex flex-col">
+            <div className="flex justify-between items-center">
+              <Link 
+                to="/" 
+                className="flex items-center space-x-4" 
+                onClick={closeMenu}
+                aria-label="Go to homepage"
+              >
+                <img 
+                  src="/lovable-uploads/a5f0ca2b-7777-4887-8e92-d1d0959c2448.png" 
+                  alt="Cre8tive AI Logo" 
+                  className="h-14 w-auto"
+                  width="56"
+                  height="56"
+                />
+                <span className="text-white font-geist font-bold text-2xl tracking-[-0.02em]">
+                  Cre8tive AI
+                </span>
+              </Link>
+              
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={closeMenu}
+                className="text-white"
+                aria-label="Close mobile menu"
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+
+            <nav className="flex-1 mt-8">
+              <ul className="space-y-6" role="menu">
+                <li role="none">
+                  <Link
+                    to="/studios"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    Cre8tive AI Studios
+                  </Link>
+                </li>
+                <li role="none">
+                  <Link
+                    to="/manager"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    Ad Manager
+                  </Link>
+                </li>
+                <li role="none">
+                  <Link
+                    to="/agents"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    AI Agents
+                  </Link>
+                </li>
+                <li role="none">
+                  <Link
+                    to="/conversational"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    Conversational AI Agents
+                  </Link>
+                </li>
+                <li role="none">
+                  <Link
+                    to="/about"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li role="none">
+                  <Link
+                    to="/contact"
+                    className="text-white/90 hover:text-white transition-colors font-geist text-2xl font-medium tracking-[-0.01em] block py-3"
+                    onClick={closeMenu}
+                    role="menuitem"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <div className="mt-auto pb-8">
+              <Button 
+                variant="outline" 
+                className="w-full bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg h-14"
+                onClick={closeMenu}
+              >
+                Sign in
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
