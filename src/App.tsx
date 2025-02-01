@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Analytics } from '@vercel/analytics/react';
 import { MainLayout } from "./components/layout/MainLayout";
@@ -31,23 +31,23 @@ const App = () => {
       <TooltipProvider>
         <Helmet>
           {/* Security Headers */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
-        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+          <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.elevenlabs.io https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.gpteng.co; script-src-elem 'self' 'unsafe-inline' https://*.elevenlabs.io https://elevenlabs.io https://cdn.gpteng.co; frame-src 'self' https://*.elevenlabs.io https://player.vimeo.com https://*.vimeocdn.com https://convai.elevenlabs.io; connect-src 'self' https://*.elevenlabs.io https://*.vimeo.com https://f.vimeocdn.com https://www.google-analytics.com https://api.elevenlabs.io; img-src 'self' data: https: https://*.elevenlabs.io https://i.vimeocdn.com https://www.google-analytics.com https://storage.googleapis.com; child-src 'self' https://*.elevenlabs.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https: https://fonts.gstatic.com;" />
+          <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+          <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
+          <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
+          <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
           
           {/* Google Tag Manager */}
-        <script>
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-XXXXXXX');
-          `}
-        </script>
+          <script>
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-XXXXXXX');
+            `}
+          </script>
         </Helmet>
 
         <BrowserRouter>
@@ -59,7 +59,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/studios" element={<Studios />} />
               <Route path="/ad-manager" element={<AdManager />} />
-              <Route path="/manager" element={<AdManager />} />
+              <Route path="/manager" element={<Navigate to="/ad-manager" replace />} />
               <Route path="/agents" element={<Agents />} />
               <Route path="/conversational" element={<ConversationalAI />} />
               <Route path="/about" element={<About />} />
