@@ -10,7 +10,6 @@ interface VimeoPlayerProps {
   isBackground?: boolean;
   isFullscreen?: boolean;
   className?: string;
-  quality?: '4K' | '2K' | '1080p' | '720p' | '540p' | '360p';
   onReady?: () => void;
   onError?: (error: Error) => void;
 }
@@ -30,8 +29,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
     controls = false,
     isBackground = false, 
     isFullscreen = false,
-    className = '',
-    quality = '1080p',
+    className = '', 
     onReady, 
     onError 
   }, ref) => {
@@ -52,8 +50,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         isBackground ? 1 : 0
       }&controls=${
         controls ? 1 : 0
-      }&quality=${
-        quality
       }&title=0&byline=0&portrait=0&dnt=1&playsinline=1&transparent=1`;
       
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
@@ -70,7 +66,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
       const player = new Player(iframe, {
         background: isBackground,
         controls: controls,
-        quality
       });
       
       playerRef.current = player;
@@ -80,9 +75,6 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
           console.log('Vimeo player ready');
           onReady?.();
           player.setVolume(muted ? 0 : 1);
-          if (quality) {
-            player.setQuality(quality);
-          }
         })
         .catch((error) => {
           console.error('Vimeo player error:', error);
@@ -94,7 +86,7 @@ const VimeoPlayer = forwardRef<VimeoPlayerHandle, VimeoPlayerProps>(
         player.destroy();
         playerRef.current = null;
       };
-    }, [videoId, autoplay, loop, muted, controls, isBackground, quality, onReady, onError]);
+    }, [videoId, autoplay, loop, muted, controls, isBackground, onReady, onError]);
 
     useImperativeHandle(ref, () => ({
       play: async () => {

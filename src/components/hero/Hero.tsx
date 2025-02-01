@@ -3,7 +3,6 @@ import { Volume2, VolumeX } from "lucide-react";
 import { Button } from "../ui/button";
 import VimeoPlayer, { VimeoPlayerHandle } from "../core/VimeoPlayer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useNetworkStatus } from "@/hooks/use-network-status";
 import { useToast } from "../ui/use-toast";
 
 export const Hero = () => {
@@ -11,7 +10,6 @@ export const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const playerRef = useRef<VimeoPlayerHandle>(null);
   const isMobile = useIsMobile();
-  const networkStatus = useNetworkStatus();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -34,48 +32,36 @@ export const Hero = () => {
     });
   };
 
-  const shouldShowFallback = isMobile && networkStatus === 'slow';
-
   return (
     <section 
       className="relative w-full aspect-video flex items-center justify-center overflow-hidden" 
       role="banner" 
       aria-label="Hero section"
     >
-      {/* Video Background or Fallback Image */}
+      {/* Video Background */}
       <div className="absolute inset-0 z-[1]">
-        {shouldShowFallback ? (
-          <img 
-            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
-            alt="Hero background"
-            className="w-full h-full object-cover"
-            loading="eager"
+        <div 
+          className="relative w-full h-full"
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transition: 'opacity 0.5s ease-in-out'
+          }}
+        >
+          <VimeoPlayer
+            ref={playerRef}
+            videoId="1051821551"
+            autoplay={!isMobile}
+            loop={true}
+            muted={isMuted}
+            isBackground={true}
+            onReady={handleReady}
+            onError={handleError}
+            className="absolute inset-0"
           />
-        ) : (
-          <div 
-            className="relative w-full h-full"
-            style={{
-              opacity: isLoaded ? 1 : 0,
-              transition: 'opacity 0.5s ease-in-out'
-            }}
-          >
-            <VimeoPlayer
-              ref={playerRef}
-              videoId="1051821551"
-              autoplay={!isMobile}
-              loop={true}
-              muted={isMuted}
-              isBackground={true}
-              onReady={handleReady}
-              onError={handleError}
-              className="absolute inset-0"
-              quality={isMobile ? "720p" : "1080p"}
-            />
-          </div>
-        )}
+        </div>
 
         {/* Loading Indicator */}
-        {!isLoaded && !shouldShowFallback && (
+        {!isLoaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/50">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
           </div>
