@@ -40,17 +40,17 @@ export const ComparisonTable = () => {
       <Table>
         <TableHeader>
           <TableRow className="border-b border-white/10">
-            <TableHead className="w-1/3 text-white font-bold text-xl md:text-2xl p-6">Feature</TableHead>
-            <TableHead className="w-1/3 text-white font-bold text-xl md:text-2xl p-6">Traditional Production</TableHead>
-            <TableHead className="w-1/3 text-white font-bold text-xl md:text-2xl p-6">AI-Powered Production</TableHead>
+            <TableHead className="w-1/3 text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl p-3 sm:p-4 md:p-6">Feature</TableHead>
+            <TableHead className="w-1/3 text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl p-3 sm:p-4 md:p-6">Traditional Production</TableHead>
+            <TableHead className="w-1/3 text-white font-bold text-base sm:text-lg md:text-xl lg:text-2xl p-3 sm:p-4 md:p-6">AI-Powered Production</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {comparisonData.map((row, index) => (
             <TableRow key={index} className="border-t border-white/10 hover:bg-white/5 transition-colors">
-              <TableCell className="font-medium text-white p-6 text-lg md:text-xl">{row.feature}</TableCell>
-              <TableCell className="text-white/80 p-6 text-lg md:text-xl">{row.traditional}</TableCell>
-              <TableCell className="text-primary p-6 font-medium text-lg md:text-xl">{row.ai}</TableCell>
+              <TableCell className="font-medium text-white text-sm sm:text-base md:text-lg lg:text-xl p-3 sm:p-4 md:p-6">{row.feature}</TableCell>
+              <TableCell className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl p-3 sm:p-4 md:p-6">{row.traditional}</TableCell>
+              <TableCell className="text-primary text-sm sm:text-base md:text-lg lg:text-xl p-3 sm:p-4 md:p-6 font-medium">{row.ai}</TableCell>
             </TableRow>
           ))}
         </TableBody>
