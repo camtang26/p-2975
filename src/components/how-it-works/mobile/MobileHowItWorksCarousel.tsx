@@ -1,49 +1,54 @@
-import { useRef, useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
-import { Step } from "../Step";
-import { useGestures } from "@/hooks/useGestures";
+import { useState, useRef } from 'react';
+import { Step } from '../Step';
+import { cn } from '@/lib/utils';
+import { LucideIcon } from 'lucide-react';
 
-interface Step {
+interface StepData {
   number: number;
   title: string;
   description: string;
-  Icon: any;
+  Icon: LucideIcon;
   color: string;
 }
 
-interface Props {
-  steps: Step[];
+interface MobileHowItWorksCarouselProps {
+  steps: StepData[];
 }
 
-export const MobileHowItWorksCarousel = ({ steps }: Props) => {
+export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    e.preventDefault();
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const deltaX = touchEndX - touchStartX.current;
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
 
-    if (Math.abs(deltaX) > 50) {
-      if (deltaX > 0 && currentIndex > 0) {
-        setCurrentIndex(prev => prev - 1);
-      } else if (deltaX < 0 && currentIndex < steps.length - 1) {
-        setCurrentIndex(prev => prev + 1);
-      }
+    if (isLeftSwipe && currentIndex < steps.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+    }
+
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
     }
   };
 
   const getSlideStyle = (index: number) => {
     const offset = index - currentIndex;
-    const translateX = offset * 40;
+    const translateX = offset * 40; // Reduced from 50% to 40% for better adjacent slide visibility
     const translateZ = Math.abs(offset) * -150;
     const rotateY = offset * 30;
     const scale = offset === 0 ? 1 : 0.85;
@@ -51,15 +56,15 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
 
     return {
       transform: `
-        translate(-50%, -50%)
+        translate(-50%, -50%) 
         translateX(${translateX}%) 
         translateZ(${translateZ}px)
         rotateY(${rotateY}deg)
         scale(${scale})
       `,
       opacity,
-      zIndex: Math.abs(offset) === 0 ? 1 : 0,
-      pointerEvents: Math.abs(offset) === 0 ? "auto" : "none" as const,
+      zIndex: steps.length - Math.abs(offset),
+      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
     };
   };
 
@@ -67,19 +72,21 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
     <div 
       className={cn(
         "md:hidden relative w-full overflow-hidden",
-        "h-[500px] flex flex-col items-center justify-center"
+        "h-[600px] flex flex-col items-center justify-center" // Adjusted height and centering
       )}
     >
+      {/* 3D Container */}
       <div 
         ref={containerRef}
         className={cn(
           "relative w-full h-full perspective-1000",
-          "flex items-center justify-center"
+          "flex items-center justify-center" // Added flex centering
         )}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
+        {/* Carousel Track */}
         <div 
           className={cn(
             "absolute inset-0",
@@ -91,26 +98,23 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
             <div
               key={step.number}
               className={cn(
-                "absolute top-1/2 left-1/2 origin-center",
-                "transform-gpu will-change-transform",
-                "w-full max-w-[260px]"
+                "absolute top-1/2 left-1/2",
+                "transform-gpu will-change-transform origin-center", // Added origin-center
+                "w-full max-w-[300px]"
               )}
               style={getSlideStyle(index)}
+              role="group"
+              aria-label={`Step ${step.number}: ${step.title}`}
             >
-              <Step 
-                {...step} 
-                className={cn(
-                  "scale-90",
-                  "h-[360px]"
-                )}
-              />
+              <Step {...step} />
             </div>
           ))}
         </div>
 
+        {/* Navigation Dots */}
         <div 
           className={cn(
-            "absolute bottom-6 left-0 right-0",
+            "absolute bottom-8 left-0 right-0", // Increased bottom spacing
             "flex justify-center gap-2"
           )}
           role="tablist"
@@ -119,15 +123,16 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
           {steps.map((_, index) => (
             <button
               key={index}
-              role="tab"
-              aria-selected={currentIndex === index}
-              aria-label={`Go to slide ${index + 1}`}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all",
-                "bg-white/20 hover:bg-white/40",
-                currentIndex === index && "bg-white/90 w-4"
-              )}
               onClick={() => setCurrentIndex(index)}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                index === currentIndex 
+                  ? "bg-white w-4" 
+                  : "bg-white/30"
+              )}
+              role="tab"
+              aria-selected={index === currentIndex}
+              aria-label={`Go to step ${index + 1}`}
             />
           ))}
         </div>
