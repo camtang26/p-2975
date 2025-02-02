@@ -41,11 +41,11 @@ export const HowItWorks = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="py-20 relative">
+    <section className="py-12 md:py-20 relative">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
           <ScrollFade>
-            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
+            <h2 className="text-4xl md:text-4xl font-bold text-gradient mb-4">
               How It Works
             </h2>
           </ScrollFade>
