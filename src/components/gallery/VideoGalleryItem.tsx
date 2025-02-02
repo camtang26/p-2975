@@ -55,7 +55,7 @@ const VideoGalleryItem = ({ videoId, title, isActive, onActivate }: VideoGallery
   return (
     <>
       <div
-        className="relative break-inside-avoid cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#9b87f5]/10 animate-fade-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:transform md:hover:scale-[1.03] lg:hover:scale-[1.04]"
+        className="relative break-inside-avoid cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#9b87f5]/10 animate-fade-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         onClick={handleOpenModal}
         onKeyDown={(e) => e.key === 'Enter' && handleOpenModal()}
         role="button"
