@@ -2,10 +2,16 @@ import { useEffect, useRef } from 'react';
 import { ROBOTS } from './types/RobotTypes';
 import { drawRobot } from './utils/robotDrawing';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { MobileRobotLineup } from './MobileRobotLineup';
 
 export const RobotLineup = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    return <MobileRobotLineup />;
+  }
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
