@@ -11,6 +11,7 @@ interface VideoBackgroundProps {
   onToggleMute: () => void;
   onTogglePlay: () => void;
   priority?: boolean;
+  onLoad?: () => void;  // Added this optional prop
 }
 
 export const VideoBackground = ({
@@ -18,7 +19,8 @@ export const VideoBackground = ({
   isPlaying,
   onToggleMute,
   onTogglePlay,
-  priority = false
+  priority = false,
+  onLoad
 }: VideoBackgroundProps) => {
   const isMobile = useIsMobile();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +31,7 @@ export const VideoBackground = ({
     console.log("Video is ready");
     setIsLoaded(true);
     setLoadError(null);
+    onLoad?.();  // Call onLoad if it exists
   };
 
   const handleError = (error: Error) => {
