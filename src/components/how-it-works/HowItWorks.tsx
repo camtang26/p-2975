@@ -2,6 +2,8 @@ import { Brain, Layers, Target, Rocket } from "lucide-react";
 import { Step } from "./Step";
 import { StepArrow } from "./StepArrow";
 import { ScrollFade } from "@/components/shared/ScrollFade";
+import { MobileHowItWorksCarousel } from "./mobile/MobileHowItWorksCarousel";
+import { useMediaQuery } from "@/hooks/use-mobile";
 
 const steps = [
   {
@@ -35,6 +37,8 @@ const steps = [
 ];
 
 export const HowItWorks = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <section className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -46,18 +50,24 @@ export const HowItWorks = () => {
           </ScrollFade>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
-          {steps.map((step, index) => (
-            <>
-              <ScrollFade key={`step-${step.number}`} delay={index * 100}>
-                <Step {...step} />
-              </ScrollFade>
-              {index < steps.length - 1 && (
-                <StepArrow key={`arrow-${index}`} />
-              )}
-            </>
-          ))}
-        </div>
+        {isMobile ? (
+          <ScrollFade>
+            <MobileHowItWorksCarousel steps={steps} />
+          </ScrollFade>
+        ) : (
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
+            {steps.map((step, index) => (
+              <React.Fragment key={step.number}>
+                <ScrollFade delay={index * 100}>
+                  <Step {...step} />
+                </ScrollFade>
+                {index < steps.length - 1 && (
+                  <StepArrow key={`arrow-${index}`} />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
