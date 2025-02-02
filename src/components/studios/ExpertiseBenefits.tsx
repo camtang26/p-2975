@@ -75,7 +75,7 @@ export const ExpertiseBenefits = () => {
       />
       
       {/* Benefits Section */}
-      <div className="container mx-auto px-4 mb-8 sm:mb-16 md:mb-32 relative z-10">
+      <div className="container mx-auto px-4 mb-16 md:mb-32 relative z-10">
         <ScrollFade>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mb-8 md:mb-16 tracking-tight">
             Get More From Your Video Content
@@ -104,7 +104,7 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Expertise Section */}
-      <div className="container mx-auto px-4 mb-8 sm:mb-16 md:mb-32 relative z-10">
+      <div className="container mx-auto px-4 mb-16 md:mb-32 relative z-10">
         <ScrollFade>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mb-8 md:mb-16 tracking-tight">
             The Craft of AI Video: Expertise Makes the Difference
@@ -138,7 +138,7 @@ export const ExpertiseBenefits = () => {
         </ScrollFade>
       </div>
 
-      <div className="container mx-auto px-4 mb-8 sm:mb-16 md:mb-32 relative z-10">
+      <div className="container mx-auto px-4 mb-16 sm:mb-24 md:mb-32 relative z-10">
         <ScrollFade>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mb-8 sm:mb-12 md:mb-16 tracking-tight">
             AI Video vs. Traditional: A Clear Advantage
@@ -150,7 +150,7 @@ export const ExpertiseBenefits = () => {
       </div>
 
       {/* Future Section */}
-      <div className="container mx-auto px-4 mb-6 sm:mb-12 md:mb-32 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <ScrollFade>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mt-8 sm:mt-0 mb-4 md:mb-8 tracking-tight">
             The Future of Video is Intelligent
