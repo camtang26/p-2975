@@ -82,7 +82,7 @@ export const ExpertiseBenefits = () => {
           </h2>
         </ScrollFade>
         <ScrollFade delay={200}>
-          <div className="max-w-3xl mx-auto text-base md:text-lg text-white/80 space-y-4 md:space-y-6 mb-8 md:mb-16 leading-relaxed">
+          <div className="max-w-3xl mx-auto text-base md:text-lg text-white/80 space-y-4 md:space-y-8 mb-8 md:mb-16 leading-relaxed md:leading-loose">
             <p>
               Video content is essential for success in today's digital world. But traditional production methods can be slow, costly, and complicated. Cre8tive AI Studios offers a smarter approach: AI-driven video production that delivers exceptional results faster, more efficiently, and more affordably.
             </p>

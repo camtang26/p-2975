@@ -42,10 +42,10 @@ export const BenefitCard = ({ Icon, title, description, color, index }: BenefitC
             />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl md:text-2xl font-bold text-gradient mb-2 md:mb-4 tracking-tight group-hover:scale-105 transition-transform duration-300">
+            <h3 className="text-xl md:text-2xl font-bold text-gradient mb-2 md:mb-6 tracking-tight group-hover:scale-105 transition-transform duration-300">
               {title}
             </h3>
-            <p className="text-sm md:text-base text-white/80 leading-relaxed">
+            <p className="text-sm md:text-base text-white/80 leading-relaxed md:leading-loose">
               {description}
             </p>
           </div>
