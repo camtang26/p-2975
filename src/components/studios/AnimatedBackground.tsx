@@ -25,7 +25,7 @@ export const AnimatedBackground = () => {
     const cleanup = perf.init(renderer);
 
     // Create dynamic particle system with updated neon colors
-    const particleCount = 3000; // Increased from 1000 to 3000
+    const particleCount = 3000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
@@ -123,7 +123,7 @@ export const AnimatedBackground = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0"
+      className="absolute inset-0 z-0 w-full h-full"
       style={{
         background: 'radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.99) 75%, rgba(0,0,0,1) 100%)',
       }}
