@@ -152,12 +152,12 @@ export const ExpertiseBenefits = () => {
       {/* Future Section */}
       <div className="container mx-auto px-4 relative z-10">
         <ScrollFade>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mb-4 md:mb-8 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mt-8 sm:mt-0 mb-4 md:mb-8 tracking-tight">
             The Future of Video is Intelligent
           </h2>
         </ScrollFade>
         <ScrollFade delay={200}>
-          <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed md:leading-relaxed lg:leading-relaxed mb-6 md:mb-12 max-w-3xl mx-auto text-center px-4 md:px-0">
+          <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed md:leading-relaxed lg:leading-relaxed mt-6 sm:mt-0 mb-6 md:mb-12 max-w-3xl mx-auto text-center px-4 md:px-0">
             As AI technology continues to evolve, the possibilities for video production become even more exciting. 
             Stay ahead of the curve with Cre8tive AI Studios and embrace the future of content creation today.
           </p>
