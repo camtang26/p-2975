@@ -21,7 +21,7 @@ export default {
       fontFamily: {
         sans: ['Geist', 'system-ui', 'sans-serif'],
         geist: ['Geist', 'system-ui', 'sans-serif'],
-        inter: ['Inter', 'system-ui', 'sans-serif'], // keeping Inter as fallback
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

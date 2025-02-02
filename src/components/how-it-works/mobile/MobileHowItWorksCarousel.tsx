@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Step } from '../Step';
 import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
@@ -48,11 +48,11 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
 
   const getSlideStyle = (index: number) => {
     const offset = index - currentIndex;
-    const rotateY = offset * 45; // 45 degree rotation for side cards
-    const translateZ = Math.abs(offset) * -100; // Push back inactive cards
-    const translateX = offset * 100; // Slide positioning
-    const scale = offset === 0 ? 1 : 0.8; // Scale down inactive cards
-    const opacity = Math.max(1 - Math.abs(offset) * 0.5, 0);
+    const translateX = offset * 50; // Reduced from 100% to 50% to show adjacent slides
+    const translateZ = Math.abs(offset) * -150; // Push back inactive slides
+    const rotateY = offset * 30; // Softer rotation (30deg instead of 45deg)
+    const scale = offset === 0 ? 1 : 0.85; // Scale down inactive slides
+    const opacity = Math.max(1 - Math.abs(offset) * 0.3, 0);
 
     return {
       transform: `
@@ -83,7 +83,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
             <div
               key={step.number}
               className={cn(
-                "absolute top-0 left-0 w-full h-full",
+                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                 "transform-gpu will-change-transform",
               )}
               style={getSlideStyle(index)}
