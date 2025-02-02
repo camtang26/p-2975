@@ -46,9 +46,9 @@ export const Gallery = () => {
         }}
       />
       
-      <div className="container relative mx-auto px-6">
+      <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
         <ScrollFade>
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
             <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6 font-geist">
               Our Work
             </h2>
