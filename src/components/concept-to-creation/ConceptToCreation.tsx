@@ -38,17 +38,17 @@ const steps = [
 export const ConceptToCreation = () => {
   return (
     <section 
-      className="py-32 relative overflow-hidden"
+      className="py-16 md:py-32 relative overflow-hidden"
       aria-label="From concept to creation section"
     >
       <div className="container mx-auto px-4">
         <ScrollFade>
-          <h2 className="text-5xl md:text-6xl font-bold text-gradient text-center mb-24">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient text-center mb-12 md:mb-24">
             From Concept to Creation: Crafting Your Perfect Video Ad
           </h2>
         </ScrollFade>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 items-stretch">
           {steps.map((step, index) => (
             <ScrollFade key={index} delay={index * 100}>
               <div className="h-full">
