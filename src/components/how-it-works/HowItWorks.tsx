@@ -31,7 +31,7 @@ const steps = [
   {
     number: 4,
     title: "Production Ready",
-    description: "Receive production-ready storyboards to send off to our team for production, or for use by your own creative team.",
+    description: "Receive production-ready storyboards for your creative team.",
     Icon: Rocket,
     color: "#4ADE80" // green-400
   }
@@ -45,7 +45,7 @@ export const HowItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-4 md:mb-16">
           <ScrollFade>
-            <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-2 md:mb-4">
+            <h2 className="text-5xl md:text-4xl font-bold text-gradient mb-2 md:mb-4">
               How It Works
             </h2>
           </ScrollFade>
