@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Step } from '../Step';
 import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
@@ -20,14 +20,31 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [startY, setStartY] = useState<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.targetTouches[0];
+    setTouchStart(touch.clientX);
+    setStartY(touch.clientY);
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+  const handleTouchMove = (e: TouchEvent) => {
+    const touch = e.touches[0];
+    const currentX = touch.clientX;
+    const currentY = touch.clientY;
+
+    if (touchStart !== null && startY !== null) {
+      const dx = currentX - touchStart;
+      const dy = currentY - startY;
+
+      // If horizontal movement is greater than vertical, prevent default scrolling behavior
+      if (Math.abs(dx) > Math.abs(dy)) {
+        e.preventDefault();
+      }
+    }
+
+    setTouchEnd(currentX);
   };
 
   const handleTouchEnd = () => {
@@ -46,9 +63,19 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
     }
   };
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('touchmove', handleTouchMove, { passive: false });
+      return () => {
+        container.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+  }, [touchStart, startY]);
+
   const getSlideStyle = (index: number) => {
     const offset = index - currentIndex;
-    const translateX = offset * 40; // Reduced from 50% to 40% for better adjacent slide visibility
+    const translateX = offset * 40;
     const translateZ = Math.abs(offset) * -150;
     const rotateY = offset * 30;
     const scale = offset === 0 ? 1 : 0.85;
@@ -72,21 +99,18 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
     <div 
       className={cn(
         "md:hidden relative w-full overflow-hidden",
-        "h-[600px] flex flex-col items-center justify-center" // Adjusted height and centering
+        "h-[600px] flex flex-col items-center justify-center"
       )}
     >
-      {/* 3D Container */}
       <div 
         ref={containerRef}
         className={cn(
           "relative w-full h-full perspective-1000",
-          "flex items-center justify-center" // Added flex centering
+          "flex items-center justify-center"
         )}
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Carousel Track */}
         <div 
           className={cn(
             "absolute inset-0",
@@ -99,7 +123,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
               key={step.number}
               className={cn(
                 "absolute top-1/2 left-1/2",
-                "transform-gpu will-change-transform origin-center", // Added origin-center
+                "transform-gpu will-change-transform origin-center",
                 "w-full max-w-[300px]"
               )}
               style={getSlideStyle(index)}
@@ -111,10 +135,9 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
           ))}
         </div>
 
-        {/* Navigation Dots */}
         <div 
           className={cn(
-            "absolute bottom-8 left-0 right-0", // Increased bottom spacing
+            "absolute bottom-8 left-0 right-0",
             "flex justify-center gap-2"
           )}
           role="tablist"
