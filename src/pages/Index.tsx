@@ -6,8 +6,17 @@ import { QuoteCard } from "@/components/quotes/QuoteCard";
 import { ContactForm } from "@/components/ContactForm";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { Helmet } from "react-helmet";
+import { useOptimizedAnimation } from "@/hooks/useOptimizedAnimation";
+import { measurePerformance } from "@/utils/performanceMonitor";
 
 const Index = () => {
+  const heroRef = useOptimizedAnimation({ delay: 100 });
+  const servicesRef = useOptimizedAnimation({ delay: 200 });
+  const galleryRef = useOptimizedAnimation({ delay: 300 });
+
+  // Measure component render time
+  const endMeasure = measurePerformance('Index');
+  
   return (
     <>
       <Helmet>
@@ -22,15 +31,16 @@ const Index = () => {
       <div className="min-h-screen bg-[#111111]">
         <Navigation />
         <main>
-          {/* Hero section without fade */}
-          <Hero />
+          <div ref={heroRef}>
+            <Hero />
+          </div>
           
-          {/* Services section with fade */}
-          <ScrollFade>
-            <Services />
-          </ScrollFade>
+          <div ref={servicesRef}>
+            <ScrollFade>
+              <Services />
+            </ScrollFade>
+          </div>
           
-          {/* Quote section with fade */}
           <ScrollFade delay={100}>
             <div className="container mx-auto px-4 py-8">
               <QuoteCard
@@ -41,12 +51,12 @@ const Index = () => {
             </div>
           </ScrollFade>
           
-          {/* Gallery section with fade */}
-          <ScrollFade delay={200}>
-            <Gallery />
-          </ScrollFade>
+          <div ref={galleryRef}>
+            <ScrollFade delay={200}>
+              <Gallery />
+            </ScrollFade>
+          </div>
           
-          {/* Contact section with fade */}
           <ScrollFade delay={300}>
             <section className="py-32 relative overflow-hidden" aria-label="Contact us">
               <div 
@@ -84,6 +94,7 @@ const Index = () => {
           </ScrollFade>
         </main>
       </div>
+      {endMeasure()}
     </>
   );
 };
