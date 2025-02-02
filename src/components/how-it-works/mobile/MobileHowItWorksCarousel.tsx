@@ -68,23 +68,23 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
   };
 
   return (
-    <div className="md:hidden relative w-full overflow-hidden h-[500px]">
+    <div className="md:hidden relative w-full h-[600px] flex flex-col justify-center items-center py-8">
       {/* 3D Container */}
       <div 
         ref={containerRef}
-        className="relative w-full h-full perspective-1000"
+        className="relative w-full h-full perspective-1000 flex-1"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {/* Carousel Track */}
-        <div className="relative w-full h-full transform-gpu">
+        <div className="absolute inset-0 flex items-center justify-center transform-gpu">
           {steps.map((step, index) => (
             <div
               key={step.number}
               className={cn(
-                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-                "transform-gpu will-change-transform",
+                "absolute left-1/2 transform-gpu will-change-transform",
+                "w-full max-w-[300px]"
               )}
               style={getSlideStyle(index)}
               role="group"
@@ -97,7 +97,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
 
         {/* Navigation Dots */}
         <div 
-          className="absolute bottom-4 left-0 right-0 flex justify-center gap-2"
+          className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-4"
           role="tablist"
           aria-label="Carousel navigation"
         >
