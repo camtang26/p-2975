@@ -24,9 +24,9 @@ export const MobileTestimonialCarousel = ({
         align: "center",
         loop: true,
       }}
-      className="w-full max-w-sm mx-auto perspective-1000"
+      className="w-full max-w-md mx-auto perspective-1000"
     >
-      <CarouselContent className="-ml-2 md:hidden [transform-style:preserve-3d]">
+      <CarouselContent className="-ml-2 md:hidden [transform-style:preserve-3d] min-h-[500px]">
         {testimonials.map((testimonial, index) => {
           const color = Object.values(brandColors)[index % Object.values(brandColors).length];
           
@@ -38,12 +38,12 @@ export const MobileTestimonialCarousel = ({
               <ScrollFade delay={index * 100}>
                 <div
                   className={cn(
-                    "glass-morphism p-4 rounded-2xl space-y-3",
+                    "glass-morphism p-6 rounded-2xl space-y-4",
                     "transition-all duration-500 transform",
-                    "group-data-[state=current]:scale-110 group-data-[state=current]:z-20",
-                    "group-data-[state=prev]:scale-90 group-data-[state=prev]:-translate-x-4 group-data-[state=prev]:opacity-50 group-data-[state=prev]:z-10",
-                    "group-data-[state=next]:scale-90 group-data-[state=next]:translate-x-4 group-data-[state=next]:opacity-50 group-data-[state=next]:z-10",
-                    "relative"
+                    "group-data-[state=current]:scale-100 group-data-[state=current]:z-20 group-data-[state=current]:opacity-100",
+                    "group-data-[state=prev]:scale-75 group-data-[state=prev]:-translate-x-12 group-data-[state=prev]:opacity-40 group-data-[state=prev]:z-10",
+                    "group-data-[state=next]:scale-75 group-data-[state=next]:translate-x-12 group-data-[state=next]:opacity-40 group-data-[state=next]:z-10",
+                    "relative min-h-[450px] flex flex-col"
                   )}
                   style={{ 
                     background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
@@ -54,7 +54,7 @@ export const MobileTestimonialCarousel = ({
                     transform: `
                       perspective(1000px)
                       rotateY(calc(var(--slide-offset, 0) * 45deg))
-                      translateZ(calc(var(--slide-offset, 0) * -100px))
+                      translateZ(calc(var(--slide-offset, 0) * -150px))
                     `
                   } as React.CSSProperties}
                 >
@@ -77,11 +77,11 @@ export const MobileTestimonialCarousel = ({
                     </div>
                   </div>
 
-                  <blockquote className="text-sm leading-relaxed text-white/80 italic">
+                  <blockquote className="text-sm leading-relaxed text-white/80 italic flex-grow">
                     "{testimonial.quote}"
                   </blockquote>
 
-                  <div className="pt-3 border-t border-white/10">
+                  <div className="pt-4 border-t border-white/10 mt-auto">
                     <div className="text-base font-semibold text-gradient">
                       {testimonial.name}
                     </div>
