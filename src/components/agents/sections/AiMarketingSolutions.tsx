@@ -66,12 +66,12 @@ export const AiMarketingSolutions = () => {
       
       <div className="container mx-auto px-4">
         <ScrollFade>
-          <h2 className="text-4xl md:text-5xl font-semibold text-gradient text-center mb-16 relative z-50">
+          <h2 className="text-5xl md:text-6xl font-semibold text-gradient text-center mb-20 relative z-50">
             Our AI Marketing Solutions
           </h2>
         </ScrollFade>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {solutions.map((solution, index) => {
             const { Icon } = solution;
             return (
@@ -85,7 +85,8 @@ export const AiMarketingSolutions = () => {
                     "before:opacity-0 before:transition-opacity hover:before:opacity-100",
                     "after:absolute after:inset-0 after:rounded-xl",
                     "after:opacity-0 after:transition-opacity hover:after:opacity-100",
-                    "flex flex-col items-center justify-center text-center"
+                    "flex flex-col items-center justify-center text-center",
+                    "min-h-[700px]" // Ensuring consistent height
                   )}
                   style={{
                     '--solution-color': solution.color,
