@@ -69,7 +69,7 @@ const Index = () => {
               
               <div className="container relative mx-auto px-6">
                 <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-3 sm:mb-4 md:mb-6 font-geist neon-glow-subtle">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient mb-3 sm:mb-4 md:mb-6 font-geist neon-glow-subtle">
                     Contact Us
                   </h2>
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient mb-4 sm:mb-6 md:mb-8 font-geist neon-glow-subtle">
