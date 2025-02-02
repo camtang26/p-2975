@@ -1,9 +1,3 @@
-I'll optimize the Testimonials section for mobile viewing while preserving the desktop layout. Let's make these changes:
-
-<lov-code>
-Let's update the Testimonials component to be more mobile-friendly:
-
-<lov-write file_path="src/components/studios/Testimonials.tsx">
 import { Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollFade } from "@/components/shared/ScrollFade";
