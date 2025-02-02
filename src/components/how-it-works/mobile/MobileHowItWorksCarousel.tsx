@@ -48,14 +48,15 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
 
   const getSlideStyle = (index: number) => {
     const offset = index - currentIndex;
-    const translateX = offset * 50; // Reduced from 100% to 50% to show adjacent slides
-    const translateZ = Math.abs(offset) * -150; // Push back inactive slides
-    const rotateY = offset * 30; // Softer rotation (30deg instead of 45deg)
-    const scale = offset === 0 ? 1 : 0.85; // Scale down inactive slides
+    const translateX = offset * 40; // Reduced from 50% to 40% for better adjacent slide visibility
+    const translateZ = Math.abs(offset) * -150;
+    const rotateY = offset * 30;
+    const scale = offset === 0 ? 1 : 0.85;
     const opacity = Math.max(1 - Math.abs(offset) * 0.3, 0);
 
     return {
       transform: `
+        translate(-50%, -50%) 
         translateX(${translateX}%) 
         translateZ(${translateZ}px)
         rotateY(${rotateY}deg)
@@ -68,22 +69,37 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
   };
 
   return (
-    <div className="md:hidden relative w-full h-[600px] flex flex-col justify-center items-center py-8">
+    <div 
+      className={cn(
+        "md:hidden relative w-full overflow-hidden",
+        "h-[600px] flex flex-col items-center justify-center" // Adjusted height and centering
+      )}
+    >
       {/* 3D Container */}
       <div 
         ref={containerRef}
-        className="relative w-full h-full perspective-1000 flex-1"
+        className={cn(
+          "relative w-full h-full perspective-1000",
+          "flex items-center justify-center" // Added flex centering
+        )}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {/* Carousel Track */}
-        <div className="absolute inset-0 flex items-center justify-center transform-gpu">
+        <div 
+          className={cn(
+            "absolute inset-0",
+            "flex items-center justify-center",
+            "transform-gpu"
+          )}
+        >
           {steps.map((step, index) => (
             <div
               key={step.number}
               className={cn(
-                "absolute left-1/2 transform-gpu will-change-transform",
+                "absolute top-1/2 left-1/2",
+                "transform-gpu will-change-transform origin-center", // Added origin-center
                 "w-full max-w-[300px]"
               )}
               style={getSlideStyle(index)}
@@ -97,7 +113,10 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
 
         {/* Navigation Dots */}
         <div 
-          className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-4"
+          className={cn(
+            "absolute bottom-8 left-0 right-0", // Increased bottom spacing
+            "flex justify-center gap-2"
+          )}
           role="tablist"
           aria-label="Carousel navigation"
         >
