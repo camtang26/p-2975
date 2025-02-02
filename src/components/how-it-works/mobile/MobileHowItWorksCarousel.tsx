@@ -1,54 +1,49 @@
-import { useState, useRef } from 'react';
-import { Step } from '../Step';
-import { cn } from '@/lib/utils';
-import { LucideIcon } from 'lucide-react';
+import { useRef, useState, useCallback } from "react";
+import { cn } from "@/lib/utils";
+import { Step } from "../Step";
+import { useGestures } from "@/hooks/useGestures";
 
-interface StepData {
+interface Step {
   number: number;
   title: string;
   description: string;
-  Icon: LucideIcon;
+  Icon: any;
   color: string;
 }
 
-interface MobileHowItWorksCarouselProps {
-  steps: StepData[];
+interface Props {
+  steps: Step[];
 }
 
-export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProps) => {
+export const MobileHowItWorksCarousel = ({ steps }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const touchStartX = useRef(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    e.preventDefault();
   };
 
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX - touchStartX.current;
 
-    if (isLeftSwipe && currentIndex < steps.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-    }
-
-    if (isRightSwipe && currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0 && currentIndex > 0) {
+        setCurrentIndex(prev => prev - 1);
+      } else if (deltaX < 0 && currentIndex < steps.length - 1) {
+        setCurrentIndex(prev => prev + 1);
+      }
     }
   };
 
   const getSlideStyle = (index: number) => {
     const offset = index - currentIndex;
-    const translateX = offset * 40; // Reduced from 50% to 40% for better adjacent slide visibility
+    const translateX = offset * 40;
     const translateZ = Math.abs(offset) * -150;
     const rotateY = offset * 30;
     const scale = offset === 0 ? 1 : 0.85;
@@ -56,15 +51,15 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
 
     return {
       transform: `
-        translate(-50%, -50%) 
+        translate(-50%, -50%)
         translateX(${translateX}%) 
         translateZ(${translateZ}px)
         rotateY(${rotateY}deg)
         scale(${scale})
       `,
       opacity,
-      zIndex: steps.length - Math.abs(offset),
-      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+      zIndex: Math.abs(offset) === 0 ? 1 : 0,
+      pointerEvents: Math.abs(offset) === 0 ? "auto" : "none",
     };
   };
 
@@ -72,7 +67,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
     <div 
       className={cn(
         "md:hidden relative w-full overflow-hidden",
-        "h-[600px] flex flex-col items-center justify-center" // Adjusted height and centering
+        "h-[500px] flex flex-col items-center justify-center" // Reduced height for mobile
       )}
     >
       {/* 3D Container */}
@@ -80,7 +75,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
         ref={containerRef}
         className={cn(
           "relative w-full h-full perspective-1000",
-          "flex items-center justify-center" // Added flex centering
+          "flex items-center justify-center"
         )}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -99,14 +94,18 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
               key={step.number}
               className={cn(
                 "absolute top-1/2 left-1/2",
-                "transform-gpu will-change-transform origin-center", // Added origin-center
-                "w-full max-w-[300px]"
+                "transform-gpu will-change-transform origin-center",
+                "w-full max-w-[260px]" // Reduced from 300px for mobile
               )}
               style={getSlideStyle(index)}
-              role="group"
-              aria-label={`Step ${step.number}: ${step.title}`}
             >
-              <Step {...step} />
+              <Step 
+                {...step} 
+                className={cn(
+                  "scale-90", // Added scaling for mobile
+                  "h-[360px]" // Reduced height for mobile
+                )}
+              />
             </div>
           ))}
         </div>
@@ -114,7 +113,7 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
         {/* Navigation Dots */}
         <div 
           className={cn(
-            "absolute bottom-8 left-0 right-0", // Increased bottom spacing
+            "absolute bottom-6 left-0 right-0",
             "flex justify-center gap-2"
           )}
           role="tablist"
@@ -123,16 +122,15 @@ export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProp
           {steps.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
-                index === currentIndex 
-                  ? "bg-white w-4" 
-                  : "bg-white/30"
-              )}
               role="tab"
-              aria-selected={index === currentIndex}
-              aria-label={`Go to step ${index + 1}`}
+              aria-selected={currentIndex === index}
+              aria-label={`Go to slide ${index + 1}`}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all",
+                "bg-white/20 hover:bg-white/40",
+                currentIndex === index && "bg-white/90 w-4"
+              )}
+              onClick={() => setCurrentIndex(index)}
             />
           ))}
         </div>
