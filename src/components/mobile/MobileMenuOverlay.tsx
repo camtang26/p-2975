@@ -4,10 +4,13 @@ import { X } from "lucide-react";
 import { Button } from "../ui/button";
 
 interface MobileMenuOverlayProps {
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ onClose }) => {
+export const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
   return (
     <div 
       className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 md:hidden"
