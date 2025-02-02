@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Step } from '../Step';
 import { cn } from '@/lib/utils';
-import { useGestures } from '@/hooks/useGestures';
 import { LucideIcon } from 'lucide-react';
 
 interface StepData {
@@ -18,61 +17,106 @@ interface MobileHowItWorksCarouselProps {
 
 export const MobileHowItWorksCarousel = ({ steps }: MobileHowItWorksCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  const handleSwipeLeft = () => {
-    setCurrentIndex((prev) => (prev + 1) % steps.length);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleSwipeRight = () => {
-    setCurrentIndex((prev) => (prev - 1 + steps.length) % steps.length);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  useGestures({ onSwipeLeft: handleSwipeLeft, onSwipeRight: handleSwipeRight });
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && currentIndex < steps.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+    }
+
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  const getSlideStyle = (index: number) => {
+    const offset = index - currentIndex;
+    const rotateY = offset * 45; // 45 degree rotation for side cards
+    const translateZ = Math.abs(offset) * -100; // Push back inactive cards
+    const translateX = offset * 100; // Slide positioning
+    const scale = offset === 0 ? 1 : 0.8; // Scale down inactive cards
+    const opacity = Math.max(1 - Math.abs(offset) * 0.5, 0);
+
+    return {
+      transform: `
+        translateX(${translateX}%) 
+        translateZ(${translateZ}px)
+        rotateY(${rotateY}deg)
+        scale(${scale})
+      `,
+      opacity,
+      zIndex: steps.length - Math.abs(offset),
+      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+    };
+  };
 
   return (
-    <div className="relative w-full overflow-hidden h-[500px] perspective-1000">
-      <div className="relative w-full h-full">
-        {steps.map((step, index) => {
-          const offset = index - currentIndex;
-          const isActive = index === currentIndex;
-          
-          return (
+    <div className="md:hidden relative w-full overflow-hidden h-[500px]">
+      {/* 3D Container */}
+      <div 
+        ref={containerRef}
+        className="relative w-full h-full perspective-1000"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Carousel Track */}
+        <div className="relative w-full h-full transform-gpu">
+          {steps.map((step, index) => (
             <div
               key={step.number}
               className={cn(
-                "absolute top-0 left-0 w-full h-full transition-all duration-500",
+                "absolute top-0 left-0 w-full h-full",
                 "transform-gpu will-change-transform",
               )}
-              style={{
-                transform: `
-                  translateX(${offset * 100}%) 
-                  translateZ(${isActive ? 0 : -200}px) 
-                  scale(${isActive ? 1 : 0.8})
-                  rotateY(${offset * -15}deg)
-                `,
-                opacity: Math.max(1 - Math.abs(offset) * 0.5, 0),
-                zIndex: steps.length - Math.abs(offset),
-              }}
+              style={getSlideStyle(index)}
+              role="group"
+              aria-label={`Step ${step.number}: ${step.title}`}
             >
               <Step {...step} />
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
 
-      {/* Navigation Dots */}
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-        {steps.map((_, index) => (
-          <button
-            key={index}
-            className={cn(
-              "w-2 h-2 rounded-full transition-all duration-300",
-              index === currentIndex ? "bg-white" : "bg-white/30"
-            )}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Go to step ${index + 1}`}
-          />
-        ))}
+        {/* Navigation Dots */}
+        <div 
+          className="absolute bottom-4 left-0 right-0 flex justify-center gap-2"
+          role="tablist"
+          aria-label="Carousel navigation"
+        >
+          {steps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                index === currentIndex 
+                  ? "bg-white w-4" 
+                  : "bg-white/30"
+              )}
+              role="tab"
+              aria-selected={index === currentIndex}
+              aria-label={`Go to step ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
