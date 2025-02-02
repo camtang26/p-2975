@@ -46,7 +46,7 @@ const AdManager = () => {
                 From Idea to Storyboard: Effortless Ad Creation, Powered by AI
               </h2>
 
-              {/* Blueprint Visual - Now with ad management representation */}
+              {/* Blueprint Visual - Now with continuous animations */}
               <div className="relative h-48 w-full max-w-3xl mx-auto opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]">
                 <div 
                   className="absolute inset-0"
@@ -54,47 +54,66 @@ const AdManager = () => {
                     background: 'linear-gradient(90deg, rgba(0,149,255,0.05) 1px, transparent 1px), linear-gradient(0deg, rgba(0,149,255,0.05) 1px, transparent 1px)',
                     backgroundSize: '20px 20px',
                     transform: 'perspective(1000px) rotateX(15deg)',
+                    animation: 'pulse 2s ease-in-out infinite'
                   }}
                 />
                 
-                {/* Neon Lines and Elements */}
+                {/* Animated Neon Lines and Elements */}
                 <div 
                   className="absolute inset-0"
                   style={{
                     background: 'radial-gradient(circle at 50% 50%, rgba(0,149,255,0.2) 0%, transparent 60%)',
                     boxShadow: 'inset 0 0 50px rgba(0,149,255,0.3)',
+                    animation: 'glow 3s ease-in-out infinite alternate'
                   }}
                 />
                 
                 {/* Animated Flow Lines */}
-                <div className="absolute inset-0 opacity-50"
+                <div 
+                  className="absolute inset-0 opacity-50"
                   style={{
                     background: 'linear-gradient(90deg, transparent 0%, #0095ff 50%, transparent 100%)',
                     backgroundSize: '200% 100%',
-                    animation: 'flow 3s linear infinite',
+                    animation: 'flow 3s linear infinite'
                   }}
                 />
                 
-                {/* Content Nodes - Now representing different ad formats and stages */}
+                {/* Content Nodes - with continuous animations */}
                 <div className="relative grid grid-cols-5 gap-4 w-full h-full p-2">
                   {/* Input Node */}
                   <div className="flex items-center justify-center col-span-1">
-                    <div className="w-10 h-10 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff] animate-pulse" />
+                    <div 
+                      className="w-10 h-10 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_20px_#0095ff]"
+                      style={{
+                        animation: 'pulse 2s ease-in-out infinite'
+                      }}
+                    />
                   </div>
                   
                   {/* Processing Nodes */}
                   <div className="flex items-center justify-center col-span-3 space-x-4">
-                    <div className="w-8 h-8 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_15px_#0095ff] animate-pulse [animation-delay:200ms]" />
-                    <div className="w-12 h-12 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_25px_#0095ff] animate-pulse [animation-delay:400ms]" />
-                    <div className="w-8 h-8 rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_15px_#0095ff] animate-pulse [animation-delay:600ms]" />
+                    {[200, 400, 600].map((delay, index) => (
+                      <div 
+                        key={delay}
+                        className={`w-${index === 1 ? '12' : '8'} h-${index === 1 ? '12' : '8'} rounded-full bg-[#0095ff] opacity-75 shadow-[0_0_${index === 1 ? '25' : '15'}px_#0095ff]`}
+                        style={{
+                          animation: `pulse 2s ease-in-out infinite ${delay}ms`
+                        }}
+                      />
+                    ))}
                   </div>
                   
                   {/* Output Node */}
                   <div className="flex items-center justify-center col-span-1">
-                    <div className="w-14 h-14 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff] animate-pulse [animation-delay:800ms]" />
+                    <div 
+                      className="w-14 h-14 rounded-lg bg-[#0095ff] opacity-75 shadow-[0_0_30px_#0095ff]"
+                      style={{
+                        animation: 'pulse 2s ease-in-out infinite 800ms'
+                      }}
+                    />
                   </div>
                   
-                  {/* Connecting Lines */}
+                  {/* Animated Connecting Lines */}
                   <div className="absolute inset-0 pointer-events-none">
                     <svg className="w-full h-full" style={{ opacity: 0.5 }}>
                       <path
@@ -103,6 +122,9 @@ const AdManager = () => {
                         strokeWidth="2"
                         fill="none"
                         strokeDasharray="4 4"
+                        style={{
+                          animation: 'flowLine 2s linear infinite'
+                        }}
                       />
                     </svg>
                   </div>
@@ -124,29 +146,29 @@ const AdManager = () => {
             </div>
           </div>
 
-          {/* Optional: Background texture */}
+          {/* Animated Background texture */}
           <div 
             className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_100%)] pointer-events-none"
+            style={{
+              animation: 'pulse 4s ease-in-out infinite alternate'
+            }}
             aria-hidden="true"
           />
         </section>
 
-        {/* Concept to Creation Section */}
+        {/* Keep other sections unchanged */}
         <FadeIn>
           <ConceptToCreation />
         </FadeIn>
 
-        {/* How It Works Section */}
         <FadeIn>
           <HowItWorks />
         </FadeIn>
 
-        {/* Benefits Section */}
         <FadeIn>
           <Benefits />
         </FadeIn>
 
-        {/* Contact CTA Section */}
         <FadeIn>
           <ContactCTA />
         </FadeIn>
