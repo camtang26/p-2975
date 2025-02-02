@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLazyLoad } from '@/hooks/useLazyLoad';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
   src: string;
@@ -9,6 +10,7 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
+  blur?: boolean;
 }
 
 export const OptimizedImage = ({
@@ -17,9 +19,11 @@ export const OptimizedImage = ({
   width,
   height,
   className = '',
-  priority = false
+  priority = false,
+  blur = true
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(!priority);
   const { elementRef, isVisible } = useLazyLoad();
   const [error, setError] = useState<string | null>(null);
 
@@ -27,8 +31,16 @@ export const OptimizedImage = ({
     if (isVisible || priority) {
       const img = new Image();
       img.src = src;
-      img.onload = () => setIsLoaded(true);
-      img.onerror = () => setError('Failed to load image');
+      
+      img.onload = () => {
+        setIsLoaded(true);
+        setIsLoading(false);
+      };
+      
+      img.onerror = () => {
+        setError('Failed to load image');
+        setIsLoading(false);
+      };
     }
   }, [isVisible, priority, src]);
 
@@ -38,9 +50,12 @@ export const OptimizedImage = ({
 
   return (
     <div ref={elementRef} className="relative">
-      {(!isLoaded && !priority) && (
+      {isLoading && (
         <Skeleton 
-          className={`absolute inset-0 ${className}`}
+          className={cn(
+            "absolute inset-0",
+            className
+          )}
           style={{ width, height }}
         />
       )}
@@ -50,8 +65,14 @@ export const OptimizedImage = ({
           alt={alt}
           width={width}
           height={height}
-          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+          className={cn(
+            className,
+            isLoaded ? 'opacity-100' : 'opacity-0',
+            blur && 'transition-opacity duration-300',
+            isLoading && 'blur-sm'
+          )}
           loading={priority ? "eager" : "lazy"}
+          onLoad={() => setIsLoaded(true)}
         />
       )}
     </div>

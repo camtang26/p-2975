@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Brain, Layers, Bot, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ServiceCardProps } from "../types";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const iconMap = {
   Brain,
@@ -10,15 +11,28 @@ const iconMap = {
   Phone
 };
 
+interface MobileServiceCardProps extends ServiceCardProps {
+  isLoading?: boolean;
+}
+
 export const MobileServiceCard = ({ 
   title, 
   description, 
   link, 
   icon,
   color,
-  index 
-}: ServiceCardProps) => {
+  index,
+  isLoading = false
+}: MobileServiceCardProps) => {
   const Icon = iconMap[icon as keyof typeof iconMap];
+
+  if (isLoading) {
+    return (
+      <div className="w-full">
+        <Skeleton className="h-[300px] w-full rounded-xl" />
+      </div>
+    );
+  }
 
   return (
     <div 
