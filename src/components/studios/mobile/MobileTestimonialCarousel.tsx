@@ -7,6 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { type Testimonial } from "../Testimonials";
+import { useGestures } from "@/hooks/useGestures";
 
 interface MobileTestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -23,27 +24,38 @@ export const MobileTestimonialCarousel = ({
         align: "center",
         loop: true,
       }}
-      className="w-full max-w-sm mx-auto"
+      className="w-full max-w-sm mx-auto perspective-1000"
     >
-      <CarouselContent className="-ml-2 md:hidden">
+      <CarouselContent className="-ml-2 md:hidden [transform-style:preserve-3d]">
         {testimonials.map((testimonial, index) => {
           const color = Object.values(brandColors)[index % Object.values(brandColors).length];
           
           return (
-            <CarouselItem key={testimonial.name} className="pl-2 basis-full">
+            <CarouselItem 
+              key={testimonial.name} 
+              className="pl-2 basis-full group"
+            >
               <ScrollFade delay={index * 100}>
                 <div
                   className={cn(
                     "glass-morphism p-4 rounded-2xl space-y-3",
                     "transition-all duration-500 transform",
-                    "group relative"
+                    "group-data-[state=current]:scale-110 group-data-[state=current]:z-20",
+                    "group-data-[state=prev]:scale-90 group-data-[state=prev]:-translate-x-4 group-data-[state=prev]:opacity-50 group-data-[state=prev]:z-10",
+                    "group-data-[state=next]:scale-90 group-data-[state=next]:translate-x-4 group-data-[state=next]:opacity-50 group-data-[state=next]:z-10",
+                    "relative"
                   )}
                   style={{ 
                     background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
                     boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid rgba(255,255,255,0.07)',
-                    '--card-color': color
+                    '--card-color': color,
+                    transform: `
+                      perspective(1000px)
+                      rotateY(calc(var(--slide-offset, 0) * 45deg))
+                      translateZ(calc(var(--slide-offset, 0) * -100px))
+                    `
                   } as React.CSSProperties}
                 >
                   {/* Quote Icon */}
