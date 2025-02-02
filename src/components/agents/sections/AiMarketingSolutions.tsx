@@ -66,12 +66,12 @@ export const AiMarketingSolutions = () => {
       
       <div className="container mx-auto px-4">
         <ScrollFade>
-          <h2 className="text-5xl md:text-6xl font-semibold text-gradient text-center mb-20 relative z-50">
+          <h2 className="text-6xl md:text-7xl font-semibold text-gradient text-center mb-24 relative z-50">
             Our AI Marketing Solutions
           </h2>
         </ScrollFade>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {solutions.map((solution, index) => {
             const { Icon } = solution;
             return (
@@ -85,8 +85,8 @@ export const AiMarketingSolutions = () => {
                     "before:opacity-0 before:transition-opacity hover:before:opacity-100",
                     "after:absolute after:inset-0 after:rounded-xl",
                     "after:opacity-0 after:transition-opacity hover:after:opacity-100",
-                    "flex flex-col items-center justify-center text-center",
-                    "min-h-[700px]" // Ensuring consistent height
+                    "flex flex-col items-center justify-start text-center",
+                    "h-[600px] w-full" // Fixed height for all boxes
                   )}
                   style={{
                     '--solution-color': solution.color,
@@ -94,7 +94,7 @@ export const AiMarketingSolutions = () => {
                   } as React.CSSProperties}
                 >
                   {/* Icon with enhanced glow */}
-                  <div className="mb-10 relative group-hover:animate-pulse">
+                  <div className="mb-12 relative group-hover:animate-pulse">
                     <Icon 
                       className={cn(
                         "w-28 h-28 transition-all duration-300",
@@ -106,15 +106,15 @@ export const AiMarketingSolutions = () => {
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                  <h3 className="text-4xl font-semibold mb-8 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                     {solution.title}
                   </h3>
                   
-                  <p className="text-xl text-white/80 leading-relaxed mb-6">
+                  <p className="text-xl text-white/80 leading-relaxed mb-8">
                     {solution.description}
                   </p>
 
-                  <ul className="text-lg text-white/70 space-y-3 text-left w-full">
+                  <ul className="text-lg text-white/70 space-y-4 text-left w-full">
                     {solution.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
                         <span className="mr-2 text-[var(--solution-color)]">•</span>
