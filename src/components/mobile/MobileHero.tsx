@@ -1,14 +1,29 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { VideoBackground } from "../hero/VideoBackground";
 import { HeroContent } from "../hero/HeroContent";
 import { TouchRipple } from "./TouchRipple";
+import { useGestures } from "@/hooks/useGestures";
+import { smoothScrollToElement } from "@/utils/smoothScroll";
 
 export const MobileHero = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const navigate = useNavigate();
 
   const toggleMute = () => setIsMuted(!isMuted);
   const togglePlay = () => setIsPlaying(!isPlaying);
+
+  useGestures({
+    onSwipeLeft: () => {
+      // Navigate to next section
+      smoothScrollToElement('services');
+    },
+    onSwipeRight: () => {
+      // Optional: Handle right swipe
+      console.log('Swiped right');
+    }
+  });
 
   return (
     <section 

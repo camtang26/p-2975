@@ -2,6 +2,8 @@ import { Brain, Layers, Bot, Phone } from "lucide-react";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { MobileServiceCard } from "./MobileServiceCard";
 import { ServicesProps } from "../types";
+import { useGestures } from "@/hooks/useGestures";
+import { smoothScrollToElement } from "@/utils/smoothScroll";
 
 const iconMap = {
   Brain,
@@ -11,8 +13,17 @@ const iconMap = {
 };
 
 export const MobileServices = ({ services }: ServicesProps) => {
+  useGestures({
+    onSwipeLeft: () => {
+      smoothScrollToElement('contact');
+    },
+    onSwipeRight: () => {
+      smoothScrollToElement('hero');
+    }
+  });
+
   return (
-    <div className="container mx-auto px-4">
+    <div id="services" className="container mx-auto px-4">
       <div className="flex flex-col space-y-4">
         {services.map((service, index) => (
           <ScrollFade key={index} delay={index * 100}>
