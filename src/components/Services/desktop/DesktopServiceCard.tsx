@@ -81,7 +81,8 @@ export const DesktopServiceCard = ({
             "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0",
             "after:origin-left after:scale-x-0 hover:after:scale-x-100",
             "after:transition-transform after:duration-300",
-            "cursor-pointer py-2 px-4"
+            "cursor-pointer py-2 px-4",
+            "z-10" // Ensure link is above any other elements
           )}
           aria-label={`Learn more about ${title}`}
         >
