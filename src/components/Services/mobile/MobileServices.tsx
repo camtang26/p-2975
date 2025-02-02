@@ -3,6 +3,7 @@ import { ScrollFade } from "@/components/shared/ScrollFade";
 import { MobileServiceCard } from "./MobileServiceCard";
 import { ServicesProps } from "../types";
 import { useGestures } from "@/hooks/useGestures";
+import { useMobileInteractions } from "@/hooks/useMobileInteractions";
 import { smoothScrollToElement } from "@/utils/smoothScroll";
 
 const iconMap = {
@@ -13,6 +14,8 @@ const iconMap = {
 };
 
 export const MobileServices = ({ services }: ServicesProps) => {
+  useMobileInteractions();
+  
   useGestures({
     onSwipeLeft: () => {
       smoothScrollToElement('contact');

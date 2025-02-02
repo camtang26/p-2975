@@ -6,6 +6,7 @@ import { TouchRipple } from "./TouchRipple";
 import { useGestures } from "@/hooks/useGestures";
 import { smoothScrollToElement } from "@/utils/smoothScroll";
 import { MobileLoadingSkeleton } from "./MobileLoadingSkeleton";
+import { toast } from "sonner";
 
 export const MobileHero = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -13,15 +14,36 @@ export const MobileHero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const toggleMute = () => setIsMuted(!isMuted);
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    toast.success(isMuted ? "Sound unmuted" : "Sound muted", {
+      position: "bottom-center",
+      duration: 1500
+    });
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+    toast.success(isPlaying ? "Video paused" : "Video playing", {
+      position: "bottom-center",
+      duration: 1500
+    });
+  };
 
   useGestures({
     onSwipeLeft: () => {
       smoothScrollToElement('services');
+      toast.info("Swipe left: Services section", {
+        position: "bottom-center",
+        duration: 1500
+      });
     },
     onSwipeRight: () => {
       console.log('Swiped right');
+      toast.info("Swipe right: Previous section", {
+        position: "bottom-center",
+        duration: 1500
+      });
     }
   });
 
