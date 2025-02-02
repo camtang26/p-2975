@@ -1,9 +1,10 @@
+import React from "react";
 import { Brain, Layers, Target, Rocket } from "lucide-react";
 import { Step } from "./Step";
 import { StepArrow } from "./StepArrow";
 import { ScrollFade } from "@/components/shared/ScrollFade";
 import { MobileHowItWorksCarousel } from "./mobile/MobileHowItWorksCarousel";
-import { useMediaQuery } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const steps = [
   {
@@ -37,7 +38,7 @@ const steps = [
 ];
 
 export const HowItWorks = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
 
   return (
     <section className="py-20 relative">
