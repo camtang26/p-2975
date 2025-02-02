@@ -26,6 +26,7 @@ export const ConceptCard = ({
         "before:opacity-0 before:transition-opacity hover:before:opacity-100",
         "after:absolute after:inset-0 after:rounded-xl",
         "after:opacity-0 after:transition-opacity hover:after:opacity-100",
+        "flex flex-col h-full",
         className
       )}
       style={{
@@ -45,7 +46,7 @@ export const ConceptCard = ({
       </div>
       
       {/* Content */}
-      <div className="text-center">
+      <div className="text-center flex-grow flex flex-col justify-between">
         <h3 
           className="text-3xl font-semibold mb-6 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent"
         >

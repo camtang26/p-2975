@@ -48,13 +48,15 @@ export const ConceptToCreation = () => {
           </h2>
         </ScrollFade>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {steps.map((step, index) => (
             <ScrollFade key={index} delay={index * 100}>
-              <ConceptCard
-                {...step}
-                className={`animate-fade-in [animation-delay:${index * 200}ms]`}
-              />
+              <div className="h-full">
+                <ConceptCard
+                  {...step}
+                  className={`h-full animate-fade-in [animation-delay:${index * 200}ms]`}
+                />
+              </div>
             </ScrollFade>
           ))}
         </div>
