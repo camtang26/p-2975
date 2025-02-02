@@ -6,14 +6,11 @@ import { MobileRobotLineup } from './MobileRobotLineup';
 
 export const RobotLineup = () => {
   const isMobile = useIsMobile();
-  
-  if (isMobile) {
-    return <MobileRobotLineup />;
-  }
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (isMobile) return; // Early return in useEffect is fine
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -82,6 +79,10 @@ export const RobotLineup = () => {
       window.removeEventListener('resize', resize);
     };
   }, [isMobile]);
+
+  if (isMobile) {
+    return <MobileRobotLineup />;
+  }
 
   return (
     <canvas

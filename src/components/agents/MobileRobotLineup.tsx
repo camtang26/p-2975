@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ROBOTS } from './types/RobotTypes';
 import * as THREE from 'three';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 export const MobileRobotLineup = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +47,7 @@ export const MobileRobotLineup = () => {
       const group = new THREE.Group();
       
       // Create robot body with improved geometry
-      const geometry = new THREE.BoxGeometry(0.8, 1.6, 0.4); // Slightly smaller proportions
+      const geometry = new THREE.BoxGeometry(0.8, 1.6, 0.4);
       const material = new THREE.MeshPhongMaterial({ 
         color: robotData.color,
         emissive: robotData.color,
@@ -59,12 +58,9 @@ export const MobileRobotLineup = () => {
       group.add(robot);
 
       // Enhanced V-formation positioning
-      const xOffset = (index - 2) * 1.3; // Reduced horizontal spread
-      const zOffset = Math.abs(index - 2) * -1.5; // Increased depth
-      const rotation = (index - 2) * Math.PI / 6; // 30° increments
-
-      // Log positions for debugging
-      console.log(`Robot ${index}: xOffset=${xOffset}, zOffset=${zOffset}, rotation=${rotation}`);
+      const xOffset = (index - 2) * 1.3;
+      const zOffset = Math.abs(index - 2) * -1.5;
+      const rotation = (index - 2) * Math.PI / 6;
 
       group.position.set(xOffset, 0, zOffset);
       group.rotation.y = rotation;
@@ -105,7 +101,7 @@ export const MobileRobotLineup = () => {
       
       cameraRef.current.aspect = width / height;
       cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(width, height, false); // Added false to prevent quality loss
+      rendererRef.current.setSize(width, height, false);
     };
     window.addEventListener('resize', handleResize);
 
@@ -122,7 +118,7 @@ export const MobileRobotLineup = () => {
     <div 
       ref={containerRef}
       className="relative w-full h-[600px] overflow-visible perspective-1000"
-      style={{ transform: 'translateY(40px)' }} // Increased vertical offset
+      style={{ transform: 'translateY(40px)' }}
     />
   );
 };
