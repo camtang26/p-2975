@@ -4,7 +4,7 @@ import { ScrollFade } from "../shared/ScrollFade";
 export const StudiosIntro = () => {
   return (
     <section 
-      className="py-32 relative overflow-hidden"
+      className="py-16 md:py-32 relative overflow-hidden"
       aria-label="Introduction section"
     >
       {/* Main Background Gradient */}
@@ -40,13 +40,13 @@ export const StudiosIntro = () => {
         }}
       />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <ScrollFade className="relative z-20">
-            <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold text-gradient mb-8 relative">
+            <h2 className="text-4xl md:text-5xl xl:text-7xl font-bold text-gradient mb-6 md:mb-8 relative">
               Introducing Cre8tive AI Studios
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
               At Cre8tive AI, we're here to help you harness the transformative power 
               of AI-driven media services. Our comprehensive suite of solutions is 
               designed to elevate your content, streamline your workflows, and position 
@@ -59,17 +59,17 @@ export const StudiosIntro = () => {
               "relative aspect-video rounded-xl overflow-hidden",
               "bg-black/10 backdrop-blur-sm"
             )}>
-            <img
-              src="/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png"
-              alt="Neural Tree Visualization"
-              className="w-[110%] h-[110%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            />
-            
-            {/* Overlay */}
-            <div 
-              className="absolute inset-0 bg-black/20"
-              aria-hidden="true"
-            />
+              <img
+                src="/lovable-uploads/2d4632c2-d2b5-4772-94cb-16f99be5ed24.png"
+                alt="Neural Tree Visualization"
+                className="w-[110%] h-[110%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
+              
+              {/* Overlay */}
+              <div 
+                className="absolute inset-0 bg-black/20"
+                aria-hidden="true"
+              />
             </div>
           </ScrollFade>
         </div>
