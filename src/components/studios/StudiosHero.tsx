@@ -10,12 +10,14 @@ export const StudiosHero = () => {
 
   return (
     <section 
-      className="relative md:min-h-[85vh] min-h-[70vh] flex items-center justify-center overflow-hidden"
+      className="relative md:min-h-[85vh] min-h-[70vh] flex items-center justify-center overflow-hidden
+                 md:mt-0 -mt-16 bg-black md:bg-transparent"
       role="banner"
       aria-label="Studios hero section"
       style={{ 
         position: 'relative',
-        isolation: 'isolate'
+        isolation: 'isolate',
+        overscrollBehavior: 'none'
       }}
     >
       {/* Animated Background contained within hero section */}
