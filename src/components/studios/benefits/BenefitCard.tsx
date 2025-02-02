@@ -14,7 +14,7 @@ export const BenefitCard = ({ Icon, title, description, color, index }: BenefitC
   return (
     <Card 
       className={cn(
-        "glass-morphism border-none animate-fade-in hover-lift group",
+        "glass-morphism border-none animate-fade-in hover-lift group h-full",
         "bg-black/40 backdrop-blur-xl",
         "border border-white/10 hover:border-[var(--card-color)]/30",
         "transition-all duration-300 hover:shadow-[0_0_30px_var(--card-color)]"
@@ -25,7 +25,7 @@ export const BenefitCard = ({ Icon, title, description, color, index }: BenefitC
       } as React.CSSProperties}
     >
       <CardContent className="p-6 md:p-8">
-        <div className="flex items-start gap-4 md:gap-6">
+        <div className="flex items-start gap-4 md:gap-6 h-full">
           <div className="relative group-hover:scale-110 transition-transform duration-300">
             <div 
               className="absolute inset-0 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-300"
@@ -41,7 +41,7 @@ export const BenefitCard = ({ Icon, title, description, color, index }: BenefitC
               style={{ color }}
             />
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="text-xl md:text-2xl font-bold text-gradient mb-2 md:mb-4 tracking-tight group-hover:scale-105 transition-transform duration-300">
               {title}
             </h3>
