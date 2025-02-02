@@ -8,10 +8,11 @@ export const drawRobot = (
   scale: number,
   isHovered: boolean,
   role: string,
-  textColor: string
+  textColor: string,
+  isMobile: boolean = false
 ) => {
   drawRobotBody(ctx, x, y, color, scale, isHovered);
-  drawRobotText(ctx, x, y, role, textColor);
+  drawRobotText(ctx, x, y, role, textColor, isMobile);
 };
 
 const drawRobotBody = (
@@ -73,12 +74,13 @@ const drawRobotText = (
   x: number,
   y: number,
   role: string,
-  textColor: string
+  textColor: string,
+  isMobile: boolean = false
 ) => {
   ctx.save();
   
   // Text settings
-  ctx.font = '18px Inter';
+  ctx.font = isMobile ? '14px Inter' : '18px Inter';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   
@@ -90,7 +92,7 @@ const drawRobotText = (
   // Draw text multiple times for stronger glow
   for (let i = 0; i < 3; i++) {
     ctx.shadowBlur = (i + 1) * 5;
-    ctx.fillText(role, x, y + 240);
+    ctx.fillText(role, x, y + (isMobile ? 180 : 240));
   }
   
   ctx.restore();

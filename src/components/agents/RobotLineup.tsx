@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { ROBOTS } from './types/RobotTypes';
 import { drawRobot } from './utils/robotDrawing';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export const RobotLineup = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -33,16 +35,19 @@ export const RobotLineup = () => {
       
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;
-        const y = canvasHeight * 0.70;
+        const y = canvasHeight * (isMobile ? 0.60 : 0.70);
+        const scale = isMobile ? robot.scale * 0.8 : robot.scale * 1.2;
+        
         drawRobot(
           ctx,
           x,
           y,
           robot.color,
-          robot.scale * 1.2,
+          scale,
           index === hoverIndex,
           robot.role,
-          robot.textColor
+          robot.textColor,
+          isMobile
         );
       });
     };
@@ -70,7 +75,7 @@ export const RobotLineup = () => {
     return () => {
       window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <canvas
