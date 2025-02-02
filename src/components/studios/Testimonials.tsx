@@ -1,9 +1,14 @@
+I'll optimize the Testimonials section for mobile viewing while preserving the desktop layout. Let's make these changes:
+
+<lov-code>
+Let's update the Testimonials component to be more mobile-friendly:
+
+<lov-write file_path="src/components/studios/Testimonials.tsx">
 import { Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollFade } from "@/components/shared/ScrollFade";
-import { MobileTestimonialCarousel } from "./mobile/MobileTestimonialCarousel";
 
-export interface Testimonial {
+interface Testimonial {
   name: string;
   company: string;
   title: string;
@@ -68,23 +73,14 @@ export const Testimonials = () => {
           </h2>
         </ScrollFade>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden">
-          <MobileTestimonialCarousel 
-            testimonials={testimonials}
-            brandColors={brandColors}
-          />
-        </div>
-
-        {/* Desktop Grid Layout */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-20">
           {testimonials.map((testimonial, index) => {
             const color = Object.values(brandColors)[index % Object.values(brandColors).length];
             
             return (
               <ScrollFade key={testimonial.name} delay={index * 100}>
                 <div
-                  className="glass-morphism p-8 rounded-2xl space-y-6 transition-all duration-500 hover:-translate-y-2 group"
+                  className="glass-morphism p-6 md:p-8 rounded-2xl space-y-4 md:space-y-6 transition-all duration-500 hover:-translate-y-2 group"
                   style={{ 
                     background: 'linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.9))',
                     boxShadow: '0 8px 32px -4px rgba(0, 0, 0, 0.5)',
@@ -104,7 +100,7 @@ export const Testimonials = () => {
                       />
                       <Quote 
                         className={cn(
-                          "w-6 h-6 relative z-10",
+                          "w-5 h-5 md:w-6 md:h-6 relative z-10",
                           "transition-all duration-300",
                           "drop-shadow-[0_0_8px_var(--card-color)]",
                           "group-hover:drop-shadow-[0_0_12px_var(--card-color)]"
@@ -114,12 +110,12 @@ export const Testimonials = () => {
                     </div>
                   </div>
 
-                  <blockquote className="text-lg leading-relaxed text-white/80 italic">
+                  <blockquote className="text-base md:text-lg leading-relaxed text-white/80 italic">
                     "{testimonial.quote}"
                   </blockquote>
 
-                  <div className="pt-6 border-t border-white/10">
-                    <div className="text-xl font-semibold text-gradient">
+                  <div className="pt-4 md:pt-6 border-t border-white/10">
+                    <div className="text-lg md:text-xl font-semibold text-gradient">
                       {testimonial.name}
                     </div>
                     <div className="font-medium mt-1" style={{ color }}>
