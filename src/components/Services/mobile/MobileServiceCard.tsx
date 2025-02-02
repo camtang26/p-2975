@@ -89,6 +89,18 @@ export const MobileServiceCard = ({
           <p className="text-base text-white/80 leading-relaxed mb-4">
             {description}
           </p>
+
+          <span 
+            className={cn(
+              "text-white/90 text-sm font-medium",
+              "relative overflow-hidden transition-all duration-300",
+              "after:content-[''] after:absolute after:bottom-0 after:left-0",
+              "after:w-full after:h-[1px]",
+              "after:bg-gradient-to-r after:from-white/0 after:via-white/70 after:to-white/0"
+            )}
+          >
+            Learn More
+          </span>
         </div>
         <TouchRipple />
       </Link>
