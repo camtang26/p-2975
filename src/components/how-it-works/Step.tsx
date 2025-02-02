@@ -19,8 +19,8 @@ export const Step = ({ number, title, description, Icon, color }: StepProps) => 
           "transform-gpu transition-all duration-500",
           "border border-white/10",
           "hover:border-[var(--step-color)]/30",
-          "h-[400px] w-[300px]", // Fixed dimensions
-          "flex flex-col items-center justify-start", // Changed to justify-start for better spacing
+          "h-[400px] w-[300px]",
+          "flex flex-col items-center",
           "relative"
         )}
         style={{ '--step-color': color } as React.CSSProperties}
@@ -41,7 +41,7 @@ export const Step = ({ number, title, description, Icon, color }: StepProps) => 
         </div>
 
         {/* Icon */}
-        <div className="mb-8 relative group-hover:animate-pulse pt-6">
+        <div className="mb-6 relative group-hover:animate-pulse">
           <Icon 
             className={cn(
               "w-16 h-16 transition-all duration-300",
@@ -53,7 +53,7 @@ export const Step = ({ number, title, description, Icon, color }: StepProps) => 
         </div>
 
         {/* Content */}
-        <div className="flex flex-col items-center space-y-4 px-4">
+        <div className="flex flex-col items-center space-y-4 px-6">
           <h3 className="text-2xl font-bold text-gradient text-center">
             {title}
           </h3>
