@@ -42,7 +42,7 @@ export const MarketingSection = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-24 relative overflow-hidden">
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -52,7 +52,7 @@ export const MarketingSection = () => {
       
       <div className="container relative z-10 mx-auto px-4">
         <ScrollFade>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mt-8 sm:mt-0 mb-12 md:mb-16 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mt-4 sm:mt-0 mb-8 sm:mb-12 md:mb-16 text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
             Digital Marketing Agencies & Clients
           </h2>
         </ScrollFade>
@@ -102,8 +102,8 @@ export const MarketingSection = () => {
         </div>
 
         <ScrollFade delay={400}>
-          <div className="text-center mt-8 sm:mt-12">
-            <p className="text-xl sm:text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8 italic [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
+          <div className="text-center mt-6 sm:mt-12">
+            <p className="text-xl sm:text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto mb-4 sm:mb-8 italic [text-shadow:0_0_10px_rgba(255,255,255,0.4),0_0_20px_rgba(255,255,255,0.2)]">
               "Ready to transform your video production process? With AI, you can create faster, save more, and stay ahead of the competition."
             </p>
           </div>
