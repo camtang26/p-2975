@@ -18,8 +18,8 @@ export const StudiosHero = () => {
         isolation: 'isolate'
       }}
     >
-      {/* Animated Background with fixed positioning */}
-      <div className="fixed inset-0 z-0">
+      {/* Animated Background contained within hero section */}
+      <div className="absolute inset-0 z-0">
         <AnimatedBackground />
       </div>
 

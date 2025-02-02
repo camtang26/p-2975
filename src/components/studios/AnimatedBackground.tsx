@@ -97,8 +97,10 @@ export const AnimatedBackground = () => {
 
     // Handle resize
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      if (!containerRef.current) return;
+      
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight;
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
@@ -106,6 +108,7 @@ export const AnimatedBackground = () => {
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize(); // Initial size setup
 
     // Cleanup
     return () => {
@@ -123,7 +126,7 @@ export const AnimatedBackground = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 w-full h-full"
+      className="absolute inset-0 w-full h-full"
       style={{
         background: 'radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.99) 75%, rgba(0,0,0,1) 100%)',
       }}
