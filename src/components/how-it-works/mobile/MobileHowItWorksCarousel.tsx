@@ -59,7 +59,7 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
       `,
       opacity,
       zIndex: Math.abs(offset) === 0 ? 1 : 0,
-      pointerEvents: Math.abs(offset) === 0 ? "auto" : "none",
+      pointerEvents: Math.abs(offset) === 0 ? "auto" : "none" as const,
     };
   };
 
@@ -67,10 +67,9 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
     <div 
       className={cn(
         "md:hidden relative w-full overflow-hidden",
-        "h-[500px] flex flex-col items-center justify-center" // Reduced height for mobile
+        "h-[500px] flex flex-col items-center justify-center"
       )}
     >
-      {/* 3D Container */}
       <div 
         ref={containerRef}
         className={cn(
@@ -81,7 +80,6 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Carousel Track */}
         <div 
           className={cn(
             "absolute inset-0",
@@ -93,24 +91,23 @@ export const MobileHowItWorksCarousel = ({ steps }: Props) => {
             <div
               key={step.number}
               className={cn(
-                "absolute top-1/2 left-1/2",
-                "transform-gpu will-change-transform origin-center",
-                "w-full max-w-[260px]" // Reduced from 300px for mobile
+                "absolute top-1/2 left-1/2 origin-center",
+                "transform-gpu will-change-transform",
+                "w-full max-w-[260px]"
               )}
               style={getSlideStyle(index)}
             >
               <Step 
                 {...step} 
                 className={cn(
-                  "scale-90", // Added scaling for mobile
-                  "h-[360px]" // Reduced height for mobile
+                  "scale-90",
+                  "h-[360px]"
                 )}
               />
             </div>
           ))}
         </div>
 
-        {/* Navigation Dots */}
         <div 
           className={cn(
             "absolute bottom-6 left-0 right-0",
