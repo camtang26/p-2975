@@ -38,7 +38,7 @@ const videos = [
 
 export const Gallery = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-12 md:py-32 relative overflow-hidden">
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{

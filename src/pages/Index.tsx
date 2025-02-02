@@ -42,7 +42,7 @@ const Index = () => {
           </div>
           
           <ScrollFade delay={100}>
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-8 md:py-8 py-4">
               <QuoteCard
                 quote="The question isn't whether AI will transform your business, but when and how."
                 author="Satya Nadella"
