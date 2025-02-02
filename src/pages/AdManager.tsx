@@ -38,11 +38,11 @@ const AdManager = () => {
         >
           <div className="container mx-auto max-w-7xl">
             <div className="text-center space-y-6 md:space-y-10">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gradient opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards] neon-glow">
+              <h1 className="text-5xl sm:text-[3.5rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gradient opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards] neon-glow">
                 Cre8tive AI Ad Manager
               </h1>
               
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/90 font-semibold opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards] max-w-5xl mx-auto neon-glow-subtle px-2 md:px-0">
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-white/90 font-semibold opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards] max-w-5xl mx-auto neon-glow-subtle px-2 md:px-0">
                 From Idea to Storyboard: Effortless Ad Creation, Powered by AI
               </h2>
 
@@ -114,8 +114,8 @@ const AdManager = () => {
                   </div>
                 </div>
               </div>
-
-              <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed opacity-0 animate-[fadeIn_3s_ease-out_1.5s_forwards] px-4 neon-glow-subtle">
+              
+              <p className="text-base sm:text-lg md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed sm:leading-tight md:leading-relaxed opacity-0 animate-[fadeIn_3s_ease-out_1.5s_forwards] px-3 md:px-4 neon-glow-subtle">
                 Transform your advertising process with the Cre8tive AI Ad Manager—a state-of-the-art platform that takes your product and brand from concept to storyboard in minutes. Whether you're a client or a digital marketing agency, our tool empowers you to develop stunning, professional creatives with ease, ready for production by our Cre8tive AI Studio Team.
               </p>
 
