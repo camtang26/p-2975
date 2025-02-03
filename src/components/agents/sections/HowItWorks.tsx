@@ -23,7 +23,7 @@ const Step = ({ number, title, description, Icon, color }: StepProps) => {
           "transform-gpu transition-all duration-500",
           "border border-white/10",
           "hover:border-[var(--step-color)]/30",
-          isMobile ? "p-6" : "p-8" // Reduced padding for mobile
+          isMobile ? "p-6" : "p-8 min-h-[420px]" // Added fixed height for desktop
         )}
         style={{ '--step-color': color } as React.CSSProperties}
       >
@@ -111,17 +111,17 @@ export const HowItWorks = () => {
   return (
     <section className={cn(
       "relative",
-      isMobile ? "py-12" : "py-20" // Reduced padding for mobile
+      isMobile ? "py-12" : "py-20"
     )}>
       <div className="container mx-auto px-4">
         <div className={cn(
           "mx-auto text-center",
-          isMobile ? "mb-8 max-w-[90%]" : "mb-16 max-w-3xl" // Adjusted margins and width for mobile
+          isMobile ? "mb-8 max-w-[90%]" : "mb-16 max-w-3xl"
         )}>
           <ScrollFade>
             <h2 className={cn(
               "font-bold text-gradient",
-              isMobile ? "text-3xl mb-3" : "text-5xl md:text-6xl mb-6" // Smaller text and margin for mobile
+              isMobile ? "text-3xl mb-3" : "text-5xl md:text-6xl mb-6"
             )}>
               How It Works
             </h2>
@@ -129,7 +129,7 @@ export const HowItWorks = () => {
           <ScrollFade delay={100}>
             <p className={cn(
               "text-white/80",
-              isMobile ? "text-lg" : "text-2xl md:text-3xl" // Smaller text for mobile
+              isMobile ? "text-lg" : "text-2xl md:text-3xl"
             )}>
               Transforming Your Vision into Reality
             </p>

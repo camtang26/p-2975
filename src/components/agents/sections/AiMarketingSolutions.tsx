@@ -74,7 +74,7 @@ export const AiMarketingSolutions = () => {
         <ScrollFade>
           <h2 className={cn(
             "font-semibold text-gradient text-center relative z-50",
-            isMobile ? "text-3xl mb-8" : "text-5xl md:text-6xl mb-20" // Reduced margin for mobile
+            isMobile ? "text-3xl mb-8" : "text-5xl md:text-6xl mb-20"
           )}>
             Our AI Marketing Solutions
           </h2>
@@ -95,7 +95,7 @@ export const AiMarketingSolutions = () => {
                     "after:absolute after:inset-0 after:rounded-xl",
                     "after:opacity-0 after:transition-opacity hover:after:opacity-100",
                     "flex flex-col items-center justify-center text-center",
-                    isMobile ? "p-6 min-h-[400px]" : "p-16 min-h-[700px]" // Further reduced padding and height for mobile
+                    isMobile ? "p-6 min-h-[400px]" : "p-12 min-h-[600px]" // Reduced desktop size, kept mobile size
                   )}
                   style={{
                     '--solution-color': solution.color,
@@ -108,7 +108,7 @@ export const AiMarketingSolutions = () => {
                         "transition-all duration-300",
                         "drop-shadow-[0_0_20px_var(--solution-color)]",
                         "group-hover:drop-shadow-[0_0_40px_var(--solution-color)]",
-                        isMobile ? "w-12 h-12" : "w-28 h-28" // Further reduced icon size for mobile
+                        isMobile ? "w-12 h-12" : "w-24 h-24" // Slightly reduced desktop icon size
                       )}
                       style={{ color: solution.color }}
                     />
@@ -116,21 +116,21 @@ export const AiMarketingSolutions = () => {
                   
                   <h3 className={cn(
                     "font-semibold mb-4 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent",
-                    isMobile ? "text-xl" : "text-4xl" // Further reduced heading size for mobile
+                    isMobile ? "text-xl" : "text-3xl" // Slightly reduced desktop heading size
                   )}>
                     {solution.title}
                   </h3>
                   
                   <p className={cn(
-                    "leading-relaxed mb-4",
-                    isMobile ? "text-sm text-white/80" : "text-xl text-white/80" // Further reduced description text size for mobile
+                    "leading-relaxed mb-6",
+                    isMobile ? "text-sm text-white/80" : "text-lg text-white/80" // Adjusted desktop text size
                   )}>
                     {solution.description}
                   </p>
 
                   <ul className={cn(
-                    "text-white/70 space-y-2 text-left w-full",
-                    isMobile ? "text-xs" : "text-lg" // Further reduced list text size for mobile
+                    "text-white/70 space-y-3 text-left w-full", // Restored desktop line spacing
+                    isMobile ? "text-xs" : "text-base" // Adjusted desktop list text size
                   )}>
                     {solution.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
