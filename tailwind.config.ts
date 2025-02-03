@@ -89,21 +89,7 @@ export default {
       },
       perspective: {
         '1000': '1000px',
-      },
-      spacing: {
-        'nav-height': 'var(--nav-height)',
-        'base-spacing': 'var(--base-spacing)',
-      },
-      fontSize: {
-        'base-size': 'var(--base-font-size)',
-      },
-      height: {
-        'screen-dvh': '100dvh',
-      },
-      screens: {
-        '3xl': '1920px',
-        '4xl': '2560px',
-      },
+      }
     }
   },
   plugins: [require("tailwindcss-animate")],

@@ -11,24 +11,8 @@ export const drawRobot = (
   textColor: string,
   isMobile: boolean = false
 ) => {
-  // Calculate responsive scale based on viewport width
-  const viewportWidth = window.innerWidth;
-  let responsiveScale = scale;
-  
-  if (!isMobile) {
-    if (viewportWidth >= 2560) { // 4xl
-      responsiveScale = scale * 1.4;
-    } else if (viewportWidth >= 1920) { // 3xl
-      responsiveScale = scale * 1.3;
-    } else if (viewportWidth >= 1536) { // 2xl
-      responsiveScale = scale * 1.2;
-    } else if (viewportWidth >= 1280) { // xl
-      responsiveScale = scale * 1.1;
-    }
-  }
-
-  drawRobotBody(ctx, x, y, color, responsiveScale, isHovered);
-  drawRobotText(ctx, x, y, role, textColor, isMobile, responsiveScale);
+  drawRobotBody(ctx, x, y, color, scale * 1.2, isHovered);
+  drawRobotText(ctx, x, y, role, textColor, isMobile);
 };
 
 const drawRobotBody = (
@@ -91,23 +75,23 @@ const drawRobotText = (
   y: number,
   role: string,
   textColor: string,
-  isMobile: boolean = false,
-  scale: number = 1
+  isMobile: boolean = false
 ) => {
   ctx.save();
   
-  // Responsive font size based on scale
-  const fontSize = isMobile ? 14 : Math.round(20 * scale);
-  ctx.font = `${fontSize}px Inter`;
+  // Text settings with larger font size for desktop
+  ctx.font = isMobile ? '14px Inter' : '20px Inter';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   
+  // Multiple shadow layers for neon effect
   ctx.shadowBlur = 10;
   ctx.shadowColor = textColor;
   ctx.fillStyle = textColor;
   
-  // Adjusted Y position with scale factor
-  const textY = isMobile ? y + 180 : y + (180 * scale);
+  // Draw text multiple times for stronger glow
+  // Adjusted Y position for desktop to be closer to robots
+  const textY = isMobile ? y + 180 : y + 180; // Increased from 160 to 180 for more space
   
   for (let i = 0; i < 3; i++) {
     ctx.shadowBlur = (i + 1) * 5;
