@@ -74,6 +74,29 @@ export const MobileRobotLineup = () => {
     rightLeg.position.set(0.2, -0.3, 0);
     robotGroup.add(rightLeg);
 
+    // Create role text using sprite
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      canvas.width = 256;
+      canvas.height = 64;
+      context.fillStyle = robotData.textColor;
+      context.font = 'bold 32px Inter';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(robotData.role, 128, 32);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const spriteMaterial = new THREE.SpriteMaterial({ 
+        map: texture,
+        transparent: true
+      });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(1, 0.25, 1);
+      sprite.position.set(0, -0.8, 0);
+      robotGroup.add(sprite);
+    }
+
     return robotGroup;
   };
   
@@ -170,7 +193,7 @@ export const MobileRobotLineup = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-[500px] overflow-visible perspective-1000"
+      className="relative w-full h-[600px] overflow-visible perspective-1000"
       style={{ transform: 'translateY(40px)' }}
     />
   );
