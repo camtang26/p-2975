@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { useEffect } from "react";
 import { HeroSection } from "@/components/conversational/HeroSection";
 import { WhatIsSection } from "@/components/conversational/WhatIsSection";
 import { FeaturesSection } from "@/components/conversational/FeaturesSection";
@@ -7,6 +8,14 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
 
 const ConversationalAI = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://elevenlabs.io/convai-widget/index.js";
+    script.async = true;
+    script.type = "text/javascript";
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Main Gradient Background */}
@@ -45,6 +54,7 @@ const ConversationalAI = () => {
           <ContactCTA />
         </FadeIn>
       </main>
+      <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
     </div>
   );
 };
