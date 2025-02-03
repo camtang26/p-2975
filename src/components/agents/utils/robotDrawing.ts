@@ -80,21 +80,17 @@ const drawRobotText = (
 ) => {
   ctx.save();
   
-  // Adjust text size based on scale and screen size
-  const fontSize = isMobile ? 14 * scale : 18 * scale;
+  const fontSize = 18 * scale; // Consistent font size across resolutions
   ctx.font = `${fontSize}px Inter`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   
-  // Calculate text position based on robot scale
-  const textY = y + (120 * scale);
+  const textY = y + (120 * scale); // Maintain consistent text positioning
   
-  // Multiple shadow layers for neon effect
   ctx.shadowBlur = 10;
   ctx.shadowColor = textColor;
   ctx.fillStyle = textColor;
   
-  // Draw text multiple times for stronger glow
   for (let i = 0; i < 3; i++) {
     ctx.shadowBlur = (i + 1) * 5;
     ctx.fillText(role, x, textY);
