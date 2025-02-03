@@ -7,10 +7,24 @@ export const HeroSection = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.05)_0%,transparent_70%)]" />
+    <section className={`relative ${isMobile ? 'min-h-[130vh]' : 'h-[80vh]'} flex items-center justify-center overflow-hidden`}>
+      {/* Base Background Layer */}
+      <div className="absolute inset-0 bg-black" />
+      
+      {/* Gradient Overlay */}
+      <div className={`absolute inset-0 ${
+        isMobile 
+          ? 'bg-gradient-to-b from-black via-black/98 to-black/95' 
+          : 'bg-gradient-to-b from-black/90 via-black/95 to-transparent'
+      }`}>
+        <div className={`absolute inset-0 ${
+          isMobile
+            ? 'bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.03)_0%,transparent_70%)] overscroll-none'
+            : 'bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.05)_0%,transparent_70%)]'
+        }`} />
       </div>
+
+      {/* Content Container */}
       <div className={`container mx-auto px-4 text-center relative ${
         isMobile ? 'max-w-[95%] mt-16' : ''
       }`}>
