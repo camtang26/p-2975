@@ -3,8 +3,8 @@ import { ScrollFade } from "../shared/ScrollFade";
 export const WhatIsSection = () => {
   return (
     <section className="relative py-20">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/95 to-black/90">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.04)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/95 to-black/95">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.02)_0%,transparent_70%)]" />
       </div>
       <div className="container mx-auto px-4 relative">
         <ScrollFade>
