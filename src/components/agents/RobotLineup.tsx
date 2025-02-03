@@ -36,34 +36,13 @@ export const RobotLineup = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       
-      // Adjust robot scale based on resolution
-      const getAdjustedScale = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        if (width === 2560 && height === 1440) return 1.2;
-        if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.8;
-        }
-        return 1.2;
-      };
-
-      // Adjust vertical position based on resolution
-      const getAdjustedY = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        if (width === 2560 && height === 1440) return 0.70;
-        if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.85; // Keep robots at the same position
-        }
-        return 0.70;
-      };
+      // Fixed scale and Y position for all desktop resolutions
+      const scale = 1.2;
+      const yPosition = 0.70;
       
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;
-        const y = canvasHeight * getAdjustedY();
-        const scale = isMobile ? robot.scale * 0.8 : robot.scale * getAdjustedScale();
+        const y = canvasHeight * yPosition;
         
         drawRobot(
           ctx,
