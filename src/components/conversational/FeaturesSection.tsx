@@ -15,7 +15,7 @@ const Feature = ({ icon, title, description, delay = 0 }: FeatureProps) => (
     <div className={cn(
       "p-3 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
       "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-      "border border-white/10 group h-[300px] md:h-full md:min-h-[400px] flex flex-col justify-start"
+      "border border-white/10 group h-[250px] md:h-full md:min-h-[400px] flex flex-col justify-start"
     )}>
       <div className="mb-3 md:mb-6 relative group-hover:animate-pulse flex justify-center">
         {React.cloneElement(icon as React.ReactElement, {
