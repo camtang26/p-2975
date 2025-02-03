@@ -91,7 +91,7 @@ const drawRobotText = (
   
   // Draw text multiple times for stronger glow
   // Adjusted Y position for desktop to be closer to robots
-  const textY = isMobile ? y + 180 : y + 160;
+  const textY = isMobile ? y + 180 : y + 180; // Increased from 160 to 180 for more space
   
   for (let i = 0; i < 3; i++) {
     ctx.shadowBlur = (i + 1) * 5;
