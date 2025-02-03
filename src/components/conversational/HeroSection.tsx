@@ -13,8 +13,8 @@ export const HeroSection = () => {
           ? 'min-h-[100vh] -mt-24' 
           : 'max-w-[2560px] mx-auto ' + // Base desktop styles
             'h-[95vh] md:min-h-[700px] ' + // Default desktop height
-            '2xl:h-[85vh] 2xl:min-h-[800px] ' + // 2560x1440 specific
-            'xl:h-[100vh] xl:min-h-[750px]' // 1366x768 specific
+            '2xl:h-[85vh] 2xl:min-h-[900px] ' + // 2560x1440 specific
+            'xl:h-[120vh] xl:min-h-[850px]' // 1366x768 specific - increased height
       }`}
     >
       <div className="absolute inset-0 bg-black">
@@ -30,7 +30,7 @@ export const HeroSection = () => {
           ? 'max-w-[95%]' 
           : 'max-w-[1200px] ' + // Base desktop container
             'pt-28 ' + // Default padding top
-            '2xl:pt-20 2xl:max-w-[1400px] ' + // 2560x1440 specific
+            '2xl:pt-20 2xl:max-w-[1600px] ' + // 2560x1440 specific - increased container width
             'xl:pt-32' // 1366x768 specific
       }`}>
         <motion.h1 
@@ -39,7 +39,7 @@ export const HeroSection = () => {
           className={`font-extrabold text-white neon-glow ${
             isMobile 
               ? 'text-4xl mt-2 mb-3' 
-              : 'text-5xl lg:text-6xl xl:text-7xl mb-6'
+              : 'text-5xl lg:text-6xl 2xl:text-8xl xl:text-7xl mb-6' // Increased text size for 2560x1440
           }`}
         >
           Ignite Natural Conversations
@@ -51,7 +51,7 @@ export const HeroSection = () => {
           className={`text-white/90 font-semibold max-w-3xl mx-auto neon-glow-subtle ${
             isMobile 
               ? 'text-lg mb-4 px-2 leading-snug' 
-              : 'text-xl lg:text-2xl xl:text-3xl mb-8'
+              : 'text-xl lg:text-2xl 2xl:text-4xl xl:text-3xl mb-8' // Increased text size for 2560x1440
           }`}
         >
           Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
@@ -68,19 +68,19 @@ export const HeroSection = () => {
           <div className={`mx-auto text-center ${
             isMobile 
               ? 'max-w-[95%] space-y-1' 
-              : 'max-w-2xl'
+              : 'max-w-2xl 2xl:max-w-3xl' // Increased width for 2560x1440
           }`}>
             <h3 className={`font-bold text-white neon-glow ${
               isMobile 
                 ? 'text-xl mb-2' 
-                : 'text-2xl lg:text-3xl xl:text-4xl mb-4'
+                : 'text-2xl lg:text-3xl 2xl:text-5xl xl:text-4xl mb-4' // Increased text size for 2560x1440
             }`}>
               Experience the Future of Conversation
             </h3>
             <p className={`text-white/80 neon-glow-subtle ${
               isMobile 
                 ? 'text-base leading-snug mb-2' 
-                : 'text-lg lg:text-xl xl:text-2xl mb-6'
+                : 'text-lg lg:text-xl 2xl:text-3xl xl:text-2xl mb-6' // Increased text size for 2560x1440
             }`}>
               Don't take our word for it – experience the power of our Conversational AI firsthand. 
               Engage with our AI agent now to see how it can transform your customer interactions.
@@ -90,8 +90,8 @@ export const HeroSection = () => {
                 isMobile 
                   ? 'bottom-[-40px] right-[20px]' 
                   : 'bottom-[-80px] right-[80px] ' + // Default position
-                    '2xl:bottom-[-60px] ' + // 2560x1440 specific
-                    'xl:bottom-[-100px]' // 1366x768 specific
+                    '2xl:bottom-[-100px] 2xl:right-[100px] ' + // 2560x1440 specific
+                    'xl:bottom-[-120px]' // 1366x768 specific - adjusted position
               }`}
               animate={{ 
                 x: [0, 10, 0],
@@ -103,7 +103,7 @@ export const HeroSection = () => {
                 ease: "easeInOut"
               }}
             >
-              <ArrowDownRight className={isMobile ? "w-10 h-10" : "w-16 h-16"} />
+              <ArrowDownRight className={isMobile ? "w-10 h-10" : "w-16 h-16 2xl:w-20 2xl:h-20"} />
             </motion.div>
           </div>
         </motion.div>
