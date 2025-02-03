@@ -18,30 +18,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 252 80% 75%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 240 4% 16%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 240 5% 84%;
-    --radius: 0.75rem;
+    --nav-height: 96px; /* h-24 equivalent */
+    --base-font-size: 16px;
+    --base-spacing: 1rem;
   }
-}
 
-@layer base {
+  @screen md {
+    :root {
+      --base-font-size: 18px;
+      --base-spacing: 1.25rem;
+    }
+  }
+
+  @screen lg {
+    :root {
+      --base-font-size: 20px;
+      --base-spacing: 1.5rem;
+    }
+  }
+
+  @screen xl {
+    :root {
+      --base-spacing: 2rem;
+    }
+  }
+
   * {
     @apply border-border selection:bg-white/10 selection:text-white font-geist;
     -webkit-tap-highlight-color: transparent;
@@ -96,6 +97,6 @@
   img {
     @apply max-w-full h-auto;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
   }
 }
