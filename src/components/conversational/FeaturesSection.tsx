@@ -13,23 +13,23 @@ interface FeatureProps {
 const Feature = ({ icon, title, description, delay = 0 }: FeatureProps) => (
   <ScrollFade delay={delay}>
     <div className={cn(
-      "p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
+      "p-4 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
       "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
       "border border-white/10 group"
     )}>
-      <div className="mb-6 relative group-hover:animate-pulse flex justify-center">
+      <div className="mb-4 md:mb-6 relative group-hover:animate-pulse flex justify-center">
         {React.cloneElement(icon as React.ReactElement, {
           className: cn(
-            "w-16 h-16 transition-all duration-300 text-[#00ff80]",
+            "w-12 h-12 md:w-16 md:h-16 transition-all duration-300 text-[#00ff80]",
             "drop-shadow-[0_0_20px_rgba(0,255,128,0.5)]",
             "group-hover:drop-shadow-[0_0_40px_rgba(0,255,128,0.7)]"
           )
         })}
       </div>
-      <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+      <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
         {title}
       </h3>
-      <p className="text-white/70 leading-relaxed">
+      <p className="text-sm md:text-base text-white/70 leading-relaxed">
         {description}
       </p>
     </div>
@@ -38,17 +38,17 @@ const Feature = ({ icon, title, description, delay = 0 }: FeatureProps) => (
 
 export const FeaturesSection = () => {
   return (
-    <section className="relative py-20">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.03)_0%,transparent_60%)]" />
+    <section className="relative py-12 md:py-20">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/98 to-transparent">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.02)_0%,transparent_60%)]" />
       </div>
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-3 md:px-4 relative">
         <ScrollFade>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-gradient text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 md:mb-16 text-gradient text-center">
             Unleash the Power of Key Features & Capabilities
           </h2>
         </ScrollFade>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto">
           <Feature 
             icon={<PhoneCall />}
             title="Automated Phone Calls with Real Numbers"
