@@ -12,7 +12,7 @@ export const drawRobot = (
   isMobile: boolean = false
 ) => {
   drawRobotBody(ctx, x, y, color, scale, isHovered);
-  drawRobotText(ctx, x, y, role, textColor, scale, isMobile);
+  drawRobotText(ctx, x, y, role, textColor, isMobile);
 };
 
 const drawRobotBody = (
@@ -75,19 +75,14 @@ const drawRobotText = (
   y: number,
   role: string,
   textColor: string,
-  scale: number,
   isMobile: boolean = false
 ) => {
   ctx.save();
   
-  // Adjust text size based on scale and screen size
-  const fontSize = isMobile ? 14 * scale : 18 * scale;
-  ctx.font = `${fontSize}px Inter`;
+  // Text settings
+  ctx.font = isMobile ? '14px Inter' : '18px Inter';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  
-  // Calculate text position based on robot scale
-  const textY = y + (120 * scale);
   
   // Multiple shadow layers for neon effect
   ctx.shadowBlur = 10;
@@ -97,7 +92,7 @@ const drawRobotText = (
   // Draw text multiple times for stronger glow
   for (let i = 0; i < 3; i++) {
     ctx.shadowBlur = (i + 1) * 5;
-    ctx.fillText(role, x, textY);
+    ctx.fillText(role, x, y + (isMobile ? 180 : 240));
   }
   
   ctx.restore();

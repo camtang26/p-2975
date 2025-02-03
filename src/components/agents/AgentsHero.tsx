@@ -10,10 +10,11 @@ export const AgentsHero = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    if (width === 2560 && height === 1440) return 'min-h-[100vh]';
-    if (width === 1920 && height === 1080) return 'min-h-[180vh]';
-    if (width === 1366 && height === 768) return 'min-h-[220vh]';
-    return 'min-h-[160vh]';
+    if (width === 2560 && height === 1440) return '';
+    if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
+      return 'min-h-[160vh]'; // Increased height for better spacing
+    }
+    return 'min-h-[80vh] sm:min-h-[80vh]';
   };
 
   const getTextClasses = () => {
@@ -21,11 +22,11 @@ export const AgentsHero = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    if (width === 2560 && height === 1440) return 'text-5xl sm:text-7xl md:text-8xl';
+    if (width === 2560 && height === 1440) return '';
     if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
       return 'text-4xl sm:text-5xl md:text-6xl';
     }
-    return 'text-4xl sm:text-5xl md:text-6xl';
+    return 'text-5xl sm:text-7xl md:text-8xl';
   };
 
   const getSubTextClasses = () => {
@@ -33,11 +34,11 @@ export const AgentsHero = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    if (width === 2560 && height === 1440) return 'text-xl sm:text-2xl md:text-3xl';
+    if (width === 2560 && height === 1440) return '';
     if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-      return 'text-lg sm:text-xl md:text-2xl mt-8';
+      return 'text-lg sm:text-xl md:text-2xl mt-8'; // Increased margin top
     }
-    return 'text-lg sm:text-xl md:text-2xl';
+    return 'text-xl sm:text-2xl md:text-3xl';
   };
   
   return (
@@ -61,8 +62,8 @@ export const AgentsHero = () => {
       </div>
 
       {/* Content */}
-      <div className={`relative z-20 ${isMobile ? 'mt-[-8rem]' : 'mt-[-16rem]'}`}>
-        <div className="flex flex-col items-center justify-center text-center space-y-12 max-w-5xl mx-auto px-4">
+      <div className={`relative z-20 ${isMobile ? 'mt-[-8rem]' : 'mt-[-16rem]'}`}> {/* Increased negative margin to shift content up */}
+        <div className="flex flex-col items-center justify-center text-center space-y-12 max-w-5xl mx-auto px-4"> {/* Increased space-y for more spacing */}
           <h1 className={`font-inter ${getTextClasses()} font-bold tracking-[-0.02em] text-white neon-glow opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards]`}>
             AI Autonomous Agents
           </h1>
