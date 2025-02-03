@@ -1,14 +1,16 @@
 import React from 'react';
 import { Navigation } from '../Navigation';
 import { Footer } from '../Footer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
+  const isMobile = useIsMobile();
+
   return (
-    // Using semantic HTML5 elements for better accessibility and structure
     <div className="min-h-screen flex flex-col bg-black">
       <header role="banner">
         <Navigation />
@@ -19,7 +21,10 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       </main>
 
       <Footer />
-      <elevenlabs-convai agent-id="lQXvJFg8zSqlerOKPXm6"></elevenlabs-convai>
+      <elevenlabs-convai 
+        agent-id="lQXvJFg8zSqlerOKPXm6"
+        size={isMobile ? "small" : "large"}
+      ></elevenlabs-convai>
     </div>
   );
 };
