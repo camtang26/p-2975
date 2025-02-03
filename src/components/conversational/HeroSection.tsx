@@ -9,7 +9,7 @@ export const HeroSection = () => {
   return (
     <section 
       className={`relative flex items-center justify-center overflow-hidden ${
-        isMobile ? 'min-h-[100vh] -mt-24' : 'h-[80vh]'
+        isMobile ? 'min-h-[100vh] -mt-24' : 'h-[95vh] pt-32'
       }`}
     >
       <div className="absolute inset-0 bg-black">
