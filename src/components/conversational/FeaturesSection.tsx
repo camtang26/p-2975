@@ -15,7 +15,7 @@ const Feature = ({ icon, title, description, delay = 0 }: FeatureProps) => (
     <div className={cn(
       "p-4 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
       "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-      "border border-white/10 group"
+      "border border-white/10 group h-full min-h-[400px] flex flex-col justify-start"
     )}>
       <div className="mb-4 md:mb-6 relative group-hover:animate-pulse flex justify-center">
         {React.cloneElement(icon as React.ReactElement, {
@@ -48,7 +48,7 @@ export const FeaturesSection = () => {
             Unleash the Power of Key Features & Capabilities
           </h2>
         </ScrollFade>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
           <Feature 
             icon={<PhoneCall />}
             title="Automated Phone Calls with Real Numbers"
