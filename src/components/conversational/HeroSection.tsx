@@ -15,7 +15,7 @@ export const HeroSection = () => {
             'h-[95vh] md:min-h-[700px] ' + // Default desktop height
             '2xl:h-[85vh] 2xl:min-h-[900px] ' + // 2560x1440 specific
             'xl:h-[120vh] xl:min-h-[850px] ' + // 1366x768 specific
-            'lg:h-[130vh] lg:min-h-[900px]' // 1920x1080 specific - significantly increased height
+            'lg:h-[150vh] lg:min-h-[1000px]' // 1920x1080 specific - dramatically increased height
       }`}
     >
       <div className="absolute inset-0 bg-black">
@@ -33,7 +33,7 @@ export const HeroSection = () => {
             'pt-28 ' + // Default padding top
             '2xl:pt-20 2xl:max-w-[1600px] ' + // 2560x1440 specific
             'xl:pt-32 ' + // 1366x768 specific
-            'lg:pt-44 lg:max-w-[1000px]' // 1920x1080 specific - shifted down more and decreased width further
+            'lg:pt-52 lg:max-w-[900px]' // 1920x1080 specific - shifted down significantly more and decreased width further
       }`}>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           className={`font-extrabold text-white neon-glow ${
             isMobile 
               ? 'text-4xl mt-2 mb-3' 
-              : 'text-5xl lg:text-4xl 2xl:text-8xl xl:text-7xl mb-6' // Decreased text size further for 1920x1080
+              : 'text-5xl lg:text-3xl 2xl:text-8xl xl:text-7xl mb-6' // Decreased text size even further for 1920x1080
           }`}
         >
           Ignite Natural Conversations
@@ -53,7 +53,7 @@ export const HeroSection = () => {
           className={`text-white/90 font-semibold max-w-3xl mx-auto neon-glow-subtle ${
             isMobile 
               ? 'text-lg mb-4 px-2 leading-snug' 
-              : 'text-xl lg:text-base 2xl:text-4xl xl:text-3xl mb-8' // Decreased text size further for 1920x1080
+              : 'text-xl lg:text-xs 2xl:text-4xl xl:text-3xl mb-8' // Decreased text size even further for 1920x1080
           }`}
         >
           Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
@@ -70,19 +70,19 @@ export const HeroSection = () => {
           <div className={`mx-auto text-center ${
             isMobile 
               ? 'max-w-[95%] space-y-1' 
-              : 'max-w-2xl 2xl:max-w-3xl lg:max-w-[900px]' // Decreased width further for 1920x1080
+              : 'max-w-2xl 2xl:max-w-3xl lg:max-w-[800px]' // Decreased width even further for 1920x1080
           }`}>
             <h3 className={`font-bold text-white neon-glow ${
               isMobile 
                 ? 'text-xl mb-2' 
-                : 'text-2xl lg:text-xl 2xl:text-5xl xl:text-4xl mb-4' // Decreased text size further for 1920x1080
+                : 'text-2xl lg:text-sm 2xl:text-5xl xl:text-4xl mb-4' // Decreased text size even further for 1920x1080
             }`}>
               Experience the Future of Conversation
             </h3>
             <p className={`text-white/80 neon-glow-subtle ${
               isMobile 
                 ? 'text-base leading-snug mb-2' 
-                : 'text-lg lg:text-sm 2xl:text-3xl xl:text-2xl mb-6' // Decreased text size further for 1920x1080
+                : 'text-lg lg:text-xs 2xl:text-3xl xl:text-2xl mb-6' // Decreased text size even further for 1920x1080
             }`}>
               Don't take our word for it – experience the power of our Conversational AI firsthand. 
               Engage with our AI agent now to see how it can transform your customer interactions.
@@ -94,7 +94,7 @@ export const HeroSection = () => {
                   : 'bottom-[-80px] right-[80px] ' + // Default position
                     '2xl:bottom-[-100px] 2xl:right-[100px] ' + // 2560x1440 specific
                     'xl:bottom-[-120px] ' + // 1366x768 specific
-                    'lg:bottom-[-100px] lg:right-[70px]' // 1920x1080 specific - adjusted position
+                    'lg:bottom-[-120px] lg:right-[60px]' // 1920x1080 specific - adjusted position further down
               }`}
               animate={{ 
                 x: [0, 10, 0],
@@ -106,7 +106,7 @@ export const HeroSection = () => {
                 ease: "easeInOut"
               }}
             >
-              <ArrowDownRight className={isMobile ? "w-10 h-10" : "w-16 h-16 2xl:w-20 2xl:h-20 lg:w-12 lg:h-12"} />
+              <ArrowDownRight className={isMobile ? "w-10 h-10" : "w-16 h-16 2xl:w-20 2xl:h-20 lg:w-10 lg:h-10"} />
             </motion.div>
           </div>
         </motion.div>
