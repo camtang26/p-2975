@@ -12,23 +12,23 @@ interface FeatureCardProps {
 const FeatureCard = ({ title, description, Icon, delay = 0 }: FeatureCardProps) => (
   <ScrollFade delay={delay}>
     <div className={cn(
-      "p-3 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
+      "p-4 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
       "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-      "border border-white/10 group h-[300px] md:h-full md:min-h-[400px] flex flex-col justify-start"
+      "border border-white/10 group h-full min-h-[400px] flex flex-col justify-start"
     )}>
-      <div className="mb-3 md:mb-6 relative group-hover:animate-pulse flex justify-center">
+      <div className="mb-4 md:mb-6 relative group-hover:animate-pulse flex justify-center">
         <Icon 
           className={cn(
-            "w-8 h-8 md:w-16 md:h-16 transition-all duration-300 text-[#00ff80]",
+            "w-12 h-12 md:w-16 md:h-16 transition-all duration-300 text-[#00ff80]",
             "drop-shadow-[0_0_20px_rgba(0,255,128,0.5)]",
             "group-hover:drop-shadow-[0_0_40px_rgba(0,255,128,0.7)]"
           )}
         />
       </div>
-      <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+      <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
         {title}
       </h3>
-      <p className="text-xs md:text-base text-white/70 leading-relaxed">
+      <p className="text-sm md:text-base text-white/70 leading-relaxed">
         {description}
       </p>
     </div>
