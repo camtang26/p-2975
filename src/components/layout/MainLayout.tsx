@@ -8,13 +8,26 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    // Using semantic HTML5 elements for better accessibility and structure
     <div className="min-h-screen flex flex-col bg-black">
-      <header role="banner">
+      <header 
+        role="banner" 
+        className="fixed top-0 left-0 right-0 z-50"
+      >
         <Navigation />
       </header>
 
-      <main role="main" className="flex-grow">
+      <main 
+        role="main" 
+        className="flex-grow relative"
+        style={{ 
+          // Mobile: minimal top padding
+          paddingTop: 'var(--nav-padding-y)',
+          // Desktop: account for fixed nav height
+          '@media (min-width: 1024px)': {
+            paddingTop: 'var(--content-offset)'
+          }
+        }}
+      >
         {children}
       </main>
 
