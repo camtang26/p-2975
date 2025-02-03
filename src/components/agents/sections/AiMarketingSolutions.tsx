@@ -60,7 +60,7 @@ export const AiMarketingSolutions = () => {
   return (
     <section className={cn(
       "relative overflow-hidden",
-      isMobile ? "py-12" : "py-24" // Reduced padding for mobile
+      isMobile ? "py-8" : "py-24" // Further reduced padding for mobile
     )}>
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -73,14 +73,14 @@ export const AiMarketingSolutions = () => {
       <div className="container mx-auto px-4">
         <ScrollFade>
           <h2 className={cn(
-            "font-semibold text-gradient text-center mb-20 relative z-50",
-            isMobile ? "text-3xl mb-10" : "text-5xl md:text-6xl mb-20" // Smaller text and margin for mobile
+            "font-semibold text-gradient text-center relative z-50",
+            isMobile ? "text-3xl mb-8" : "text-5xl md:text-6xl mb-20" // Reduced margin for mobile
           )}>
             Our AI Marketing Solutions
           </h2>
         </ScrollFade>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
           {solutions.map((solution, index) => {
             const { Icon } = solution;
             return (
@@ -95,42 +95,42 @@ export const AiMarketingSolutions = () => {
                     "after:absolute after:inset-0 after:rounded-xl",
                     "after:opacity-0 after:transition-opacity hover:after:opacity-100",
                     "flex flex-col items-center justify-center text-center",
-                    isMobile ? "p-8 min-h-[500px]" : "p-16 min-h-[700px]" // Adjusted padding and height for mobile
+                    isMobile ? "p-6 min-h-[400px]" : "p-16 min-h-[700px]" // Further reduced padding and height for mobile
                   )}
                   style={{
                     '--solution-color': solution.color,
                     boxShadow: `0 0 30px ${solution.color}25`
                   } as React.CSSProperties}
                 >
-                  <div className="mb-10 relative group-hover:animate-pulse">
+                  <div className="mb-6 relative group-hover:animate-pulse">
                     <Icon 
                       className={cn(
                         "transition-all duration-300",
                         "drop-shadow-[0_0_20px_var(--solution-color)]",
                         "group-hover:drop-shadow-[0_0_40px_var(--solution-color)]",
-                        isMobile ? "w-16 h-16" : "w-28 h-28" // Smaller icon for mobile
+                        isMobile ? "w-12 h-12" : "w-28 h-28" // Further reduced icon size for mobile
                       )}
                       style={{ color: solution.color }}
                     />
                   </div>
                   
                   <h3 className={cn(
-                    "font-semibold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent",
-                    isMobile ? "text-2xl" : "text-4xl" // Smaller heading for mobile
+                    "font-semibold mb-4 bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent",
+                    isMobile ? "text-xl" : "text-4xl" // Further reduced heading size for mobile
                   )}>
                     {solution.title}
                   </h3>
                   
                   <p className={cn(
-                    "leading-relaxed mb-6",
-                    isMobile ? "text-base text-white/80" : "text-xl text-white/80" // Smaller text for mobile
+                    "leading-relaxed mb-4",
+                    isMobile ? "text-sm text-white/80" : "text-xl text-white/80" // Further reduced description text size for mobile
                   )}>
                     {solution.description}
                   </p>
 
                   <ul className={cn(
-                    "text-white/70 space-y-3 text-left w-full",
-                    isMobile ? "text-sm" : "text-lg" // Smaller list text for mobile
+                    "text-white/70 space-y-2 text-left w-full",
+                    isMobile ? "text-xs" : "text-lg" // Further reduced list text size for mobile
                   )}>
                     {solution.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
