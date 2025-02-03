@@ -13,7 +13,7 @@ export const MobileNavigation = () => {
     <>
       <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-12">
             <Link 
               to="/" 
               className="relative flex items-center space-x-2 touch-manipulation"
@@ -22,7 +22,7 @@ export const MobileNavigation = () => {
               <img
                 src="/lovable-uploads/1695cb6f-90ec-4a79-aedf-92f17ba25444.png"
                 alt="Cre8tive AI Logo"
-                className="w-8 h-8"
+                className="w-7 h-7"
                 loading="eager"
               />
               <span className="font-geist text-white font-bold">
