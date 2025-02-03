@@ -8,14 +8,13 @@ export const HeroSection = () => {
 
   return (
     <section 
-      className={`relative flex items-center justify-center overflow-hidden touch-none ${
-        isMobile ? 'min-h-[120vh] -mt-16' : 'h-[80vh]'
+      className={`relative flex items-center justify-center overflow-hidden ${
+        isMobile ? 'min-h-[120vh] -mt-20' : 'h-[80vh]'
       }`}
     >
       <div className="absolute inset-0 bg-black">
         <div 
           className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent"
-          style={{ touchAction: isMobile ? 'none' : 'auto' }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.05)_0%,transparent_70%)]" />
         </div>
