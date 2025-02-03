@@ -42,10 +42,9 @@ export const RobotLineup = () => {
         const height = window.innerHeight;
         
         if (width === 2560 && height === 1440) return 1.2;
-        if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.8;
-        }
-        return 1.2;
+        if (width === 1920 && height === 1080) return 1.0;
+        if (width === 1366 && height === 768) return 0.9;
+        return 1.0;
       };
 
       // Adjust vertical position based on resolution
@@ -54,10 +53,9 @@ export const RobotLineup = () => {
         const height = window.innerHeight;
         
         if (width === 2560 && height === 1440) return 0.70;
-        if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.85; // Keep robots at the same position
-        }
-        return 0.70;
+        if (width === 1920 && height === 1080) return 0.55;
+        if (width === 1366 && height === 768) return 0.50;
+        return 0.60;
       };
       
       ROBOTS.forEach((robot, index) => {
