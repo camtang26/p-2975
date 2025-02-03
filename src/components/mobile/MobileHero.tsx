@@ -65,7 +65,7 @@ export const MobileHero = () => {
         
         {!isLoading && (
           <div 
-            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-6 max-w-[90vw] mx-auto px-4"
+            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-2 max-w-[90vw] mx-auto px-4 pt-7 pb-8"
             style={{ touchAction: 'manipulation' }}
           >
             <h1 className="font-inter text-6xl font-bold tracking-[-0.02em] opacity-0 animate-[fadeIn_3s_ease-out_forwards] [text-shadow:0_0_15px_rgba(0,0,0,0.5),0_0_30px_rgba(0,0,0,0.3)]">
