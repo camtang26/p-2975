@@ -1,15 +1,20 @@
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
+import { useIsMobile } from "../../hooks/use-mobile";
 
 export const RobotIllustration = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <div className="flex justify-center items-center gap-32 relative w-full max-w-[800px] h-[300px] mx-auto my-8">
+    <div className={`flex justify-center items-center relative mx-auto my-8 ${
+      isMobile ? 'gap-8 max-w-[100%] h-[200px]' : 'gap-32 max-w-[800px] h-[300px]'
+    }`}>
       {/* Robot Head Illustration */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="relative w-[300px] h-[300px]"
+        className={`relative ${isMobile ? 'w-[200px] h-[200px]' : 'w-[300px] h-[300px]'}`}
         style={{
           filter: "drop-shadow(0 0 15px rgba(0,255,128,0.4))"
         }}
@@ -29,11 +34,10 @@ export const RobotIllustration = () => {
           <circle cx="100" cy="32" r="3" className="fill-[#00ff80]"/>
           
           {/* Robot Details - Geometric patterns for more robotic look */}
-          {/* Wider, friendlier smile */}
           <path d="M70,110 Q100,130 130,110" 
                 className="fill-none stroke-[#00ff80] stroke-2"/>
           
-          {/* Circuit-like details instead of human-like features */}
+          {/* Circuit-like details */}
           <line x1="70" y1="65" x2="85" y2="65" className="stroke-[#00ff80] stroke-1 opacity-30"/>
           <line x1="115" y1="65" x2="130" y2="65" className="stroke-[#00ff80] stroke-1 opacity-30"/>
           <circle cx="100" cy="140" r="5" className="fill-[#00ff80]"/>
@@ -49,14 +53,16 @@ export const RobotIllustration = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="relative w-[300px] h-[300px] flex items-center justify-center"
+        className={`relative flex items-center justify-center ${
+          isMobile ? 'w-[200px] h-[200px]' : 'w-[300px] h-[300px]'
+        }`}
         style={{
           filter: "drop-shadow(0 0 15px rgba(0,255,128,0.4))"
         }}
       >
         <div className="relative">
           <Phone 
-            size={120} 
+            size={isMobile ? 80 : 120}
             className="text-[#00ff80] transform -rotate-12"
             strokeWidth={1.5}
           />
