@@ -41,11 +41,11 @@ export const RobotLineup = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         
-        if (width === 2560 && height === 1440) return 1.2; // Original scale
+        if (width === 2560 && height === 1440) return 1.2;
         if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.8; // Reduced scale for specified resolutions
+          return 0.8;
         }
-        return 1.2; // Default scale
+        return 1.2;
       };
 
       // Adjust vertical position based on resolution
@@ -53,11 +53,11 @@ export const RobotLineup = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         
-        if (width === 2560 && height === 1440) return 0.70; // Original position
+        if (width === 2560 && height === 1440) return 0.70;
         if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-          return 0.85; // Lower position for specified resolutions
+          return 0.85; // Keep robots at the same position
         }
-        return 0.70; // Default position
+        return 0.70;
       };
       
       ROBOTS.forEach((robot, index) => {
