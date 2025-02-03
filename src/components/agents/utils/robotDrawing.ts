@@ -11,15 +11,20 @@ export const drawRobot = (
   textColor: string,
   isMobile: boolean = false
 ) => {
+  // Calculate responsive scale based on viewport width
   const viewportWidth = window.innerWidth;
   let responsiveScale = scale;
   
   if (!isMobile) {
-    const minVW = 1280;
-    const maxVW = 2560;
-    const factor = (viewportWidth - minVW) / (maxVW - minVW);
-    const scaleMultiplier = 1 + Math.min(Math.max(factor, 0), 1) * 0.2;
-    responsiveScale = scale * scaleMultiplier;
+    if (viewportWidth >= 2560) { // 4xl
+      responsiveScale = scale * 1.4;
+    } else if (viewportWidth >= 1920) { // 3xl
+      responsiveScale = scale * 1.3;
+    } else if (viewportWidth >= 1536) { // 2xl
+      responsiveScale = scale * 1.2;
+    } else if (viewportWidth >= 1280) { // xl
+      responsiveScale = scale * 1.1;
+    }
   }
 
   drawRobotBody(ctx, x, y, color, responsiveScale, isHovered);
@@ -91,8 +96,9 @@ const drawRobotText = (
 ) => {
   ctx.save();
   
+  // Responsive font size based on scale
   const fontSize = isMobile ? 14 : Math.round(20 * scale);
-  ctx.font = `${fontSize}px Geist`;
+  ctx.font = `${fontSize}px Inter`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   
@@ -100,6 +106,7 @@ const drawRobotText = (
   ctx.shadowColor = textColor;
   ctx.fillStyle = textColor;
   
+  // Adjusted Y position with scale factor
   const textY = isMobile ? y + 180 : y + (180 * scale);
   
   for (let i = 0; i < 3; i++) {
