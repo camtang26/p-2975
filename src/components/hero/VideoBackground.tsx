@@ -11,7 +11,7 @@ interface VideoBackgroundProps {
   onToggleMute: () => void;
   onTogglePlay: () => void;
   priority?: boolean;
-  onLoad?: () => void;  // Added this optional prop
+  onLoad?: () => void;
 }
 
 export const VideoBackground = ({
@@ -31,7 +31,7 @@ export const VideoBackground = ({
     console.log("Video is ready");
     setIsLoaded(true);
     setLoadError(null);
-    onLoad?.();  // Call onLoad if it exists
+    onLoad?.();
   };
 
   const handleError = (error: Error) => {
@@ -60,30 +60,27 @@ export const VideoBackground = ({
           muted={isMuted}
           onReady={handleReady}
           onError={handleError}
+          className={isMobile ? "object-cover w-full h-full" : ""}
         />
       </div>
       
-      {/* Loading Indicator */}
       {!isLoaded && !loadError && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
         </div>
       )}
       
-      {/* Error Message */}
       {loadError && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <p className="text-white text-lg">{loadError}</p>
         </div>
       )}
       
-      {/* Dark Overlay */}
       <div 
         className="absolute inset-0 bg-black/20 z-[2]" 
         aria-hidden="true" 
       />
       
-      {/* Controls */}
       {!isMobile && (
         <div className="absolute bottom-8 right-8 flex gap-4 z-[3]">
           <Button
