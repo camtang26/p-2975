@@ -31,20 +31,10 @@
     --nav-padding-y: 0.5rem;
     --content-offset: calc(var(--nav-height) + var(--nav-padding-y));
     --hero-min-height: calc(100vh - var(--nav-height));
-    
-    /* Sidebar Variables */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 3.9%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 240 5.9% 90%;
-    --sidebar-ring: 240 5.9% 10%;
   }
 
   /* Desktop Overrides (lg: 1024px and above) */
-  @media (min-width: 1024px) {
+  @screen lg {
     :root {
       --nav-height: 96px; /* h-24 in pixels */
       --nav-padding-y: 1rem;
@@ -76,17 +66,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-}
-
-/* Utility classes that use the CSS variables */
 @layer utilities {
   .nav-offset {
     padding-top: var(--content-offset);

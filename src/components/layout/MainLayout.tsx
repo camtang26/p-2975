@@ -20,12 +20,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         role="main" 
         className="flex-grow relative"
         style={{ 
-          // Mobile: minimal top padding
-          paddingTop: 'var(--nav-padding-y)',
-          // Desktop: account for fixed nav height
-          '@media (min-width: 1024px)': {
-            paddingTop: 'var(--content-offset)'
-          }
+          paddingTop: 'var(--nav-padding-y)'
         }}
       >
         {children}
