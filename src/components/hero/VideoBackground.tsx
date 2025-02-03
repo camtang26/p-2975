@@ -47,7 +47,7 @@ export const VideoBackground = ({
   return (
     <div className="absolute inset-0 z-0">
       <div 
-        className="relative w-full h-full"
+        className="relative w-full h-full z-[1] overflow-hidden"
         style={{
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out'
@@ -77,7 +77,7 @@ export const VideoBackground = ({
       )}
       
       <div 
-        className="absolute inset-0 bg-black/20" 
+        className="absolute inset-0 bg-black/20 z-[2]" 
         aria-hidden="true" 
       />
       

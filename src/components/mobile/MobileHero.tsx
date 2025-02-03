@@ -50,7 +50,7 @@ export const MobileHero = () => {
   return (
     <Suspense fallback={<MobileLoadingSkeleton />}>
       <section 
-        className="relative w-full min-h-[calc(100vh-48px)] mt-8 flex flex-col justify-start items-center overflow-hidden touch-manipulation" 
+        className="relative w-full h-[calc(100vh-48px)] mt-[48px] flex items-center justify-center overflow-hidden touch-manipulation" 
         role="banner" 
         aria-label="Hero section"
       >
@@ -63,19 +63,10 @@ export const MobileHero = () => {
           onLoad={() => setIsLoading(false)}
         />
         
-        {/* Gradient Overlay */}
-        <div 
-          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/30 to-transparent pointer-events-none"
-          aria-hidden="true"
-        />
-        
         {!isLoading && (
           <div 
-            className="relative z-[3] flex flex-col items-center justify-start text-center space-y-1.5 w-full px-4 pt-8"
-            style={{ 
-              touchAction: 'manipulation',
-              transition: 'opacity 0.3s ease-in-out'
-            }}
+            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-6 max-w-[90vw] mx-auto px-4"
+            style={{ touchAction: 'manipulation' }}
           >
             <h1 className="font-inter text-6xl font-bold tracking-[-0.02em] opacity-0 animate-[fadeIn_3s_ease-out_forwards] [text-shadow:0_0_15px_rgba(0,0,0,0.5),0_0_30px_rgba(0,0,0,0.3)]">
               <span className="text-white inline-block transition-transform duration-300">
