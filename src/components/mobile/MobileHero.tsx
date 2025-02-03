@@ -50,7 +50,7 @@ export const MobileHero = () => {
   return (
     <Suspense fallback={<MobileLoadingSkeleton />}>
       <section 
-        className="relative w-full h-[calc(100vh-48px)] mt-[48px] flex items-center justify-center overflow-hidden touch-manipulation" 
+        className="relative w-full min-h-[calc(100vh-48px)] h-fit mt-[48px] flex items-center justify-center overflow-hidden touch-manipulation" 
         role="banner" 
         aria-label="Hero section"
       >
@@ -63,12 +63,19 @@ export const MobileHero = () => {
           onLoad={() => setIsLoading(false)}
         />
         
+        <div 
+          className="absolute inset-0 z-[1]"
+          style={{
+            background: 'radial-gradient(circle at center, #111111 0%, #111111 75%, #0D0D1D 100%)',
+            transition: 'opacity 0.3s ease-in-out'
+          }}
+        />
+        
         {!isLoading && (
           <div 
-            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-1.5 max-w-[90vw] mx-auto px-4 pb-4 -mt-6"
+            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-1.5 max-w-[90vw] mx-auto px-4 pb-6 -mt-1"
             style={{ 
               touchAction: 'manipulation',
-              background: 'radial-gradient(circle at center, #111111 0%, #111111 75%, #0D0D1D 100%)',
               transition: 'opacity 0.3s ease-in-out'
             }}
           >
