@@ -18,9 +18,24 @@
 
 @layer base {
   :root {
-    --nav-height: 96px; /* h-24 equivalent */
+    /* Define continuous scaling factor */
+    --scale-factor: clamp(1, calc(1vw / 10 + 1), 1.2);
+    
+    /* Navigation height scales smoothly */
+    --nav-height: clamp(4rem, calc(4rem + (2 * ((100vw - 1280px) / 1280))), 6rem);
+    
+    /* Base font sizes */
     --base-font-size: 16px;
-    --base-spacing: 1rem;
+    --base-font-size-desktop: clamp(16px, calc(16px + (4 * ((100vw - 1280px) / 1280))), 20px);
+    
+    /* Hero section margin scaling */
+    --hero-margin: clamp(-12rem, calc(-12rem + (6 * ((100vw - 1280px) / 1280))), -18rem);
+    
+    /* Hero text sizing */
+    --hero-h1-size: clamp(2.5rem, calc(2.5rem + (2 * ((100vw - 1280px) / 1280))), 4rem);
+    
+    /* Base spacing */
+    --base-spacing: clamp(1rem, calc(1rem + (0.5 * ((100vw - 1280px) / 1280))), 1.5rem);
   }
 
   @screen md {

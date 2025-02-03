@@ -27,12 +27,23 @@ export const AgentsHero = () => {
       )}
 
       {/* Content */}
-      <div className={`relative z-20 ${isMobile ? 'mt-[-12rem]' : 'mt-[-12rem] md:mt-[-14rem] lg:mt-[-16rem] xl:mt-[-18rem]'}`}>
-        <div className="flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 max-w-5xl mx-auto px-4">
-          <h1 className="font-inter text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-[-0.02em] text-white neon-glow opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards]">
+      <div 
+        className="relative z-20 text-center"
+        style={{
+          marginTop: "var(--hero-margin)"
+        }}
+      >
+        <div className="flex flex-col items-center justify-center space-y-6 md:space-y-8 max-w-5xl mx-auto px-4">
+          <h1 
+            className="font-inter font-bold tracking-[-0.02em] text-white neon-glow opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards]"
+            style={{ fontSize: "var(--hero-h1-size)" }}
+          >
             AI Autonomous Agents
           </h1>
-          <p className="font-inter text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-[-0.01em] text-white/90 neon-glow-subtle opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]">
+          <p 
+            className="font-inter tracking-[-0.01em] text-white/90 neon-glow-subtle opacity-0 animate-[fadeIn_3s_ease-out_1s_forwards]"
+            style={{ fontSize: "clamp(1rem,2vw,1.5rem)" }}
+          >
             Cre8tive AI Autonomous Agents: Smarter Solutions for Smarter Businesses
           </p>
         </div>

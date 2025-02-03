@@ -68,34 +68,13 @@ export default {
           ring: 'hsl(var(--sidebar-ring))'
         }
       },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' }
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' }
-        }
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
-      },
-      perspective: {
-        '1000': '1000px',
-      },
       spacing: {
         'nav-height': 'var(--nav-height)',
         'base-spacing': 'var(--base-spacing)',
       },
       fontSize: {
         'base-size': 'var(--base-font-size)',
+        'base-d': 'var(--base-font-size-desktop)',
       },
       height: {
         'screen-dvh': '100dvh',
