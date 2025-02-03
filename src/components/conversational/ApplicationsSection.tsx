@@ -14,7 +14,7 @@ const FeatureCard = ({ title, description, Icon, delay = 0 }: FeatureCardProps) 
     <div className={cn(
       "p-4 md:p-8 rounded-xl glass-morphism hover-lift transition-all duration-500 text-center",
       "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
-      "border border-white/10 group h-[280px] md:h-[400px] flex flex-col justify-start gap-3 md:gap-4"
+      "border border-white/10 group h-[280px] md:h-[400px] flex flex-col justify-start gap-3 md:gap-6"
     )}>
       <div className="mb-2 md:mb-6 relative group-hover:animate-pulse flex justify-center">
         <Icon 
