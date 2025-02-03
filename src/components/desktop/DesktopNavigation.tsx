@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import { ENABLE_AUTH_FEATURES } from "../../constants/featureFlags";
 
 export const DesktopNavigation = () => {
   return (
@@ -72,13 +73,15 @@ export const DesktopNavigation = () => {
             </Link>
           </div>
 
-          <Button 
-            variant="outline" 
-            className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg flex items-center -mt-1"
-            aria-label="Sign in to your account"
-          >
-            Sign in
-          </Button>
+          {ENABLE_AUTH_FEATURES && (
+            <Button 
+              variant="outline" 
+              className="bg-transparent text-white border-white/20 hover:bg-white/10 font-geist font-medium tracking-[-0.01em] text-lg flex items-center -mt-1"
+              aria-label="Sign in to your account"
+            >
+              Sign in
+            </Button>
+          )}
         </div>
       </div>
     </nav>
