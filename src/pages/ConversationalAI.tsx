@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { useEffect } from "react";
-import { HeroSection } from "@/components/conversational/HeroSection";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { DesktopConversationalHero } from "@/components/conversational/desktop/DesktopConversationalHero";
 import { WhatIsSection } from "@/components/conversational/WhatIsSection";
 import { FeaturesSection } from "@/components/conversational/FeaturesSection";
 import { ApplicationsSection } from "@/components/conversational/ApplicationsSection";
@@ -8,6 +9,8 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
 
 const ConversationalAI = () => {
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://elevenlabs.io/convai-widget/index.js";
@@ -40,7 +43,11 @@ const ConversationalAI = () => {
 
       <Navigation />
       <main className="relative pt-20">
+        {isMobile ? (
         <HeroSection />
+        ) : (
+          <DesktopConversationalHero />
+        )}
         <FadeIn>
           <WhatIsSection />
         </FadeIn>

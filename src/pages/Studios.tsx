@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
-import { StudiosHero } from "@/components/studios/StudiosHero";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { DesktopStudiosHero } from "@/components/studios/desktop/DesktopStudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
 import { MarketingSection } from "@/components/studios/MarketingSection";
@@ -9,6 +10,8 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
 
 const Studios = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Main Gradient Background */}
@@ -33,7 +36,11 @@ const Studios = () => {
 
       <Navigation />
       <main className="relative pt-20">
+        {isMobile ? (
         <StudiosHero />
+        ) : (
+          <DesktopStudiosHero />
+        )}
         <FadeIn>
           <StudiosIntro />
         </FadeIn>

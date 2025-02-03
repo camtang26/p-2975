@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
-import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { DesktopAdManagerHero } from "@/components/admanager/desktop/DesktopAdManagerHero";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
 import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
@@ -7,8 +8,11 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
 
 const AdManager = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Main Gradient Background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -29,9 +33,8 @@ const AdManager = () => {
       />
 
       <Navigation />
-      
       <main className="relative pt-20">
-        {/* Hero Section */}
+        {isMobile ? (
         <section 
           className="relative min-h-[90vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-10 md:py-20 px-4 mb-8 md:mb-16"
           aria-label="Hero section"
@@ -139,19 +142,18 @@ const AdManager = () => {
             aria-hidden="true"
           />
         </section>
-
+        ) : (
+          <DesktopAdManagerHero />
+        )}
         <FadeIn>
           <ConceptToCreation />
         </FadeIn>
-
         <FadeIn>
           <HowItWorks />
         </FadeIn>
-
         <FadeIn>
           <Benefits />
         </FadeIn>
-
         <FadeIn>
           <ContactCTA />
         </FadeIn>
