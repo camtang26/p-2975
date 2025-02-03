@@ -36,20 +36,39 @@ export const RobotLineup = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       
-      // Use consistent scale and positioning across all resolutions
-      const scale = 1.0;
-      const verticalPosition = 0.60;
+      // Adjust robot scale based on resolution
+      const getAdjustedScale = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        if (width === 2560 && height === 1440) return 1.2;
+        if (width === 1920 && height === 1080) return 1.0;
+        if (width === 1366 && height === 768) return 0.9;
+        return 1.0;
+      };
+
+      // Adjust vertical position based on resolution
+      const getAdjustedY = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        if (width === 2560 && height === 1440) return 0.70;
+        if (width === 1920 && height === 1080) return 0.55;
+        if (width === 1366 && height === 768) return 0.50;
+        return 0.60;
+      };
       
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;
-        const y = canvasHeight * verticalPosition;
+        const y = canvasHeight * getAdjustedY();
+        const scale = isMobile ? robot.scale * 0.8 : robot.scale * getAdjustedScale();
         
         drawRobot(
           ctx,
           x,
           y,
           robot.color,
-          robot.scale * scale,
+          scale,
           index === hoverIndex,
           robot.role,
           robot.textColor,
@@ -58,6 +77,7 @@ export const RobotLineup = () => {
       });
     };
 
+    // Handle hover effects
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
