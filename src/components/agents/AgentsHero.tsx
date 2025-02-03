@@ -6,7 +6,7 @@ export const AgentsHero = () => {
   
   return (
     <section 
-      className="relative min-h-[80vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden" 
+      className={`relative ${isMobile ? 'min-h-[60vh]' : 'min-h-[80vh]'} flex items-center justify-center overflow-hidden`}
       role="banner" 
       aria-label="Agents hero section"
     >
