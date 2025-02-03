@@ -26,7 +26,7 @@ const About = () => {
 
       <Navigation />
       
-      <main className="relative flex-grow container mx-auto px-3 md:px-10 py-8 md:py-32 z-10">
+      <main className="relative flex-grow container mx-auto px-3 md:px-10 pt-24 md:pt-40 pb-8 md:pb-32 z-10">
         <div className="max-w-7xl mx-auto">
           {/* Headline with gradient text */}
           <h1 className="text-3xl md:text-6xl lg:text-7xl font-extrabold text-center mb-6 md:mb-24 font-inter tracking-tight">
