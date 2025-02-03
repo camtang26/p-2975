@@ -11,7 +11,10 @@ export const HeroSection = () => {
       className={`relative flex items-center justify-center overflow-hidden ${
         isMobile 
           ? 'min-h-[100vh] -mt-24' 
-          : 'h-[95vh] md:min-h-[700px]'
+          : 'max-w-[2560px] mx-auto ' + // Base desktop styles
+            'h-[95vh] md:min-h-[700px] ' + // Default desktop height
+            '2xl:h-[85vh] 2xl:min-h-[800px] ' + // 2560x1440 specific
+            'xl:h-[100vh] xl:min-h-[750px]' // 1366x768 specific
       }`}
     >
       <div className="absolute inset-0 bg-black">
@@ -25,7 +28,10 @@ export const HeroSection = () => {
       <div className={`container mx-auto px-4 text-center relative ${
         isMobile 
           ? 'max-w-[95%]' 
-          : 'max-w-[1200px] pt-28'
+          : 'max-w-[1200px] ' + // Base desktop container
+            'pt-28 ' + // Default padding top
+            '2xl:pt-20 2xl:max-w-[1400px] ' + // 2560x1440 specific
+            'xl:pt-32' // 1366x768 specific
       }`}>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -83,7 +89,9 @@ export const HeroSection = () => {
               className={`absolute text-white/80 ${
                 isMobile 
                   ? 'bottom-[-40px] right-[20px]' 
-                  : 'bottom-[-80px] right-[80px]'
+                  : 'bottom-[-80px] right-[80px] ' + // Default position
+                    '2xl:bottom-[-60px] ' + // 2560x1440 specific
+                    'xl:bottom-[-100px]' // 1366x768 specific
               }`}
               animate={{ 
                 x: [0, 10, 0],
