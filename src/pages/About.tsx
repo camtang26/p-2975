@@ -26,21 +26,21 @@ const About = () => {
 
       <Navigation />
       
-      <main className="relative flex-grow container mx-auto px-4 md:px-10 py-24 md:py-32 z-10">
+      <main className="relative flex-grow container mx-auto px-4 md:px-10 py-12 md:py-32 z-10">
         <div className="max-w-7xl mx-auto">
           {/* Headline with gradient text */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-16 md:mb-24 font-inter tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-center mb-8 md:mb-24 font-inter tracking-tight">
             <span className="text-gradient">About Us</span>
           </h1>
           
           {/* Two Column Layout with glass morphism */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
             {/* Mission Statement Column */}
-            <div className="glass-morphism p-8 md:p-10 rounded-2xl space-y-6">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-inter tracking-tight">
+            <div className="glass-morphism p-6 md:p-10 rounded-xl md:rounded-2xl space-y-4 md:space-y-6">
+              <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 font-inter tracking-tight">
                 Our Mission
               </h2>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-inter">
+              <p className="text-base md:text-xl text-white/80 leading-relaxed font-inter">
                 Our mission is to revolutionize media production through cutting-edge AI technology, 
                 delivering efficiencies leading to margin and unparalleled quality and innovation 
                 in video production and content creation.
@@ -48,11 +48,11 @@ const About = () => {
             </div>
             
             {/* Company Overview Column */}
-            <div className="glass-morphism p-8 md:p-10 rounded-2xl space-y-6">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 font-inter tracking-tight">
+            <div className="glass-morphism p-6 md:p-10 rounded-xl md:rounded-2xl space-y-4 md:space-y-6">
+              <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 font-inter tracking-tight">
                 Company Overview
               </h2>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-inter">
+              <p className="text-base md:text-xl text-white/80 leading-relaxed font-inter">
                 We help media companies, production houses, and digital marketing agencies stay 
                 ahead of the curve by implementing the best AI media tools and technologies into 
                 traditional workflows. Specializing in high-quality AI video production, we utilize 
@@ -62,34 +62,34 @@ const About = () => {
           </div>
 
           {/* Values Section with enhanced styling */}
-          <div className="mt-20 md:mt-32">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="mt-12 md:mt-32">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
               {/* Innovation Card */}
-              <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+              <div className="glass-morphism p-6 md:p-8 rounded-xl md:rounded-2xl transform hover:scale-105 transition-transform duration-300">
+                <h3 className="text-lg md:text-2xl font-semibold text-white mb-3 md:mb-4 font-inter tracking-tight">
                   Innovation
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-sm md:text-base text-white/80 leading-relaxed font-inter">
                   Pushing the boundaries of what's possible with AI-driven media production.
                 </p>
               </div>
 
               {/* Quality Card */}
-              <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+              <div className="glass-morphism p-6 md:p-8 rounded-xl md:rounded-2xl transform hover:scale-105 transition-transform duration-300">
+                <h3 className="text-lg md:text-2xl font-semibold text-white mb-3 md:mb-4 font-inter tracking-tight">
                   Quality
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-sm md:text-base text-white/80 leading-relaxed font-inter">
                   Delivering exceptional results through state-of-the-art AI technologies.
                 </p>
               </div>
 
               {/* Efficiency Card */}
-              <div className="glass-morphism p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300">
-                <h3 className="text-2xl font-semibold text-white mb-4 font-inter tracking-tight">
+              <div className="glass-morphism p-6 md:p-8 rounded-xl md:rounded-2xl transform hover:scale-105 transition-transform duration-300">
+                <h3 className="text-lg md:text-2xl font-semibold text-white mb-3 md:mb-4 font-inter tracking-tight">
                   Efficiency
                 </h3>
-                <p className="text-white/80 leading-relaxed font-inter">
+                <p className="text-sm md:text-base text-white/80 leading-relaxed font-inter">
                   Streamlining workflows and maximizing productivity with AI automation.
                 </p>
               </div>
@@ -97,6 +97,8 @@ const About = () => {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
