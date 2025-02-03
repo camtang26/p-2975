@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Geist';
+  src: url('/font/geist/GeistVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/font/geist/GeistMonoVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @layer base {
   :root {
-    /* Base Variables */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -26,21 +39,11 @@
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
 
-    /* Navigation Variables - Mobile First */
+    /* Navigation Variables */
     --nav-height: 64px;
     --nav-padding-y: 0.5rem;
     --content-offset: calc(var(--nav-height) + var(--nav-padding-y));
     --hero-min-height: calc(100vh - var(--nav-height));
-  }
-
-  /* Desktop Overrides (lg: 1024px and above) */
-  @screen lg {
-    :root {
-      --nav-height: 96px; /* h-24 in pixels */
-      --nav-padding-y: 1rem;
-      --content-offset: calc(var(--nav-height) + var(--nav-padding-y));
-      --hero-min-height: calc(100vh - var(--nav-height));
-    }
   }
 
   .dark {
@@ -73,18 +76,13 @@
     @apply bg-background text-foreground font-geist;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
 
-@layer utilities {
-  .nav-offset {
-    padding-top: var(--content-offset);
-  }
-  
-  .min-h-screen-nav {
-    min-height: var(--hero-min-height);
-  }
-  
-  .top-nav {
-    top: var(--nav-height);
+  @screen lg {
+    :root {
+      --nav-height: 96px;
+      --nav-padding-y: 1rem;
+      --content-offset: calc(var(--nav-height) + var(--nav-padding-y));
+      --hero-min-height: calc(100vh - var(--nav-height));
+    }
   }
 }
