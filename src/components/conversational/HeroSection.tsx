@@ -9,7 +9,9 @@ export const HeroSection = () => {
   return (
     <section 
       className={`relative flex items-center justify-center overflow-hidden ${
-        isMobile ? 'min-h-[100vh] -mt-24' : 'h-[80vh]'
+        isMobile 
+          ? 'min-h-[100vh] -mt-24' 
+          : 'h-[95vh] md:min-h-[700px]'
       }`}
     >
       <div className="absolute inset-0 bg-black">
@@ -21,13 +23,17 @@ export const HeroSection = () => {
       </div>
       
       <div className={`container mx-auto px-4 text-center relative ${
-        isMobile ? 'max-w-[95%]' : ''
+        isMobile 
+          ? 'max-w-[95%]' 
+          : 'max-w-[1200px] pt-28'
       }`}>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className={`font-extrabold text-white neon-glow ${
-            isMobile ? 'text-4xl mt-2 mb-3' : 'text-6xl md:text-7xl mb-6'
+            isMobile 
+              ? 'text-4xl mt-2 mb-3' 
+              : 'text-5xl lg:text-6xl xl:text-7xl mb-6'
           }`}
         >
           Ignite Natural Conversations
@@ -37,7 +43,9 @@ export const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className={`text-white/90 font-semibold max-w-3xl mx-auto neon-glow-subtle ${
-            isMobile ? 'text-lg mb-4 px-2 leading-snug' : 'text-2xl md:text-3xl mb-10'
+            isMobile 
+              ? 'text-lg mb-4 px-2 leading-snug' 
+              : 'text-xl lg:text-2xl xl:text-3xl mb-8'
           }`}
         >
           Elevate Customer Experiences and Drive Business Growth with Intelligent Conversational AI
@@ -49,25 +57,33 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className={`relative ${isMobile ? 'mt-0 px-4' : 'mt-8'}`}
+          className={`relative ${isMobile ? 'mt-0 px-4' : 'mt-6'}`}
         >
           <div className={`mx-auto text-center ${
-            isMobile ? 'max-w-[95%] space-y-1' : 'max-w-2xl'
+            isMobile 
+              ? 'max-w-[95%] space-y-1' 
+              : 'max-w-2xl'
           }`}>
             <h3 className={`font-bold text-white neon-glow ${
-              isMobile ? 'text-xl mb-2' : 'text-3xl md:text-4xl mb-4'
+              isMobile 
+                ? 'text-xl mb-2' 
+                : 'text-2xl lg:text-3xl xl:text-4xl mb-4'
             }`}>
               Experience the Future of Conversation
             </h3>
             <p className={`text-white/80 neon-glow-subtle ${
-              isMobile ? 'text-base leading-snug mb-2' : 'text-xl md:text-2xl mb-8'
+              isMobile 
+                ? 'text-base leading-snug mb-2' 
+                : 'text-lg lg:text-xl xl:text-2xl mb-6'
             }`}>
               Don't take our word for it – experience the power of our Conversational AI firsthand. 
               Engage with our AI agent now to see how it can transform your customer interactions.
             </p>
             <motion.div 
               className={`absolute text-white/80 ${
-                isMobile ? 'bottom-[-40px] right-[20px]' : 'bottom-[-120px] right-[80px]'
+                isMobile 
+                  ? 'bottom-[-40px] right-[20px]' 
+                  : 'bottom-[-80px] right-[80px]'
               }`}
               animate={{ 
                 x: [0, 10, 0],
