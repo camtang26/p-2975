@@ -7,18 +7,18 @@ export const HeroSection = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className={`relative ${isMobile ? 'min-h-[120vh] touch-none overflow-hidden' : 'h-[80vh]'} flex items-center justify-center`}>
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/95 to-transparent">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,128,0.05)_0%,transparent_70%)]" />
       </div>
       <div className={`container mx-auto px-4 text-center relative ${
-        isMobile ? 'max-w-[95%] -mt-12' : ''
+        isMobile ? 'max-w-[95%] mt-16' : ''
       }`}>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className={`font-extrabold text-white neon-glow ${
-            isMobile ? 'text-4xl mb-4' : 'text-6xl md:text-7xl mb-6'
+            isMobile ? 'text-4xl mt-24 mb-4' : 'text-6xl md:text-7xl mb-6'
           }`}
         >
           Ignite Natural Conversations
