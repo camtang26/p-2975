@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { DesktopConversationalHero } from "@/components/conversational/desktop/DesktopConversationalHero";
+import { HeroSection } from "@/components/conversational/HeroSection";
 import { WhatIsSection } from "@/components/conversational/WhatIsSection";
 import { FeaturesSection } from "@/components/conversational/FeaturesSection";
 import { ApplicationsSection } from "@/components/conversational/ApplicationsSection";
@@ -44,7 +45,7 @@ const ConversationalAI = () => {
       <Navigation />
       <main className="relative pt-20">
         {isMobile ? (
-        <HeroSection />
+          <HeroSection />
         ) : (
           <DesktopConversationalHero />
         )}

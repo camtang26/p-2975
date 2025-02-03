@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { DesktopStudiosHero } from "@/components/studios/desktop/DesktopStudiosHero";
+import { StudiosHero } from "@/components/studios/StudiosHero";
 import { StudiosIntro } from "@/components/studios/StudiosIntro";
 import { ExpertiseBenefits } from "@/components/studios/ExpertiseBenefits";
 import { MarketingSection } from "@/components/studios/MarketingSection";
@@ -37,7 +38,7 @@ const Studios = () => {
       <Navigation />
       <main className="relative pt-20">
         {isMobile ? (
-        <StudiosHero />
+          <StudiosHero />
         ) : (
           <DesktopStudiosHero />
         )}
