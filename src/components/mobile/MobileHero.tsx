@@ -65,8 +65,12 @@ export const MobileHero = () => {
         
         {!isLoading && (
           <div 
-            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-2 max-w-[90vw] mx-auto px-4 pt-7 pb-8"
-            style={{ touchAction: 'manipulation' }}
+            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-1.5 max-w-[90vw] mx-auto px-4 pb-4 -mt-6"
+            style={{ 
+              touchAction: 'manipulation',
+              background: 'radial-gradient(circle at center, #111111 0%, #111111 75%, #0D0D1D 100%)',
+              transition: 'opacity 0.3s ease-in-out'
+            }}
           >
             <h1 className="font-inter text-6xl font-bold tracking-[-0.02em] opacity-0 animate-[fadeIn_3s_ease-out_forwards] [text-shadow:0_0_15px_rgba(0,0,0,0.5),0_0_30px_rgba(0,0,0,0.3)]">
               <span className="text-white inline-block transition-transform duration-300">
