@@ -50,7 +50,7 @@ export const MobileHero = () => {
   return (
     <Suspense fallback={<MobileLoadingSkeleton />}>
       <section 
-        className="relative w-full min-h-[calc(100vh-48px)] h-fit mt-[48px] flex items-center justify-center overflow-hidden touch-manipulation" 
+        className="relative w-full min-h-[calc(100vh-48px)] mt-[48px] flex flex-col justify-start overflow-hidden touch-manipulation" 
         role="banner" 
         aria-label="Hero section"
       >
@@ -73,7 +73,7 @@ export const MobileHero = () => {
         
         {!isLoading && (
           <div 
-            className="relative z-[3] flex flex-col items-center justify-center text-center space-y-1.5 max-w-[90vw] mx-auto px-4 pb-6 -mt-1"
+            className="relative z-[3] flex flex-col items-center justify-start text-center space-y-1.5 max-w-[90vw] mx-auto px-4 pb-6 mt-[20vh]"
             style={{ 
               touchAction: 'manipulation',
               transition: 'opacity 0.3s ease-in-out'
