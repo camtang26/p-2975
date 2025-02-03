@@ -8,6 +8,97 @@ export const MobileRobotLineup = () => {
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const robotsRef = useRef<THREE.Group[]>([]);
+
+  const createRobotModel = (robotData: typeof ROBOTS[0]) => {
+    const robotGroup = new THREE.Group();
+
+    // Head
+    const headGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+    const headMaterial = new THREE.MeshPhongMaterial({
+      color: robotData.color,
+      emissive: robotData.color,
+      emissiveIntensity: 0.4,
+      shininess: 30
+    });
+    const headMesh = new THREE.Mesh(headGeometry, headMaterial);
+    headMesh.position.set(0, 0.8, 0);
+    robotGroup.add(headMesh);
+
+    // Body
+    const bodyGeometry = new THREE.BoxGeometry(0.5, 0.8, 0.3);
+    const bodyMaterial = new THREE.MeshPhongMaterial({
+      color: robotData.color,
+      emissive: robotData.color,
+      emissiveIntensity: 0.2,
+      shininess: 30
+    });
+    const bodyMesh = new THREE.Mesh(bodyGeometry, bodyMaterial);
+    bodyMesh.position.set(0, 0.2, 0);
+    robotGroup.add(bodyMesh);
+
+    // Arms
+    const armGeometry = new THREE.CylinderGeometry(0.05, 0.05, 0.5);
+    const armMaterial = new THREE.MeshPhongMaterial({
+      color: robotData.color,
+      emissive: robotData.color,
+      emissiveIntensity: 0.2
+    });
+
+    // Left arm
+    const leftArm = new THREE.Mesh(armGeometry, armMaterial);
+    leftArm.position.set(-0.3, 0.4, 0);
+    leftArm.rotation.z = Math.PI / 4;
+    robotGroup.add(leftArm);
+
+    // Right arm
+    const rightArm = new THREE.Mesh(armGeometry, armMaterial);
+    rightArm.position.set(0.3, 0.4, 0);
+    rightArm.rotation.z = -Math.PI / 4;
+    robotGroup.add(rightArm);
+
+    // Legs
+    const legGeometry = new THREE.CylinderGeometry(0.05, 0.05, 0.6);
+    const legMaterial = new THREE.MeshPhongMaterial({
+      color: robotData.color,
+      emissive: robotData.color,
+      emissiveIntensity: 0.2
+    });
+
+    // Left leg
+    const leftLeg = new THREE.Mesh(legGeometry, legMaterial);
+    leftLeg.position.set(-0.2, -0.3, 0);
+    robotGroup.add(leftLeg);
+
+    // Right leg
+    const rightLeg = new THREE.Mesh(legGeometry, legMaterial);
+    rightLeg.position.set(0.2, -0.3, 0);
+    robotGroup.add(rightLeg);
+
+    // Create role text using sprite
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      canvas.width = 256;
+      canvas.height = 64;
+      context.fillStyle = robotData.textColor;
+      context.font = 'bold 32px Inter';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(robotData.role, 128, 32);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const spriteMaterial = new THREE.SpriteMaterial({ 
+        map: texture,
+        transparent: true
+      });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(1, 0.25, 1);
+      sprite.position.set(0, -0.8, 0);
+      robotGroup.add(sprite);
+    }
+
+    return robotGroup;
+  };
   
   useEffect(() => {
     if (!containerRef.current) return;
@@ -16,15 +107,15 @@ export const MobileRobotLineup = () => {
     const scene = new THREE.Scene();
     sceneRef.current = scene;
     
-    // Set up camera with adjusted position for better framing
+    // Set up camera
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    camera.position.z = 7; // Moved back for wider view
-    camera.position.y = 1; // Slight upward adjustment
+    camera.position.z = 7;
+    camera.position.y = 1;
     cameraRef.current = camera;
 
     // Set up renderer
@@ -38,39 +129,24 @@ export const MobileRobotLineup = () => {
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Add debug helpers
-    const axesHelper = new THREE.AxesHelper(5);
-    scene.add(axesHelper);
-
-    // Create robots with refined V-formation
+    // Create robots with V-formation
     ROBOTS.forEach((robotData, index) => {
-      const group = new THREE.Group();
+      const robotModel = createRobotModel(robotData);
       
-      // Create robot body with improved geometry
-      const geometry = new THREE.BoxGeometry(0.8, 1.6, 0.4);
-      const material = new THREE.MeshPhongMaterial({ 
-        color: robotData.color,
-        emissive: robotData.color,
-        emissiveIntensity: 0.3,
-        shininess: 30
-      });
-      const robot = new THREE.Mesh(geometry, material);
-      group.add(robot);
-
       // Enhanced V-formation positioning
       const xOffset = (index - 2) * 1.3;
       const zOffset = Math.abs(index - 2) * -1.5;
       const rotation = (index - 2) * Math.PI / 6;
 
-      group.position.set(xOffset, 0, zOffset);
-      group.rotation.y = rotation;
+      robotModel.position.set(xOffset, 0, zOffset);
+      robotModel.rotation.y = rotation;
       
-      scene.add(group);
-      robotsRef.current.push(group);
+      scene.add(robotModel);
+      robotsRef.current.push(robotModel);
     });
 
     // Enhanced lighting setup
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
     scene.add(ambientLight);
     
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
