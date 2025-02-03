@@ -7,37 +7,17 @@ export const AgentsHero = () => {
   // Helper function to determine screen resolution classes
   const getResolutionClasses = () => {
     if (typeof window === 'undefined') return '';
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    if (width === 2560 && height === 1440) return 'min-h-[100vh]';
-    if (width === 1920 && height === 1080) return 'min-h-[180vh]';
-    if (width === 1366 && height === 768) return 'min-h-[220vh]';
-    return 'min-h-[160vh]';
+    return 'min-h-[100vh]'; // Use the golden template height for all resolutions
   };
 
   const getTextClasses = () => {
     if (typeof window === 'undefined') return '';
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    if (width === 2560 && height === 1440) return 'text-5xl sm:text-7xl md:text-8xl';
-    if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-      return 'text-4xl sm:text-5xl md:text-6xl';
-    }
-    return 'text-4xl sm:text-5xl md:text-6xl';
+    return 'text-5xl sm:text-7xl md:text-8xl'; // Maintain consistent text sizing
   };
 
   const getSubTextClasses = () => {
     if (typeof window === 'undefined') return '';
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    if (width === 2560 && height === 1440) return 'text-xl sm:text-2xl md:text-3xl';
-    if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
-      return 'text-lg sm:text-xl md:text-2xl mt-8';
-    }
-    return 'text-lg sm:text-xl md:text-2xl';
+    return 'text-xl sm:text-2xl md:text-3xl'; // Maintain consistent subtext sizing
   };
   
   return (
