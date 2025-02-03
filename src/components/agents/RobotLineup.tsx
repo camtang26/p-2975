@@ -4,18 +4,6 @@ import { drawRobot } from './utils/robotDrawing';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { MobileRobotLineup } from './MobileRobotLineup';
 
-// Constants for 2560x1440 (Golden Template)
-const GOLDEN_TEMPLATE = {
-  scale: 1.2,
-  yPosition: 0.70
-};
-
-// Constants for other resolutions
-const OTHER_RESOLUTIONS = {
-  scale: 0.8,
-  yPosition: 0.85
-};
-
 export const RobotLineup = () => {
   const isMobile = useIsMobile();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -53,15 +41,16 @@ export const RobotLineup = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         
-        // Always return golden template values for 2560x1440
+        // 2560x1440 - Original golden template
         if (width === 2560 && height === 1440) {
-          console.log('Using Golden Template values:', GOLDEN_TEMPLATE);
-          return GOLDEN_TEMPLATE;
+          return { scale: 1.2, yPosition: 0.70 };
         }
-        
-        // Use other resolution values for all other screen sizes
-        console.log('Using Other Resolution values:', OTHER_RESOLUTIONS);
-        return OTHER_RESOLUTIONS;
+        // 1920x1080 and 1366x768
+        if ((width === 1920 && height === 1080) || (width === 1366 && height === 768)) {
+          return { scale: 0.8, yPosition: 0.85 };
+        }
+        // Default for other resolutions
+        return { scale: 1.2, yPosition: 0.70 };
       };
 
       const { scale, yPosition } = getScaleAndPosition();
