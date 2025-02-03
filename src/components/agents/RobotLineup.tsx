@@ -9,7 +9,7 @@ export const RobotLineup = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile) return; // Early return in useEffect is fine
     
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -36,21 +36,10 @@ export const RobotLineup = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       
-      // Get window width to determine scale
-      const windowWidth = window.innerWidth;
-      let robotScale = 1.2; // default scale
-
-      // Adjust scale based on screen width
-      if (windowWidth <= 1920 && windowWidth > 1366) {
-        robotScale = 0.7; // Much smaller for 1920x1080
-      } else if (windowWidth <= 1366) {
-        robotScale = 0.8; // Smaller for 1366x768
-      }
-      
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;
         const y = canvasHeight * (isMobile ? 0.60 : 0.70);
-        const scale = isMobile ? robot.scale * 0.8 : robot.scale * robotScale;
+        const scale = isMobile ? robot.scale * 0.8 : robot.scale * 1.2;
         
         drawRobot(
           ctx,
