@@ -36,9 +36,9 @@ export const RobotLineup = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       
-      // Fixed scale and Y position for all desktop resolutions
+      // Adjusted Y position for desktop resolutions
+      const yPosition = 0.60;
       const scale = 1.2;
-      const yPosition = 0.70;
       
       ROBOTS.forEach((robot, index) => {
         const x = (canvasWidth * robot.x) / 100;

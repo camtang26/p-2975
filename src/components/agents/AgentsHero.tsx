@@ -25,7 +25,7 @@ export const AgentsHero = () => {
       </div>
 
       {/* Content */}
-      <div className={`relative z-20 ${isMobile ? 'mt-[-8rem]' : 'mt-[-12rem]'}`}>
+      <div className={`relative z-20 ${isMobile ? 'mt-[-8rem]' : 'mt-[-16rem]'}`}>
         <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-5xl mx-auto px-4">
           <h1 className="font-inter text-5xl sm:text-7xl md:text-8xl font-bold tracking-[-0.02em] text-white neon-glow opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards]">
             AI Autonomous Agents
