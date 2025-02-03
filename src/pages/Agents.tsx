@@ -1,6 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { DesktopAgentsHero } from "@/components/agents/desktop/DesktopAgentsHero";
 import { AgentsHero } from "@/components/agents/AgentsHero";
 import { AiMarketingSolutions } from "@/components/agents/sections/AiMarketingSolutions";
 import { HowItWorks } from "@/components/agents/sections/HowItWorks";
@@ -8,8 +6,6 @@ import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
 
 const Agents = () => {
-  const isMobile = useIsMobile();
-
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Main Gradient Background */}
@@ -34,11 +30,7 @@ const Agents = () => {
 
       <Navigation />
       <main className="relative pt-20">
-        {isMobile ? (
-          <AgentsHero />
-        ) : (
-          <DesktopAgentsHero />
-        )}
+        <AgentsHero />
         <FadeIn>
           <AiMarketingSolutions />
         </FadeIn>

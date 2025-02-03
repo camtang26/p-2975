@@ -22,7 +22,6 @@ export default {
         sans: ['Geist', 'system-ui', 'sans-serif'],
         geist: ['Geist', 'system-ui', 'sans-serif'],
         inter: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['Geist Mono', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',

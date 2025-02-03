@@ -1,19 +1,14 @@
 import { Navigation } from "@/components/Navigation";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { DesktopAdManagerHero } from "@/components/admanager/desktop/DesktopAdManagerHero";
+import { Button } from "@/components/ui/button";
 import { HowItWorks } from "@/components/how-it-works/HowItWorks";
 import { Benefits } from "@/components/benefits/Benefits";
 import { ConceptToCreation } from "@/components/concept-to-creation/ConceptToCreation";
 import { ContactCTA } from "@/components/shared/ContactCTA";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { Button } from "@/components/ui/button";
 
 const AdManager = () => {
-  const isMobile = useIsMobile();
-
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Main Gradient Background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -34,12 +29,13 @@ const AdManager = () => {
       />
 
       <Navigation />
+      
       <main className="relative pt-20">
-        {isMobile ? (
-          <section 
-            className="relative min-h-[90vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-10 md:py-20 px-4 mb-8 md:mb-16"
-            aria-label="Hero section"
-          >
+        {/* Hero Section */}
+        <section 
+          className="relative min-h-[90vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-10 md:py-20 px-4 mb-8 md:mb-16"
+          aria-label="Hero section"
+        >
           <div className="container mx-auto max-w-7xl">
             <div className="text-center space-y-6 md:space-y-10">
               <h1 className="text-5xl sm:text-[3.5rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gradient opacity-0 animate-[fadeIn_3s_ease-out_0.5s_forwards] neon-glow">
@@ -142,19 +138,20 @@ const AdManager = () => {
             }}
             aria-hidden="true"
           />
-          </section>
-        ) : (
-          <DesktopAdManagerHero />
-        )}
+        </section>
+
         <FadeIn>
           <ConceptToCreation />
         </FadeIn>
+
         <FadeIn>
           <HowItWorks />
         </FadeIn>
+
         <FadeIn>
           <Benefits />
         </FadeIn>
+
         <FadeIn>
           <ContactCTA />
         </FadeIn>
