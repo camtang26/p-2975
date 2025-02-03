@@ -1,6 +1,7 @@
 import { Brain, Users, Sliders, Target } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollFade } from "@/components/shared/ScrollFade";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface StepProps {
   number: number;
@@ -11,50 +12,61 @@ interface StepProps {
 }
 
 const Step = ({ number, title, description, Icon, color }: StepProps) => {
+  const isMobile = useIsMobile();
+  
   return (
     <div className="relative group">
       <div 
         className={cn(
-          "glass-morphism p-8 rounded-xl hover-lift hover-glow",
+          "glass-morphism rounded-xl hover-lift hover-glow",
           "bg-gradient-to-br from-black/40 via-black/20 to-transparent",
           "transform-gpu transition-all duration-500",
           "border border-white/10",
-          "hover:border-[var(--step-color)]/30"
+          "hover:border-[var(--step-color)]/30",
+          isMobile ? "p-6" : "p-8" // Reduced padding for mobile
         )}
         style={{ '--step-color': color } as React.CSSProperties}
       >
-        {/* Step Number */}
         <div 
           className={cn(
-            "absolute -top-4 -left-4 w-12 h-12 rounded-xl",
+            "absolute -top-4 -left-4 rounded-xl",
             "flex items-center justify-center",
-            "text-white font-bold text-xl",
+            "text-white font-bold",
             "transform-gpu transition-transform duration-300",
             "hover:scale-110 hover:rotate-12",
-            "shadow-[0_0_30px_var(--step-color)]"
+            "shadow-[0_0_30px_var(--step-color)]",
+            isMobile ? "w-8 h-8 text-lg" : "w-12 h-12 text-xl" // Smaller number badge for mobile
           )}
           style={{ background: color }}
         >
           {number}
         </div>
 
-        {/* Icon */}
-        <div className="mb-6 relative group-hover:animate-pulse">
+        <div className={cn(
+          "mb-6 relative group-hover:animate-pulse",
+          isMobile ? "mb-4" : "mb-6" // Reduced margin for mobile
+        )}>
           <Icon 
             className={cn(
-              "w-16 h-16 transition-all duration-300",
+              "transition-all duration-300",
               "drop-shadow-[0_0_20px_var(--step-color)]",
-              "group-hover:drop-shadow-[0_0_40px_var(--step-color)]"
+              "group-hover:drop-shadow-[0_0_40px_var(--step-color)]",
+              isMobile ? "w-12 h-12" : "w-16 h-16" // Smaller icon for mobile
             )}
             style={{ color }}
           />
         </div>
 
-        {/* Content */}
-        <h3 className="text-2xl font-bold mb-4 text-gradient">
+        <h3 className={cn(
+          "font-bold text-gradient",
+          isMobile ? "text-xl mb-2" : "text-2xl mb-4" // Smaller heading and margin for mobile
+        )}>
           {title}
         </h3>
-        <p className="text-white/80 leading-relaxed">
+        <p className={cn(
+          "text-white/80 leading-relaxed",
+          isMobile ? "text-sm" : "text-base" // Smaller text for mobile
+        )}>
           {description}
         </p>
       </div>
@@ -94,23 +106,37 @@ const steps = [
 ];
 
 export const HowItWorks = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="py-20 relative">
+    <section className={cn(
+      "relative",
+      isMobile ? "py-12" : "py-20" // Reduced padding for mobile
+    )}>
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className={cn(
+          "mx-auto text-center",
+          isMobile ? "mb-8 max-w-[90%]" : "mb-16 max-w-3xl" // Adjusted margins and width for mobile
+        )}>
           <ScrollFade>
-            <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
+            <h2 className={cn(
+              "font-bold text-gradient",
+              isMobile ? "text-3xl mb-3" : "text-5xl md:text-6xl mb-6" // Smaller text and margin for mobile
+            )}>
               How It Works
             </h2>
           </ScrollFade>
           <ScrollFade delay={100}>
-            <p className="text-2xl md:text-3xl text-white/80">
+            <p className={cn(
+              "text-white/80",
+              isMobile ? "text-lg" : "text-2xl md:text-3xl" // Smaller text for mobile
+            )}>
               Transforming Your Vision into Reality
             </p>
           </ScrollFade>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <ScrollFade key={index} delay={index * 100}>
               <Step {...step} />
