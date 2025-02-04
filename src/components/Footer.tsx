@@ -18,7 +18,7 @@ export const Footer = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12">
             {/* Logo and Social Links Section */}
-            <div className="space-y-2 md:space-y-4 col-span-2 md:col-span-1 flex flex-col items-start">
+            <div className="space-y-2 col-span-2 md:col-span-1 flex flex-col items-start">
               <div className="flex items-center space-x-2">
                 <img 
                   src="/wp-content/themes/cre8tive-ai/assets/images/logo-small.webp" 
