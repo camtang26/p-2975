@@ -60,7 +60,7 @@ export const StudiosIntro = () => {
               "bg-black/10 backdrop-blur-sm"
             )}>
               <img
-                src="/images/logo-large.webp"
+                src="/wp-content/themes/cre8tive-ai/assets/images/logo-large.webp"
                 alt="Neural Tree Visualization"
                 className="w-[110%] h-[110%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               />
