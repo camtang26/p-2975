@@ -19,7 +19,7 @@ export const DesktopNavigation = () => {
               aria-label="Go to homepage"
             >
               <img 
-                src="/lovable-uploads/a5f0ca2b-7777-4887-8e92-d1d0959c2448.png" 
+                src="/images/logo-small.webp" 
                 alt="Cre8tive AI Logo" 
                 className="h-14 w-auto"
                 width="56"
