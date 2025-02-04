@@ -21,7 +21,7 @@ export const Footer = () => {
             <div className="space-y-2 md:space-y-4 col-span-2 md:col-span-1 flex flex-col items-start">
               <div className="flex items-center space-x-2">
                 <img 
-                  src="/images/logo-small.webp" 
+                  src="./images/logo-small.webp" 
                   alt="Logo" 
                   className="w-5 h-5 md:w-8 md:h-8" 
                 />
@@ -99,7 +99,7 @@ export const Footer = () => {
               <h3 className="font-geist text-white font-semibold text-xs md:text-base mb-2 md:mb-4">© 2025 Cre8tive AI</h3>
               <Link to="/" aria-label="Return to homepage">
                 <img 
-                  src="/images/logo-medium.webp" 
+                  src="./images/logo-medium.webp" 
                   alt="Footer logo" 
                   className="w-16 md:w-32 hover:opacity-90 transition-opacity duration-300" 
                 />
