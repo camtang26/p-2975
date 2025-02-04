@@ -27,7 +27,7 @@ function enqueue_react_scripts() {
     // Enqueue main JavaScript bundle
     wp_enqueue_script(
         'react-app-main',
-        get_template_directory_uri() . '/assets/index-[YOUR-JS-HASH].js',
+        get_template_directory_uri() . '/assets/index-CYzEDOvK.js',
         array('jquery'),  // Add jQuery as dependency
         null,
         true
@@ -36,7 +36,7 @@ function enqueue_react_scripts() {
     // Enqueue CSS
     wp_enqueue_style(
         'react-app-styles',
-        get_template_directory_uri() . '/assets/index-[YOUR-CSS-HASH].css',
+        get_template_directory_uri() . '/assets/index-CJjDqNxP.css',
         array(),
         null
     );
