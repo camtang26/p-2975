@@ -20,7 +20,7 @@ export const MobileNavigation = () => {
               style={{ touchAction: 'manipulation' }}
             >
               <img
-                src="/lovable-uploads/1695cb6f-90ec-4a79-aedf-92f17ba25444.png"
+                src="/wp-content/themes/cre8tive-ai/assets/images/logo-small.webp"
                 alt="Cre8tive AI Logo"
                 className="w-7 h-7"
                 loading="eager"
